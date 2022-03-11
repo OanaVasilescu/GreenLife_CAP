@@ -1,0 +1,171 @@
+{
+  "configurations": [
+    {
+      "command": "cds run --with-mocks --in-memory?",
+      "name": "cds run",
+      "request": "launch",
+      "type": "node-terminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "Start greenlife",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npx",
+      "cwd": "${workspaceFolder}/app/greenlife",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "test/flpSandbox.html?sap-ui-xx-viewCache=false#recyclingappgreenlife-display"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "DEBUG": "--inspect"
+      }
+    },
+    {
+      "name": "Start greenlife with UI5 Version",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npx",
+      "cwd": "${workspaceFolder}/app/greenlife",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "test/flpSandbox.html?sap-ui-xx-viewCache=false#recyclingappgreenlife-display",
+        "${input:UI5MinVersion1.65.0}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "DEBUG": "--inspect"
+      }
+    },
+    {
+      "name": "Start greenlife Local",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/app/greenlife",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--config",
+        "./ui5-local.yaml",
+        "--open",
+        "test/flpSandbox.html?sap-ui-xx-viewCache=false#recyclingappgreenlife-display"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {}
+    },
+    {
+      "name": "Start admin",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npx",
+      "cwd": "${workspaceFolder}/app/admin",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "test/flpSandbox.html?sap-ui-xx-viewCache=false#admin-display"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "DEBUG": "--inspect"
+      }
+    },
+    {
+      "name": "Start admin with UI5 Version",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npx",
+      "cwd": "${workspaceFolder}/app/admin",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "test/flpSandbox.html?sap-ui-xx-viewCache=false#admin-display",
+        "${input:UI5MinVersion1.65.0}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "DEBUG": "--inspect"
+      }
+    },
+    {
+      "name": "Start admin Local",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/app/admin",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--config",
+        "./ui5-local.yaml",
+        "--open",
+        "test/flpSandbox.html?sap-ui-xx-viewCache=false#admin-display"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {}
+    }
+  ],
+  "compounds": [],
+  "inputs": [
+    {
+      "id": "UI5MinVersion1.65.0",
+      "type": "command",
+      "command": "sap.ux.appGenerator.ui5Version",
+      "args": {
+        "minUI5Version": "1.65.0"
+      }
+    }
+  ],
+  "version": "0.2.0"
+}

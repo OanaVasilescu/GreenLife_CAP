@@ -107,6 +107,14 @@
                     "name": "RouteOverview",
                     "pattern": "",
                     "target": ["TargetOverview"]
+                }, {
+                    "name": "SearchProduct",
+                    "pattern": "search",
+                    "target": ["SearchProduct"]
+                }, {
+                    "name": "RecyclingMap",
+                    "pattern": "map",
+                    "target": ["RecyclingMap"]
                 }
             ],
             "targets": {
@@ -123,6 +131,20 @@
                     "clearControlAggregation": false,
                     "viewId": "App",
                     "viewName": "App"
+                },
+                "RecyclingMap": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "RecyclingMap",
+                    "viewName": "RecyclingMap"
+                },
+                "SearchProduct": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "SearchProduct",
+                    "viewName": "SearchProduct"
                 }
             }
         },

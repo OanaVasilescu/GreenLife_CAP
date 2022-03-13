@@ -1,4 +1,45 @@
 <mvc:View controllerName="greenlife.controller.Overview"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+    <Page id="page" showHeader="false">
+        <l:BlockLayout id="BlockLayout" background="Default">
+            <!-- image here maybe -->
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeD">
+                    <l:VerticalLayout>
+                        <core:Icon src="sap-icon://search" size="2.5rem" color="Default"/>
+                        <Title id="searchProductTile" text="{i18n>searchTitle}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
+                        <Text text="{i18n>searchProductContent}" class="sapUiTinyMarginBottom"/>
+                        <Link text="{i18n>accessLink}" press="pressSearchProduct"/>
+                    </l:VerticalLayout>
+                </l:BlockLayoutCell>
+                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeB">
+                    <l:VerticalLayout>
+                        <core:Icon src="sap-icon://map-2" size="2.5rem" color="Default"/>
+                        <Title text="{i18n>seeRecyclingMap}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
+                        <Text text="{i18n>seeRecyclingMapContent}" class="sapUiTinyMarginBottom"/>
+                        <Link text="{i18n>accessLink}" press="pressSeeMap"/>
+                    </l:VerticalLayout>
+                </l:BlockLayoutCell>
+                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeD">
+                    <l:VerticalLayout>
+                        <core:Icon src="sap-icon://customer-financial-fact-sheet" size="2.5rem" color="Default"/>
+                        <Title text="{i18n>noClueYet}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
+                        <Text text="{i18n>noClueYet}" class="sapUiTinyMarginBottom"/>
+                        <Link text="{i18n>noClueYet}"/>
+                    </l:VerticalLayout>
+                </l:BlockLayoutCell>
+                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeB">
+                    <l:VerticalLayout>
+                        <core:Icon id="supplierIcon" src="sap-icon://supplier" size="2.5rem" color="Default" />
+                        <Title text="{i18n>noClueYet}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
+                        <Text text="{i18n>noClueYet}" class="sapUiTinyMarginBottom"/>
+                        <Link text="{i18n>noClueYet}"/>
+                    </l:VerticalLayout>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+        </l:BlockLayout>
+    </Page>
 </mvc:View>

@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:ndc="sap.ndc">
+    <Toolbar>
+        <ToolbarSpacer/>
+        <SearchField width="50%" search=".onFilterProducts"/>
+        <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveUpdate" dialogTitle="Barcode Scanner"/>
+        <ToolbarSpacer/>
+    </Toolbar>
+
+    <l:HorizontalLayout allowWrapping="true" content="{productsModel>/}">
+        <GenericTile class="sapUiSmallMarginTop sapUiMediumMarginEnd" header="{productsModel>name}" press="onPressProduct">
+            <TileContent>
+            </TileContent>
+        </GenericTile>
+    </l:HorizontalLayout>
+</core:FragmentDefinition>

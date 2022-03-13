@@ -1,0 +1,6 @@
+<mvc:View controllerName="greenlife.controller.SearchProduct"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core">
+    <c:Fragment fragmentName="greenlife.view.fragments.ProductList" type="XML"/>
+</mvc:View>

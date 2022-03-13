@@ -3,7 +3,7 @@ using {greenlife.recycling.app as my} from '../db/schema';
 @requires : 'authenticated-user'
 service UserService @(path : '/greenLife') {
     @readonly
-    entity Product              as projection on my.Product;
+    entity Products             as projection on my.Products;
 
     @readonly
     entity Component            as projection on my.Components;

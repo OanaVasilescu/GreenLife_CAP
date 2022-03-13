@@ -1,7 +1,7 @@
 using {greenlife.recycling.app as my} from '../db/schema';
 
 service AdminService @(requires : 'Admin') {
-    entity Product              as projection on my.Product;
+    entity Products             as projection on my.Products;
     entity Component            as projection on my.Components;
     entity BinTypes             as projection on my.BinTypes;
     entity ProductTypes         as projection on my.ProductTypes;

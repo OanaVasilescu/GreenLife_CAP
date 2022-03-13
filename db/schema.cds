@@ -6,7 +6,7 @@ using {
 } from '@sap/cds/common';
 
 
-entity Product : cuid {
+entity Products : cuid {
     name       : localized String not null;
     components : Composition of many {
                      key component : Association to Components;
@@ -15,10 +15,10 @@ entity Product : cuid {
 }
 
 entity Components : cuid {
-    name                  : localized String not null;
-    recyclingInstructions : localized String not null;
-    productMaterialCode   : Association to one ProductMaterialCodes; // 41 ALU
-    productType           : Association to one ProductTypes;
+    name                : localized String not null;
+    // recyclingInstructions : localized String not null;
+    productMaterialCode : Association to one ProductMaterialCodes; // 41 ALU
+    productType         : Association to one ProductTypes;
 }
 
 entity BinTypes : cuid {
@@ -29,16 +29,18 @@ entity BinTypes : cuid {
 }
 
 entity ProductTypes : cuid {
-    name           : localized String not null; // e capac, e actibilt, e sticla....
-    orderOfRemoval : Integer not null; // mai intai dai jos capacul, dupa dai jos ambalajul.. etc
+    name                  : localized String not null; // e capac, e actibilt, e sticla....
+    recyclingInstructions : localized String not null;
+    orderOfRemoval        : Integer not null; // mai intai dai jos capacul, dupa dai jos ambalajul.. etc
 }
 
 
 // code list for material code
 entity ProductMaterialCodes {
-    key intCode    : Integer;
-    key stringCode : String;
-        bin        : Association to BinTypes;
+    key intCode     : Integer;
+        stringCode  : String;
+        description : String;
+        bin         : Association to BinTypes;
 }
 
 entity RecyclingTips : cuid {

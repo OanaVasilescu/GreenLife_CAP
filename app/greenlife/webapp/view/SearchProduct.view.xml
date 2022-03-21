@@ -1,6 +1,20 @@
 <mvc:View controllerName="greenlife.controller.SearchProduct"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
-    xmlns:c="sap.ui.core">
-    <c:Fragment fragmentName="greenlife.view.fragments.ProductList" type="XML"/>
+    xmlns:c="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:ndc="sap.ndc">
+    <Toolbar>
+        <ToolbarSpacer/>
+        <SearchField width="50%" search="onFilterProducts"/>
+        <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveUpdate" dialogTitle="Barcode Scanner" class="sapUiSmallMarginBegin"/>
+        <ToolbarSpacer/>
+    </Toolbar>
+
+    <HBox id="productsLayout" items="{productsModel>/}" class="sapUiSmallMargin">
+        <GenericTile class="sapUiSmallMarginTop sapUiMediumMarginEnd" header="{productsModel>name}" press="onPressProduct">
+            <TileContent>
+            </TileContent>
+        </GenericTile>
+    </HBox>
 </mvc:View>

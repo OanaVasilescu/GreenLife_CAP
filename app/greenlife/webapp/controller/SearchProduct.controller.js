@@ -15,23 +15,25 @@ sap.ui.define([
 
         _getProductList: async function () {
             await this.get(URLs.getAllProducts()).then(async (data) => {
-                await this.getView().setModel(new JSONModel(data), "productsModel");
-            }).catch((err) => {
+                await this.getView().setModel(new JSONModel(data.value), "productsModel");
+            }).catch((err) => { // TODO: if 404 ignore;
                 this.messageHandler("getProductsErr");
             });
         },
 
-        onFilterInvoices: function (oEvent) { // build filter array
+        onFilterProducts: function (oEvent) { // build filter array
             let aFilter = [];
             let sQuery = oEvent.getParameter("query");
             if (sQuery) {
-                aFilter.push(new Filter("ProductName", FilterOperator.Contains, sQuery));
+                aFilter.push(new Filter("name", FilterOperator.Contains, sQuery));
             }
 
-            // filter binding
-            // var oList = this.byId("invoiceList");
-            // var oBinding = oList.getBinding("items");
-            // oBinding.filter(aFilter);
+            let list = this.byId("productsLayout");
+            let binding = list.getBinding("items");
+            binding.filter(aFilter);
+        },
+
+        onPressProduct: function (oEvent) {
             debugger;
         }
     });

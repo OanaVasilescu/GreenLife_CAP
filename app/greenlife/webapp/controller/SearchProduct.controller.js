@@ -29,7 +29,7 @@ sap.ui.define([
             }
 
             let list = this.byId("productsLayout");
-            let binding = list.getBinding("items");
+            let binding = list.getBinding("content");
             binding.filter(aFilter);
         },
 

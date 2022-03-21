@@ -11,10 +11,10 @@
         <ToolbarSpacer/>
     </Toolbar>
 
-    <HBox id="productsLayout" items="{productsModel>/}" class="sapUiSmallMargin">
+    <l:HorizontalLayout allowWrapping="true" id="productsLayout" content="{productsModel>/}" class="sapUiSmallMargin">
         <GenericTile class="sapUiSmallMarginTop sapUiMediumMarginEnd" header="{productsModel>name}" press="onPressProduct">
             <TileContent>
             </TileContent>
         </GenericTile>
-    </HBox>
+    </l:HorizontalLayout>
 </mvc:View>

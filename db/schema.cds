@@ -16,7 +16,7 @@ entity Products : cuid {
 }
 
 entity Components : cuid {
-    name                : localized String not null;
+    // name                : localized String not null;
     // recyclingInstructions : localized String not null;
     productMaterialCode : Association to one ProductMaterialCodes; // 41 ALU
     productType         : Association to one ProductTypes;
@@ -34,7 +34,6 @@ entity ProductTypes : cuid {
     recyclingInstructions : localized String not null;
     orderOfRemoval        : Integer not null; // mai intai dai jos capacul, dupa dai jos ambalajul.. etc
 }
-
 
 // code list for material code
 entity ProductMaterialCodes {

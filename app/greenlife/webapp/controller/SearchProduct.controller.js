@@ -11,6 +11,7 @@ sap.ui.define([
     return BaseController.extend("greenlife.controller.SearchProduct", {
         onInit: function () {
             this.getRouter().getRoute("SearchProduct").attachPatternMatched(this._getProductList, this);
+            this.getView().setModel(new JSONModel(), "productInstructionsModel");
         },
 
         _getProductList: async function () {
@@ -33,8 +34,29 @@ sap.ui.define([
             binding.filter(aFilter);
         },
 
-        onPressProduct: function (oEvent) {
+        onPressProduct: async function (oEvent) {
+            let pathToProduct = oEvent.getSource().getBindingContext("productsModel").sPath;
+            let product = this.getView().getModel("productsModel").getProperty(pathToProduct);
+            await this.getRecyclingInstructions(product.ID);
+            if (!this.recyclingDialog) {
+                this.recyclingDialog = this.loadFragment({name: "greenlife.view.fragments.ProductRecyclingDialog"});
+            }
+            this.recyclingDialog.then(function (dialog) {
+                dialog.open();
+            });
+        },
+
+        onCloseRecyclingDialog: function () {
             debugger;
+            this.byId("recyclingDialog").close();
+        },
+
+        getRecyclingInstructions: async function (productId) {
+            await this.get(URLs.getProductWithInstructions(productId)).then(async (data) => {
+                this.getView().getModel("productInstructionsModel").setData(data);
+            }).catch((err) => {
+                this.messageHandler("productInstructionsError");
+            });
         }
     });
 });

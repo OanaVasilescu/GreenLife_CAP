@@ -11,6 +11,7 @@ entity Products : cuid {
     components : Composition of many {
                      key component : Association to Components;
                  }
+    image      : LargeBinary @Core.MediaType : 'image/png';
 // barcode should be the id?
 }
 

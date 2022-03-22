@@ -7,7 +7,7 @@
     <Toolbar>
         <ToolbarSpacer/>
         <SearchField width="50%" search="onFilterProducts"/>
-        <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveUpdate" dialogTitle="Barcode Scanner" class="sapUiSmallMarginBegin"/>
+        <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveUpdate" dialogTitle="{i18n>BarcodeScanner}" class="sapUiSmallMarginBegin"/>
         <ToolbarSpacer/>
     </Toolbar>
 

@@ -28,7 +28,6 @@
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "ExtensibilityGuidance",
                     "action": "display",
                     "title": "{{appTitle}}",
                     "info": "",

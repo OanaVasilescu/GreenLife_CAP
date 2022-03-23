@@ -33,6 +33,7 @@ entity ProductTypes : cuid {
     name                  : localized String not null; // e capac, e actibilt, e sticla....
     recyclingInstructions : localized String not null;
     orderOfRemoval        : Integer not null; // mai intai dai jos capacul, dupa dai jos ambalajul.. etc
+    image                 : LargeBinary @Core.MediaType : 'image/png';
 }
 
 // code list for material code

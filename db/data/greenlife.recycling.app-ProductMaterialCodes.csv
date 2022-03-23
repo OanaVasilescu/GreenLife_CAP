@@ -1,4 +1,4 @@
-intCode;stringCode;description;bin_ID
+intCode;stringCode;description;bin_ID;
 1;PET;Polyethylene terephthalate;e3ff7fff-12e9-4994-8b99-352c2df7bf22;
 2;HDPE;High-density polyethylene;e3ff7fff-12e9-4994-8b99-352c2df7bf22;
 3;PVC;Polyvinyl chloride;80bbfde8-21cb-44cb-862d-1f800f11e3d4;

@@ -22,13 +22,9 @@ sap.ui.define([
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
 
-            sap.ui.core.IconPool.registerFont({
-                collectionName: "brands-icons",
-                fontFamily: "fa-brands-400",
-                fontURI: "icons_awesome/webfonts",
-                lazy: false,
-                metadataURI: "icons_awesome/metadata/icons.json"
-            });
+            sap.ui.core.IconPool.registerFont({collectionName: "brands-icons", fontFamily: "fa-brands-400", fontURI: "icons_awesome/webfonts", lazy: false});
+            sap.ui.core.IconPool.registerFont({collectionName: "regular-icons", fontFamily: "fa-regular-400", fontURI: "icons_awesome/webfonts", lazy: false});
+            sap.ui.core.IconPool.registerFont({collectionName: "solid-icons", fontFamily: "fa-solid-900", fontURI: "icons_awesome/webfonts", lazy: false});
 
         }
     });

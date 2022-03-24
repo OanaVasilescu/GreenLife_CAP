@@ -16,7 +16,7 @@
         <tnt:sideContent>
             <tnt:SideNavigation expanded="false">
                 <tnt:NavigationList>
-                    <tnt:NavigationListItem text="{i18n>managementProducts}" icon="sap-icon://brands-icons/twitter"/>
+                    <tnt:NavigationListItem text="{i18n>managementProducts}" icon="sap-icon://solid-icons/recycle"/>
                     <tnt:NavigationListItem text="{i18n>RecyclingCentersAndBins}" icon="sap-icon://employee"/>
                 </tnt:NavigationList>
             </tnt:SideNavigation>

@@ -14,8 +14,12 @@
             </tnt:ToolHeader>
         </tnt:header>
         <tnt:sideContent>
-            <tnt:SideNavigation expanded="false"/>
-
+            <tnt:SideNavigation expanded="false">
+                <tnt:NavigationList>
+                    <tnt:NavigationListItem text="{i18n>managementProducts}" icon="sap-icon://font-awesome-icons/fa-font-awesome"/>
+                    <tnt:NavigationListItem text="{i18n>RecyclingCentersAndBins}" icon="sap-icon://employee"/>
+                </tnt:NavigationList>
+            </tnt:SideNavigation>
         </tnt:sideContent>
         <tnt:mainContents>
             <App id="app"/>

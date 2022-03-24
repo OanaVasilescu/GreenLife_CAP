@@ -4,6 +4,8 @@
     xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core">
     <Page id="page" showHeader="false">
+        <Label class="fa-brands fa-twitter"/>
+
         <l:BlockLayout id="BlockLayout" background="Default">
             <!-- image here maybe -->
             <l:BlockLayoutRow>

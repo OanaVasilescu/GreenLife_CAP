@@ -21,6 +21,8 @@ sap.ui.define([
 
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
+
+            sap.ui.core.IconPool.registerFont({collectionName: "font-awesome-icons", fontFamily: "fa-regular", fontURI: "../../icons_awesome", lazy: false});
         }
     });
 });

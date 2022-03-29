@@ -1,3 +1,4 @@
+const cds = require("@sap/cds");
 const userRoles = ["Admin", "User"];
 
 module.exports = cds.service.impl(srv => {

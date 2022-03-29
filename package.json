@@ -9,6 +9,7 @@
         "@sap/cds": "^5",
         "@sap/xsenv": "^3.2.1",
         "@sap/xssec": "^3.2.13",
+        "@sap/hana-client": "^2.10.13",
         "express": "^4",
         "hdb": "^0.19.1",
         "passport": "^0.5.2"
@@ -48,14 +49,15 @@
         "requires": {
             "db": {
                 "kind": "sql"
-            },
-            "hana": {
-                "deploy-format": "hdbtable"
-            },
-            "uaa": {
-                "kind": "xsuaa",
-                "credentials": {}
             }
+        },
+        "hana": {
+            "syntax": "hdi",
+            "deploy-format": "hdbtable"
+        },
+        "uaa": {
+            "kind": "xsuaa",
+            "credentials": {}
         }
     }
 }

@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    <Dialog id="recyclingDialog" class="sapUiSmallMarginBeginEnd" contentWidth="800em" resizable="true" title="{productInstructionsModel>/name}">
+        <buttons>
+            <Button text="{i18n>OK}" press=".onCloseRecyclingDialog" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

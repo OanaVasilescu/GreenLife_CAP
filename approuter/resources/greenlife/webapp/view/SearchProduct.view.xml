@@ -1,0 +1,20 @@
+<mvc:View controllerName="greenlife.controller.SearchProduct"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:ndc="sap.ndc">
+    <Toolbar>
+        <ToolbarSpacer/>
+        <SearchField width="50%" search="onFilterProducts"/>
+        <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveUpdate" dialogTitle="{i18n>BarcodeScanner}" class="sapUiSmallMarginBegin"/>
+        <ToolbarSpacer/>
+    </Toolbar>
+
+    <l:HorizontalLayout allowWrapping="true" id="productsLayout" content="{productsModel>/}" class="sapUiSmallMargin">
+        <GenericTile class="sapUiSmallMarginTop sapUiMediumMarginEnd" header="{productsModel>name}" press="onPressProduct">
+            <TileContent>
+            </TileContent>
+        </GenericTile>
+    </l:HorizontalLayout>
+</mvc:View>

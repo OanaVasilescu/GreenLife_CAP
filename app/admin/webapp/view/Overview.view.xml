@@ -1,5 +1,0 @@
-<mvc:View controllerName="admin.controller.Overview"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Label class="fa-brands fa-twitter"/>
-</mvc:View>

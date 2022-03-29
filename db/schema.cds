@@ -7,7 +7,7 @@ using {
 
 
 entity Products : cuid {
-    name       : localized String not null;
+    name       : String not null;
     components : Composition of many {
                      key component : Association to Components;
                  }
@@ -23,16 +23,16 @@ entity Components : cuid {
 }
 
 entity BinTypes : cuid {
-    name          : localized String not null; // de hartie, de sticla, de compost, normal
+    name          : String not null; // de hartie, de sticla, de compost, normal
     materialCodes : Association to many ProductMaterialCodes
                         on materialCodes.bin = $self;
 // maybe add map and add locations of the bin
 }
 
 entity ProductTypes : cuid {
-    name                  : localized String not null; // e capac, e actibilt, e sticla....
-    recyclingInstructions : localized String not null;
-    orderOfRemoval        : Integer not null; // mai intai dai jos capacul, dupa dai jos ambalajul.. etc
+    name                  : String not null; // e capac, e actibilt, e sticla....
+    recyclingInstructions : String;
+    orderOfRemoval        : Integer; // mai intai dai jos capacul, dupa dai jos ambalajul.. etc
     image                 : LargeBinary @Core.MediaType : 'image/png';
 }
 
@@ -45,7 +45,7 @@ entity ProductMaterialCodes {
 }
 
 entity RecyclingTips : cuid {
-    tip : localized String not null;
+    tip : String not null;
 }
 
 entity Reminders : cuid, managed {

@@ -1,10 +1,10 @@
-ID;name;recyclingInstructions;orderOfRemoval
-4d542119-88f1-43aa-9f7e-a54c9c55d413;foil;remove from product. Clean if necesary;1
-cd53c2cd-9321-4831-be29-dcb97d0b6035;cap;remove from product, clean if necesary;2;
-8d025153-2aca-4ab9-b4b5-9d3ba5145ce7;bottle;clean;3;
-adfa2d89-1ceb-45d8-a49b-69016b156648;box;-;4;
-2649d410-c71d-41f9-b1d4-394b307a34b3;can;make sure it's dry;5;
-3dc710ae-5d8d-4067-9382-f3310a51a0f5;sticker;remove;0;
-15865663-009b-43cc-9044-5a92412ab21a;bag;-;7
-4dcb5bd8-491e-4696-a099-73d04dc025bc;ambalaj;-;1
-f8451d9d-4be5-4d82-802d-3dd893f5b715;borcan;clean;6;
+ID;name;
+4d542119-88f1-43aa-9f7e-a54c9c55d413;foil;
+cd53c2cd-9321-4831-be29-dcb97d0b6035;cap;
+8d025153-2aca-4ab9-b4b5-9d3ba5145ce7;bottle;
+adfa2d89-1ceb-45d8-a49b-69016b156648;box;
+2649d410-c71d-41f9-b1d4-394b307a34b3;can;
+3dc710ae-5d8d-4067-9382-f3310a51a0f5;sticker;
+15865663-009b-43cc-9044-5a92412ab21a;bag;
+4dcb5bd8-491e-4696-a099-73d04dc025bc;ambalaj;
+f8451d9d-4be5-4d82-802d-3dd893f5b715;borcan;

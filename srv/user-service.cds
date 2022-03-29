@@ -2,23 +2,77 @@ using {greenlife.recycling.app as my} from '../db/schema';
 
 @requires : 'authenticated-user'
 service UserService @(path : '/greenLife') {
-    @readonly
-    entity Products             as projection on my.Products;
+    function getUserData() returns {
+        user : String;
+        roles : String;
+    };
 
-    @readonly
-    entity Component            as projection on my.Components;
+    entity Products @(restrict : [
+        {
+            grant : ['READ'],
+            to    : ['User']
+        },
+        {
+            grant : ['*'],
+            to    : ['Admin']
+        }
+    ])               as projection on my.Products;
 
-    @readonly
-    entity BinTypes             as projection on my.BinTypes;
 
-    @readonly
-    entity ProductTypes         as projection on my.ProductTypes;
+    entity Component @(restrict : [
+        {
+            grant : ['READ'],
+            to    : ['User']
+        },
+        {
+            grant : ['*'],
+            to    : ['Admin']
+        }
+    ])               as projection on my.Components;
 
-    @readonly
-    entity ProductMaterialCodes as projection on my.ProductMaterialCodes;
+    entity BinTypes @(restrict : [
+        {
+            grant : ['READ'],
+            to    : ['User']
+        },
+        {
+            grant : ['*'],
+            to    : ['Admin']
+        }
+    ])               as projection on my.BinTypes;
 
-    @readonly
-    entity ReciclingTips        as projection on my.RecyclingTips;
+    entity ProductTypes @(restrict : [
+        {
+            grant : ['READ'],
+            to    : ['User']
+        },
+        {
+            grant : ['*'],
+            to    : ['Admin']
+        }
+    ])               as projection on my.ProductTypes;
 
-    entity Reminders            as projection on my.Reminders;
+    entity ProductMaterialCodes @(restrict : [
+        {
+            grant : ['READ'],
+            to    : ['User']
+        },
+        {
+            grant : ['*'],
+            to    : ['Admin']
+        }
+    ])               as projection on my.ProductMaterialCodes;
+
+    entity ReciclingTips @(restrict : [
+        {
+            grant : ['READ'],
+            to    : ['User']
+        },
+        {
+            grant : ['*'],
+            to    : ['Admin']
+        }
+    ])               as projection on my.RecyclingTips;
+
+    entity Reminders as projection on my.Reminders;
 }

@@ -1,1 +1,27 @@
-{}
+{
+    "[development]": {
+        "auth": {
+            "passport": {
+                "kind": "basic-auth",
+                "users": {
+                    "admin@sap.com": {
+                        "password": "admin",
+                        "ID": "admin",
+                        "userAttributes": {
+                            "email": "admin@sap.com"
+                        },
+                        "roles": ["Admin"]
+                    },
+                    "user@sap.com": {
+                        "password": "user",
+                        "ID": "user",
+                        "userAttributes": {
+                            "email": "user@sap.com"
+                        },
+                        "roles": ["User"]
+                    }
+                }
+            }
+        }
+    }
+}

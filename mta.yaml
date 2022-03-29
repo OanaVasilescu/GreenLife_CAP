@@ -9,8 +9,8 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-        - npm ci
-        - npx -p @sap/cds-dk cds build --production
+      - npm install --production
+      - npx -p @sap/cds-dk cds build --production
 
 modules:
   - name: recycling_app-srv
@@ -78,6 +78,4 @@ resources:
     parameters:
       service: xsuaa
       service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: green_life-${org}-${space}
+      path: ./xs-security.json      

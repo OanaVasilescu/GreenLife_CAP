@@ -12,19 +12,61 @@
     color: #0A6ED1 !important;
 }
 
-.tileIconSize{
-    size: 3em
-}
-
 .sapMGT {
     border-radius: 0em
 }
 
+.sapMGTPressActive {
+    background: #cf214a !important;
+}
+
 .sapMGT:hover{
-    background: #fe0037 !important;
+    background: #ccacb4 !important;
+}
+
+.sapMGT:focus{
+    background: #ccacb4 !important;
+    /* border: none;
+    outline-style: none; */
 }
 
 .smallTiles{
     width: 9.17rem !important;
     height: 9.17rem !important;
+}
+
+.sapMImageContentImageIcon.sapUiIcon{
+    font-size: 4rem;
+}
+
+/* .smallTiles > .sapMImageContentImageIcon.sapUiIcon{
+    font-size: 2rem !important;
+} */
+
+.sapMImageContent {
+   width: auto !important;
+}
+
+/* .sapMTileCntContent{
+    align-items: center;
+} */
+
+.sapMImageContentImageIcon {
+    display: flex;
+    bottom: 0;
+    max-height: 3.5rem;
+    align-items: center;
+    align-content: center;
+    justify-content: space-evenly;
+    position: inherit;
+}
+
+.sapMTextLineClamp{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.sapMGTHdrContent {
+    height: 3rem;
 }

@@ -27,68 +27,59 @@
                                 <HBox>
                                     <GenericTile class="" header="{i18n>paperAndCardboard}">
                                         <TileContent>
-                                            <ImageContent src="sap-icon://syringe" class="tileIconSize"/>
+                                            <ImageContent src="sap-icon://solid-icons/boxes-packing"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile class="" header="{i18n>plasticAndPet}">
                                         <TileContent>
-                                            <c:Icon src="sap-icon://syringe" color="#031E48">
-                                            </c:Icon>
+                                            <ImageContent src="sap-icon://solid-icons/bottle-water"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile class="" header="{i18n>electro}">
                                         <TileContent>
-                                            <c:Icon src="sap-icon://syringe" color="#031E48">
-                                            </c:Icon>
+                                            <ImageContent src="sap-icon://solid-icons/camera-retro"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile class="" header="{i18n>metalAndAlu}">
                                         <TileContent>
-                                            <ImageContent src="sap-icon://syringe" class="tileIconSize"/>
+                                            <ImageContent src="sap-icon://solid-icons/anchor"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile class="" header="{i18n>glass}">
                                         <TileContent>
-                                            <c:Icon src="sap-icon://syringe" color="#031E48">
-                                            </c:Icon>
+                                            <ImageContent src="sap-icon://solid-icons/wine-bottle"/>
                                         </TileContent>
                                     </GenericTile>
                                 </HBox>
                                 <HBox>
                                     <GenericTile class="smallTiles" header="{i18n>dangerous}">
                                         <TileContent>
-                                            <c:Icon src="sap-icon://syringe" color="#031E48">
-                                            </c:Icon>
+                                            <ImageContent src="sap-icon://solid-icons/spray-can"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile class="smallTiles" header="{i18n>automoto}">
                                         <TileContent>
-                                            <c:Icon src="sap-icon://syringe" color="#031E48">
-                                            </c:Icon>
+                                            <ImageContent src="sap-icon://solid-icons/car-side"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile class="smallTiles" header="{i18n>constructions}">
                                         <TileContent>
-                                            <c:Icon src="sap-icon://syringe" color="#031E48">
-                                            </c:Icon>
+                                            <ImageContent src="sap-icon://solid-icons/person-digging"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile class="smallTiles" header="{i18n>wood}">
                                         <TileContent>
-                                            <c:Icon src="sap-icon://syringe" color="#031E48">
-                                            </c:Icon>
+                                            <ImageContent src="sap-icon://solid-icons/tree"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile class="smallTiles" header="{i18n>textile}">
                                         <TileContent>
-                                            <c:Icon src="sap-icon://syringe" color="#031E48">
-                                            </c:Icon>
+                                            <ImageContent src="sap-icon://solid-icons/shirt"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile class="smallTiles" header="{i18n>others}">
                                         <TileContent>
-                                            <c:Icon src="sap-icon://syringe" color="#031E48">
-                                            </c:Icon>
+                                            <ImageContent src="sap-icon://solid-icons/robot"/>
                                         </TileContent>
                                     </GenericTile>
                                 </HBox>

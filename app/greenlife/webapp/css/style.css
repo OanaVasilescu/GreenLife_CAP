@@ -11,3 +11,20 @@
 .sapThemeText-asColor > span {
     color: #0A6ED1 !important;
 }
+
+.tileIconSize{
+    size: 3em
+}
+
+.sapMGT {
+    border-radius: 0em
+}
+
+.sapMGT:hover{
+    background: #fe0037 !important;
+}
+
+.smallTiles{
+    width: 9.17rem !important;
+    height: 9.17rem !important;
+}

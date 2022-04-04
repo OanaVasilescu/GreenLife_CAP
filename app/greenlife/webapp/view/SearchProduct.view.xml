@@ -4,7 +4,7 @@
     xmlns:c="sap.ui.core"
     xmlns:l="sap.ui.layout"
     xmlns:ndc="sap.ndc">
-    <Toolbar>
+    <!-- <Toolbar>
         <ToolbarSpacer/>
         <SearchField width="50%" search="onFilterProducts"/>
         <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveUpdate" dialogTitle="{i18n>BarcodeScanner}" class="sapUiSmallMarginBegin"/>
@@ -16,5 +16,109 @@
             <TileContent>
             </TileContent>
         </GenericTile>
-    </l:HorizontalLayout>
+    </l:HorizontalLayout> -->
+    <NavContainer id="wizardNavContainer">
+        <pages>
+            <Page id="wizardContentPage" showHeader="false">
+                <content>
+                    <Wizard id="recycleProductsWizard" complete="completedHandler" enableBranching="true" class="sapUiResponsivePadding--header sapUiResponsivePadding--content">
+                        <WizardStep id="categoriesWizardStep" nextStep="subcategoriesWizardStep" title="{i18n>categoriesWizardStep}" icon="sap-icon://split">
+                            <VBox class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                                <HBox>
+                                    <GenericTile class="" header="{i18n>paperAndCardboard}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://syringe" class="tileIconSize"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile class="" header="{i18n>plasticAndPet}">
+                                        <TileContent>
+                                            <c:Icon src="sap-icon://syringe" color="#031E48">
+                                            </c:Icon>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile class="" header="{i18n>electro}">
+                                        <TileContent>
+                                            <c:Icon src="sap-icon://syringe" color="#031E48">
+                                            </c:Icon>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile class="" header="{i18n>metalAndAlu}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://syringe" class="tileIconSize"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile class="" header="{i18n>glass}">
+                                        <TileContent>
+                                            <c:Icon src="sap-icon://syringe" color="#031E48">
+                                            </c:Icon>
+                                        </TileContent>
+                                    </GenericTile>
+                                </HBox>
+                                <HBox>
+                                    <GenericTile class="smallTiles" header="{i18n>dangerous}">
+                                        <TileContent>
+                                            <c:Icon src="sap-icon://syringe" color="#031E48">
+                                            </c:Icon>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile class="smallTiles" header="{i18n>automoto}">
+                                        <TileContent>
+                                            <c:Icon src="sap-icon://syringe" color="#031E48">
+                                            </c:Icon>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile class="smallTiles" header="{i18n>constructions}">
+                                        <TileContent>
+                                            <c:Icon src="sap-icon://syringe" color="#031E48">
+                                            </c:Icon>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile class="smallTiles" header="{i18n>wood}">
+                                        <TileContent>
+                                            <c:Icon src="sap-icon://syringe" color="#031E48">
+                                            </c:Icon>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile class="smallTiles" header="{i18n>textile}">
+                                        <TileContent>
+                                            <c:Icon src="sap-icon://syringe" color="#031E48">
+                                            </c:Icon>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile class="smallTiles" header="{i18n>others}">
+                                        <TileContent>
+                                            <c:Icon src="sap-icon://syringe" color="#031E48">
+                                            </c:Icon>
+                                        </TileContent>
+                                    </GenericTile>
+                                </HBox>
+                            </VBox>
+                        </WizardStep>
+                        <WizardStep id="subcategoriesWizardStep" nextStep="thirdWizardStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
+                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                                <TileContent>
+                                    <c:Icon src="sap-icon://syringe" color="#031E48">
+                                    </c:Icon>
+                                </TileContent>
+                            </GenericTile>
+                        </WizardStep>
+                        <WizardStep id="thirdWizardStep" title="{i18n>categoriesWizardStep}" icon="sap-icon://split">
+                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                                <TileContent>
+                                    <c:Icon src="sap-icon://syringe" color="#031E48">
+                                    </c:Icon>
+                                </TileContent>
+                            </GenericTile>
+                        </WizardStep>
+                    </Wizard>
+                </content>
+                <footer>
+                    <OverflowToolbar>
+                        <ToolbarSpacer/>
+                        <Button text="Cancel" press="handleWizardCancel"/>
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </pages>
+    </NavContainer>
 </mvc:View>

@@ -1,9 +1,9 @@
 <mvc:View controllerName="greenlife.controller.App"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m"
-    xmlns:tnt="sap.tnt">
+    xmlns="sap.f"
+    xmlns:m="sap.m">
 
-    <tnt:ToolPage id="appTool">
+    <!-- <tnt:ToolPage id="appTool">
         <tnt:header>
             <tnt:ToolHeader>
                 <Button id="sideNavigationToggleButton" icon="sap-icon://menu2" type="Transparent" press="onSideNavButtonPress">
@@ -24,5 +24,17 @@
         <tnt:mainContents>
             <App id="app"/>
         </tnt:mainContents>
-    </tnt:ToolPage>
+    </tnt:ToolPage> -->
+    <!-- <ShellBar title="Application Title" secondTitle="Short description" showSearch="true" showNotifications="true">
+        <menu>
+            <m:Menu>
+                <m:MenuItem text="{i18n>managementProducts}" icon="sap-icon://solid-icons/recycle" />
+                <m:MenuItem text="{i18n>RecyclingCentersAndBins}" icon="sap-icon://employee"/>
+            </m:Menu>
+        </menu>
+        <profile>
+            <m:Avatar initials="UI"/>
+        </profile>
+    </ShellBar> -->
+    <m:App id="app"/>
 </mvc:View>

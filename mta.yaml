@@ -11,6 +11,7 @@ build-parameters:
       commands:
       - npm install --production
       - npx -p @sap/cds-dk cds build --production
+      - npx rimraf gen/db/src/gen/data
 
 modules:
   - name: recycling_app-srv
@@ -25,7 +26,7 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: recycling_app-db
+      - name: recycling_app-hdi-container
       - name: recycling_app-uaa
 
   - name: recycling_app-db-deployer
@@ -34,38 +35,95 @@ modules:
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: recycling_app-db
+      - name: recycling_app-hdi-container
 
-  # --------------------  APPROUTER -----------------------------
-  - name: recycling_app-approuter
-  # ------------------------------------------------------------
-    type: nodejs
-    path: approuter
+# ------------------------------------------------------------
+  - name: recycling_app-content
+# ------------------------------------------------------------
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: recycling_app-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - greenlife.zip
+          name: greenlife
+          target-path: resources/
+
+# ------------------------------------------------------------
+  - name: recycling_app-destination-content
+# ------------------------------------------------------------
+    type: com.sap.application.content
     requires:
       - name: recycling_app-uaa
-      - name: srv-api
-        group: destinations
-        properties:
-          forwardAuthToken: true
-          strictSSL: true
-          name: srv-binding
-          url: '~{srv-url}'
+        parameters:
+          service-key:
+            name: recycling_app-uaa-key
+      - name: recycling_app-repo-host
+        parameters:
+          service-key:
+            name: recycling_app-repo-host-key
+      - name: recycling_app-destination-service
+        parameters:
+          content-target: true
+    parameters:
+      content:
+        instance:
+          destinations:
+            - Name: gl_cloud_recycling_app-repo-host
+              ServiceInstanceName: recycling_app-html5-app-host-service
+              ServiceKeyName: recycling_app-repo-host-key
+              sap.cloud.service: gl.cloud
+            - Authentication: OAuth2UserTokenExchange
+              Name: gl_cloud_recycling_app-uaa
+              ServiceInstanceName: recycling_app-xsuaa-service
+              ServiceKeyName: recycling_app-uaa-key
+              sap.cloud.service: gl.cloud
+          existing_destinations_policy: ignore
     build-parameters:
-      requires:
-        - name: recycling_app-app
-          artifacts:
-            - ./*
-          target-path: resources
+      no-source: true
+
+
+  # # --------------------  APPROUTER -----------------------------
+  # - name: recycling_app-approuter
+  # # ------------------------------------------------------------
+  #   type: nodejs
+  #   path: approuter
+  #   requires:
+  #     - name: recycling_app-uaa
+  #     - name: theme-generator
+  #     - name: srv-api
+  #       group: destinations
+  #       properties:
+  #         forwardAuthToken: true
+  #         strictSSL: true
+  #         name: srv-binding
+  #         url: '~{srv-url}'
+  #   build-parameters:
+  #     requires:
+  #       - name: recycling_app-app
+  #         artifacts:
+  #           - ./*
+  #         target-path: resources
   # --------------------  UI -----------------------------------
-  - name: recycling_app-app
+  - name: greenlife 
   # ------------------------------------------------------------
     type: html5
-    path: app
+    path: app/greenlife
     build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
       supported-platforms: []
 
 resources:
-  - name: recycling_app-db
+  - name: recycling_app-hdi-container
     type: com.sap.xs.hdi-container
     parameters:
       service: hana # or 'hanatrial' on trial landscapes
@@ -77,5 +135,29 @@ resources:
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
+      service-name: recycling_app-xsuaa-service
       service-plan: application
-      path: ./xs-security.json      
+      path: ./xs-security.json    
+
+   # UI Theme Designer 
+  - name: theme-generator
+    parameters:
+      service: theming
+      service-plan: standard
+    type: org.cloudfoundry.managed-service
+  
+  #launchpad
+  - name: recycling_app-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        HTML5Runtime_enabled: true 
+
+  - name: recycling_app-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: recycling_app-html5-app-host-service
+      service-plan: app-host

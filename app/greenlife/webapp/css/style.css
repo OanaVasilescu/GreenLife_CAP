@@ -24,6 +24,10 @@
     background: #ccacb4 !important;
 }
 
+.sapMGT:hover .sapMImageContentImageIcon.sapUiIcon{
+    color: #110a0c !important;
+}
+
 .sapMGT:focus{
     background: #ccacb4 !important;
     /* border: none;
@@ -39,9 +43,9 @@
     font-size: 4rem;
 }
 
-/* .smallTiles > .sapMImageContentImageIcon.sapUiIcon{
-    font-size: 2rem !important;
-} */
+.smallTiles .sapMImageContentImageIcon.sapUiIcon{
+    font-size: 3rem !important;
+}
 
 .sapMImageContent {
    width: auto !important;

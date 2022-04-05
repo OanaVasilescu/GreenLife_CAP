@@ -156,7 +156,7 @@
         }
     },
     "sap.cloud": {
-        "service": "poc.cloud",
+        "service": "recycling_app.service",
         "public": true
     }
 }

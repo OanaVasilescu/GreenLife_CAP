@@ -12,7 +12,7 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "mainService": {
-                "uri": "guide/",
+                "uri": "greenlife/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
@@ -29,6 +29,7 @@
                         "additionalParameters": "allowed"
                     },
                     "action": "display",
+                    "semanticObject": "GreenLife",
                     "title": "{{appTitle}}",
                     "info": "",
                     "subTitle": "",
@@ -105,15 +106,23 @@
                 {
                     "name": "RouteOverview",
                     "pattern": "",
-                    "target": ["TargetOverview"]
-                }, {
+                    "target": [
+                        "TargetOverview"
+                    ]
+                },
+                {
                     "name": "SearchProduct",
                     "pattern": "search",
-                    "target": ["SearchProduct"]
-                }, {
+                    "target": [
+                        "SearchProduct"
+                    ]
+                },
+                {
                     "name": "RecyclingMap",
                     "pattern": "map",
-                    "target": ["RecyclingMap"]
+                    "target": [
+                        "RecyclingMap"
+                    ]
                 }
             ],
             "targets": {
@@ -147,7 +156,6 @@
                 }
             }
         },
-
         "rootView": {
             "viewName": "greenlife.view.App",
             "type": "XML",
@@ -156,7 +164,7 @@
         }
     },
     "sap.cloud": {
-        "service": "recycling_app.service",
+        "service": "gl.cloud",
         "public": true
     }
 }

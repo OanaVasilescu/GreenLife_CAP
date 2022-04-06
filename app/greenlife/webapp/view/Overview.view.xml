@@ -9,7 +9,7 @@
         <l:BlockLayout id="BlockLayout" background="Default">
             <!-- image here maybe -->
             <l:BlockLayoutRow>
-                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeD">
+                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeC">
                     <l:VerticalLayout>
                         <core:Icon src="sap-icon://search" size="2.5rem" color="Default"/>
                         <Title id="searchProductTile" text="{i18n>searchTitle}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
@@ -17,7 +17,7 @@
                         <Link text="{i18n>accessLink}" press="pressSearchProduct"/>
                     </l:VerticalLayout>
                 </l:BlockLayoutCell>
-                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeB">
+                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeD">
                     <l:VerticalLayout>
                         <core:Icon src="sap-icon://map-2" size="2.5rem" color="Default"/>
                         <Title text="{i18n>seeRecyclingMap}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
@@ -25,7 +25,7 @@
                         <Link text="{i18n>accessLink}" press="pressSeeMap"/>
                     </l:VerticalLayout>
                 </l:BlockLayoutCell>
-                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeD">
+                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeC">
                     <l:VerticalLayout>
                         <core:Icon src="sap-icon://customer-financial-fact-sheet" size="2.5rem" color="Default"/>
                         <Title text="{i18n>noClueYet}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
@@ -33,7 +33,7 @@
                         <Link text="{i18n>noClueYet}"/>
                     </l:VerticalLayout>
                 </l:BlockLayoutCell>
-                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeB">
+                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeD">
                     <l:VerticalLayout>
                         <core:Icon id="supplierIcon" src="sap-icon://supplier" size="2.5rem" color="Default" />
                         <Title text="{i18n>noClueYet}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>

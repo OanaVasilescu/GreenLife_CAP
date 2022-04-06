@@ -4,10 +4,13 @@
     xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core">
     <Page id="page" showHeader="false">
-        <Label class="fa-brands fa-twitter"/>
-
         <l:BlockLayout id="BlockLayout" background="Default">
-            <!-- image here maybe -->
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding logoOverlayParent">
+                    <Image id="bckgImage" height="20rem" width="110rem" mode="Background"/>
+                    <Image id="logoImage" class="logoOverlayChild" />
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
             <l:BlockLayoutRow>
                 <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeC">
                     <l:VerticalLayout>

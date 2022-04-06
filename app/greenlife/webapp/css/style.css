@@ -76,3 +76,15 @@
 .sapMGTHdrContent {
     height: 3rem;
 }
+
+.logoOverlayParent {
+    position: relative;
+}
+
+.logoOverlayChild {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -6%;
+    margin-top: -6%;
+}

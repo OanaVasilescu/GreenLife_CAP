@@ -8,6 +8,9 @@ sap.ui.define([
             let oRouter = this.getRouter();
             oRouter.getRoute("RouteOverview").attachPatternMatched(this.getUserData, this);
             this.getView().setModel(new JSONModel(), "userDetailsModel");
+
+            this.getView().byId("bckgImage").setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/water-background.jpg"));
+            this.getView().byId("logoImage").setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/dark-logo.png"));
         },
 
         pressSearchProduct: function () {

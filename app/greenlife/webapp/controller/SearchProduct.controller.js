@@ -11,12 +11,22 @@ sap.ui.define([
     return BaseController.extend("greenlife.controller.SearchProduct", {
 
         chooseCategory: function (oEvent) {
-            oEvent.getSource().getParent().getParent().getItems().forEach(box => box.getItems().forEach(el => el.removeStyleClass("pressedButton")))
+            let isCatAlreadyChosen = false;
+            const wizard = this.getView().byId("recycleProductsWizard");
+
+            oEvent.getSource().getParent().getParent().getItems().forEach(box => box.getItems().forEach(el => {
+                if (el.hasStyleClass("pressedButton")) {
+                    isCatAlreadyChosen = true
+                    el.removeStyleClass("pressedButton")
+                }
+            }))
             oEvent.getSource().addStyleClass("pressedButton");
 
-            debugger;
             let fullId = oEvent.getSource().getId();
             let id = fullId.slice(fullId.lastIndexOf("-") + 1);
+            if (isCatAlreadyChosen) {
+                wizard.discardProgress(this.byId("categoriesWizardStep"), false);
+            }
 
             switch (id) {
                 case "paperAndCardboard":
@@ -53,8 +63,9 @@ sap.ui.define([
                     this.byId("categoriesWizardStep").setNextStep(this.getView().byId("othersStep"));
                     break;
             }
-            const wizard = this.getView().byId("recycleProductsWizard");
+
             wizard.nextStep();
+
         }
     });
 });

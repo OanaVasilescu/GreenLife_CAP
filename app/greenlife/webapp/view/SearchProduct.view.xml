@@ -47,7 +47,7 @@
                                     </GenericTile>
                                     <GenericTile id="automoto" class="smallTiles" header="{i18n>automoto}" press="chooseCategory">
                                         <TileContent>
-                                            <ImageContent src="sap-icon://solid-icons/car-side"/>
+                                            <ImageContent src="sap-icon://solid-icons/car"/>
                                         </TileContent>
                                     </GenericTile>
                                     <GenericTile id="constructions" class="smallTiles" header="{i18n>constructions}" press="chooseCategory">
@@ -73,80 +73,306 @@
                                 </HBox>
                             </VBox>
                         </WizardStep>
-                        <WizardStep id="paperAndCardboardStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                        <WizardStep id="paperAndCardboardStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/boxes-packing">
+                            <GenericTile header="{i18n>paper}">
                                 <TileContent>
-                                    <ImageContent src="sap-icon://solid-icons/boxes-packing"/>
+                                    <ImageContent src="sap-icon://regular-icons/note-sticky"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>cardboard}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/box-open"/>
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="plasticAndPetStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                        <WizardStep id="plasticAndPetStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/bottle-water">
+                            <GenericTile header="{i18n>pet}">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/bottle-water"/>
                                 </TileContent>
                             </GenericTile>
+                            <GenericTile header="{i18n>boxes}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/inbox"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>bottle}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/prescription-bottle"/>
+                                </TileContent>
+                            </GenericTile>
                         </WizardStep>
-                        <WizardStep id="electroStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                        <WizardStep id="electroStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/camera-retro">
+                            <GenericTile header="{i18n>print}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/print"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>lightBulbs}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/lightbulb"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>batteries}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/battery-quarter"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>mobiles}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/mobile-screen"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>largeAppliance}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/tv"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>smallAppliance}">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/camera-retro"/>
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="metalAndAluStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
-                                <TileContent>
-                                    <ImageContent src="sap-icon://solid-icons/anchor"/>
-                                </TileContent>
-                            </GenericTile>
+                        <WizardStep id="metalAndAluStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/anchor">
+                            <VBox>
+                                <HBox>
+                                    <GenericTile header="{i18n>zinc}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>plumb}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>steel}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>stainlessSteel}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>castIron}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>iron}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                </HBox>
+                                <HBox>
+                                    <GenericTile header="{i18n>brass}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>cans}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>metalCaps}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>aluminumAerosolTubes}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>aluFoil}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                    <GenericTile header="{i18n>aluCans}">
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                        </TileContent>
+                                    </GenericTile>
+                                </HBox>
+                            </VBox>
                         </WizardStep>
-                        <WizardStep id="glassStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                        <WizardStep id="glassStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/wine-bottle">
+                            <GenericTile header="{i18n>glass}">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/wine-bottle"/>
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="dangerousStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                        <WizardStep id="dangerousStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/recycle">
+                            <GenericTile header="{i18n>masks}">
                                 <TileContent>
-                                    <ImageContent src="sap-icon://solid-icons/spray-can"/>
+                                    <ImageContent src="sap-icon://solid-icons/mask-face"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>fertilizer}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/carrot"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>herbicides}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/plant-wilt"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>pesticides}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/bugs"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>paint}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/fill-drip"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>solvent}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/bottle-droplet"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>medicine}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/capsules"/>
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="automotoStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                        <WizardStep id="automotoStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/car-side">
+                            <GenericTile header="{i18n>tire}">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/car-side"/>
                                 </TileContent>
                             </GenericTile>
-                        </WizardStep>
-                        <WizardStep id="constructionsStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                            <GenericTile header="{i18n>windshield}">
                                 <TileContent>
-                                    <ImageContent src="sap-icon://solid-icons/person-digging"/>
+                                    <ImageContent src="sap-icon://solid-icons/window-maximize"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>eof}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/skull-crossbones"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>oil}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/oil-can"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>car-batteries}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/car-battery"/>
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="woodStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                        <WizardStep id="constructionsStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/person-digging">
+                            <GenericTile header="{i18n>polystyrene}">
                                 <TileContent>
-                                    <ImageContent src="sap-icon://solid-icons/tree"/>
+                                    <ImageContent src="sap-icon://solid-icons/house-chimney-window"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>demWood}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/door-closed"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>bricks}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/trowel-bricks"/>
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="textileStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                        <WizardStep id="woodStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/tree">
+                            <GenericTile header="{i18n>pallets}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/ruler-horizontal"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>sawdust}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/mound"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>furniture}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/chair"/>
+                                </TileContent>
+                            </GenericTile>
+                        </WizardStep>
+                        <WizardStep id="textileStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/shirt">
+                            <GenericTile header="{i18n>clothes}">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/shirt"/>
                                 </TileContent>
                             </GenericTile>
+                            <GenericTile header="{i18n>preProdTextile}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>bags}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/bag-shopping"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>shoes}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/shoe-prints"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>otherTextiles}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/bed"/>
+                                </TileContent>
+                            </GenericTile>
                         </WizardStep>
-                        <WizardStep id="othersStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://split">
-                            <GenericTile class="greenTile" header="{i18n>paperAndCardboard}">
+                        <WizardStep id="othersStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/robot">
+                            <GenericTile header="{i18n>others}">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/robot"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>organicWaste}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/drumstick-bite"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>mesh}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>tetraPak}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/recycle"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>foodOil}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/bacon"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>opticFiber}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/ethernet"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>waterFilters}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/water"/>
+                                </TileContent>
+                            </GenericTile>
+                            <GenericTile header="{i18n>abs}">
+                                <TileContent>
+                                    <ImageContent src="sap-icon://solid-icons/recycle"/>
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>

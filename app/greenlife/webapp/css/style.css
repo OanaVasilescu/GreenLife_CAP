@@ -24,6 +24,18 @@
     background: #5aa07c !important;
 }
 
+.pressedButton{
+    background: #5aa07c !important;
+}
+
+.pressedButton .sapMImageContentImageIcon.sapUiIcon{
+    color: #f4f6f5 !important;
+}
+
+.pressedButton .sapMText{
+    color: #f4f6f5 !important;
+}
+
 .sapMGT:hover .sapMImageContentImageIcon.sapUiIcon{
     color: #f4f6f5 !important;
 }

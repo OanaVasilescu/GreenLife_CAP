@@ -9,54 +9,52 @@ sap.ui.define([
     "use strict";
 
     return BaseController.extend("greenlife.controller.SearchProduct", {
-        onInit: function () {
-            this.getRouter().getRoute("SearchProduct").attachPatternMatched(this._getProductList, this);
-            this.getView().setModel(new JSONModel(), "productInstructionsModel");
-        },
 
-        _getProductList: async function () {
-            await this.get(URLs.getAllProducts()).then(async (data) => {
-                await this.getView().setModel(new JSONModel(data.value), "productsModel");
-            }).catch((err) => { // TODO: if 404 ignore;
-                this.messageHandler("getProductsErr");
-            });
-        },
+        chooseCategory: function (oEvent) {
+            oEvent.getSource().getParent().getParent().getItems().forEach(box => box.getItems().forEach(el => el.removeStyleClass("pressedButton")))
+            oEvent.getSource().addStyleClass("pressedButton");
 
-        onFilterProducts: function (oEvent) { // build filter array
-            let aFilter = [];
-            let sQuery = oEvent.getParameter("query");
-            if (sQuery) {
-                aFilter.push(new Filter("name", FilterOperator.Contains, sQuery));
-            }
-
-            let list = this.byId("productsLayout");
-            let binding = list.getBinding("content");
-            binding.filter(aFilter);
-        },
-
-        onPressProduct: async function (oEvent) {
-            let pathToProduct = oEvent.getSource().getBindingContext("productsModel").sPath;
-            let product = this.getView().getModel("productsModel").getProperty(pathToProduct);
-            await this.getRecyclingInstructions(product.ID);
-            if (!this.recyclingDialog) {
-                this.recyclingDialog = this.loadFragment({name: "greenlife.view.fragments.ProductRecyclingDialog"});
-            }
-            this.recyclingDialog.then(function (dialog) {
-                dialog.open();
-            });
-        },
-
-        onCloseRecyclingDialog: function () {
             debugger;
-            this.byId("recyclingDialog").close();
-        },
+            let fullId = oEvent.getSource().getId();
+            let id = fullId.slice(fullId.lastIndexOf("-") + 1);
 
-        getRecyclingInstructions: async function (productId) {
-            await this.get(URLs.getProductWithInstructions(productId)).then(async (data) => {
-                this.getView().getModel("productInstructionsModel").setData(data);
-            }).catch((err) => {
-                this.messageHandler("productInstructionsError");
-            });
+            switch (id) {
+                case "paperAndCardboard":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("paperAndCardboardStep"));
+                    break;
+                case "plasticAndPet":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("plasticAndPetStep"));
+                    break;
+                case "electro":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("electroStep"));
+                    break;
+                case "metalAndAlu":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("metalAndAluStep"));
+                    break;
+                case "glass":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("glassStep"));
+                    break;
+                case "dangerous":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("dangerousStep"));
+                    break;
+                case "automoto":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("automotoStep"));
+                    break;
+                case "constructions":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("constructionsStep"));
+                    break;
+                case "wood":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("woodStep"));
+                    break;
+                case "textile":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("textileStep"));
+                    break;
+                case "others":
+                    this.byId("categoriesWizardStep").setNextStep(this.getView().byId("othersStep"));
+                    break;
+            }
+            const wizard = this.getView().byId("recycleProductsWizard");
+            wizard.nextStep();
         }
     });
 });

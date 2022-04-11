@@ -10,7 +10,7 @@
             <Page id="wizardContentPage" showHeader="false">
                 <content>
                     <Wizard id="recycleProductsWizard" complete="completedHandler" enableBranching="true" showNextButton="false" class="sapUiResponsivePadding--header sapUiResponsivePadding--content">
-                        <WizardStep id="introStep" subsequentSteps="categoriesWizardStep, scanStep" icon="sap-icon://solid-icons/recycle">
+                        <WizardStep id="introStep" subsequentSteps="categoriesWizardStep, scanStep" icon="sap-icon://solid-icons/recycle" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="searchTile" header="{i18n>searchCategories}" press="chooseScanOrSearch">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/magnifying-glass"/>
@@ -87,7 +87,7 @@
                                 </HBox>
                             </VBox>
                         </WizardStep>
-                        <WizardStep id="paperAndCardboardStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/boxes-packing" nextStep="instructionsStep">
+                        <WizardStep id="paperAndCardboardStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/boxes-packing" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="paperTile" header="{i18n>paper}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://regular-icons/note-sticky"/>
@@ -99,7 +99,7 @@
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="plasticAndPetStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/bottle-water" nextStep="instructionsStep">
+                        <WizardStep id="plasticAndPetStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/bottle-water" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="petTile" header="{i18n>pet}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/bottle-water"/>
@@ -116,7 +116,7 @@
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="electroStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/camera-retro" nextStep="instructionsStep">
+                        <WizardStep id="electroStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/camera-retro" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="printerTile" header="{i18n>print}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/print"/>
@@ -148,7 +148,7 @@
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="metalAndAluStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/anchor" nextStep="instructionsStep">
+                        <WizardStep id="metalAndAluStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/anchor" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <VBox>
                                 <HBox>
                                     <GenericTile id="zincTile" header="{i18n>zinc}" press="chooseSubcategory">
@@ -216,14 +216,14 @@
                                 </HBox>
                             </VBox>
                         </WizardStep>
-                        <WizardStep id="glassStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/wine-bottle" nextStep="instructionsStep">
+                        <WizardStep id="glassStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/wine-bottle" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="glassTile" header="{i18n>glass}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/wine-bottle"/>
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="dangerousStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/spray-can" nextStep="instructionsStep">
+                        <WizardStep id="dangerousStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/spray-can" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="masksTile" header="{i18n>masks}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/mask-face"/>
@@ -260,7 +260,7 @@
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="automotoStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/car-side" nextStep="instructionsStep">
+                        <WizardStep id="automotoStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/car-side" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="tireTile" header="{i18n>tire}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/car-side"/>
@@ -287,7 +287,7 @@
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="constructionsStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/person-digging" nextStep="instructionsStep">
+                        <WizardStep id="constructionsStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/person-digging" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="polystyreneTile" header="{i18n>polystyrene}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/house-chimney-window"/>
@@ -304,7 +304,7 @@
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="woodStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/tree" nextStep="instructionsStep">
+                        <WizardStep id="woodStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/tree" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="palletsTile" header="{i18n>pallets}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/ruler-horizontal"/>
@@ -321,7 +321,7 @@
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="textileStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/shirt" nextStep="instructionsStep">
+                        <WizardStep id="textileStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/shirt" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="clothesTile" header="{i18n>clothes}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/shirt"/>
@@ -348,7 +348,7 @@
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="othersStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/robot" nextStep="instructionsStep">
+                        <WizardStep id="othersStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/robot" nextStep="instructionsStep" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                             <GenericTile id="toysTile" header="{i18n>toys}" press="chooseSubcategory">
                                 <TileContent>
                                     <ImageContent src="sap-icon://solid-icons/robot"/>
@@ -390,10 +390,10 @@
                                 </TileContent>
                             </GenericTile>
                         </WizardStep>
-                        <WizardStep id="instructionsStep" title="{i18n>instructionsWizardStep}" icon="sap-icon://solid-icons/clipboard-list">
+                        <WizardStep id="instructionsStep" title="{i18n>instructionsWizardStep}" icon="sap-icon://solid-icons/clipboard-list" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
 
                         </WizardStep>
-                        <WizardStep id="scanInstructionsStep" title="{i18n>instructionsWizardStep}" icon="sap-icon://solid-icons/clipboard-list">
+                        <WizardStep id="scanInstructionsStep" title="{i18n>instructionsWizardStep}" icon="sap-icon://solid-icons/clipboard-list" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
 
                         </WizardStep>
                     </Wizard>

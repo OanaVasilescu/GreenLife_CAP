@@ -10,27 +10,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from lxml import html
 import csv
 
-
-def goThroughPage(link):
-    # link.click()
-    # try:
-    #     WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
-    #         (By.XPATH, '//*[@id="content"]/app-material-single/h1')))
-    # except TimeoutException:
-    #     print("took too long")
-
-    # driver.get('https://hartareciclarii.ro/ce-si-cum-reciclez/#/category/all')
-    # try:
-    #     WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
-    #         (By.XPATH, '//*[@id="content"]/app-material-single/h1')))  # wait until our needed data is loaded
-    # except TimeoutException:
-    #     print("took too long")
-    # titlu = driver.find_element(
-    #     By.XPATH, '//*[@id="content"]/app-material-single/h1')
-    # print(titlu.text)
-    return
-
-
 websiteRoot = 'https://hartareciclarii.ro/ce-si-cum-reciclez'
 startPage = f'{websiteRoot}/#/category/all'
 
@@ -49,15 +28,48 @@ except TimeoutException:
 page_content = driver.page_source
 soup = BeautifulSoup(page_content, 'lxml')
 
-links = driver.find_element(
+linkTextsElements = driver.find_element(
     By.XPATH, '//*[@id="content"]/app-material-all').find_elements(By.XPATH, '//*[@id="content"]/app-material-all/app-letter-display/span')
+
 # productTypeText.click()
 # print(productType.prettify())
 
+texts = []
+for linkTextsElement in linkTextsElements:
+    texts.append(linkTextsElement.text)
 
-for link in links:
-    print('navigating to: ' + link)
-    driver.get(link)
-    # do stuff within that page here...
-    # driver.execute_script("window.history.go(-1)")
-    driver.back()
+for text in texts:
+    span = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
+        (By.XPATH, f"//*[@id='content']/app-material-all/app-letter-display/span[contains(text(),'{text}')]")))
+    driver.execute_script("arguments[0].click();", span)
+
+    try:
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="content"]/app-material-single')))  # wait until our needed data is loaded
+    except:
+        print(83)
+    action = ActionChains(driver)
+    action.move_to_element(driver.find_element(
+        By.XPATH, '//*[@id="main"]/app-root')).perform()
+    action.move_to_element(driver.find_element(
+        By.XPATH, '//*[@id="primary"]')).perform()
+    action.move_to_element(driver.find_element(
+        By.XPATH, '//*[@id="content"]')).perform()
+    action.move_to_element(driver.find_element(
+        By.XPATH, '//*[@id="content"]/app-material-single')).perform()
+
+    chronobiology_content = driver.page_source
+    chronobiology_soup = BeautifulSoup(chronobiology_content, 'lxml')
+    debug = chronobiology_soup.find('app-root').find('content')
+
+    print(debug)
+
+    driver.get(startPage)
+    try:
+        loadContent = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="content"]/app-material-all')))  # wait until our needed data is loaded
+    except:
+        print(96)
+
+
+driver.close()

@@ -13,6 +13,11 @@ import csv
 websiteRoot = 'https://hartareciclarii.ro/ce-si-cum-reciclez'
 startPage = f'{websiteRoot}/#/category/all'
 
+with open('recyclingData.csv', 'a', newline='') as f:
+    writer = csv.writer(f, delimiter=';')
+    writer.writerow(
+        ('title', 'howToCollect'))
+
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get(startPage)
 
@@ -65,13 +70,40 @@ for text in texts:
         print("took too long")
     titlu = driver.find_element(
         By.XPATH, '//*[@id="content"]/app-material-single/h1')
-    chronobiology_content = driver.page_source
-    chronobiology_soup = BeautifulSoup(chronobiology_content, 'lxml')
-    titlu = chronobiology_soup.find('app-material-single').find('h1')
-    colectare = chronobiology_soup.find(
-        'app-material-single').find('div', class_='forceIframeWidth').find('ul')
+    notFound = False
+    try:
+        colectare = driver.find_element(
+            By.XPATH, "//*[contains(text(),'Cum colec')]")
+        colectingInstructions = colectare.text
+    except:
+        colectingInstructions = 'None'
+        notFound = True
 
-    print(titlu.prettify())
+    if notFound:
+        try:
+            colectare = driver.find_element(
+                By.XPATH, "//*[contains(text(),'Cum se col')]")
+            colectingInstructions = colectare.text
+            notFound = False
+        except:
+            colectingInstructions = 'None'
+            notFound = True
+
+    if notFound:
+        try:
+            colectare = driver.find_element(
+                By.XPATH, "//*[contains(text(),'cum col')]")
+            colectingInstructions = colectare.text
+        except:
+            colectingInstructions = 'None'
+
+    data = {'title': titlu.text, 'howToCollect': colectingInstructions}
+
+    with open('recyclingData.csv', 'a', newline='') as f:
+        writer = csv.writer(f, delimiter=';')
+        writer.writerow(
+            (data['title'], data['howToCollect']))
+
     try:
         driver.get(startPage)
         loadContent = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(

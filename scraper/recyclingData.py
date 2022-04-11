@@ -58,14 +58,22 @@ for text in texts:
     action.move_to_element(driver.find_element(
         By.XPATH, '//*[@id="content"]/app-material-single')).perform()
 
+    try:
+        loadContent = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="content"]/app-material-single/h1')))
+    except TimeoutException:
+        print("took too long")
+    titlu = driver.find_element(
+        By.XPATH, '//*[@id="content"]/app-material-single/h1')
     chronobiology_content = driver.page_source
     chronobiology_soup = BeautifulSoup(chronobiology_content, 'lxml')
-    debug = chronobiology_soup.find('app-root').find('content')
+    titlu = chronobiology_soup.find('app-material-single').find('h1')
+    colectare = chronobiology_soup.find(
+        'app-material-single').find('div', class_='forceIframeWidth').find('ul')
 
-    print(debug)
-
-    driver.get(startPage)
+    print(titlu.prettify())
     try:
+        driver.get(startPage)
         loadContent = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
             (By.XPATH, '//*[@id="content"]/app-material-all')))  # wait until our needed data is loaded
     except:

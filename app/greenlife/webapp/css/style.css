@@ -11,3 +11,92 @@
 .sapThemeText-asColor > span {
     color: #0A6ED1 !important;
 }
+
+.sapMGT {
+    border-radius: 0em
+}
+
+.sapMGTPressActive {
+    background: #f4f6f5 !important;
+}
+
+.sapMGT:hover{
+    background: #5aa07c !important;
+}
+
+.pressedButton{
+    background: #5aa07c !important;
+}
+
+.pressedButton .sapMImageContentImageIcon.sapUiIcon{
+    color: #f4f6f5 !important;
+}
+
+.pressedButton .sapMText{
+    color: #f4f6f5 !important;
+}
+
+.sapMGT:hover .sapMImageContentImageIcon.sapUiIcon{
+    color: #f4f6f5 !important;
+}
+
+.sapMGT:hover .sapMText{
+    color: #f4f6f5 !important;
+}
+
+/* .sapMGT:focus{
+    background: #5aa07c !important;
+} */
+
+.smallTiles{
+    width: 9.17rem !important;
+    height: 9.17rem !important;
+}
+
+.sapMImageContentImageIcon.sapUiIcon{
+    font-size: 4rem;
+}
+
+.smallTiles .sapMImageContentImageIcon.sapUiIcon{
+    font-size: 3rem !important;
+}
+
+.sapMImageContent {
+   width: auto !important;
+}
+
+/* .sapMTileCntContent{
+    align-items: center;
+} */
+
+.sapMImageContentImageIcon {
+    display: flex;
+    bottom: 0;
+    max-height: 3.5rem;
+    align-items: center;
+    align-content: center;
+    justify-content: space-evenly;
+    position: inherit;
+}
+
+.sapMTextLineClamp{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.sapMGTHdrContent {
+    height: 3rem;
+}
+
+.logoOverlayParent {
+    position: relative;
+}
+
+.logoOverlayChild {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -6%;
+    margin-top: -6%;
+}

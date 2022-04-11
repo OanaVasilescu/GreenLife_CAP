@@ -59,5 +59,6 @@
             "kind": "xsuaa",
             "credentials": {}
         }
-    }
+    },
+    "sapux": ["app/greenlife"]
 }

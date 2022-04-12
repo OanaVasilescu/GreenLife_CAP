@@ -1,3 +1,4 @@
+from os import urandom
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.action_chains import ActionChains
@@ -66,116 +67,67 @@ for text in texts:
     titlu = driver.find_element(
         By.XPATH, '//*[@id="content"]/app-material-single/h1')
     notFound = False
-    if 'lenjerii' not in titlu.text or 'organice' not in titlu.text:
-        try:
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum colec')]/following-sibling::ul")
-            colectingInstructions = colectare.text
-            notFound = False
-        except:
-            colectingInstructions = 'None'
-            notFound = True
+    current_url = driver.current_url
+
+    pathsNeeded = []
+    if 'lenjerii' in titlu.text or 'organice' in titlu.text or 'lenjerii' in current_url:
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
+
+    elif 'hainele' in current_url:
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
+
+    elif 'scoase' in current_url:
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::ul")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::ul/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::ul/following-sibling::p/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::ul/following-sibling::p/following-sibling::p/following-sibling::ul")
+    elif 'automoto' in current_url or 'incaltaminte' in current_url:
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p")
+    elif 'carton' in current_url or 'plastic' in current_url or 'zinc' in current_url or 'cupru' in current_url:
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::ul")
     else:
-        try:
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum colec')]/following-sibling::p")
-            colectingInstructions = colectare.text
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p")
-            colectingInstructions = colectingInstructions + colectare.text
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p/following-sibling::p")
-            colectingInstructions = colectingInstructions + colectare.text
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
-            colectingInstructions = colectingInstructions + colectare.text
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
-            colectingInstructions = colectingInstructions + colectare.text
-            notFound = False
+        pathsNeeded.append(
+            "*[contains(text(),'Cum colec')]/following-sibling::ul")
+        # f"*[contains(text(),'{'Cum colec' if ceva else 'Cum se cole'}')]/following-sibling::ul")
 
-        except:
-            colectingInstructions = 'None'
-            notFound = True
-
-    if notFound:
-        try:
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum colec')]/parent::*/following-sibling::ul")
-            colectingInstructions = colectare.text
-            notFound = False
-        except:
-            colectingInstructions = "None"
-            notFound = True
-        try:
-            if 'Carton' not in titlu.text or 'aluminiu' not in titlu.text:
-                colectare = driver.find_element(
-                    By.XPATH, "//*[contains(text(),'Cum colec')]/parent::*/following-sibling::ul/following-sibling::ul")
+    errorGettingElement = False
+    colectingInstructions = ''
+    for path in pathsNeeded:
+        if errorGettingElement == False:
+            try:
+                colectare = driver.find_element(By.XPATH, f'//{path}')
                 colectingInstructions = colectingInstructions + colectare.text
-        except:
-            print("nothiiing")
-    if notFound:
-        try:
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum se col')]/following-sibling::p")
-            colectingInstructions = colectare.text
-            notFound = False
-        except:
-            colectingInstructions = 'None'
-            notFound = True
-        try:
-            if "conserve" not in titlu.text:
-                colectare = driver.find_element(
-                    By.XPATH, "//*[contains(text(),'Cum se col')]/following-sibling::p/following-sibling::p")
-                colectingInstructions = colectingInstructions + colectare.text
-        except:
-            print("do nothing")
-
-    if notFound:
-        try:
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum se col')]/following-sibling::ul")
-            colectingInstructions = colectare.text
-            notFound = False
-        except:
-            colectingInstructions = 'None'
-            notFound = True
-
-    if notFound:
-        try:
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum se col')]/parent::*/following-sibling::p")
-            colectingInstructions = colectare.text
-            notFound = False
-        except:
-            colectingInstructions = 'None'
-            notFound = True
-        try:
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'Cum se col')]/parent::*/following-sibling::p/following-sibling::p")
-            colectingInstructions = colectingInstructions + colectare.text
-        except:
-            print("do nothing again")
-
-    if notFound:
-        try:
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'cum col')]/following-sibling::ul")
-            colectingInstructions = colectare.text
-            notFound = False
-        except:
-            colectingInstructions = 'None'
-            notFound = True
-
-    if notFound:
-        try:
-            colectare = driver.find_element(
-                By.XPATH, "//*[contains(text(),'cum col')]/parent::strong/parent::p/following-sibling::ul")
-            colectingInstructions = colectare.text
-            notFound = False
-        except:
-            colectingInstructions = 'None'
-            notFound = True
+            except:
+                errorGettingElement = True
+                colectingInstructions = colectingInstructions + 'none'
 
     data = {'title': titlu.text, 'howToCollect': colectingInstructions}
 

@@ -82,41 +82,93 @@ for text in texts:
         pathsNeeded.append(
             "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
 
-    elif 'hainele' in current_url:
+    elif 'hainele' in current_url or 'optica' in current_url:
         pathsNeeded.append(
             "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p")
+        if 'hainele' in current_url:
+            pathsNeeded.append(
+                "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p")
+            pathsNeeded.append(
+                "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p/following-sibling::p")
+            pathsNeeded.append(
+                "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
+            pathsNeeded.append(
+                "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
+
+    elif 'mari' in current_url:
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p")
+            "*[contains(text(),'Cum colec')]/parent::*/parent::*/following-sibling::ul")
+
+    elif 'baterii' in current_url:
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p/following-sibling::p")
+            "*[contains(text(),'DEEE este reciclabil')]")
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
+            "*[contains(text(),'DEEE este reciclabil')]/following-sibling::ul")
+
+    elif 'led' in current_url or 'mici' in current_url or 'mobila' in current_url or 'paleti' in current_url or 'rumegus' in current_url or 'ulei-auto' in current_url:
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::ul")
+        if 'led' in current_url or 'mici' in current_url:
+            pathsNeeded.append(
+                "*[contains(text(),'Cum colec')]/parent::*/following-sibling::ul/following-sibling::ul")
 
     elif 'scoase' in current_url:
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/following-sibling::p")
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p")
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::ul")
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::ul")
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::ul/following-sibling::p")
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::ul/following-sibling::p")
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::ul/following-sibling::p/following-sibling::p")
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::ul/following-sibling::p/following-sibling::p")
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::ul/following-sibling::p/following-sibling::p/following-sibling::ul")
+            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::ul/following-sibling::p/following-sibling::p/following-sibling::ul")
+
+    elif 'anvelope' in current_url in current_url or 'alama' in current_url or 'moloz' in current_url or 'conserve' in current_url or 'capace' in current_url or 'folie-de-aluminiu' in current_url or 'polistiren' in current_url or 'medicamente' in current_url or 'parbrize' in current_url or 'faciale' in current_url or 'demolari' in current_url or 'vopsea' in current_url:
+        pathsNeeded.append(
+            "*[contains(text(),'Cum se colec')]/following-sibling::p")
+        if not 'conserve' in current_url:
+            pathsNeeded.append(
+                "*[contains(text(),'Cum se colec')]/following-sibling::p/following-sibling::p")
+        if 'faciale' in current_url:
+            pathsNeeded.append(
+                "*[contains(text(),'Cum se colec')]/following-sibling::p/following-sibling::p/following-sibling::p/following-sibling::p")
+        if 'demolari' in current_url:
+            pathsNeeded.append(
+                "*[contains(text(),'Cum se colec')]/following-sibling::p/following-sibling::p/following-sibling::p")
+        if 'vopsea' in current_url:
+            pathsNeeded.append(
+                "*[contains(text(),'Cum se colec')]/following-sibling::ul")
+
+    elif 'de-apa' in current_url:
+        pathsNeeded.append(
+            "*[contains(text(),'Cum se colec')]/following-sibling::ul")
+
+    elif 'acumulatori' in current_url:
+        pathsNeeded.append(
+            "*[contains(text(),'Cum se colec')]/parent::*/following-sibling::p")
+        pathsNeeded.append(
+            "*[contains(text(),'Cum se colec')]/parent::*/following-sibling::p/following-sibling::p")
+
     elif 'automoto' in current_url or 'incaltaminte' in current_url:
         pathsNeeded.append(
             "*[contains(text(),'Cum colec')]/following-sibling::p")
         pathsNeeded.append(
             "*[contains(text(),'Cum colec')]/following-sibling::p/following-sibling::p")
-    elif 'carton' in current_url or 'plastic' in current_url or 'zinc' in current_url or 'cupru' in current_url:
+    elif 'carton' in current_url or 'plastic' in current_url or 'zinc' in current_url or 'cupru' in current_url or 'doze' in current_url:
         pathsNeeded.append(
-            "*[contains(text(),'Cum colec')]/parent::*/following-sibling::ul")
+            "*[contains(text(),'um colec')]/parent::*/following-sibling::ul")
+        if 'cupru' in current_url:
+            print("cupruuuu")
+    elif 'productie' in current_url:
+        pathsNeeded.append(
+            "*[contains(text(),'Cum se colec')]/following-sibling::ul")
     else:
         pathsNeeded.append(
             "*[contains(text(),'Cum colec')]/following-sibling::ul")
-        # f"*[contains(text(),'{'Cum colec' if ceva else 'Cum se cole'}')]/following-sibling::ul")
+        if 'telefoane' in current_url:
+            pathsNeeded.append(
+                "*[contains(text(),'Cum colec')]/following-sibling::ul/following-sibling::ul")
 
     errorGettingElement = False
     colectingInstructions = ''
@@ -129,7 +181,10 @@ for text in texts:
                 errorGettingElement = True
                 colectingInstructions = colectingInstructions + 'none'
 
-    data = {'title': titlu.text, 'howToCollect': colectingInstructions}
+    colectingInstructions1 = colectingInstructions.replace('\n', ' ')
+    colectingInstructions2 = colectingInstructions1.replace(';', '&')
+
+    data = {'title': titlu.text, 'howToCollect': colectingInstructions2}
 
     with open('recyclingData.csv', 'a', newline='') as f:
         writer = csv.writer(f, delimiter=';')

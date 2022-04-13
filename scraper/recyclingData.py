@@ -15,7 +15,7 @@ startPage = f'{websiteRoot}/#/category/all'
 with open('recyclingData.csv', 'a', newline='') as f:
     writer = csv.writer(f, delimiter=';')
     writer.writerow(
-        ('title', 'howToCollect'))
+        ('title', 'howToCollect', 'recyclingRestrictions'))
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get(startPage)
@@ -70,6 +70,7 @@ for text in texts:
     current_url = driver.current_url
 
     pathsNeeded = []
+    noRecyclingPaths = []
     if 'lenjerii' in titlu.text or 'organice' in titlu.text or 'lenjerii' in current_url:
         pathsNeeded.append(
             "*[contains(text(),'Cum colec')]/following-sibling::p")
@@ -124,7 +125,7 @@ for text in texts:
         pathsNeeded.append(
             "*[contains(text(),'Cum colec')]/parent::*/following-sibling::p/following-sibling::ul/following-sibling::p/following-sibling::p/following-sibling::ul")
 
-    elif 'anvelope' in current_url in current_url or 'alama' in current_url or 'moloz' in current_url or 'conserve' in current_url or 'capace' in current_url or 'folie-de-aluminiu' in current_url or 'polistiren' in current_url or 'medicamente' in current_url or 'parbrize' in current_url or 'faciale' in current_url or 'demolari' in current_url or 'vopsea' in current_url:
+    elif 'anvelope' in current_url or 'alama' in current_url or 'moloz' in current_url or 'conserve' in current_url or 'capace' in current_url or 'folie-de-aluminiu' in current_url or 'polistiren' in current_url or 'medicamente' in current_url or 'parbrize' in current_url or 'faciale' in current_url or 'demolari' in current_url or 'vopsea' in current_url:
         pathsNeeded.append(
             "*[contains(text(),'Cum se colec')]/following-sibling::p")
         if not 'conserve' in current_url:
@@ -158,8 +159,6 @@ for text in texts:
     elif 'carton' in current_url or 'plastic' in current_url or 'zinc' in current_url or 'cupru' in current_url or 'doze' in current_url:
         pathsNeeded.append(
             "*[contains(text(),'um colec')]/parent::*/following-sibling::ul")
-        if 'cupru' in current_url:
-            print("cupruuuu")
     elif 'productie' in current_url:
         pathsNeeded.append(
             "*[contains(text(),'Cum se colec')]/following-sibling::ul")
@@ -170,6 +169,9 @@ for text in texts:
             pathsNeeded.append(
                 "*[contains(text(),'Cum colec')]/following-sibling::ul/following-sibling::ul")
 
+    noRecyclingPaths.append(
+        "*[contains(text(),'Nu se')]/parent::*/following-sibling::*")
+
     errorGettingElement = False
     colectingInstructions = ''
     for path in pathsNeeded:
@@ -179,17 +181,30 @@ for text in texts:
                 colectingInstructions = colectingInstructions + colectare.text
             except:
                 errorGettingElement = True
-                colectingInstructions = colectingInstructions + 'none'
 
-    colectingInstructions1 = colectingInstructions.replace('\n', ' ')
-    colectingInstructions2 = colectingInstructions1.replace(';', '&')
+    colectingInstructions1 = colectingInstructions.replace('\n', '    ')
+    colectingInstructions2 = colectingInstructions1.replace(';', ' && ')
 
-    data = {'title': titlu.text, 'howToCollect': colectingInstructions2}
+    errorGettingElement = False
+    noColectingInstructions = ''
+    for path in noRecyclingPaths:
+        if errorGettingElement == False:
+            try:
+                noRec = driver.find_element(By.XPATH, f'//{path}')
+                noColectingInstructions = noColectingInstructions + noRec.text
+            except:
+                errorGettingElement = True
+
+    noColectingInstructions = noColectingInstructions.replace("\n", "   ")
+    noColectingInstructions = noColectingInstructions.replace(";", " && ")
+
+    data = {'title': titlu.text, 'howToCollect': colectingInstructions2,
+            "recyclingRestrictions": noColectingInstructions}
 
     with open('recyclingData.csv', 'a', newline='') as f:
         writer = csv.writer(f, delimiter=';')
         writer.writerow(
-            (data['title'], data['howToCollect']))
+            (data['title'], data['howToCollect'], data['recyclingRestrictions']))
 
     try:
         driver.get(startPage)

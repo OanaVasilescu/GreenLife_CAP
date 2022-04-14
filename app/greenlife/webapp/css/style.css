@@ -101,13 +101,12 @@
     margin-top: -6%;
 }
 
-
 .overlayChild {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -10%;
-    margin-top: -6%;
+    margin-left: -20%;
+    margin-top: -4%;
 }
 
 .blur{
@@ -115,8 +114,17 @@
     transition: .3s ease;
 }
 
-.blur:hover{
+.whiteText:hover .blur{
     opacity: 0.5;
+}
+
+.whiteText .sapMTitle{
+    color: #ffffff !important;
+}
+
+.whiteText:hover .sapMTitle{
+    color: black !important;
+    transition: .3s ease;
 }
 
 

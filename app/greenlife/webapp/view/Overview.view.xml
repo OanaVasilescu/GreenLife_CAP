@@ -13,11 +13,9 @@
             </l:BlockLayoutRow>
             <l:BlockLayoutRow>
                 <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeC">
-                    <VBox alignItems="Center">
-                        <core:Icon src="sap-icon://search" size="2.5rem" color="Default"/>
-                        <Title id="searchProductTile" text="{i18n>searchTitle}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
-                        <Text text="{i18n>searchProductContent}" class="sapUiTinyMarginBottom"/>
-                        <Link text="{i18n>accessLink}" press="pressSearchProduct"/>
+                    <VBox alignItems="Center" height="10rem">
+                        <Title text="{i18n>title}" titleStyle="H1" class="sapUiTinyMarginTopBottom"/>
+                        <Title text="{i18n>appDescription}" titleStyle="H2" class="sapUiTinyMarginBottom"/>
                     </VBox>
                 </l:BlockLayoutCell>
             </l:BlockLayoutRow>
@@ -30,13 +28,11 @@
                 </l:BlockLayoutCell>
             </l:BlockLayoutRow>
             <l:BlockLayoutRow>
-                <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent">
+                <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
                     <Image id="bckgImagePlantSmallOn" height="20rem" width="110rem" mode="Background" class="parallax blur" press="pressSearchProduct"/>
                     <VBox class="overlayChild" alignItems="Center">
-                        <core:Icon src="sap-icon://search" size="2.5rem" color="Default"/>
-                        <Title id="searchProductTile1" text="{i18n>searchTitle}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
-                        <Text text="{i18n>searchProductContent}" class="sapUiTinyMarginBottom"/>
-                        <Link text="{i18n>accessLink}" press="pressSearchProduct"/>
+                        <Title id="searchProductTile" text="{i18n>searchTitle}" titleStyle="H1" class="sapUiTinyMarginTopBottom"/>
+                        <Title text="{i18n>searchProductContent}" titleStyle="H2" class="sapUiTinyMarginBottom"/>
                     </VBox>
                 </l:BlockLayoutCell>
             </l:BlockLayoutRow>
@@ -54,13 +50,11 @@
                 </l:BlockLayoutCell>
             </l:BlockLayoutRow>
             <l:BlockLayoutRow>
-                <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent" backgroundColorSet="ColorSet11" backgroundColorShade="ShadeD">
-                    <Image id="bckgImageWaterOn" height="20rem" width="110rem" mode="Background" class="parallax blur "/>
+                <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
+                    <Image id="bckgImageWaterOn" height="20rem" width="110rem" mode="Background" class="parallax blur" press="pressSeeMap"/>
                     <VBox class="overlayChild" alignItems="Center">
-                        <core:Icon src="sap-icon://map-2" size="2.5rem" color="Default"/>
-                        <Title text="{i18n>seeRecyclingMap}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
-                        <Text text="{i18n>seeRecyclingMapContent}" class="sapUiTinyMarginBottom"/>
-                        <Link text="{i18n>accessLink}" press="pressSeeMap"/>
+                        <Title text="{i18n>seeRecyclingMap}" titleStyle="H1" class="sapUiTinyMarginTopBottom"/>
+                        <Title text="{i18n>seeRecyclingMapContent}" titleStyle="H2" class="sapUiTinyMarginBottom"/>
                     </VBox>
                 </l:BlockLayoutCell>
             </l:BlockLayoutRow>

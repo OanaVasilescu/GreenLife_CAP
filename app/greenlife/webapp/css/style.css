@@ -89,7 +89,7 @@
     height: 3rem;
 }
 
-.logoOverlayParent {
+.overlayParent {
     position: relative;
 }
 
@@ -97,6 +97,36 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -6%;
+    margin-left: -7%;
     margin-top: -6%;
+}
+
+
+.overlayChild {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -10%;
+    margin-top: -6%;
+}
+
+.blur{
+    filter:grayscale(1);
+    transition: .3s ease;
+}
+
+.blur:hover{
+    opacity: 0.5;
+}
+
+
+.parallax{
+    background-attachment: fixed;
+}
+
+.wrapper{
+    height: 100vh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    perspective: 2px !important;
 }

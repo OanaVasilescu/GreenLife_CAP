@@ -7,7 +7,7 @@ service UserService @(path : '/greenLife') {
         roles : String;
     };
 
-    entity Products @(restrict : [
+    entity GeneralProducts @(restrict : [
         {
             grant : ['READ'],
             to    : ['User']
@@ -16,63 +16,74 @@ service UserService @(path : '/greenLife') {
             grant : ['*'],
             to    : ['Admin']
         }
-    ])               as projection on my.Products;
+    ]) as projection on my.GeneralProducts;
+
+// entity Products @(restrict : [
+//     {
+//         grant : ['READ'],
+//         to    : ['User']
+//     },
+//     {
+//         grant : ['*'],
+//         to    : ['Admin']
+//     }
+// ])               as projection on my.Products;
 
 
-    entity Component @(restrict : [
-        {
-            grant : ['READ'],
-            to    : ['User']
-        },
-        {
-            grant : ['*'],
-            to    : ['Admin']
-        }
-    ])               as projection on my.Components;
+// entity Component @(restrict : [
+//     {
+//         grant : ['READ'],
+//         to    : ['User']
+//     },
+//     {
+//         grant : ['*'],
+//         to    : ['Admin']
+//     }
+// ])               as projection on my.Components;
 
-    entity BinTypes @(restrict : [
-        {
-            grant : ['READ'],
-            to    : ['User']
-        },
-        {
-            grant : ['*'],
-            to    : ['Admin']
-        }
-    ])               as projection on my.BinTypes;
+// entity BinTypes @(restrict : [
+//     {
+//         grant : ['READ'],
+//         to    : ['User']
+//     },
+//     {
+//         grant : ['*'],
+//         to    : ['Admin']
+//     }
+// ])               as projection on my.BinTypes;
 
-    entity ProductTypes @(restrict : [
-        {
-            grant : ['READ'],
-            to    : ['User']
-        },
-        {
-            grant : ['*'],
-            to    : ['Admin']
-        }
-    ])               as projection on my.ProductTypes;
+// entity ProductTypes @(restrict : [
+//     {
+//         grant : ['READ'],
+//         to    : ['User']
+//     },
+//     {
+//         grant : ['*'],
+//         to    : ['Admin']
+//     }
+// ])               as projection on my.ProductTypes;
 
-    entity ProductMaterialCodes @(restrict : [
-        {
-            grant : ['READ'],
-            to    : ['User']
-        },
-        {
-            grant : ['*'],
-            to    : ['Admin']
-        }
-    ])               as projection on my.ProductMaterialCodes;
+// entity ProductMaterialCodes @(restrict : [
+//     {
+//         grant : ['READ'],
+//         to    : ['User']
+//     },
+//     {
+//         grant : ['*'],
+//         to    : ['Admin']
+//     }
+// ])               as projection on my.ProductMaterialCodes;
 
-    entity ReciclingTips @(restrict : [
-        {
-            grant : ['READ'],
-            to    : ['User']
-        },
-        {
-            grant : ['*'],
-            to    : ['Admin']
-        }
-    ])               as projection on my.RecyclingTips;
+// entity ReciclingTips @(restrict : [
+//     {
+//         grant : ['READ'],
+//         to    : ['User']
+//     },
+//     {
+//         grant : ['*'],
+//         to    : ['Admin']
+//     }
+// ])               as projection on my.RecyclingTips;
 
-    entity Reminders as projection on my.Reminders;
+// entity Reminders as projection on my.Reminders;
 }

@@ -41,7 +41,7 @@
         "technology": "UI5",
         "icons": {
             "icon": "",
-            "favIcon": "",
+            "favIcon": "icon/favicon.ico",
             "phone": "",
             "phone@2": "",
             "tablet": "",

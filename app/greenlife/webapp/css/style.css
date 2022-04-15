@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap');
+
 .sapMWizardStepTitle{
     display: none!important;
 }
@@ -105,7 +107,23 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -20%;
+    margin-left: -14%;
+    margin-top: -4%;
+}
+
+.overlayChildProduce{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -17%;
+    margin-top: -4%;
+}
+
+.overlayChildBins{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -12%;
     margin-top: -4%;
 }
 
@@ -137,4 +155,8 @@
     overflow-x: hidden !important;
     overflow-y: auto !important;
     perspective: 2px !important;
+}
+
+.pathwayGothic{
+    font-family: 'Pathway Gothic One' !important;
 }

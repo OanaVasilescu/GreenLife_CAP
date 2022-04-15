@@ -10,40 +10,44 @@
     padding-right: 0px;
 }
 
+.sapMText{
+    font-family: 'Pathway Gothic One' !important;
+}
+
 .sapThemeText-asColor > span {
     color: #0A6ED1 !important;
 }
 
 .sapMGT {
-    border-radius: 0em
+    border-radius: 0em;
 }
 
-.sapMGTPressActive {
+.sapMGTBackgroundImage {
+    background-attachment: fixed;
+}
+
+.sapMImageContentImageIcon.sapUiIcon{
+    color: #f4f6f5 !important;
+}
+
+/* .glTile:hover{
+    background: #5aa07c !important;
+} */
+
+.pressedButton{
     background: #f4f6f5 !important;
 }
 
-.sapMGT:hover{
-    background: #5aa07c !important;
-}
-
-.pressedButton{
-    background: #5aa07c !important;
-}
-
 .pressedButton .sapMImageContentImageIcon.sapUiIcon{
-    color: #f4f6f5 !important;
+    color: #5aa07c !important;
 }
 
 .pressedButton .sapMText{
-    color: #f4f6f5 !important;
+    color: #5aa07c !important;
 }
 
-.sapMGT:hover .sapMImageContentImageIcon.sapUiIcon{
-    color: #f4f6f5 !important;
-}
-
-.sapMGT:hover .sapMText{
-    color: #f4f6f5 !important;
+.sapMGT .sapMText{
+    color: #f4f6f5 ;
 }
 
 /* .sapMGT:focus{
@@ -127,12 +131,20 @@
     margin-top: -4%;
 }
 
-.blur{
+.overlayChildWizard{
+    position: absolute;
+}
+
+.grey{
     filter:grayscale(1);
     transition: .3s ease;
 }
 
-.whiteText:hover .blur{
+.blur{
+    filter:blur(8px)
+}
+
+.whiteText:hover .grey{
     opacity: 0.5;
 }
 

@@ -29,7 +29,7 @@
             </l:BlockLayoutRow>
             <l:BlockLayoutRow>
                 <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
-                    <Image id="bckgImagePlantSmallOn" height="20rem" width="110rem" mode="Background" class="parallax blur" press="pressSearchProduct"/>
+                    <Image id="bckgImagePlantSmallOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press="pressSearchProduct"/>
                     <VBox class="overlayChild" alignItems="Center">
                         <Title id="searchProductTile" text="{i18n>searchTitle}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
                         <Title text="{i18n>searchProductContent}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic"/>
@@ -51,7 +51,7 @@
             </l:BlockLayoutRow>
             <l:BlockLayoutRow>
                 <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
-                    <Image id="bckgImageWaterOn" height="20rem" width="110rem" mode="Background" class="parallax blur" press="pressSeeMap"/>
+                    <Image id="bckgImageWaterOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press="pressSeeMap"/>
                     <VBox id="seeRecyclingMapBox" class="overlayChildBins" alignItems="Center">
                         <Title text="{i18n>seeRecyclingMap}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
                         <Title text="{i18n>seeRecyclingMapContent}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic" />
@@ -72,7 +72,7 @@
             </l:BlockLayoutRow>
             <l:BlockLayoutRow>
                 <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
-                    <Image id="bckgImageLandOn" height="20rem" width="110rem" mode="Background" class="parallax blur" press=""/>
+                    <Image id="bckgImageLandOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press=""/>
                     <VBox class="overlayChildProduce" alignItems="Center">
                         <Title text="{i18n>exchangeFoodAndProduce}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
                         <Title text="{i18n>exchangeFoodAndProduceContent}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic"/>
@@ -87,6 +87,7 @@
             </l:BlockLayoutRow>
 
 
+
             <l:BlockLayoutRow>
                 <l:BlockLayoutCell class="sapUiNoContentPadding">
                     <Image id="bckgImageMountainBefore" height="20rem" width="110rem" mode="Background" class="parallax"/>
@@ -94,7 +95,7 @@
             </l:BlockLayoutRow>
             <l:BlockLayoutRow>
                 <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
-                    <Image id="bckgImageMountainOn" height="20rem" width="110rem" mode="Background" class="parallax blur" press=""/>
+                    <Image id="bckgImageMountainOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press=""/>
                     <VBox class="overlayChildBins" alignItems="Center">
                         <Title text="{i18n>cleanupPlanet}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
                         <Title text="{i18n>cleanupPlanetContent}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic"/>

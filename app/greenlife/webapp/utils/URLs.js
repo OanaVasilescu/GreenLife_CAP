@@ -5,17 +5,21 @@ sap.ui.define([], function () {
     const userService = "/greenlife";
     const products = "/Products";
     const slash = "/";
+    // const cat = "/cat";
     const expandAllProduct = "?&$expand=components($expand=component($expand=productMaterialCode($expand=bin),productType))";
     const getUser = "/getUserData()";
     return {
         getAllProducts: function () {
-            return origin + userService + products;
+            return userService + products;
         },
         getProductWithInstructions: function (productId) {
-            return origin + userService + products + slash + productId + expandAllProduct;
+            return userService + products + slash + productId + expandAllProduct;
         },
         getUser: function () {
             return userService + getUser;
+        },
+        getInstructionsBySubcategory: function (subcategory) {
+            return userService + products + slash + subcategory;
         }
     }
 });

@@ -38,7 +38,6 @@ sap.ui.define([
             this.getView().byId("leadTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
             this.getView().byId("steelTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
             this.getView().byId("stainlessTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
-            this.getView().byId("castTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
             this.getView().byId("ironTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
             this.getView().byId("brassTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
             this.getView().byId("cansTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
@@ -77,13 +76,16 @@ sap.ui.define([
             this.getView().byId("opticTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
             this.getView().byId("waterFiltersTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
             this.getView().byId("absTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
-            this.getView().byId("solventTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
-            this.getView().byId("solventTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
-            this.getView().byId("solventTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
+            this.getView().byId("tireTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
+            this.getView().byId("petTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
+            this.getView().byId("printerTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/suc-texture-blur.jpg"));
 
 
-            // let detailsTitle = //
-            this.getView().setModel(new JSONModel({title: "title", text: "text"}), "detailsModel")
+            let detailsTitle = "Search how to recycle your old products" // TODO: move to i18n
+            let detailsText = "Not sure where to throw something? Go ahead and search here! Choose whether to go through the categories or just scan the product and see the result." // TODO: move to i18n
+
+            this.getView().setModel(new JSONModel({title: detailsTitle, text: detailsText}), "detailsModel")
+            this.getView().setModel(new JSONModel({}), "instructionsModel")
         },
 
         chooseScanOrSearch: function (oEvent) {
@@ -104,6 +106,13 @@ sap.ui.define([
             let fullId = oEvent.getSource().getId();
             let id = fullId.slice(fullId.lastIndexOf("-") + 1);
             this.goToNextStep(id);
+
+            if (id == "searchTile") {
+                let detailsTitle = "Choose category" // TODO: move to i18n
+                let detailsText = "What's the product made of? \r\nChoose one of the categories and proceed to the next step." // TODO: move to i18n
+
+                this.getView().getModel("detailsModel").setData({title: detailsTitle, text: detailsText})
+            }
         },
 
         chooseCategory: function (oEvent) {
@@ -118,9 +127,28 @@ sap.ui.define([
             }
 
             this.goToNextStep(id);
+
+            let detailsTitle = "Choose subcategory" // TODO: move to i18n
+            let detailsText = "What's the product made of? \r\nChoose one of the subcategories and proceed to the next step." // TODO: move to i18n
+
+            this.getView().getModel("detailsModel").setData({title: detailsTitle, text: detailsText})
         },
 
-        chooseSubcategory: function (oEvent) {
+        chooseSubcategory: async function (oEvent) {
+            let isCatAlreadyChosen = this.clearSubcategoriesAndReturnIsAlreadyChosen();
+            const wizard = this.getView().byId("recycleProductsWizard");
+            oEvent.getSource().addStyleClass("pressedButton");
+
+            let fullId = oEvent.getSource().getId();
+            let id = fullId.slice(fullId.lastIndexOf("-") + 1);
+            if (isCatAlreadyChosen) {
+                wizard.discardProgress(this.byId("categoriesWizardStep"), false);
+            }
+
+            await this.getInstructions(id);
+            this.getView().byId("detailsBox").setVisible(false);
+            this.getView().byId("instructionsBox").setVisible(true);
+
             debugger;
         },
 
@@ -174,118 +202,6 @@ sap.ui.define([
                 case "others":
                     this.byId("categoriesWizardStep").setNextStep(this.getView().byId("othersStep"));
                     break;
-
-                case "paperTile":
-                    break;
-                case "cardboardTile":
-                    break;
-                case "petTile":
-                    break;
-                case "boxesTile":
-                    break;
-                case "bottleTile":
-                    break;
-                case "printerTile":
-                    break;
-                case "bulbsTile":
-                    break;
-                case "batteriesTile":
-                    break;
-                case "mobilesTile":
-                    break;
-                case "largeApplianceTile":
-                    break;
-                case "smallApplianceTile":
-                    break;
-                case "zincTile":
-                    break;
-                case "leadTile":
-                    break;
-                case "steelTile":
-                    break;
-                case "stainlessTile":
-                    break;
-                case "castTile":
-                    break;
-                case "ironTile":
-                    break;
-
-                case "brassTile":
-                    break;
-                case "cansTile":
-                    break;
-                case "capsTile":
-                    break;
-                case "aerosolTile":
-                    break;
-                case "aluFoilTile":
-                    break;
-                case "aluCansTile":
-                    break;
-                case "glassTile":
-                    break;
-                case "masksTile":
-                    break;
-                case "fertilizerTile":
-                    break;
-                case "herbicidesTile":
-                    break;
-                case "pesticidesTile":
-                    break;
-                case "paintTile":
-                    break;
-                case "solventTile":
-                    break;
-                case "medicineTile":
-                    break;
-                case "tireTile":
-                    break;
-                case "windshieldTile":
-                    break;
-                case "eofTile":
-                    break;
-                case "oilTile":
-                    break;
-                case "carBatteriesTile":
-                    break;
-                case "polystyreneTile":
-                    break;
-                case "demWoodTile":
-                    break;
-                case "bricksTile":
-                    break;
-                case "palletsTile":
-                    break;
-                case "sawdustTile":
-                    break;
-                case "furnitureTile":
-                    break;
-                case "clothesTile":
-                    break;
-                case "preProdTile":
-                    break;
-                case "bagsTile":
-                    break;
-                case "shoesTile":
-                    break;
-                case "otherTextilesTile":
-                    break;
-                case "toysTile":
-                    break;
-                case "organicTile":
-                    break;
-                case "meshTile":
-                    break;
-                case "tetraPakTile":
-                    break;
-                case "foodOilTile":
-                    break;
-                case "opticTile":
-                    break;
-                case "waterFiltersTile":
-                    break;
-                case "absTile":
-                    break;
             }
 
             wizard.nextStep();
@@ -293,17 +209,36 @@ sap.ui.define([
 
         clearCategoriesAndReturnIsAlreadyChosen: function () {
             let isCatAlreadyChosen = false
-            // this.getView().byId("categoriesWizardStep").getContent()[0].getItems().forEach(box => box.getItems().forEach(el => {
-            //     if (el.hasStyleClass("pressedButton")) {
-            //         isCatAlreadyChosen = true
-            //         el.removeStyleClass("pressedButton")
-            //     }
-            // }))
+            this.getView().byId("categoriesWizardStep").getContent()[0].getItems().forEach(box => box.getItems().forEach(el => {
+                if (el.hasStyleClass("pressedButton")) {
+                    isCatAlreadyChosen = true
+                    el.removeStyleClass("pressedButton")
+                }
+            }))
+            return isCatAlreadyChosen
+        },
+
+        clearSubcategoriesAndReturnIsAlreadyChosen: function () {
+            let isCatAlreadyChosen = false
+            this.getView().byId("categoriesWizardStep").getContent()[0].getItems().forEach(box => box.getItems().forEach(el => {
+                if (el.hasStyleClass("pressedButton")) {
+                    isCatAlreadyChosen = true
+                    el.removeStyleClass("pressedButton")
+                }
+            }))
             return isCatAlreadyChosen
         },
 
         goToScanResult: function (oResult) {
             debugger;
+        },
+
+        getInstructions: async function (subcategory) {
+            this.get(URLs.getInstructionsBySubcategory(subcategory)).then(instructionsData => {
+                debugger
+            }).catch(err => {
+                this.messageHandler("getInstructionsBySubcategoryError")
+            })
         }
     });
 });

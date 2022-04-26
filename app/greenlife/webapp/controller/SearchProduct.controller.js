@@ -1,11 +1,7 @@
 sap.ui.define([
-    "greenlife/controller/BaseController",
-    'sap/ui/model/json/JSONModel',
-    "greenlife/utils/URLs",
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
+    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "greenlife/utils/URLs"
 
-], function (BaseController, JSONModel, URLs, Filter, FilterOperator) {
+], function (BaseController, JSONModel, URLs) {
     "use strict";
 
     return BaseController.extend("greenlife.controller.SearchProduct", {

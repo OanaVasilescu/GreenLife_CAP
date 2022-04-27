@@ -418,6 +418,24 @@
                             </WizardStep>
                         </Wizard>
 
+                        <VBox id="instructionsBox" backgroundDesign="Solid" height="100%" visible="false">
+                            <layoutData>
+                                <f:GridContainerItemLayoutData minRows="9" columns="12" />
+                            </layoutData>
+                            <Title text="{instructionsModel>/title}" titleStyle="H1" class="sapUiLargeMargin pathwayGothic"/>
+
+                            <FormattedText htmlText="{instructionsModel>/howToCollectTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
+                            <FormattedText htmlText="{instructionsModel>/howToCollect}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
+
+                            <FormattedText htmlText="{instructionsModel>/restrictionsTitle}" class="sapUiLargeMarginBeginEnd sapUiLargeMarginTop pathwayGothic"/>
+                            <FormattedText htmlText="{instructionsModel>/restrictions}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
+
+                            <FormattedText htmlText="{instructionsModel>/howToRecycleTitle}" class="sapUiLargeMarginBeginEnd sapUiLargeMarginTop pathwayGothic"/>
+                            <FormattedText htmlText="{instructionsModel>/howToRecycle}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
+                        </VBox>
+
+
+
                         <VBox id="detailsBox" backgroundDesign="Solid" height="100%">
                             <layoutData>
                                 <f:GridContainerItemLayoutData minRows="9" columns="7" />
@@ -426,15 +444,12 @@
                             <FormattedText htmlText="{detailsModel>/text}" class="sapUiLargeMargin "/>
                         </VBox>
 
-                        <VBox id="instructionsBox" backgroundDesign="Solid" height="100%" visible="false">
+                        <Image id="pictureBox" height="100%" width="100%" visible="false" mode="Background">
                             <layoutData>
                                 <f:GridContainerItemLayoutData minRows="9" columns="7" />
                             </layoutData>
-                            <Title text="{instructionsModel>/title}" titleStyle="H1" class="sapUiLargeMargin pathwayGothic"/>
-                            <FormattedText htmlText="{instructionsModel>/howToCollect}" class="sapUiLargeMargin pathwayGothic"/>
-                            <FormattedText htmlText="{instructionsModel>/restrictions}" class="sapUiLargeMargin pathwayGothic"/>
-                            <FormattedText htmlText="{instructionsModel>/howToRecycle}" class="sapUiLargeMargin pathwayGothic"/>
-                        </VBox>
+                        </Image>
+
                     </f:GridContainer>
                 </content>
                 <footer>

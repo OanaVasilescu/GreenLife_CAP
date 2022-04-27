@@ -33,7 +33,6 @@ sap.ui.define([
         },
 
         pressSearchProduct: function (oEvent) {
-            debugger
             this.getRouter().navTo("SearchProduct");
         },
         pressSeeMap: function () {

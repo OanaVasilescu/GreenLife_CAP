@@ -444,11 +444,11 @@
                             <FormattedText htmlText="{detailsModel>/text}" class="sapUiLargeMargin "/>
                         </VBox>
 
-                        <Image id="pictureBox" height="100%" width="100%" visible="false" mode="Background">
+                        <VBox id="pictureBox" height="100%" width="100%" visible="false">
                             <layoutData>
                                 <f:GridContainerItemLayoutData minRows="9" columns="7" />
                             </layoutData>
-                        </Image>
+                        </VBox>
 
                     </f:GridContainer>
                 </content>

@@ -3,8 +3,11 @@ sap.ui.define([
 
 ], function (BaseController, JSONModel, URLs) {
     "use strict";
+    // let latestSubcategory;
+    // let latestCategory;
 
     return BaseController.extend("greenlife.controller.SearchProduct", {
+
         onInit: function () {
             sap.ui.getCore().byId("container-webapp---App--app").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/wallBackground.jpg"))
 
@@ -75,6 +78,8 @@ sap.ui.define([
             this.getView().byId("tireTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/wallBackground.jpg"));
             this.getView().byId("petTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/wallBackground.jpg"));
             this.getView().byId("printerTile").setBackgroundImage(this.getOwnerComponent().getManifestObject().resolveUri("pictures/wallBackground.jpg"));
+
+            this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null}), "chosenModel");
         },
 
         onBeforeRendering: function () {
@@ -116,7 +121,15 @@ sap.ui.define([
         },
 
         chooseCategory: function (oEvent) {
-            let isCatAlreadyChosen = this.clearCategoriesAndReturnIsAlreadyChosen();
+            let latestCategory = this.getView().getModel("chosenModel").getProperty("/latestCategory");
+            let isCatAlreadyChosen = false;
+            if (latestCategory != null) {
+                latestCategory.removeStyleClass("pressedButton");
+                isCatAlreadyChosen = true;
+            }
+            latestCategory = oEvent.getSource();
+
+
             const wizard = this.getView().byId("recycleProductsWizard");
             oEvent.getSource().addStyleClass("pressedButton");
 
@@ -135,8 +148,16 @@ sap.ui.define([
         },
 
         chooseSubcategory: async function (oEvent) {
+            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
+            let isSubcatAlreadyChosen = false;
+            if (latestSubcategory != null) {
+                latestSubcategory.removeStyleClass("pressedButton");
+                isSubcatAlreadyChosen = true;
+            }
+            latestSubcategory = oEvent.getSource();
+
+
             let wizardStepId = oEvent.getSource().getParent().sId;
-            let isSubcatAlreadyChosen = this.clearSubcategoriesAndReturnIsAlreadyChosen(oEvent.getSource().getParent().getContent());
             const wizard = this.getView().byId("recycleProductsWizard");
             oEvent.getSource().addStyleClass("pressedButton");
 
@@ -220,118 +241,9 @@ sap.ui.define([
         setPicture: function (id) {
             debugger
             let picture = this.getView().byId("pictureBox");
-            switch (id) {
-                case "printerTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/printer.jpg"));
-                    break;
-                case "petTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/pet.jpg"));
-                    break;
-                case "tireTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/tires.jpg"));
-                    break;
-                case "absTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/abs.jpg"));
-                    break;
-                case "waterFiltersTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/waterFilter.jpg"));
-                    break;
-                case "opticTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/opticFiber.jpg"));
-                    break;
-                case "foodOilTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/foodOil.jpg"));
-                    break;
-                case "tetraPakTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/tetraPak.jpg"));
-                    break;
-                case "meshTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/mesh.jpg"));
-                    break;
-                case "organicTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/organicWaste.jpg"));
-                    break;
-                case "toysTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/toys.jpg"));
-                    break;
-                case "otherTextilesTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/otherTextiles.jpg"));
-                    break;
-                case "shoesTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/shoes.jpg"));
-                    break;
 
-                case "bagsTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/bags.jpg"));
-                    break;
-                case "preProdTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/preProd.jpg"));
-                    break;
-                case "clothesTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/clothes.jpg"));
-                    break;
-                case "furnitureTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/furniture.jpg"));
-                    break;
-                case "sawdustTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/sawdust.jpg"));
-                    break;
-                case "palletsTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/pallets.jpg"));
-                    break;
-                case "bricksTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/bricks.jpg"));
-                    break;
-                case "demWoodTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/demolitionWood.jpg"));
-                    break;
-                case "polystyreneTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/polystyrene.jpg"));
-                    break;
-                case "carBatteriesTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/carBattery.jpg"));
-                    break;
-                case "oilTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/carOil.jpg"));
-                    break;
-                case "eofTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/eof.jpg"));
-                    break;
-
-                case "windshieldTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/windshield.jpg"));
-                    break;
-                case "medicineTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/medicine.jpg"));
-                    break;
-                case "solventTile": // picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/.jpg"));
-                    break;
-                case "paintTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/paint.jpg"));
-                    break;
-                case "pesticidesTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/pesticide.jpg"));
-                    break;
-                case "herbicidesTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/herbicides.jpg"));
-                    break;
-                case "fertilizerTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/fertilizer.jpg"));
-                    break;
-                case "masksTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/masks.jpg"));
-                    break;
-                case "glassTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/glass.jpg"));
-                    break;
-                case "aluCansTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/aluCans.jpg"));
-                    break;
-                case "aluFoilTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/aluFoil.jpg"));
-                    break;
-                case "aerosolTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/aerosol.jpg"));
-                    break;
-
-                case "capsTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/caps.jpg"));
-                    break;
-                case "cansTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/cans.jpg"));
-                    break;
-                case "ironTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/iron.jpg"));
-                    break;
-                case "stainlessTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/stainlessSteel.jpg"));
-                    break;
-                case "steelTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/steel.jpg"));
-                    break;
-                case "leadTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/lead.jpg"));
-                    break;
-                case "zincTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/zinc.jpg"));
-                    break;
-                case "smallApplianceTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/mixer.jpg"));
-                    break;
-                case "largeApplianceTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/fridge.jpg"));
-                    break;
-                case "mobilesTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/mobile.jpg"));
-                    break;
-                case "batteriesTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/batteries.jpg"));
-                    break;
-                case "bulbsTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/bulbs.jpg"));
-                    break;
-
-                case "bottleTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/bottles.jpg"));
-                    break;
-                case "boxesTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/boxes.jpg"));
-                    break;
-                case "cardboardTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/cardboard.jpg"));
-                    break;
-                case "paperTile": picture.setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/materials/paper.jpg"));
-                    break;
-            }
+            picture.addStyleClass(id);
+            picture.addStyleClass("coverTile");
         },
 
         clearCategoriesAndReturnIsAlreadyChosen: function () {
@@ -345,21 +257,9 @@ sap.ui.define([
             return isCatAlreadyChosen
         },
 
-        clearSubcategoriesAndReturnIsAlreadyChosen: function (subcategoryParent) {
-            let isSubcatAlreadyChosen = false
-            subcategoryParent.forEach(el => {
-                if (el.hasStyleClass("pressedButton")) {
-                    isSubcatAlreadyChosen = true
-                    el.removeStyleClass("pressedButton")
-                }
-            })
-            return isSubcatAlreadyChosen
-        },
-
         goToScanResult: function (oResult) {
             debugger;
         },
-
 
         setInstructions: function (instr) {
             let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
@@ -391,14 +291,19 @@ sap.ui.define([
 
             this.getView().getModel("instructionsModel").setProperty("/title", instr.name);
         },
-
-
         getInstructions: async function (subcategory) {
             return await this.get(URLs.getInstructionsBySubcategory(subcategory)).then(async instructionsData => {
                 return instructionsData;
             }).catch(err => {
                 this.messageHandler("getInstructionsBySubcategoryError")
             })
+        },
+
+        handleWizardCancel: async function () {
+            debugger;
+            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
+            this.getView().getModel("chosenModel").setProperty("/latestCategory", null);
+            this.getRouter().navTo("Overview");
         }
 
     });

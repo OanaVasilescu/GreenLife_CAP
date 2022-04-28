@@ -416,6 +416,7 @@
                                     </TileContent>
                                 </GenericTile>
                             </WizardStep>
+
                         </Wizard>
 
                         <VBox id="instructionsBox" backgroundDesign="Solid" height="100%" visible="false">
@@ -448,6 +449,15 @@
                             <layoutData>
                                 <f:GridContainerItemLayoutData minRows="9" columns="7" />
                             </layoutData>
+                            <f:Card class="sapUiLargeMargin" width="70%">
+                                <f:content>
+                                    <VBox alignItems="Center">
+                                        <Title text="{i18n>seeWhereToRecycleTitle}" titleStyle="H3" class="sapUiLargeMarginTop  pathwayGothic"/>
+                                        <Text text="{i18n>seeWhereToRecycleSubTitle} {instructionsModel>/title}" class="sapUiSmallMargin "/>
+                                        <Button text="{i18n>searchRecyclingPoint}" class="sapUiSmallMargin " icon="sap-icon://solid-icons/recycle"/>
+                                    </VBox>
+                                </f:content>
+                            </f:Card>
                         </VBox>
 
                     </f:GridContainer>

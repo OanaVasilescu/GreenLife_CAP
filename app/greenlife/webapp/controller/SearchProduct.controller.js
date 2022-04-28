@@ -3,8 +3,6 @@ sap.ui.define([
 
 ], function (BaseController, JSONModel, URLs) {
     "use strict";
-    // let latestSubcategory;
-    // let latestCategory;
 
     return BaseController.extend("greenlife.controller.SearchProduct", {
 
@@ -12,7 +10,7 @@ sap.ui.define([
             sap.ui.getCore().byId("container-webapp---App--app").setBackgroundImage("https://images.unsplash.com/photo-1530177150700-84cd9a3b059b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80")
 
             this.getView().setModel(new JSONModel({backgroundPicture: "https://images.unsplash.com/photo-1530177150700-84cd9a3b059b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"}), "pictureModel")
-            this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null}), "chosenModel");
+            this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null, choice: null}), "chosenModel");
         },
 
         onBeforeRendering: function () {
@@ -118,9 +116,16 @@ sap.ui.define([
 
         goToNextStep: function (id) {
             const wizard = this.getView().byId("recycleProductsWizard");
+            let choice = this.getView().getModel("chosenModel").getProperty("/choice");
+            let latestCategory = this.getView().getModel("chosenModel").getProperty("/choice");
+            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/choice");
+
             switch (id) {
                 case "searchTile":
                     this.byId("introStep").setNextStep(this.getView().byId("categoriesWizardStep"));
+                    if (choice != null) {
+                        choice.removeStyleClass("pressedButton");
+                    }
                     if (latestCategory != null) {
                         latestCategory.removeStyleClass("pressedButton");
                     }

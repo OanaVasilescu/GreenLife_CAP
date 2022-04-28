@@ -21,12 +21,12 @@
                             </layoutData>
                             <WizardStep id="introStep" nextStep="categoriesWizardStep" icon="sap-icon://solid-icons/recycle" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
 
-                                <GenericTile id="searchTile" header="{i18n>searchCategories}" press="chooseScanOrSearch" class="glTile">
+                                <GenericTile id="searchTile" header="{i18n>searchCategories}" press="chooseScanOrSearch" class="glTile" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/magnifying-glass"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="scanTile" header="{i18n>scanBarcode}" press="chooseScanOrSearch" class="glTile">
+                                <GenericTile id="scanTile" header="{i18n>scanBarcode}" press="chooseScanOrSearch" class="glTile" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/barcode"/>
                                     </TileContent>
@@ -38,59 +38,59 @@
                             <WizardStep id="categoriesWizardStep" title="{i18n>categoriesWizardStep}" icon="sap-icon://split" subsequentSteps="paperAndCardboardStep, plasticAndPetStep, electroStep, metalAndAluStep, glassStep, dangerousStep, automotoStep, constructionsStep, woodStep, textileStep, othersStep">
                                 <VBox class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                     <HBox>
-                                        <GenericTile id="paperAndCardboard" class="" header="{i18n>paperAndCardboard}" press="chooseCategory">
+                                        <GenericTile id="paperAndCardboard" class="" header="{i18n>paperAndCardboard}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/boxes-packing"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="plasticAndPet" class="" header="{i18n>plasticAndPet}" press="chooseCategory">
+                                        <GenericTile id="plasticAndPet" class="" header="{i18n>plasticAndPet}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/bottle-water"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="electro" class="" header="{i18n>electro}" press="chooseCategory">
+                                        <GenericTile id="electro" class="" header="{i18n>electro}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/camera-retro"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="metalAndAlu" class="" header="{i18n>metalAndAlu}" press="chooseCategory">
+                                        <GenericTile id="metalAndAlu" class="" header="{i18n>metalAndAlu}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/anchor"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="glass" class="" header="{i18n>glass}" press="chooseCategory">
+                                        <GenericTile id="glass" class="" header="{i18n>glass}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/wine-bottle"/>
                                             </TileContent>
                                         </GenericTile>
                                     </HBox>
                                     <HBox>
-                                        <GenericTile id="dangerous" class="smallTiles" header="{i18n>dangerous}" press="chooseCategory">
+                                        <GenericTile id="dangerous" class="smallTiles" header="{i18n>dangerous}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/spray-can"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="automoto" class="smallTiles" header="{i18n>automoto}" press="chooseCategory">
+                                        <GenericTile id="automoto" class="smallTiles" header="{i18n>automoto}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/car"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="constructions" class="smallTiles" header="{i18n>constructions}" press="chooseCategory">
+                                        <GenericTile id="constructions" class="smallTiles" header="{i18n>constructions}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/person-digging"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="wood" class="smallTiles" header="{i18n>wood}" press="chooseCategory">
+                                        <GenericTile id="wood" class="smallTiles" header="{i18n>wood}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/tree"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="textile" class="smallTiles" header="{i18n>textile}" press="chooseCategory">
+                                        <GenericTile id="textile" class="smallTiles" header="{i18n>textile}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/shirt"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="others" class="smallTiles" header="{i18n>others}" press="chooseCategory">
+                                        <GenericTile id="others" class="smallTiles" header="{i18n>others}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/robot"/>
                                             </TileContent>
@@ -101,12 +101,12 @@
 
 
                             <WizardStep id="paperAndCardboardStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/boxes-packing" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="paperTile" header="{i18n>paper}" press="chooseSubcategory">
+                                <GenericTile id="paperTile" header="{i18n>paper}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://regular-icons/note-sticky"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="cardboardTile" header="{i18n>cardboard}" press="chooseSubcategory">
+                                <GenericTile id="cardboardTile" header="{i18n>cardboard}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/box-open"/>
                                     </TileContent>
@@ -115,17 +115,17 @@
 
 
                             <WizardStep id="plasticAndPetStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/bottle-water" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="petTile" header="{i18n>pet}" press="chooseSubcategory">
+                                <GenericTile id="petTile" header="{i18n>pet}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/bottle-water"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="boxesTile" header="{i18n>boxes}" press="chooseSubcategory">
+                                <GenericTile id="boxesTile" header="{i18n>boxes}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/inbox"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="bottleTile" header="{i18n>bottle}" press="chooseSubcategory">
+                                <GenericTile id="bottleTile" header="{i18n>bottle}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/prescription-bottle"/>
                                     </TileContent>
@@ -134,32 +134,32 @@
 
 
                             <WizardStep id="electroStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/camera-retro" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="printerTile" header="{i18n>print}" press="chooseSubcategory">
+                                <GenericTile id="printerTile" header="{i18n>print}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/print"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="bulbsTile" header="{i18n>lightBulbs}" press="chooseSubcategory">
+                                <GenericTile id="bulbsTile" header="{i18n>lightBulbs}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/lightbulb"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="batteriesTile" header="{i18n>batteries}" press="chooseSubcategory">
+                                <GenericTile id="batteriesTile" header="{i18n>batteries}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/battery-quarter"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="mobilesTile" header="{i18n>mobiles}" press="chooseSubcategory">
+                                <GenericTile id="mobilesTile" header="{i18n>mobiles}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/mobile-screen"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="largeApplianceTile" header="{i18n>largeAppliance}" press="chooseSubcategory">
+                                <GenericTile id="largeApplianceTile" header="{i18n>largeAppliance}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/tv"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="smallApplianceTile" header="{i18n>smallAppliance}" press="chooseSubcategory">
+                                <GenericTile id="smallApplianceTile" header="{i18n>smallAppliance}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/camera-retro"/>
                                     </TileContent>
@@ -170,59 +170,59 @@
                             <WizardStep id="metalAndAluStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/anchor" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <VBox>
                                     <HBox>
-                                        <GenericTile id="zincTile" header="{i18n>zinc}" press="chooseSubcategory">
+                                        <GenericTile id="zincTile" header="{i18n>zinc}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="leadTile" header="{i18n>plumb}" press="chooseSubcategory">
+                                        <GenericTile id="leadTile" header="{i18n>plumb}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="steelTile" header="{i18n>steel}" press="chooseSubcategory">
+                                        <GenericTile id="steelTile" header="{i18n>steel}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="stainlessTile" header="{i18n>stainlessSteel}" press="chooseSubcategory">
+                                        <GenericTile id="stainlessTile" header="{i18n>stainlessSteel}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="ironTile" header="{i18n>iron}" press="chooseSubcategory">
+                                        <GenericTile id="ironTile" header="{i18n>iron}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
                                     </HBox>
                                     <HBox>
-                                        <GenericTile id="brassTile" class="smallTiles" header="{i18n>brass}" press="chooseSubcategory">
+                                        <GenericTile id="brassTile" class="smallTiles" header="{i18n>brass}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="cansTile" class="smallTiles" header="{i18n>cans}" press="chooseSubcategory">
+                                        <GenericTile id="cansTile" class="smallTiles" header="{i18n>cans}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="capsTile" class="smallTiles" header="{i18n>metalCaps}" press="chooseSubcategory">
+                                        <GenericTile id="capsTile" class="smallTiles" header="{i18n>metalCaps}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="aerosolTile" class="smallTiles" header="{i18n>aluminumAerosolTubes}" press="chooseSubcategory">
+                                        <GenericTile id="aerosolTile" class="smallTiles" header="{i18n>aluminumAerosolTubes}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="aluFoilTile" class="smallTiles" header="{i18n>aluFoil}" press="chooseSubcategory">
+                                        <GenericTile id="aluFoilTile" class="smallTiles" header="{i18n>aluFoil}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
                                         </GenericTile>
-                                        <GenericTile id="aluCansTile" class="smallTiles" header="{i18n>aluCans}" press="chooseSubcategory">
+                                        <GenericTile id="aluCansTile" class="smallTiles" header="{i18n>aluCans}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                             <TileContent>
                                                 <ImageContent src="sap-icon://solid-icons/recycle"/>
                                             </TileContent>
@@ -233,44 +233,44 @@
 
 
                             <WizardStep id="glassStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/wine-bottle" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="glassTile" header="{i18n>glass}" press="chooseSubcategory">
+                                <GenericTile id="glassTile" header="{i18n>glass}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/wine-bottle"/>
                                     </TileContent>
                                 </GenericTile>
                             </WizardStep>
                             <WizardStep id="dangerousStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/spray-can" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="masksTile" header="{i18n>masks}" press="chooseSubcategory">
+                                <GenericTile id="masksTile" header="{i18n>masks}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/mask-face"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="fertilizerTile" header="{i18n>fertilizer}" press="chooseSubcategory">
+                                <GenericTile id="fertilizerTile" header="{i18n>fertilizer}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/carrot"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="herbicidesTile" header="{i18n>herbicides}" press="chooseSubcategory">
+                                <GenericTile id="herbicidesTile" header="{i18n>herbicides}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/plant-wilt"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="pesticidesTile" header="{i18n>pesticides}" press="chooseSubcategory">
+                                <GenericTile id="pesticidesTile" header="{i18n>pesticides}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/bugs"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="paintTile" header="{i18n>paint}" press="chooseSubcategory">
+                                <GenericTile id="paintTile" header="{i18n>paint}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/fill-drip"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="solventTile" header="{i18n>solvent}" press="chooseSubcategory">
+                                <GenericTile id="solventTile" header="{i18n>solvent}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/bottle-droplet"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="medicineTile" header="{i18n>medicine}" press="chooseSubcategory">
+                                <GenericTile id="medicineTile" header="{i18n>medicine}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/capsules"/>
                                     </TileContent>
@@ -279,27 +279,27 @@
 
 
                             <WizardStep id="automotoStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/car-side" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="tireTile" header="{i18n>tire}" press="chooseSubcategory">
+                                <GenericTile id="tireTile" header="{i18n>tire}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/car-side"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="windshieldTile" header="{i18n>windshield}" press="chooseSubcategory">
+                                <GenericTile id="windshieldTile" header="{i18n>windshield}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/window-maximize"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="eofTile" header="{i18n>eof}" press="chooseSubcategory">
+                                <GenericTile id="eofTile" header="{i18n>eof}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/skull-crossbones"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="oilTile" header="{i18n>oil}" press="chooseSubcategory">
+                                <GenericTile id="oilTile" header="{i18n>oil}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/oil-can"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="carBatteriesTile" header="{i18n>car-batteries}" press="chooseSubcategory">
+                                <GenericTile id="carBatteriesTile" header="{i18n>car-batteries}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/car-battery"/>
                                     </TileContent>
@@ -308,17 +308,17 @@
 
 
                             <WizardStep id="constructionsStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/person-digging" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="polystyreneTile" header="{i18n>polystyrene}" press="chooseSubcategory">
+                                <GenericTile id="polystyreneTile" header="{i18n>polystyrene}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/house-chimney-window"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="demWoodTile" header="{i18n>demWood}" press="chooseSubcategory">
+                                <GenericTile id="demWoodTile" header="{i18n>demWood}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/door-closed"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="bricksTile" header="{i18n>bricks}" press="chooseSubcategory">
+                                <GenericTile id="bricksTile" header="{i18n>bricks}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/trowel-bricks"/>
                                     </TileContent>
@@ -327,17 +327,17 @@
 
 
                             <WizardStep id="woodStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/tree" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="palletsTile" header="{i18n>pallets}" press="chooseSubcategory">
+                                <GenericTile id="palletsTile" header="{i18n>pallets}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/ruler-horizontal"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="sawdustTile" header="{i18n>sawdust}" press="chooseSubcategory">
+                                <GenericTile id="sawdustTile" header="{i18n>sawdust}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/mound"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="furnitureTile" header="{i18n>furniture}" press="chooseSubcategory">
+                                <GenericTile id="furnitureTile" header="{i18n>furniture}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/chair"/>
                                     </TileContent>
@@ -346,27 +346,27 @@
 
 
                             <WizardStep id="textileStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/shirt" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="clothesTile" header="{i18n>clothes}" press="chooseSubcategory">
+                                <GenericTile id="clothesTile" header="{i18n>clothes}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/shirt"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="preProdTile" header="{i18n>preProdTextile}" press="chooseSubcategory">
+                                <GenericTile id="preProdTile" header="{i18n>preProdTextile}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/recycle"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="bagsTile" header="{i18n>bags}" press="chooseSubcategory">
+                                <GenericTile id="bagsTile" header="{i18n>bags}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/bag-shopping"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="shoesTile" header="{i18n>shoes}" press="chooseSubcategory">
+                                <GenericTile id="shoesTile" header="{i18n>shoes}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/shoe-prints"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="otherTextilesTile" header="{i18n>otherTextiles}" press="chooseSubcategory">
+                                <GenericTile id="otherTextilesTile" header="{i18n>otherTextiles}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/bed"/>
                                     </TileContent>
@@ -375,42 +375,42 @@
 
 
                             <WizardStep id="othersStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/robot" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-                                <GenericTile id="toysTile" header="{i18n>toys}" press="chooseSubcategory">
+                                <GenericTile id="toysTile" header="{i18n>toys}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/robot"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="organicTile" header="{i18n>organicWaste}" press="chooseSubcategory">
+                                <GenericTile id="organicTile" header="{i18n>organicWaste}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/drumstick-bite"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="meshTile" header="{i18n>mesh}" press="chooseSubcategory">
+                                <GenericTile id="meshTile" header="{i18n>mesh}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/recycle"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="tetraPakTile" header="{i18n>tetraPak}" press="chooseSubcategory">
+                                <GenericTile id="tetraPakTile" header="{i18n>tetraPak}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/recycle"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="foodOilTile" header="{i18n>foodOil}" press="chooseSubcategory">
+                                <GenericTile id="foodOilTile" header="{i18n>foodOil}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/bacon"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="opticTile" header="{i18n>opticFiber}" press="chooseSubcategory">
+                                <GenericTile id="opticTile" header="{i18n>opticFiber}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/ethernet"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="waterFiltersTile" header="{i18n>waterFilters}" press="chooseSubcategory">
+                                <GenericTile id="waterFiltersTile" header="{i18n>waterFilters}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/water"/>
                                     </TileContent>
                                 </GenericTile>
-                                <GenericTile id="absTile" header="{i18n>abs}" press="chooseSubcategory">
+                                <GenericTile id="absTile" header="{i18n>abs}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/recycle"/>
                                     </TileContent>

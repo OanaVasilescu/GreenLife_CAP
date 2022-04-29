@@ -27,22 +27,29 @@ sap.ui.define([
         },
 
         chooseScanOrSearch: function (oEvent) {
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
             this.restartChoiceSteps();
-            oEvent.getSource().addStyleClass("pressedButton");
+
+            let choice = oEvent.getSource();
+            this.getView().getModel("chosenModel").setProperty("/choice", choice);
+            choice.addStyleClass("pressedButton");
 
             let fullId = oEvent.getSource().getId();
             let id = fullId.slice(fullId.lastIndexOf("-") + 1);
             this.goToNextStep(id);
 
             if (id == "searchTile") {
-                let detailsTitle = "Choose category" // TODO: move to i18n
-                let detailsText = "What's the product made of? \r\nChoose one of the categories and proceed to the next step." // TODO: move to i18n
+                let detailsTitle = oResourceBundle.getText("chooseCat");
+                let detailsText = oResourceBundle.getText("chooseCatText")
 
                 this.getView().getModel("detailsModel").setData({title: detailsTitle, text: detailsText})
             }
         },
 
         chooseCategory: function (oEvent) {
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
             this.discardCategoryStep();
             let latestCategory = oEvent.getSource();
             this.getView().getModel("chosenModel").setProperty("/latestCategory", latestCategory);
@@ -54,19 +61,17 @@ sap.ui.define([
 
             this.goToNextStep(id);
 
-            let detailsTitle = "Choose subcategory" // TODO: move to i18n
-            let detailsText = "What's the product made of? \r\nChoose one of the subcategories and proceed to the next step." // TODO: move to i18n
+            let detailsTitle = oResourceBundle.getText("chooseSubCat");
+            let detailsText = oResourceBundle.getText("chooseSubCatText");
 
             this.getView().getModel("detailsModel").setData({title: detailsTitle, text: detailsText})
         },
 
         chooseSubcategory: async function (oEvent) {
-            debugger
             this.discardSubcategoryStep(oEvent);
 
             let latestSubcategory = oEvent.getSource();
             this.getView().getModel("chosenModel").setProperty("/latestSubcategory", latestSubcategory);
-            debugger;
             oEvent.getSource().addStyleClass("pressedButton");
 
 
@@ -87,18 +92,10 @@ sap.ui.define([
 
         goToNextStep: function (id) {
             const wizard = this.getView().byId("recycleProductsWizard");
-            let latestCategory = this.getView().getModel("chosenModel").getProperty("/latestCategory");
-            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
 
             switch (id) {
                 case "searchTile":
                     this.byId("introStep").setNextStep(this.getView().byId("categoriesWizardStep"));
-                    if (latestCategory != null) {
-                        latestCategory.removeStyleClass("pressedButton");
-                    }
-                    if (latestSubcategory != null) {
-                        latestSubcategory.removeStyleClass("pressedButton");
-                    }
                     break;
                 case "scanTile":
                     this.byId("introStep").setNextStep(this.getView().byId("scanStep"));
@@ -209,8 +206,15 @@ sap.ui.define([
         },
 
         restartChoiceSteps: function () {
-            let choice = this.getView().getModel("chosenModel").getProperty("/latestCategory");
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
+            this.getView().getModel("detailsModel").setProperty("/title", oResourceBundle.getText("detailsTitle"));
+            this.getView().getModel("detailsModel").setProperty("/text", oResourceBundle.getText("detailsText"));
+            debugger;
+
+            let choice = this.getView().getModel("chosenModel").getProperty("/choice");
             if (choice) {
+                debugger;
                 choice.removeStyleClass("pressedButton");
             }
 

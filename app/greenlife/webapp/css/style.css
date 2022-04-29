@@ -11,10 +11,6 @@
     padding-right: 0px;
 }
 
-.sapMText{
-    font-family:'Oswald' !important;
-}
-
 .sapThemeText-asColor > span {
     color: #0A6ED1 !important;
 }
@@ -23,8 +19,13 @@
     border-radius: 0em;
 }
 
+.sapMGT .sapMText{
+    font-family: 'Oswald'!important;
+}
+
 .sapMGTBackgroundImage {
     background-attachment: fixed;
+    filter:grayscale(1);
 }
 
 .sapMImageContentImageIcon.sapUiIcon{
@@ -36,16 +37,16 @@
 } */
 
 .pressedButton{
-    background: #f4f6f5 !important;
+    filter:grayscale(0);
 }
 
-.pressedButton .sapMImageContentImageIcon.sapUiIcon{
+/* .pressedButton .sapMImageContentImageIcon.sapUiIcon{
     color: #5aa07c !important;
 }
 
 .pressedButton .sapMText{
     color: #5aa07c !important;
-}
+} */
 
 .sapMGT .sapMText{
     color: #f4f6f5 ;
@@ -177,6 +178,10 @@
 .lowercase{
     text-transform: lowercase;
 }
+
+
+
+
 
 .printerTile{
     background-image: url("https://images.unsplash.com/photo-1551971868-1bc03829fd98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3024&q=80");

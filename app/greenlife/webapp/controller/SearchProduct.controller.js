@@ -7,10 +7,12 @@ sap.ui.define([
     return BaseController.extend("greenlife.controller.SearchProduct", {
 
         onInit: function () {
-            sap.ui.getCore().byId("container-webapp---App--app").setBackgroundImage("https://images.unsplash.com/photo-1530177150700-84cd9a3b059b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80")
+            sap.ui.getCore().byId("container-webapp---App--app").setBackgroundImage("https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80")
 
-            this.getView().setModel(new JSONModel({backgroundPicture: "https://images.unsplash.com/photo-1530177150700-84cd9a3b059b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"}), "pictureModel")
+            this.getView().setModel(new JSONModel({backgroundPicture: "https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"}), "pictureModel")
             this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null, choice: null}), "chosenModel");
+
+            this.getRouter().getRoute("SearchProduct").attachMatched(this.restartChoiceSteps, this);
         },
 
         onBeforeRendering: function () {
@@ -18,24 +20,27 @@ sap.ui.define([
 
             this.getView().setModel(new JSONModel({title: oResourceBundle.getText("detailsTitle"), text: oResourceBundle.getText("detailsText")}), "detailsModel")
             this.getView().setModel(new JSONModel({
-                howToCollectTitle: "<strong>" + oResourceBundle.getText("howToCollectTitle") + "</strong>",
-                restrictionsTitle: "<strong>" + oResourceBundle.getText("restrictionsTitle") + "</strong>",
-                howToRecycleTitle: "<strong>" + oResourceBundle.getText("howToRecycleTitle") + "</strong>"
+                howToCollectTitle: '<strong style="font-size:30px">' + oResourceBundle.getText("howToCollectTitle") + "</strong>",
+                restrictionsTitle: '<strong style="font-size:30px">' + oResourceBundle.getText("restrictionsTitle") + "</strong>",
+                howToRecycleTitle: '<strong style="font-size:30px">' + oResourceBundle.getText("howToRecycleTitle") + "</strong>"
             }), "instructionsModel")
         },
 
         chooseScanOrSearch: function (oEvent) {
-            let isAlreadyChosen = false;
-            const wizard = this.getView().byId("recycleProductsWizard");
-            oEvent.getSource().getParent().getContent().forEach(el => {
-                if (el.hasStyleClass("pressedButton")) {
-                    isAlreadyChosen = true
-                    el.removeStyleClass("pressedButton")
-                }
-            })
+            let choice = this.getView().getModel("chosenModel").getProperty("/choice");
+            let isChoiceAlreadyChosen = false;
+            if (choice != null) {
+                choice.removeStyleClass("pressedButton");
+                isChoiceAlreadyChosen = true;
+            }
+            choice = oEvent.getSource();
+            this.getView().getModel("chosenModel").setProperty("/choice", choice);
+            debugger;
             oEvent.getSource().addStyleClass("pressedButton");
 
-            if (isAlreadyChosen) {
+
+            const wizard = this.getView().byId("recycleProductsWizard");
+            if (isChoiceAlreadyChosen) {
                 wizard.discardProgress(this.byId("introStep"), false);
             }
 
@@ -59,6 +64,7 @@ sap.ui.define([
                 isCatAlreadyChosen = true;
             }
             latestCategory = oEvent.getSource();
+            this.getView().getModel("chosenModel").setProperty("/latestCategory", latestCategory);
 
 
             const wizard = this.getView().byId("recycleProductsWizard");
@@ -86,7 +92,7 @@ sap.ui.define([
                 isSubcatAlreadyChosen = true;
             }
             latestSubcategory = oEvent.getSource();
-
+            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", latestSubcategory);
 
             let wizardStepId = oEvent.getSource().getParent().sId;
             const wizard = this.getView().byId("recycleProductsWizard");
@@ -107,25 +113,17 @@ sap.ui.define([
 
             this.setPicture(id);
 
-            this.getView().byId("recycleProductsWizard").setVisible(false);
-            this.getView().byId("detailsBox").setVisible(false);
-
-            this.getView().byId("instructionsBox").setVisible(true);
-            this.getView().byId("pictureBox").setVisible(true);
+            this.goToNextStep(id);
         },
 
         goToNextStep: function (id) {
             const wizard = this.getView().byId("recycleProductsWizard");
-            let choice = this.getView().getModel("chosenModel").getProperty("/choice");
-            let latestCategory = this.getView().getModel("chosenModel").getProperty("/choice");
-            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/choice");
+            let latestCategory = this.getView().getModel("chosenModel").getProperty("/latestCategory");
+            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
 
             switch (id) {
                 case "searchTile":
                     this.byId("introStep").setNextStep(this.getView().byId("categoriesWizardStep"));
-                    if (choice != null) {
-                        choice.removeStyleClass("pressedButton");
-                    }
                     if (latestCategory != null) {
                         latestCategory.removeStyleClass("pressedButton");
                     }
@@ -220,7 +218,9 @@ sap.ui.define([
                 this.getView().getModel("instructionsModel").setProperty("/restrictions", noKnownRestriction);
             }
 
-            this.getView().getModel("instructionsModel").setProperty("/title", instr.name);
+            this.getView().getModel("instructionsModel").setProperty("/title", '<strong style="font-size:45px">' + instr.name + "</strong>");
+            this.getView().getModel("instructionsModel").setProperty("/product", instr.name.toLowerCase());
+
         },
 
 
@@ -237,6 +237,31 @@ sap.ui.define([
             this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
             this.getView().getModel("chosenModel").setProperty("/latestCategory", null);
             this.getRouter().navTo("Overview");
+        },
+
+        restartChoiceSteps: function () {
+            let latestCategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
+            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestCategory");
+            let choice = this.getView().getModel("chosenModel").getProperty("/latestCategory");
+
+            if (latestCategory) {
+                latestCategory.removeStyleClass("pressedButton");
+            }
+            if (latestSubcategory) {
+                latestSubcategory.removeStyleClass("pressedButton");
+            }
+            if (choice) {
+                choice.removeStyleClass("pressedButton");
+            }
+
+
+            const wizard = this.getView().byId("recycleProductsWizard");
+            wizard.discardProgress(this.byId("introStep"), false);
+
+
+            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
+            this.getView().getModel("chosenModel").setProperty("/latestCategory", null);
+            this.getView().getModel("chosenModel").setProperty("/choice", null);
         }
 
     });

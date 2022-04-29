@@ -20,7 +20,6 @@
                                 <f:GridContainerItemLayoutData minRows="9" columns="12" />
                             </layoutData>
                             <WizardStep id="introStep" nextStep="categoriesWizardStep" icon="sap-icon://solid-icons/recycle" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
-
                                 <GenericTile id="searchTile" header="{i18n>searchCategories}" press="chooseScanOrSearch" class="glTile" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/magnifying-glass"/>
@@ -99,7 +98,7 @@
                             </WizardStep>
 
 
-                            <WizardStep id="paperAndCardboardStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/boxes-packing" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="paperAndCardboardStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/boxes-packing" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <GenericTile id="paperTile" header="{i18n>paper}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://regular-icons/note-sticky"/>
@@ -113,7 +112,7 @@
                             </WizardStep>
 
 
-                            <WizardStep id="plasticAndPetStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/bottle-water" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="plasticAndPetStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/bottle-water" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <GenericTile id="petTile" header="{i18n>pet}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/bottle-water"/>
@@ -132,7 +131,7 @@
                             </WizardStep>
 
 
-                            <WizardStep id="electroStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/camera-retro" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="electroStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/camera-retro" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <GenericTile id="printerTile" header="{i18n>print}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/print"/>
@@ -166,7 +165,7 @@
                             </WizardStep>
 
 
-                            <WizardStep id="metalAndAluStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/anchor" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="metalAndAluStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/anchor" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <VBox>
                                     <HBox>
                                         <GenericTile id="zincTile" header="{i18n>zinc}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
@@ -238,7 +237,7 @@
                                     </TileContent>
                                 </GenericTile>
                             </WizardStep>
-                            <WizardStep id="dangerousStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/spray-can" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="dangerousStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/spray-can" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <GenericTile id="masksTile" header="{i18n>masks}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/mask-face"/>
@@ -277,7 +276,7 @@
                             </WizardStep>
 
 
-                            <WizardStep id="automotoStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/car-side" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="automotoStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/car-side" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <GenericTile id="tireTile" header="{i18n>tire}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/car-side"/>
@@ -306,7 +305,7 @@
                             </WizardStep>
 
 
-                            <WizardStep id="constructionsStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/person-digging" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="constructionsStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/person-digging" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <GenericTile id="polystyreneTile" header="{i18n>polystyrene}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/house-chimney-window"/>
@@ -325,7 +324,7 @@
                             </WizardStep>
 
 
-                            <WizardStep id="woodStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/tree" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="woodStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/tree" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <GenericTile id="palletsTile" header="{i18n>pallets}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/ruler-horizontal"/>
@@ -344,7 +343,7 @@
                             </WizardStep>
 
 
-                            <WizardStep id="textileStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/shirt" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="textileStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/shirt" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <GenericTile id="clothesTile" header="{i18n>clothes}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/shirt"/>
@@ -373,7 +372,7 @@
                             </WizardStep>
 
 
-                            <WizardStep id="othersStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/robot" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
+                            <WizardStep id="othersStep" nextStep="instructionStep" title="{i18n>subcategoriesWizardStep}" icon="sap-icon://solid-icons/robot" class="sapUiLargeMarginTop sapUiLargeMarginBegin">
                                 <GenericTile id="toysTile" header="{i18n>toys}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
                                     <TileContent>
                                         <ImageContent src="sap-icon://solid-icons/robot"/>
@@ -414,48 +413,51 @@
                                         <ImageContent src="sap-icon://solid-icons/recycle"/>
                                     </TileContent>
                                 </GenericTile>
+                                <Text text="{= (${chosenModel>latestSubcategory} === null)}"/>
+                                <Text text="{= (${chosenModel>latestSubcategory})}"/>
+
+                            </WizardStep>
+
+                            <WizardStep id="instructionStep">
+                                <VBox id="instructionsBox" backgroundDesign="Transparent" height="100%">
+                                    <layoutData>
+                                        <f:GridContainerItemLayoutData minRows="9" columns="12" />
+                                    </layoutData>
+
+                                    <FormattedText htmlText="{instructionsModel>/title}" class="sapUiLargeMargin pathwayGothic"/>
+
+                                    <HBox alignItems="Center">
+                                        <c:Icon src="sap-icon://solid-icons/trash" size="3rem" class="sapUiLargeMarginBegin"/>
+                                        <VBox>
+                                            <FormattedText htmlText="{instructionsModel>/howToCollectTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
+                                            <FormattedText htmlText="{instructionsModel>/howToCollect}" class="sapUiLargeMarginBeginEnd"/>
+                                        </VBox>
+                                    </HBox>
+
+
+                                    <HBox alignItems="Center" class="sapUiLargeMarginTop">
+                                        <c:Icon src="sap-icon://solid-icons/circle-exclamation" size="3rem" class="sapUiLargeMarginBegin"/>
+                                        <VBox>
+                                            <FormattedText htmlText="{instructionsModel>/restrictionsTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
+                                            <FormattedText htmlText="{instructionsModel>/restrictions}" class="sapUiLargeMarginBeginEnd "/>
+                                        </VBox>
+                                    </HBox>
+
+
+                                    <HBox alignItems="Center" class="sapUiLargeMarginTop">
+                                        <c:Icon src="sap-icon://solid-icons/recycle" size="3rem" class="sapUiLargeMarginBegin"/>
+                                        <VBox>
+                                            <FormattedText htmlText="{instructionsModel>/howToRecycleTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
+                                            <FormattedText htmlText="{instructionsModel>/howToRecycle}" class="sapUiLargeMarginBeginEnd"/>
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
                             </WizardStep>
 
                         </Wizard>
 
-                        <VBox id="instructionsBox" backgroundDesign="Solid" height="100%" visible="false">
-                            <layoutData>
-                                <f:GridContainerItemLayoutData minRows="9" columns="12" />
-                            </layoutData>
-                            <ScrollContainer width="100%" height="100%" vertical="true" focusable="true">
-                                <Title text="{instructionsModel>/title}" titleStyle="H1" class="sapUiLargeMargin pathwayGothic"/>
 
-                                <HBox alignItems="Center">
-                                    <c:Icon src="sap-icon://solid-icons/trash" size="3rem" class="sapUiLargeMarginBegin"/>
-                                    <VBox>
-                                        <FormattedText htmlText="{instructionsModel>/howToCollectTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
-                                        <FormattedText htmlText="{instructionsModel>/howToCollect}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
-                                    </VBox>
-                                </HBox>
-
-
-                                <HBox alignItems="Center" class="sapUiLargeMarginTop">
-                                    <c:Icon src="sap-icon://solid-icons/circle-exclamation" size="3rem" class="sapUiLargeMarginBegin"/>
-                                    <VBox>
-                                        <FormattedText htmlText="{instructionsModel>/restrictionsTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
-                                        <FormattedText htmlText="{instructionsModel>/restrictions}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
-                                    </VBox>
-                                </HBox>
-
-
-                                <HBox alignItems="Center" class="sapUiLargeMarginTop">
-                                    <c:Icon src="sap-icon://solid-icons/recycle" size="3rem" class="sapUiLargeMarginBegin"/>
-                                    <VBox>
-                                        <FormattedText htmlText="{instructionsModel>/howToRecycleTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
-                                        <FormattedText htmlText="{instructionsModel>/howToRecycle}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
-                                    </VBox>
-                                </HBox>
-                            </ScrollContainer>
-                        </VBox>
-
-
-
-                        <VBox id="detailsBox" backgroundDesign="Solid" height="100%">
+                        <VBox id="detailsBox" backgroundDesign="Solid" height="100%" visible="{= (${chosenModel>/latestSubcategory} === null)}">
                             <layoutData>
                                 <f:GridContainerItemLayoutData minRows="9" columns="7" />
                             </layoutData>
@@ -463,7 +465,7 @@
                             <FormattedText htmlText="{detailsModel>/text}" class="sapUiLargeMargin "/>
                         </VBox>
 
-                        <VBox id="pictureBox" height="100%" width="100%" visible="false" alignItems="Center" justifyContent="Center">
+                        <VBox id="pictureBox" height="100%" width="100%" visible="{= (${chosenModel>/latestSubcategory} !== null)}" alignItems="Center" justifyContent="Center">
                             <layoutData>
                                 <f:GridContainerItemLayoutData minRows="9" columns="7" />
                             </layoutData>
@@ -472,7 +474,7 @@
                                     <VBox alignItems="Center" justifyContent="Center">
                                         <Title text="{i18n>restartTitle}" titleStyle="H3" class="sapUiLargeMarginTop  pathwayGothic"/>
                                         <Text text="{i18n>restartSubTitle}" class="sapUiSmallMarginBeginEnd "/>
-                                        <Button text="{i18n>restartButton}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/arrow-rotate-right" type="Transparent"/>
+                                        <Button text="{i18n>restartButton}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/arrow-rotate-right" type="Transparent" press="restartChoiceSteps"/>
                                     </VBox>
                                 </f:content>
                             </f:Card>
@@ -480,10 +482,7 @@
                                 <f:content>
                                     <VBox alignItems="Center" justifyContent="Center">
                                         <Title text="{i18n>seeWhereToRecycleTitle}" titleStyle="H3" class="sapUiMediumMarginTop sapUiSmallMarginBegin pathwayGothic"/>
-                                        <HBox class="sapUiSmallMarginBeginEnd" alignContent="Start">
-                                            <Text text="{i18n>seeWhereToRecycleSubTitle} " class="sapUiTinyMarginEnd"/>
-                                            <Text text="{instructionsModel>/title} " class="lowercase"/>
-                                        </HBox>
+                                        <Text text="{i18n>seeWhereToRecycleSubTitle} {instructionsModel>/product}" class="sapUiSmallMarginBeginEnd"/>
                                         <Button text="{i18n>searchRecyclingPoint}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/trash" type="Transparent"/>
                                     </VBox>
                                 </f:content>

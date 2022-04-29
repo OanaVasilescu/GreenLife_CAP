@@ -1,4 +1,31 @@
 <mvc:View controllerName="greenlife.controller.RecyclingMap"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:vk="sap.ui.vk">
+    <Page id="mapPage" showHeader="false" backgroundDesign="Transparent">
+        <content>
+            <f:GridContainer class="sapUiMediumMargin">
+                <f:layout>
+                    <f:GridContainerSettings rowSize="84px" columnSize="84px" gap="0px"/>
+                </f:layout>
+
+                <VBox>
+                    <layoutData>
+                        <f:GridContainerItemLayoutData rows="9" columns="19" />
+                    </layoutData>
+                    <vk:MapContainer>
+
+                    </vk:MapContainer>
+                </VBox>
+
+            </f:GridContainer>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="Cancel" press="handleCancel"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
 </mvc:View>

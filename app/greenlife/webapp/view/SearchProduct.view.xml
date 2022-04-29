@@ -494,7 +494,7 @@
                 <footer>
                     <OverflowToolbar>
                         <ToolbarSpacer/>
-                        <Button text="Cancel" press="handleWizardCancel"/>
+                        <Button text="Cancel" press="handleCancel"/>
                     </OverflowToolbar>
                 </footer>
             </Page>

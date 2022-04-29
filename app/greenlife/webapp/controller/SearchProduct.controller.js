@@ -198,13 +198,6 @@ sap.ui.define([
             })
         },
 
-        handleWizardCancel: async function () {
-            debugger;
-            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
-            this.getView().getModel("chosenModel").setProperty("/latestCategory", null);
-            this.getRouter().navTo("Overview");
-        },
-
         restartChoiceSteps: function () {
             let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
 

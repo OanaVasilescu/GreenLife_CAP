@@ -59,6 +59,9 @@ sap.ui.define([
             });
         },
 
+        handleCancel: async function () {
+            this.getRouter().navTo("RouteOverview");
+        },
 
         messageHandler: function (errorMessageName) {
             let msg = this.getView().getModel("i18n").getResourceBundle().getText(errorMessageName);

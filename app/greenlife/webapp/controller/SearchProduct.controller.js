@@ -10,7 +10,7 @@ sap.ui.define([
             sap.ui.getCore().byId("container-webapp---App--app").setBackgroundImage("https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80")
 
             this.getView().setModel(new JSONModel({backgroundPicture: "https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"}), "pictureModel")
-            this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null, choice: null}), "chosenModel");
+            this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null, choice: null, currentlyPressed: null}), "chosenModel");
 
             this.getRouter().getRoute("SearchProduct").attachMatched(this.restartChoiceSteps, this);
         },
@@ -27,22 +27,8 @@ sap.ui.define([
         },
 
         chooseScanOrSearch: function (oEvent) {
-            let choice = this.getView().getModel("chosenModel").getProperty("/choice");
-            let isChoiceAlreadyChosen = false;
-            if (choice != null) {
-                choice.removeStyleClass("pressedButton");
-                isChoiceAlreadyChosen = true;
-            }
-            choice = oEvent.getSource();
-            this.getView().getModel("chosenModel").setProperty("/choice", choice);
-            debugger;
+            this.restartChoiceSteps();
             oEvent.getSource().addStyleClass("pressedButton");
-
-
-            const wizard = this.getView().byId("recycleProductsWizard");
-            if (isChoiceAlreadyChosen) {
-                wizard.discardProgress(this.byId("introStep"), false);
-            }
 
             let fullId = oEvent.getSource().getId();
             let id = fullId.slice(fullId.lastIndexOf("-") + 1);
@@ -57,24 +43,14 @@ sap.ui.define([
         },
 
         chooseCategory: function (oEvent) {
-            let latestCategory = this.getView().getModel("chosenModel").getProperty("/latestCategory");
-            let isCatAlreadyChosen = false;
-            if (latestCategory != null) {
-                latestCategory.removeStyleClass("pressedButton");
-                isCatAlreadyChosen = true;
-            }
-            latestCategory = oEvent.getSource();
+            this.discardCategoryStep();
+            let latestCategory = oEvent.getSource();
             this.getView().getModel("chosenModel").setProperty("/latestCategory", latestCategory);
 
-
-            const wizard = this.getView().byId("recycleProductsWizard");
             oEvent.getSource().addStyleClass("pressedButton");
 
             let fullId = oEvent.getSource().getId();
             let id = fullId.slice(fullId.lastIndexOf("-") + 1);
-            if (isCatAlreadyChosen) {
-                wizard.discardProgress(this.byId("categoriesWizardStep"), false);
-            }
 
             this.goToNextStep(id);
 
@@ -85,26 +61,19 @@ sap.ui.define([
         },
 
         chooseSubcategory: async function (oEvent) {
-            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
-            let isSubcatAlreadyChosen = false;
-            if (latestSubcategory != null) {
-                latestSubcategory.removeStyleClass("pressedButton");
-                isSubcatAlreadyChosen = true;
-            }
-            latestSubcategory = oEvent.getSource();
-            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", latestSubcategory);
+            debugger
+            this.discardSubcategoryStep(oEvent);
 
-            let wizardStepId = oEvent.getSource().getParent().sId;
-            const wizard = this.getView().byId("recycleProductsWizard");
+            let latestSubcategory = oEvent.getSource();
+            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", latestSubcategory);
+            debugger;
             oEvent.getSource().addStyleClass("pressedButton");
+
 
             let fullId = oEvent.getSource().getId();
             let id = fullId.slice(fullId.lastIndexOf("-") + 1);
-            if (isSubcatAlreadyChosen) {
-                wizard.discardProgress(this.byId(wizardStepId), false);
-            }
-
             let instructionsData = await this.getInstructions(id);
+
 
             let instr = instructionsData.value[0];
             if (instr != undefined) {
@@ -240,29 +209,63 @@ sap.ui.define([
         },
 
         restartChoiceSteps: function () {
-            let latestCategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
-            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestCategory");
             let choice = this.getView().getModel("chosenModel").getProperty("/latestCategory");
-
-            if (latestCategory) {
-                latestCategory.removeStyleClass("pressedButton");
-            }
-            if (latestSubcategory) {
-                latestSubcategory.removeStyleClass("pressedButton");
-            }
             if (choice) {
                 choice.removeStyleClass("pressedButton");
             }
-
 
             const wizard = this.getView().byId("recycleProductsWizard");
             wizard.discardProgress(this.byId("introStep"), false);
 
 
-            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
-            this.getView().getModel("chosenModel").setProperty("/latestCategory", null);
             this.getView().getModel("chosenModel").setProperty("/choice", null);
-        }
 
+            this.discardCategoryStep();
+        },
+
+        discardCategoryStep: function () {
+            let latestCategory = this.getView().getModel("chosenModel").getProperty("/latestCategory");
+            let isCatAlreadyChosen = false;
+            if (latestCategory != null) {
+                latestCategory.removeStyleClass("pressedButton");
+                isCatAlreadyChosen = true;
+            }
+
+            const wizard = this.getView().byId("recycleProductsWizard");
+            if (isCatAlreadyChosen) {
+                wizard.discardProgress(this.byId("categoriesWizardStep"), false);
+            }
+
+            this.getView().getModel("chosenModel").setProperty("/latestCategory", null);
+
+            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
+            if (latestSubcategory != null) {
+                this.discardSubcategoryStep();
+            }
+        },
+
+        discardSubcategoryStep: function (oEvent) {
+            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
+            let picture = this.getView().byId("pictureBox");
+
+            let isSubcatAlreadyChosen = false;
+            if (latestSubcategory) {
+                latestSubcategory.removeStyleClass("pressedButton");
+                isSubcatAlreadyChosen = true;
+                let oldId = latestSubcategory.sId.slice(latestSubcategory.sId.lastIndexOf("-") + 1);
+                picture.removeStyleClass(oldId)
+            }
+
+
+            if (oEvent) {
+                let wizardStepId = oEvent.getSource().getParent().sId;
+                const wizard = this.getView().byId("recycleProductsWizard");
+                if (isSubcatAlreadyChosen) {
+                    wizard.discardProgress(this.byId(wizardStepId), false);
+                }
+            }
+
+            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
+        }
     });
 });

@@ -8,7 +8,7 @@
 
     <NavContainer id="wizardNavContainer">
         <pages>
-            <Page id="wizardContentPage" showHeader="false" backgroundDesign="Transparent">
+            <Page id="wizardContentPage" showHeader="false" backgroundDesign="Transparent" enableScrolling="true">
                 <content>
                     <f:GridContainer class="sapUiMediumMargin">
                         <f:layout>
@@ -32,7 +32,6 @@
                                     </TileContent>
                                 </GenericTile>
                             </WizardStep>
-
 
 
                             <WizardStep id="categoriesWizardStep" title="{i18n>categoriesWizardStep}" icon="sap-icon://split" subsequentSteps="paperAndCardboardStep, plasticAndPetStep, electroStep, metalAndAluStep, glassStep, dangerousStep, automotoStep, constructionsStep, woodStep, textileStep, othersStep">
@@ -423,16 +422,35 @@
                             <layoutData>
                                 <f:GridContainerItemLayoutData minRows="9" columns="12" />
                             </layoutData>
-                            <Title text="{instructionsModel>/title}" titleStyle="H1" class="sapUiLargeMargin pathwayGothic"/>
+                            <ScrollContainer width="100%" height="100%" vertical="true" focusable="true">
+                                <Title text="{instructionsModel>/title}" titleStyle="H1" class="sapUiLargeMargin pathwayGothic"/>
 
-                            <FormattedText htmlText="{instructionsModel>/howToCollectTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
-                            <FormattedText htmlText="{instructionsModel>/howToCollect}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
+                                <HBox alignItems="Center">
+                                    <c:Icon src="sap-icon://solid-icons/trash" size="3rem" class="sapUiLargeMarginBegin"/>
+                                    <VBox>
+                                        <FormattedText htmlText="{instructionsModel>/howToCollectTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
+                                        <FormattedText htmlText="{instructionsModel>/howToCollect}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
+                                    </VBox>
+                                </HBox>
 
-                            <FormattedText htmlText="{instructionsModel>/restrictionsTitle}" class="sapUiLargeMarginBeginEnd sapUiLargeMarginTop pathwayGothic"/>
-                            <FormattedText htmlText="{instructionsModel>/restrictions}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
 
-                            <FormattedText htmlText="{instructionsModel>/howToRecycleTitle}" class="sapUiLargeMarginBeginEnd sapUiLargeMarginTop pathwayGothic"/>
-                            <FormattedText htmlText="{instructionsModel>/howToRecycle}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
+                                <HBox alignItems="Center" class="sapUiLargeMarginTop">
+                                    <c:Icon src="sap-icon://solid-icons/circle-exclamation" size="3rem" class="sapUiLargeMarginBegin"/>
+                                    <VBox>
+                                        <FormattedText htmlText="{instructionsModel>/restrictionsTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
+                                        <FormattedText htmlText="{instructionsModel>/restrictions}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
+                                    </VBox>
+                                </HBox>
+
+
+                                <HBox alignItems="Center" class="sapUiLargeMarginTop">
+                                    <c:Icon src="sap-icon://solid-icons/recycle" size="3rem" class="sapUiLargeMarginBegin"/>
+                                    <VBox>
+                                        <FormattedText htmlText="{instructionsModel>/howToRecycleTitle}" class="sapUiLargeMarginBeginEnd  pathwayGothic"/>
+                                        <FormattedText htmlText="{instructionsModel>/howToRecycle}" class="sapUiLargeMarginBeginEnd pathwayGothic"/>
+                                    </VBox>
+                                </HBox>
+                            </ScrollContainer>
                         </VBox>
 
 
@@ -449,21 +467,24 @@
                             <layoutData>
                                 <f:GridContainerItemLayoutData minRows="9" columns="7" />
                             </layoutData>
-                            <f:Card class="sapUiLargeMargin" width="400px">
+                            <f:Card class="sapUiLargeMargin" width="380px">
                                 <f:content >
-                                    <VBox alignItems="Center">
+                                    <VBox alignItems="Center" justifyContent="Center">
                                         <Title text="{i18n>restartTitle}" titleStyle="H3" class="sapUiLargeMarginTop  pathwayGothic"/>
-                                        <Text text="{i18n>restartSubTitle} {instructionsModel>/title}" class="sapUiSmallMargin "/>
-                                        <Button text="{i18n>restartButton}" class="sapUiSmallMargin " icon="sap-icon://solid-icons/arrow-rotate-right"/>
+                                        <Text text="{i18n>restartSubTitle}" class="sapUiSmallMarginBeginEnd "/>
+                                        <Button text="{i18n>restartButton}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/arrow-rotate-right" type="Transparent"/>
                                     </VBox>
                                 </f:content>
                             </f:Card>
-                            <f:Card class="sapUiLargeMargin" width="400px">
+                            <f:Card class="sapUiLargeMargin" width="380px">
                                 <f:content>
-                                    <VBox alignItems="Begin">
+                                    <VBox alignItems="Center" justifyContent="Center">
                                         <Title text="{i18n>seeWhereToRecycleTitle}" titleStyle="H3" class="sapUiMediumMarginTop sapUiSmallMarginBegin pathwayGothic"/>
-                                        <Text text="{i18n>seeWhereToRecycleSubTitle} {instructionsModel>/title}" class="sapUiSmallMargin "/>
-                                        <Button text="{i18n>searchRecyclingPoint}" class="sapUiSmallMargin " icon="sap-icon://solid-icons/trash"/>
+                                        <HBox class="sapUiSmallMarginBeginEnd" alignContent="Start">
+                                            <Text text="{i18n>seeWhereToRecycleSubTitle} " class="sapUiTinyMarginEnd"/>
+                                            <Text text="{instructionsModel>/title} " class="lowercase"/>
+                                        </HBox>
+                                        <Button text="{i18n>searchRecyclingPoint}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/trash" type="Transparent"/>
                                     </VBox>
                                 </f:content>
                             </f:Card>

@@ -182,7 +182,6 @@ sap.ui.define([
         },
 
         setPicture: function (id) {
-            debugger
             let picture = this.getView().byId("pictureBox");
 
             picture.addStyleClass(id);

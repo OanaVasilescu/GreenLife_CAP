@@ -3,46 +3,108 @@
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core">
-    <Page id="page" showHeader="false">
+    <Page id="page" showHeader="false" class="wrapper">
         <l:BlockLayout id="BlockLayout" background="Default">
             <l:BlockLayoutRow>
-                <l:BlockLayoutCell class="sapUiNoContentPadding logoOverlayParent">
-                    <Image id="bckgImage" height="20rem" width="110rem" mode="Background"/>
+                <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent">
+                    <Image id="bckgImage" height="42rem" width="110rem" mode="Background" class="parallax"/>
                     <Image id="logoImage" class="logoOverlayChild" />
                 </l:BlockLayoutCell>
             </l:BlockLayoutRow>
             <l:BlockLayoutRow>
                 <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeC">
-                    <l:VerticalLayout>
-                        <core:Icon src="sap-icon://search" size="2.5rem" color="Default"/>
-                        <Title id="searchProductTile" text="{i18n>searchTitle}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
-                        <Text text="{i18n>searchProductContent}" class="sapUiTinyMarginBottom"/>
-                        <Link text="{i18n>accessLink}" press="pressSearchProduct"/>
-                    </l:VerticalLayout>
+                    <VBox alignItems="Center" height="10rem">
+                        <Title text="{i18n>title}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
+                        <Title text="{i18n>appDescription}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic"/>
+                    </VBox>
                 </l:BlockLayoutCell>
-                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeD">
-                    <l:VerticalLayout>
-                        <core:Icon src="sap-icon://map-2" size="2.5rem" color="Default"/>
-                        <Title text="{i18n>seeRecyclingMap}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
-                        <Text text="{i18n>seeRecyclingMapContent}" class="sapUiTinyMarginBottom"/>
-                        <Link text="{i18n>accessLink}" press="pressSeeMap"/>
-                    </l:VerticalLayout>
+            </l:BlockLayoutRow>
+
+
+
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding">
+                    <Image id="bckgImagePlantBefore" height="20rem" width="110rem" mode="Background" class="parallax"/>
                 </l:BlockLayoutCell>
-                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeC">
-                    <l:VerticalLayout>
-                        <core:Icon src="sap-icon://customer-financial-fact-sheet" size="2.5rem" color="Default"/>
-                        <Title text="{i18n>noClueYet}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
-                        <Text text="{i18n>noClueYet}" class="sapUiTinyMarginBottom"/>
-                        <Link text="{i18n>noClueYet}"/>
-                    </l:VerticalLayout>
+            </l:BlockLayoutRow>
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
+                    <Image id="bckgImagePlantSmallOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press="pressSearchProduct"/>
+                    <VBox class="overlayChild" alignItems="Center">
+                        <Title id="searchProductTile" text="{i18n>searchTitle}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
+                        <Title text="{i18n>searchProductContent}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic"/>
+                    </VBox>
                 </l:BlockLayoutCell>
-                <l:BlockLayoutCell backgroundColorSet="ColorSet11" backgroundColorShade="ShadeD">
-                    <l:VerticalLayout>
-                        <core:Icon id="supplierIcon" src="sap-icon://supplier" size="2.5rem" color="Default" />
-                        <Title text="{i18n>noClueYet}" level="H3" titleStyle="H2" class="sapUiTinyMarginTopBottom"/>
-                        <Text text="{i18n>noClueYet}" class="sapUiTinyMarginBottom"/>
-                        <Link text="{i18n>noClueYet}"/>
-                    </l:VerticalLayout>
+            </l:BlockLayoutRow>
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding">
+                    <Image id="bckgImagePlantAfter" height="20rem" width="110rem" mode="Background" class="parallax"/>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+
+
+
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding">
+                    <Image id="bckgImageWaterBefore" height="20rem" width="110rem" mode="Background" class="parallax"/>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
+                    <Image id="bckgImageWaterOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press="pressSeeMap"/>
+                    <VBox id="seeRecyclingMapBox" class="overlayChildBins" alignItems="Center">
+                        <Title text="{i18n>seeRecyclingMap}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
+                        <Title text="{i18n>seeRecyclingMapContent}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic" />
+                    </VBox>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding">
+                    <Image id="bckgImageWaterAfter" height="20rem" width="110rem" mode="Background" class="parallax"/>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+
+
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding">
+                    <Image id="bckgImageLandBefore" height="20rem" width="110rem" mode="Background" class="parallax"/>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
+                    <Image id="bckgImageLandOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press=""/>
+                    <VBox class="overlayChildProduce" alignItems="Center">
+                        <Title text="{i18n>exchangeFoodAndProduce}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
+                        <Title text="{i18n>exchangeFoodAndProduceContent}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic"/>
+                        <Title text="{i18n>exchangeFoodAndProduceContent2}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic"/>
+                    </VBox>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding">
+                    <Image id="bckgImageLandAfter" height="20rem" width="110rem" mode="Background" class="parallax"/>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+
+
+
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding">
+                    <Image id="bckgImageMountainBefore" height="20rem" width="110rem" mode="Background" class="parallax"/>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
+                    <Image id="bckgImageMountainOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press=""/>
+                    <VBox class="overlayChildBins" alignItems="Center">
+                        <Title text="{i18n>cleanupPlanet}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
+                        <Title text="{i18n>cleanupPlanetContent}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic"/>
+                    </VBox>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell class="sapUiNoContentPadding">
+                    <Image id="bckgImageMountainAfter" height="20rem" width="110rem" mode="Background" class="parallax"/>
                 </l:BlockLayoutCell>
             </l:BlockLayoutRow>
         </l:BlockLayout>

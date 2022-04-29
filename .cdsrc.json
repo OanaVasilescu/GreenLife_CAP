@@ -4,21 +4,25 @@
             "passport": {
                 "kind": "basic-auth",
                 "users": {
-                    "admin@sap.com": {
+                    "admin": {
                         "password": "admin",
                         "ID": "admin",
                         "userAttributes": {
-                            "email": "admin@sap.com"
+                            "email": "admin@greenlife.com"
                         },
-                        "roles": ["Admin"]
+                        "roles": [
+                            "Admin"
+                        ]
                     },
-                    "user@sap.com": {
+                    "user": {
                         "password": "user",
                         "ID": "user",
                         "userAttributes": {
-                            "email": "user@sap.com"
+                            "email": "user@greenlife.com"
                         },
-                        "roles": ["User"]
+                        "roles": [
+                            "User"
+                        ]
                     }
                 }
             }

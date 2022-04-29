@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+
+
 .sapMWizardStepTitle{
     display: none!important;
 }
@@ -13,35 +16,40 @@
 }
 
 .sapMGT {
-    border-radius: 0em
+    border-radius: 0em;
 }
 
-.sapMGTPressActive {
-    background: #f4f6f5 !important;
+.sapMGT .sapMText{
+    font-family: 'Oswald'!important;
 }
 
-.sapMGT:hover{
+.sapMGTBackgroundImage {
+    background-attachment: fixed;
+    filter:grayscale(1);
+}
+
+.sapMImageContentImageIcon.sapUiIcon{
+    color: #f4f6f5 !important;
+}
+
+/* .glTile:hover{
     background: #5aa07c !important;
-}
+} */
 
 .pressedButton{
-    background: #5aa07c !important;
+    filter:grayscale(0);
 }
 
-.pressedButton .sapMImageContentImageIcon.sapUiIcon{
-    color: #f4f6f5 !important;
+/* .pressedButton .sapMImageContentImageIcon.sapUiIcon{
+    color: #5aa07c !important;
 }
 
 .pressedButton .sapMText{
-    color: #f4f6f5 !important;
-}
+    color: #5aa07c !important;
+} */
 
-.sapMGT:hover .sapMImageContentImageIcon.sapUiIcon{
-    color: #f4f6f5 !important;
-}
-
-.sapMGT:hover .sapMText{
-    color: #f4f6f5 !important;
+.sapMGT .sapMText{
+    color: #f4f6f5 ;
 }
 
 /* .sapMGT:focus{
@@ -65,10 +73,6 @@
    width: auto !important;
 }
 
-/* .sapMTileCntContent{
-    align-items: center;
-} */
-
 .sapMImageContentImageIcon {
     display: flex;
     bottom: 0;
@@ -89,7 +93,7 @@
     height: 3rem;
 }
 
-.logoOverlayParent {
+.overlayParent {
     position: relative;
 }
 
@@ -97,6 +101,250 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -6%;
+    margin-left: -7%;
     margin-top: -6%;
+}
+
+.overlayChild {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -14%;
+    margin-top: -4%;
+}
+
+.overlayChildProduce{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -17%;
+    margin-top: -4%;
+}
+
+.overlayChildBins{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -12%;
+    margin-top: -4%;
+}
+
+.overlayChildWizard{
+    position: absolute;
+}
+
+.grey{
+    filter:grayscale(1);
+    transition: .3s ease;
+}
+
+.blur{
+    filter:blur(8px)
+}
+
+.whiteText:hover .grey{
+    opacity: 0.5;
+}
+
+.whiteText .sapMTitle{
+    color: #ffffff !important;
+}
+
+.whiteText:hover .sapMTitle{
+    color: black !important;
+    transition: .3s ease;
+}
+
+
+.parallax{
+    background-attachment: fixed;
+}
+
+.wrapper{
+    height: 100vh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    perspective: 2px !important;
+}
+
+.pathwayGothic{
+    font-family: 'Oswald'!important;
+}
+
+.coverTile{
+    background-size: cover;
+}
+
+.lowercase{
+    text-transform: lowercase;
+}
+
+
+
+
+
+.printerTile{
+    background-image: url("https://images.unsplash.com/photo-1551971868-1bc03829fd98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3024&q=80");
+}
+
+.petTile {
+    background-image: url("https://images.unsplash.com/photo-1616118132534-381148898bb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80");
+}
+
+.tireTile{
+    background-image: url("https://images.unsplash.com/photo-1571335746824-742511d49bce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+
+.absTile{
+    background-image: url("https://images.unsplash.com/photo-1633469924738-52101af51d87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.waterFiltersTile{
+    background-image: url("https://images.unsplash.com/photo-1571059750558-3d869522f707?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.opticTile{
+    background-image: url("https://images.unsplash.com/photo-1624965439943-09e0238644e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.foodOilTile{
+    background-image: url("https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1018&q=80");
+}
+.tetraPakTile{
+    background-image: url("https://images.unsplash.com/photo-1564419320603-628d868a193f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=998&q=80");
+}
+.meshTile{
+    background-image: url("https://images.unsplash.com/photo-1517426198680-6a914bd811cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3120&q=80");
+}
+.organicTile{
+    background-image: url("https://images.unsplash.com/photo-1585285072892-a52481577926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3387&q=80");
+}
+.toysTile{
+    background-image: url("https://images.unsplash.com/photo-1630482466822-60423beea827?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3436&q=80");
+}
+.otherTextilesTile{
+    background-image: url("https://images.unsplash.com/photo-1606855637183-ea2a00b6f15f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80");
+}
+.shoesTile{
+    background-image: url("https://images.unsplash.com/photo-1605812860427-4024433a70fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80");
+}
+.bagsTile{
+    background-image: url("https://images.unsplash.com/photo-1597358371607-5987dd7da3d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.preProdTile{
+    background-image: url("https://images.unsplash.com/photo-1534639077088-d702bcf685e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1065&q=80");
+}
+.clothesTile{
+    background-image: url("https://images.unsplash.com/photo-1604072374690-0e7d7bddd54e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80");
+}
+.furnitureTile{
+    background-image: url("https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.sawdustTile{
+    background-image: url("https://images.unsplash.com/photo-1645776151287-9a366e47961f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.palletsTile{
+    background-image: url("https://images.unsplash.com/photo-1594914778686-ef7909432545?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80");
+}
+.bricksTile{
+    background-image: url("https://images.unsplash.com/photo-1602636403821-e43d50123cb7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.demWoodTile{
+    background-image: url("https://images.unsplash.com/photo-1649006614162-77ddeb9bf81e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.polystyreneTile{
+    background-image: url("https://images.unsplash.com/photo-1636153849686-71bd611276d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.carBatteriesTile{
+    background-image: url("https://images.unsplash.com/photo-1618783129985-dd97dbe4ad99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.oilTile{
+    background-image: url("https://images.unsplash.com/photo-1642075223291-f9ec545889fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.eofTile{
+    background-image: url("https://images.unsplash.com/photo-1610827186552-eda9d398ba52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3387&q=80");
+}
+.windshieldTile{
+    background-image: url("https://images.unsplash.com/photo-1613595064599-75674c2cca5a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.medicineTile{
+    background-image: url("https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2596&q=80");
+}
+.solventTile{
+    background-image: url("https://images.unsplash.com/photo-1642252429939-3f9232959eb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.paintTile{
+    background-image: url("https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80");
+}
+.pesticidesTile{
+    background-image: url("https://images.unsplash.com/photo-1601489333180-64796a70b1ea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80");
+}
+.herbicidesTile{
+    background-image: url("https://images.unsplash.com/photo-1596961277086-6d82fab69cc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=986&q=80");
+}
+.fertilizerTile{
+    background-image: url("https://images.unsplash.com/photo-1637500980709-6e65a6c2418a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80");
+}
+.masksTile{
+    background-image: url("https://images.unsplash.com/photo-1587935949075-61ceadf12587?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80");
+}
+.glassTile{
+    background-image: url("https://images.unsplash.com/photo-1514651029128-173d2e6ea851?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=985&q=80");
+}
+.aluCansTile{
+    background-image: url("https://images.unsplash.com/photo-1626320290598-03656e931a31?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2006&q=80");
+}
+.aluFoilTile{
+    background-image: url("https://images.unsplash.com/photo-1605308447139-392f48f6a6e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.aerosolTile{
+    background-image: url("https://images.unsplash.com/photo-1542850513-59adaf9b9b35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=986&q=80");
+}
+.capsTile{
+    background-image: url("https://images.unsplash.com/photo-1612293504937-36ca10c17ffa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.cansTile{
+    background-image: url("https://images.unsplash.com/photo-1534483509719-3feaee7c30da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+}
+.brassTile{
+    background-image: url("https://images.unsplash.com/photo-1601333057494-d20abe2098cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.ironTile{
+    background-image: url("https://images.unsplash.com/photo-1567093322503-341d262ad8f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270&q=80");
+}
+.stainlessTile{
+    background-image: url("https://images.unsplash.com/photo-1604414499020-f9ac575bc5ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.steelTile{
+    background-image: url("https://images.unsplash.com/photo-1607049582789-3b2dd51ac95e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.leadTile{
+    background-image: url("https://cdn.britannica.com/00/154500-004-6709EB4A.jpg");
+}
+.zincTile{
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Zinc_fragment_sublimed_and_1cm3_cube.jpg/2880px-Zinc_fragment_sublimed_and_1cm3_cube.jpg");
+}
+.smallApplianceTile{
+    background-image: url("https://images.unsplash.com/photo-1583241475880-083f84372725?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80");
+}
+.largeApplianceTile{
+    background-image: url("https://images.unsplash.com/photo-1604335398557-3f39109c7b4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+}
+.mobilesTile{
+    background-image: url("https://images.unsplash.com/photo-1587017234728-932c80f3e56f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80");
+}
+.batteriesTile{
+    background-image: url("https://images.unsplash.com/photo-1608224873587-81ee37394b4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80");
+}
+.bulbsTile{
+    background-image: url("https://images.unsplash.com/photo-1579417195379-5f6916d883a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2111&q=80");
+}
+.bottleTile{
+    background-image: url("https://images.unsplash.com/photo-1631730486572-226d1f595b68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80");
+}
+.boxesTile{
+    background-image: url("https://images.unsplash.com/photo-1613251163765-c220d61fb635?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80");
+}
+.cardboardTile{
+    background-image: url("https://images.unsplash.com/photo-1640193698858-31565d448f90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+}
+.paperTile{
+    background-image: url("https://images.unsplash.com/photo-1535350356005-fd52b3b524fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270&q=80");
 }

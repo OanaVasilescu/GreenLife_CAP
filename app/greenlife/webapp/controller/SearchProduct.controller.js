@@ -1,58 +1,101 @@
 sap.ui.define([
-    "greenlife/controller/BaseController",
-    'sap/ui/model/json/JSONModel',
-    "greenlife/utils/URLs",
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
+    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "greenlife/utils/URLs"
 
-], function (BaseController, JSONModel, URLs, Filter, FilterOperator) {
+], function (BaseController, JSONModel, URLs) {
     "use strict";
 
     return BaseController.extend("greenlife.controller.SearchProduct", {
-        chooseScanOrSearch: function (oEvent) {
-            let isAlreadyChosen = false;
-            const wizard = this.getView().byId("recycleProductsWizard");
-            oEvent.getSource().getParent().getContent().forEach(el => {
-                if (el.hasStyleClass("pressedButton")) {
-                    isAlreadyChosen = true
-                    el.removeStyleClass("pressedButton")
-                }
-            })
-            oEvent.getSource().addStyleClass("pressedButton");
 
-            if (isAlreadyChosen) {
-                wizard.discardProgress(this.byId("introStep"), false);
-            }
+        onInit: function () {
+            sap.ui.getCore().byId("container-webapp---App--app").setBackgroundImage("https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80")
+
+            this.getView().setModel(new JSONModel({backgroundPicture: "https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"}), "pictureModel")
+            this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null, choice: null, currentlyPressed: null}), "chosenModel");
+
+            this.getRouter().getRoute("SearchProduct").attachMatched(this.restartChoiceSteps, this);
+        },
+
+        onBeforeRendering: function () {
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
+            this.getView().setModel(new JSONModel({title: oResourceBundle.getText("detailsTitle"), text: oResourceBundle.getText("detailsText")}), "detailsModel")
+            this.getView().setModel(new JSONModel({
+                howToCollectTitle: '<strong style="font-size:30px">' + oResourceBundle.getText("howToCollectTitle") + "</strong>",
+                restrictionsTitle: '<strong style="font-size:30px">' + oResourceBundle.getText("restrictionsTitle") + "</strong>",
+                howToRecycleTitle: '<strong style="font-size:30px">' + oResourceBundle.getText("howToRecycleTitle") + "</strong>"
+            }), "instructionsModel")
+        },
+
+        chooseScanOrSearch: function (oEvent) {
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
+            this.restartChoiceSteps();
+
+            let choice = oEvent.getSource();
+            this.getView().getModel("chosenModel").setProperty("/choice", choice);
+            choice.addStyleClass("pressedButton");
 
             let fullId = oEvent.getSource().getId();
             let id = fullId.slice(fullId.lastIndexOf("-") + 1);
             this.goToNextStep(id);
+
+            if (id == "searchTile") {
+                let detailsTitle = oResourceBundle.getText("chooseCat");
+                let detailsText = oResourceBundle.getText("chooseCatText")
+
+                this.getView().getModel("detailsModel").setData({title: detailsTitle, text: detailsText})
+            }
         },
 
         chooseCategory: function (oEvent) {
-            let isCatAlreadyChosen = this.clearCategoriesAndReturnIsAlreadyChosen();
-            const wizard = this.getView().byId("recycleProductsWizard");
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
+            this.discardCategoryStep();
+            let latestCategory = oEvent.getSource();
+            this.getView().getModel("chosenModel").setProperty("/latestCategory", latestCategory);
+
             oEvent.getSource().addStyleClass("pressedButton");
 
             let fullId = oEvent.getSource().getId();
             let id = fullId.slice(fullId.lastIndexOf("-") + 1);
-            if (isCatAlreadyChosen) {
-                wizard.discardProgress(this.byId("categoriesWizardStep"), false);
-            }
 
             this.goToNextStep(id);
+
+            let detailsTitle = oResourceBundle.getText("chooseSubCat");
+            let detailsText = oResourceBundle.getText("chooseSubCatText");
+
+            this.getView().getModel("detailsModel").setData({title: detailsTitle, text: detailsText})
         },
 
-        chooseSubcategory: function (oEvent) {
-            debugger;
+        chooseSubcategory: async function (oEvent) {
+            this.discardSubcategoryStep(oEvent);
+
+            let latestSubcategory = oEvent.getSource();
+            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", latestSubcategory);
+            oEvent.getSource().addStyleClass("pressedButton");
+
+
+            let fullId = oEvent.getSource().getId();
+            let id = fullId.slice(fullId.lastIndexOf("-") + 1);
+            let instructionsData = await this.getInstructions(id);
+
+
+            let instr = instructionsData.value[0];
+            if (instr != undefined) {
+                this.setInstructions(instr);
+            }
+
+            this.setPicture(id);
+
+            this.goToNextStep(id);
         },
 
         goToNextStep: function (id) {
             const wizard = this.getView().byId("recycleProductsWizard");
+
             switch (id) {
                 case "searchTile":
                     this.byId("introStep").setNextStep(this.getView().byId("categoriesWizardStep"));
-                    this.clearCategoriesAndReturnIsAlreadyChosen();
                     break;
                 case "scanTile":
                     this.byId("introStep").setNextStep(this.getView().byId("scanStep"));
@@ -97,136 +140,136 @@ sap.ui.define([
                 case "others":
                     this.byId("categoriesWizardStep").setNextStep(this.getView().byId("othersStep"));
                     break;
-
-                case "paperTile":
-                    break;
-                case "cardboardTile":
-                    break;
-                case "petTile":
-                    break;
-                case "boxesTile":
-                    break;
-                case "bottleTile":
-                    break;
-                case "printerTile":
-                    break;
-                case "bulbsTile":
-                    break;
-                case "batteriesTile":
-                    break;
-                case "mobilesTile":
-                    break;
-                case "largeApplianceTile":
-                    break;
-                case "smallApplianceTile":
-                    break;
-                case "zincTile":
-                    break;
-                case "leadTile":
-                    break;
-                case "steelTile":
-                    break;
-                case "stainlessTile":
-                    break;
-                case "castTile":
-                    break;
-                case "ironTile":
-                    break;
-
-                case "brassTile":
-                    break;
-                case "cansTile":
-                    break;
-                case "capsTile":
-                    break;
-                case "aerosolTile":
-                    break;
-                case "aluFoilTile":
-                    break;
-                case "aluCansTile":
-                    break;
-                case "glassTile":
-                    break;
-                case "masksTile":
-                    break;
-                case "fertilizerTile":
-                    break;
-                case "herbicidesTile":
-                    break;
-                case "pesticidesTile":
-                    break;
-                case "paintTile":
-                    break;
-                case "solventTile":
-                    break;
-                case "medicineTile":
-                    break;
-                case "tireTile":
-                    break;
-                case "windshieldTile":
-                    break;
-                case "eofTile":
-                    break;
-                case "oilTile":
-                    break;
-                case "carBatteriesTile":
-                    break;
-                case "polystyreneTile":
-                    break;
-                case "demWoodTile":
-                    break;
-                case "bricksTile":
-                    break;
-                case "palletsTile":
-                    break;
-                case "sawdustTile":
-                    break;
-                case "furnitureTile":
-                    break;
-                case "clothesTile":
-                    break;
-                case "preProdTile":
-                    break;
-                case "bagsTile":
-                    break;
-                case "shoesTile":
-                    break;
-                case "otherTextilesTile":
-                    break;
-                case "toysTile":
-                    break;
-                case "organicTile":
-                    break;
-                case "meshTile":
-                    break;
-                case "tetraPakTile":
-                    break;
-                case "foodOilTile":
-                    break;
-                case "opticTile":
-                    break;
-                case "waterFiltersTile":
-                    break;
-                case "absTile":
-                    break;
             }
 
             wizard.nextStep();
         },
 
-        clearCategoriesAndReturnIsAlreadyChosen: function () {
-            let isCatAlreadyChosen = false
-            this.getView().byId("categoriesWizardStep").getContent()[0].getItems().forEach(box => box.getItems().forEach(el => {
-                if (el.hasStyleClass("pressedButton")) {
-                    isCatAlreadyChosen = true
-                    el.removeStyleClass("pressedButton")
-                }
-            }))
-            return isCatAlreadyChosen
+        setPicture: function (id) {
+            let picture = this.getView().byId("pictureBox");
+
+            picture.addStyleClass(id);
+            picture.addStyleClass("coverTile");
         },
 
         goToScanResult: function (oResult) {
             debugger;
+        },
+
+        setInstructions: function (instr) {
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
+
+            if (instr.howToCollect != undefined) {
+                let collect = instr.howToCollect.replaceAll('\\\\n', '\n');
+                this.getView().getModel("instructionsModel").setProperty("/howToCollect", collect);
+            } else {
+                let noKnownCollect = oResourceBundle.getText("noKnownCollect")
+                this.getView().getModel("instructionsModel").setProperty("/howToCollect", noKnownCollect);
+            }
+
+            if (instr.recyclingInstructions != undefined) {
+                let instructions = instr.recyclingInstructions.replaceAll('\\\\n', '\n');
+                this.getView().getModel("instructionsModel").setProperty("/howToRecycle", instructions);
+            } else {
+                let noKnownRecycle = oResourceBundle.getText("noKnownRecycle")
+                this.getView().getModel("instructionsModel").setProperty("/howToRecycle", noKnownRecycle);
+            }
+
+            if (instr.recyclingRestrictions != undefined) {
+                let restrictions = instr.recyclingRestrictions.replaceAll('\\\\n', '\n')
+                this.getView().getModel("instructionsModel").setProperty("/restrictions", restrictions);
+            } else {
+                let noKnownRestriction = oResourceBundle.getText("noKnownRestriction")
+                this.getView().getModel("instructionsModel").setProperty("/restrictions", noKnownRestriction);
+            }
+
+            this.getView().getModel("instructionsModel").setProperty("/title", '<strong style="font-size:45px">' + instr.name + "</strong>");
+            this.getView().getModel("instructionsModel").setProperty("/product", instr.name.toLowerCase());
+
+        },
+
+
+        getInstructions: async function (subcategory) {
+            return await this.get(URLs.getInstructionsBySubcategory(subcategory)).then(async instructionsData => {
+                return instructionsData;
+            }).catch(err => {
+                this.messageHandler("getInstructionsBySubcategoryError")
+            })
+        },
+
+        handleWizardCancel: async function () {
+            debugger;
+            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
+            this.getView().getModel("chosenModel").setProperty("/latestCategory", null);
+            this.getRouter().navTo("Overview");
+        },
+
+        restartChoiceSteps: function () {
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
+            this.getView().getModel("detailsModel").setProperty("/title", oResourceBundle.getText("detailsTitle"));
+            this.getView().getModel("detailsModel").setProperty("/text", oResourceBundle.getText("detailsText"));
+            debugger;
+
+            let choice = this.getView().getModel("chosenModel").getProperty("/choice");
+            if (choice) {
+                debugger;
+                choice.removeStyleClass("pressedButton");
+            }
+
+            const wizard = this.getView().byId("recycleProductsWizard");
+            wizard.discardProgress(this.byId("introStep"), false);
+
+
+            this.getView().getModel("chosenModel").setProperty("/choice", null);
+
+            this.discardCategoryStep();
+        },
+
+        discardCategoryStep: function () {
+            let latestCategory = this.getView().getModel("chosenModel").getProperty("/latestCategory");
+            let isCatAlreadyChosen = false;
+            if (latestCategory != null) {
+                latestCategory.removeStyleClass("pressedButton");
+                isCatAlreadyChosen = true;
+            }
+
+            const wizard = this.getView().byId("recycleProductsWizard");
+            if (isCatAlreadyChosen) {
+                wizard.discardProgress(this.byId("categoriesWizardStep"), false);
+            }
+
+            this.getView().getModel("chosenModel").setProperty("/latestCategory", null);
+
+            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
+            if (latestSubcategory != null) {
+                this.discardSubcategoryStep();
+            }
+        },
+
+        discardSubcategoryStep: function (oEvent) {
+            let latestSubcategory = this.getView().getModel("chosenModel").getProperty("/latestSubcategory");
+            let picture = this.getView().byId("pictureBox");
+
+            let isSubcatAlreadyChosen = false;
+            if (latestSubcategory) {
+                latestSubcategory.removeStyleClass("pressedButton");
+                isSubcatAlreadyChosen = true;
+                let oldId = latestSubcategory.sId.slice(latestSubcategory.sId.lastIndexOf("-") + 1);
+                picture.removeStyleClass(oldId)
+            }
+
+
+            if (oEvent) {
+                let wizardStepId = oEvent.getSource().getParent().sId;
+                const wizard = this.getView().byId("recycleProductsWizard");
+                if (isSubcatAlreadyChosen) {
+                    wizard.discardProgress(this.byId(wizardStepId), false);
+                }
+            }
+
+            this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
         }
     });
 });

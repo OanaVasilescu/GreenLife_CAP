@@ -26,7 +26,6 @@ sap.ui.define([
             sap.ui.core.IconPool.registerFont({collectionName: "regular-icons", fontFamily: "fa-regular-400", fontURI: this.getManifestObject().resolveUri("./icons_awesome/webfonts"), lazy: false});
             sap.ui.core.IconPool.registerFont({collectionName: "solid-icons", fontFamily: "fa-solid-900", fontURI: this.getManifestObject().resolveUri("./icons_awesome/webfonts"), lazy: false});
 
-            this.setModel(new JSONModel({isAdmin: false}), "userDetailsModel");
         }
     });
 });

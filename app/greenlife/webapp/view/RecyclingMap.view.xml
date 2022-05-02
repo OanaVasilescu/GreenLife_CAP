@@ -1,4 +1,84 @@
 <mvc:View controllerName="greenlife.controller.RecyclingMap"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:vbm="sap.ui.vbm"
+    xmlns:l="sap.ui.layout"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vk="sap.ui.vk">
+    <Page id="mapPage" showHeader="false" backgroundDesign="Transparent">
+        <content>
+            <f:GridContainer class="sapUiMediumMargin">
+                <f:layout>
+                    <f:GridContainerSettings rowSize="84px" columnSize="84px" gap="0px"/>
+                </f:layout>
+
+                <l:FixFlex class="fixFlexVertical">
+                    <l:layoutData>
+                        <f:GridContainerItemLayoutData minRows="9" columns="19" />
+                    </l:layoutData>
+                    <l:fixContent>
+                        <fb:FilterBar showFilterConfiguration="false">
+                            <fb:filterItems>
+                                <fb:FilterItem name="material">
+                                    <fb:control>
+                                        <MultiComboBox type="Text" change="onChange">
+                                            <items>
+                                                <c:Item key="1" text=""/>
+                                                <c:Item key="2" text=""/>
+                                                <c:Item key="3" text=""/>
+                                                <c:Item key="4" text=""/>
+                                            </items>
+                                        </MultiComboBox>
+                                    </fb:control>
+                                </fb:FilterItem>
+
+                                <fb:FilterItem name="localitate">
+                                    <fb:control>
+                                        <ComboBox type="Text" change="onChange">
+                                            <items>
+                                                <c:Item key="timi" text="{i18n>Timisoara}"/>
+                                                <c:Item key="buc" text="{i18n>Bucuresti}"/>
+                                            </items>
+                                        </ComboBox>
+                                    </fb:control>
+                                </fb:FilterItem>
+
+                                <fb:FilterItem name="recompensa">
+                                    <fb:control>
+                                        <ComboBox type="dropDownList" change="onChange">
+                                            <items>
+                                                <c:Item key="timi" text="{i18n>yes}"/>
+                                                <c:Item key="buc" text="{i18n>no}"/>
+                                                <c:Item key="buc" text="{i18n>irrelevant}"/>
+                                            </items>
+                                        </ComboBox>
+                                    </fb:control>
+                                </fb:FilterItem>
+                            </fb:filterItems>
+                        </fb:FilterBar>
+                    </l:fixContent>
+                    <l:flexContent>
+                        <vk:MapContainer>
+                            <vk:content>
+                                <vk:ContainerContent title="{i18n>recyclingMap}" icon="sap-icon://geographic-bubble-chart">
+                                    <vk:content>
+                                        <vbm:GeoMap id="map" centerPosition="21.24281;45.75142" initialZoom="13" width="100%" height="100%" mapConfiguration="{mapConfigModel>/config}"/>
+                                    </vk:content>
+                                </vk:ContainerContent>
+                            </vk:content>
+                        </vk:MapContainer>
+                    </l:flexContent>
+                </l:FixFlex>
+
+            </f:GridContainer>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="Cancel" press="handleCancel"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
 </mvc:View>

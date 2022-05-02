@@ -2,22 +2,36 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:f="sap.f"
+    xmlns:vbm="sap.ui.vbm"
+    xmlns:l="sap.ui.layout"
     xmlns:vk="sap.ui.vk">
     <Page id="mapPage" showHeader="false" backgroundDesign="Transparent">
         <content>
+
+            <!-- <vbm:AnalyticMap id="map" centerPosition="45.75656960748816;21.22886373122504" width="100%" height="100%"/> -->
+
             <f:GridContainer class="sapUiMediumMargin">
                 <f:layout>
                     <f:GridContainerSettings rowSize="84px" columnSize="84px" gap="0px"/>
                 </f:layout>
 
-                <VBox>
-                    <layoutData>
-                        <f:GridContainerItemLayoutData rows="9" columns="19" />
-                    </layoutData>
-                    <vk:MapContainer>
-
-                    </vk:MapContainer>
-                </VBox>
+                <l:FixFlex class="fixFlexVertical">
+                    <l:layoutData>
+                        <f:GridContainerItemLayoutData minRows="9" columns="19" />
+                    </l:layoutData>
+                    <l:flexContent>
+                        <vk:MapContainer>
+                            <vk:content>
+                                <vk:ContainerContent title="{i18n>recyclingMap}" icon="sap-icon://geographic-bubble-chart">
+                                    <vk:content>
+                                        <vbm:AnalyticMap id="map" centerPosition="45.75656960748816;21.22886373122504" width="100%" height="100%">
+                                        </vbm:AnalyticMap>
+                                    </vk:content>
+                                </vk:ContainerContent>
+                            </vk:content>
+                        </vk:MapContainer>
+                    </l:flexContent>
+                </l:FixFlex>
 
             </f:GridContainer>
         </content>

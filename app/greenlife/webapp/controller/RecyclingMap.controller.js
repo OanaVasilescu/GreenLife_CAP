@@ -11,24 +11,33 @@ sap.ui.define([
             let oMapConfig = {
                 "MapProvider": [
                     {
-                        "name": "GMAP",
+                        "Id": "GM",
+                        "name": "Google Maps",
+                        "minLOD": "1",
+                        "maxLOD": "19",
+                        "tileX": "256",
+                        "tileY": "256",
+                        "copyright": "© Google Maps",
                         "Source": [
                             {
-                                "id": "s1",
-                                "url": "https://mt.google.com/vt/x={X}&y={Y}&z={LOD}"
+                                "id": "a",
+                                "url": "https://mt1.googleapis.com/vt?x={X}&y={Y}&z={LOD}&key=AIzaSyBhyd-qk3-ALZmprJSSc2WXt2XUOoqeXjs"
+
                             }
                         ]
                     }
                 ],
                 "MapLayerStacks": [
                     {
-                        "name": "DEFAULT",
-                        "MapLayer": {
-                            "name": "layer1",
-                            "refMapProvider": "GMAP",
-                            "opacity": "1",
-                            "colBkgnd": "RGB(255,255,255)"
-                        }
+                        "name": "Default",
+                        "MapLayer": [
+                            {
+                                "name": "Default",
+                                "refMapProvider": "Google Maps",
+                                "opacity": "1.0",
+                                "colBkgnd": "RGB(255,255,255)"
+                            }
+                        ]
                     }
                 ]
             };

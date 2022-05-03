@@ -30,6 +30,17 @@ sap.ui.define([
                     }
                 });
             });
+
+            let metalStep = this.getView().byId("metalAndAluStep");
+            this.loadFragment({name: "greenlife.view.fragments.MetalLargeTiles"}).then((fragmentLarge) => {
+                this.loadFragment({name: "greenlife.view.fragments.MetalSmallTiles"}).then(function (fragmentSmall) {
+                    if (runningOnPhone) {
+                        metalStep.addContent(new sap.m.HBox().addItem(new sap.m.VBox("largeTilesMetal").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.VBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
+                    } else {
+                        metalStep.addContent(new sap.m.VBox().addItem(new sap.m.HBox("largeTilesMetal").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.HBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
+                    }
+                });
+            });
         },
 
         onBeforeRendering: function () {

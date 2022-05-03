@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    <GenericTile id="zincTile" header="{i18n>zinc}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="leadTile" header="{i18n>plumb}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="steelTile" header="{i18n>steel}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="stainlessTile" header="{i18n>stainlessSteel}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="ironTile" header="{i18n>iron}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+</core:FragmentDefinition>

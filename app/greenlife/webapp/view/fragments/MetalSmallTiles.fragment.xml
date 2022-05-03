@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    <GenericTile id="brassTile" class="smallTiles" header="{i18n>brass}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="cansTile" class="smallTiles" header="{i18n>cans}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="capsTile" class="smallTiles" header="{i18n>metalCaps}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="aerosolTile" class="smallTiles" header="{i18n>aluminumAerosolTubes}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="aluFoilTile" class="smallTiles" header="{i18n>aluFoil}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="aluCansTile" class="smallTiles" header="{i18n>aluCans}" press="chooseSubcategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/recycle"/>
+        </TileContent>
+    </GenericTile>
+</core:FragmentDefinition>

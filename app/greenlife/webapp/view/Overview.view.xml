@@ -94,7 +94,7 @@
             </l:BlockLayoutRow>
             <l:BlockLayoutRow>
                 <l:BlockLayoutCell class="sapUiNoContentPadding overlayParent whiteText">
-                    <Image id="bckgImageMountainOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press=""/>
+                    <Image id="bckgImageMountainOn" height="20rem" width="110rem" mode="Background" class="parallax grey" press="pressReport"/>
                     <VBox class="overlayChildBins" alignItems="Center">
                         <Title text="{i18n>cleanupPlanet}" titleStyle="H1" class="sapUiTinyMarginTopBottom pathwayGothic"/>
                         <Title text="{i18n>cleanupPlanetContent}" titleStyle="H2" class="sapUiTinyMarginBottom pathwayGothic"/>

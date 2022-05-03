@@ -19,6 +19,7 @@
     border-radius: 0em;
 }
 
+
 .sapMGT .sapMText{
     font-family: 'Oswald'!important;
 }
@@ -32,31 +33,15 @@
     color: #f4f6f5 !important;
 }
 
-/* .glTile:hover{
-    background: #5aa07c !important;
-} */
-
 .pressedButton{
     filter:grayscale(0);
 }
-
-/* .pressedButton .sapMImageContentImageIcon.sapUiIcon{
-    color: #5aa07c !important;
-}
-
-.pressedButton .sapMText{
-    color: #5aa07c !important;
-} */
 
 .sapMGT .sapMText{
     color: #f4f6f5 ;
 }
 
-/* .sapMGT:focus{
-    background: #5aa07c !important;
-} */
-
-.smallTiles{
+ .smallTiles{
     width: 9.17rem !important;
     height: 9.17rem !important;
 }
@@ -65,7 +50,7 @@
     font-size: 4rem;
 }
 
-.smallTiles .sapMImageContentImageIcon.sapUiIcon{
+.sap-desktop .smallTiles .sapMImageContentImageIcon.sapUiIcon{
     font-size: 3rem !important;
 }
 
@@ -155,8 +140,7 @@
     transition: .3s ease;
 }
 
-
-.parallax{
+.sap-desktop .parallax{
     background-attachment: fixed;
 }
 

@@ -13,6 +13,23 @@ sap.ui.define([
             this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null, choice: null, currentlyPressed: null}), "chosenModel");
 
             this.getRouter().getRoute("SearchProduct").attachMatched(this.restartChoiceSteps, this);
+            this.loadAllFragments();
+        },
+
+        loadAllFragments: function () {
+            let categoriesStep = this.getView().byId("categoriesWizardStep");
+            let runningOnPhone = sap.ui.Device.system.phone;
+
+
+            this.loadFragment({name: "greenlife.view.fragments.CategoryLargeTiles"}).then((fragmentLarge) => {
+                this.loadFragment({name: "greenlife.view.fragments.CategorySmallTiles"}).then(function (fragmentSmall) {
+                    if (runningOnPhone) {
+                        categoriesStep.addContent(new sap.m.HBox().addItem(new sap.m.VBox("largeTiles").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.VBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
+                    } else {
+                        categoriesStep.addContent(new sap.m.VBox().addItem(new sap.m.HBox("largeTiles").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.HBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
+                    }
+                });
+            });
         },
 
         onBeforeRendering: function () {
@@ -84,6 +101,9 @@ sap.ui.define([
             if (instr != undefined) {
                 this.setInstructions(instr);
             }
+
+            // this.getView().byId("recycleProductsFixFlex").addStyleClass("fixFlexHorizontal");
+            // this.getView().byId("recycleProductsFixFlex").setVertical(false);
 
             this.setPicture(id);
 
@@ -203,11 +223,9 @@ sap.ui.define([
 
             this.getView().getModel("detailsModel").setProperty("/title", oResourceBundle.getText("detailsTitle"));
             this.getView().getModel("detailsModel").setProperty("/text", oResourceBundle.getText("detailsText"));
-            debugger;
 
             let choice = this.getView().getModel("chosenModel").getProperty("/choice");
             if (choice) {
-                debugger;
                 choice.removeStyleClass("pressedButton");
             }
 

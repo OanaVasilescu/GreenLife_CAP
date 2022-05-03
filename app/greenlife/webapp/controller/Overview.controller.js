@@ -35,8 +35,13 @@ sap.ui.define([
         pressSearchProduct: function (oEvent) {
             this.getRouter().navTo("SearchProduct");
         },
+
         pressSeeMap: function () {
             this.getRouter().navTo("RecyclingMap");
+        },
+
+        pressReport: function () {
+            this.getRouter().navTo("Report");
         }
     });
 });

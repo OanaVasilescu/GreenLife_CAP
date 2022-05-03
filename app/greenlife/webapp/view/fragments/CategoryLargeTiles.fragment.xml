@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    <GenericTile id="paperAndCardboard" class="" header="{i18n>paperAndCardboard}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/boxes-packing"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="plasticAndPet" class="" header="{i18n>plasticAndPet}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/bottle-water"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="electro" class="" header="{i18n>electro}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/camera-retro"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="metalAndAlu" class="" header="{i18n>metalAndAlu}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/anchor"/>
+        </TileContent>
+    </GenericTile>
+    <GenericTile id="glass" class="" header="{i18n>glass}" press="chooseCategory" backgroundImage="{pictureModel>/backgroundPicture}">
+        <TileContent>
+            <ImageContent src="sap-icon://solid-icons/wine-bottle"/>
+        </TileContent>
+    </GenericTile>
+</core:FragmentDefinition>

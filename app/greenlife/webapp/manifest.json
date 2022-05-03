@@ -123,6 +123,13 @@
                     "target": [
                         "RecyclingMap"
                     ]
+                },
+                {
+                    "name": "Report",
+                    "pattern": "report",
+                    "target": [
+                        "Report"
+                    ]
                 }
             ],
             "targets": {
@@ -153,6 +160,13 @@
                     "clearControlAggregation": false,
                     "viewId": "SearchProduct",
                     "viewName": "SearchProduct"
+                },
+                "Report": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Report",
+                    "viewName": "Report"
                 }
             }
         },

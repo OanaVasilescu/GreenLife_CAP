@@ -7,14 +7,16 @@ sap.ui.define([
     return BaseController.extend("greenlife.controller.SearchProduct", {
 
         onInit: function () {
-            sap.ui.getCore().byId("container-webapp---App--app").setBackgroundImage("https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80")
 
             this.getView().setModel(new JSONModel({backgroundPicture: "https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"}), "pictureModel")
             this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null, choice: null, currentlyPressed: null}), "chosenModel");
 
             this.getRouter().getRoute("SearchProduct").attachMatched(this.restartChoiceSteps, this);
             this.loadAllFragments();
+
+            this.addSpecificStyleClasses();
         },
+
 
         loadAllFragments: function () {
             let categoriesStep = this.getView().byId("categoriesWizardStep");
@@ -24,7 +26,7 @@ sap.ui.define([
             this.loadFragment({name: "greenlife.view.fragments.CategoryLargeTiles"}).then((fragmentLarge) => {
                 this.loadFragment({name: "greenlife.view.fragments.CategorySmallTiles"}).then(function (fragmentSmall) {
                     if (runningOnPhone) {
-                        categoriesStep.addContent(new sap.m.HBox().addItem(new sap.m.VBox("largeTiles").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.VBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
+                        categoriesStep.addContent(new sap.m.HBox({wrap: "Wrap"}).addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4]).addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5]));
                     } else {
                         categoriesStep.addContent(new sap.m.VBox().addItem(new sap.m.HBox("largeTiles").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.HBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
                     }
@@ -41,6 +43,30 @@ sap.ui.define([
                     }
                 });
             });
+        },
+
+        addSpecificStyleClasses: function () {
+            let steps = this.getView().byId("recycleProductsWizard").getSteps();
+
+            if (sap.ui.Device.system.phone) {
+                this.getView().byId("detailsBoxTitle").addStyleClass("sapUiSmallMarginTop")
+                this.getView().byId("detailsBoxText").addStyleClass("sapUiSmallMarginBottom")
+                this.getView().byId("detailsBoxTitle").addStyleClass("sapUiSmallMarginBeginEnd")
+                this.getView().byId("detailsBoxText").addStyleClass("sapUiSmallMarginBeginEnd")
+
+                steps.forEach(step => {
+                    step.addStyleClass("sapUiSmallMargin");
+                });
+            } else {
+                this.getView().byId("detailsBoxTitle").addStyleClass("sapUiLargeMarginTop")
+                this.getView().byId("detailsBoxText").addStyleClass("sapUiLargeMarginBottom")
+                this.getView().byId("detailsBoxTitle").addStyleClass("sapUiLargeMarginBeginEnd")
+                this.getView().byId("detailsBoxText").addStyleClass("sapUiLargeMarginBeginEnd")
+
+                steps.forEach(step => {
+                    step.addStyleClass("sapUiLargeMarginBegin");
+                });
+            }
         },
 
         onBeforeRendering: function () {

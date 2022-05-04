@@ -41,7 +41,11 @@
     color: #f4f6f5 ;
 }
 
- .smallTiles{
+.sap-phone .sapMGT{
+    width: 9.1rem !important;
+    height: 9.1rem !important;
+}
+.sap-desktop .smallTiles{
     width: 9.17rem !important;
     height: 9.17rem !important;
 }

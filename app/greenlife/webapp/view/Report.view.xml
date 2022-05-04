@@ -3,14 +3,6 @@
     xmlns="sap.m">
     <Page id="reportPage" showHeader="false" backgroundDesign="Transparent">
         <content>
-            <f:GridContainer class="sapUiMediumMargin">
-                <f:layout>
-                    <f:GridContainerSettings rowSize="84px" columnSize="84px" gap="0px"/>
-                </f:layout>
-                <f:layoutXS>
-                    <f:GridContainerSettings rowSize="20px" columnSize="30px" gap="10px" />
-                </f:layoutXS>
-            </f:GridContainer>
         </content>
     </Page>
 </mvc:View>

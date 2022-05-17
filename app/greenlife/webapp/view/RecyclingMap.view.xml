@@ -13,20 +13,18 @@
                 <l:fixContent>
                     <fb:FilterBar showFilterConfiguration="false">
                         <fb:filterItems>
-                            <fb:FilterItem name="material">
+                            <fb:FilterItem name="material" label="{i18n>material}">
                                 <fb:control>
-                                    <MultiComboBox type="Text" change="onChange">
-                                        <items>
-                                            <c:Item key="1" text=""/>
-                                            <c:Item key="2" text=""/>
-                                            <c:Item key="3" text=""/>
-                                            <c:Item key="4" text=""/>
-                                        </items>
+                                    <MultiComboBox id="multiCombo" type="Text" change="onChange" items="{
+                                            path:'materialsModel>/material',
+                                            sorter:{path: 'name'}
+                                        }">
+                                        <c:Item key="{materialsModel>key}" text="{materialsModel>name}"/>
                                     </MultiComboBox>
                                 </fb:control>
                             </fb:FilterItem>
 
-                            <fb:FilterItem name="localitate">
+                            <fb:FilterItem name="localitate" label="{i18n>city}">
                                 <fb:control>
                                     <ComboBox type="Text" change="onChange">
                                         <items>
@@ -37,7 +35,7 @@
                                 </fb:control>
                             </fb:FilterItem>
 
-                            <fb:FilterItem name="recompensa">
+                            <fb:FilterItem name="recompensa" label="{i18n>reward}">
                                 <fb:control>
                                     <ComboBox type="dropDownList" change="onChange">
                                         <items>

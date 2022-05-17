@@ -5,6 +5,7 @@ sap.ui.define([
 
     return BaseController.extend("greenlife.controller.Overview", {
         onInit: function () {
+            this.getView().setModel(new JSONModel({succulent: "https://images.unsplash.com/flagged/photo-1568005242833-d0f5f61da402?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"}), "photoModel")
             this.getView().byId("bckgImage").setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/water-background.jpg"));
 
             this.getView().byId("bckgImagePlantBefore").setSrc(this.getOwnerComponent().getManifestObject().resolveUri("pictures/plant-texture.jpg"));
@@ -30,6 +31,14 @@ sap.ui.define([
                 this.pressSeeMap()
             })
 
+            let runningOnPhone = sap.ui.Device.system.phone;
+            if (runningOnPhone) {
+                this.getView().byId("mobilePage").setVisible(true);
+                this.getView().byId("webPage").setVisible(false);
+            } else {
+                this.getView().byId("mobilePage").setVisible(false);
+                this.getView().byId("webPage").setVisible(true);
+            }
         },
 
         pressSearchProduct: function (oEvent) {

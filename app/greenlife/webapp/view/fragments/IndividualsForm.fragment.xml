@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+
+    <VBox class="sapUiMediumMarginTop sapUiContentPadding" backgroundDesign="Solid">
+        <HBox justifyContent="SpaceBetween" width="100%">
+            <VBox>
+                <Title text="{i18n>individual}"/>
+                <Text text="{i18n>ifAnyInfo}"/>
+            </VBox>
+            <Button icon="sap-icon://sys-cancel-2" type="Transparent"/>
+        </HBox>
+        <VBox class="sapUiMediumMarginTop">
+            <Input placeholder="{i18n>name}"/>
+            <Input placeholder="{i18n>lastname}"/>
+        </VBox>
+        <VBox class="sapUiMediumMarginTop">
+            <Label text="{i18n>address}"/>
+            <Input placeholder="{i18n>adress}"/>
+            <Input placeholder="{i18n>city}"/>
+            <Input placeholder="{i18n>county}"/>
+        </VBox>
+        <VBox class="sapUiMediumMarginTop">
+            <Input placeholder="{i18n>phoneNumber}"/>
+            <Input placeholder="{i18n>age}"/>
+            <Input placeholder="{i18n>race}"/>
+            <Select>
+                <items>
+                    <core:Item text="{i18n>unknown}"/>
+                    <core:Item text="{i18n>Female}"/>
+                    <core:Item text="{i18n>male}"/>
+                </items>
+            </Select>
+        </VBox>
+        <VBox class="sapUiMediumMarginTop">
+            <Label text="{i18n>infoAboutVehicle}"/>
+            <Switch state="{visibilityModel>/infoAboutVehicle}" customTextOn="Yes" customTextOff="No">
+                <layoutData>
+                    <FlexItemData growFactor="1" />
+                </layoutData>
+            </Switch>
+        </VBox>
+        <VBox visible="{visibilityModel>/infoAboutVehicle}" class="sapUiMediumMarginTop">
+            <Title text="{i18n>vehicleInfo}"/>
+            <VBox class="sapUiMediumMarginTop">
+                <Text text="{i18n>vehicledescription}"/>
+                <TextArea placeholder="Enter Text" growing="true" growingMaxLines="7" width="100%"/>
+            </VBox>
+            <VBox>
+                <HBox>
+                    <Input placeholder="{i18n>brand}"/>
+                    <Input placeholder="{i18n>year}"/>
+                    <Input placeholder="{i18n>color}"/>
+                </HBox>
+                <HBox>
+                    <Input placeholder="{i18n>model}"/>
+                    <Input placeholder="{i18n>licencePlate}"/>
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </VBox>
+</core:FragmentDefinition>

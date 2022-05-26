@@ -11,7 +11,8 @@ entity GeneralProducts : cuid {
     recyclingRestrictions : localized String;
     recyclingInstructions : localized String;
     subcategory           : String;
-    products              : Association to many Products;
+    products              : Association to many Products
+                                on products.parent = $self;
     mapLocation           : Association to many GeneralProducts_MapPoints
                                 on mapLocation.generalProduct = $self;
 }

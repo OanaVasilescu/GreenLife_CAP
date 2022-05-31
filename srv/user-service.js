@@ -33,20 +33,20 @@ async function _getInstructionsBySubcategory(req) {
 
 async function _sendMail(req) { // let data = req.data;
     console.log(req._queryOptions.data);
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        auth: {
-            user: "greenlife.recycling.app@gmail.com",
-            pass: "qexwad-vihtir-1Zikwo"
-        }
-    })
+    // const transporter = nodemailer.createTransport({
+    //     host: 'smtp.gmail.com',
+    //     port: 587,
+    //     auth: {
+    //         user: "greenlife.recycling.app@gmail.com",
+    //         pass: "qexwad-vihtir-1Zikwo"
+    //     }
+    // })
 
-    transporter.sendMail({
-        from: '"GreenLife" <greenlife.recycling.app@gmail.com>',
-        to: "vasilescu.oana28@gmail.com",
-        subject: "incident report",
-        text: "This is an automated email. Do not reply.",
-        html: req._queryOptions.data
-    }).then(info => console.log(info)).catch(err => console.log(err))
+    // transporter.sendMail({
+    //     from: '"GreenLife" <greenlife.recycling.app@gmail.com>',
+    //     to: "vasilescu.oana28@gmail.com",
+    //     subject: "incident report",
+    //     text: "This is an automated email. Do not reply.",
+    //     html: req._queryOptions.data
+    // }).then(info => console.log(info)).catch(err => console.log(err))
 }

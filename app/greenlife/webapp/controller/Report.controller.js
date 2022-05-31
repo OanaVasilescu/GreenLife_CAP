@@ -1,6 +1,6 @@
 sap.ui.define([
-    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "greenlife/utils/URLs"
-], function (BaseController, JSONModel, URLs) {
+    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "greenlife/utils/URLs", "sap/ui/core/Fragment"
+], function (BaseController, JSONModel, URLs, Fragment) {
     "use strict";
 
     return BaseController.extend("greenlife.controller.Report", {
@@ -204,11 +204,32 @@ sap.ui.define([
             let mail = this.formatMail(data);
 
             this.get(URLs.sendMail(), {data: mail}).then((res) => {
-                console.log(res)
+                this.clearFields();
+                this.handleOpenDialog();
             }).catch((err) => {
                 console.log(err);
-                this.messageHandler("ceva")
+                this.messageHandler("submitMailError")
             });
+        },
+
+        clearFields: function () {},
+
+        handleOpenDialog: function () { // create value help dialog
+            if (!this._oDialog) {
+                Fragment.load({name: "greenlife.view.fragments.ReportDialog", controller: this}).then(function (oDialog) {
+                    this._oDialog = oDialog;
+
+                    this.getView().addDependent(this._oDialog);
+
+                    this._oDialog.open();
+                }.bind(this));
+            } else {
+                this._oDialog.open();
+            }
+        },
+
+        onDialogClose: function () {
+            this._oDialog.close();
         },
 
         formatMail: function (data) {

@@ -42,4 +42,5 @@ service UserService @(path : '/greenLife') {
 
     entity Products as projection on my.Products;
     function getInstructionsBySubcategory(subcategory : String) returns array of String;
+    function sendMail()                                         returns String;
 }

@@ -7,11 +7,12 @@
     "private": true,
     "dependencies": {
         "@sap/cds": "^5",
+        "@sap/hana-client": "^2.10.13",
         "@sap/xsenv": "^3.2.1",
         "@sap/xssec": "^3.2.13",
-        "@sap/hana-client": "^2.10.13",
         "express": "^4",
         "hdb": "^0.19.1",
+        "nodemailer": "^6.7.5",
         "passport": "^0.5.2"
     },
     "devDependencies": {
@@ -60,5 +61,7 @@
             "credentials": {}
         }
     },
-    "sapux": ["app/greenlife"]
+    "sapux": [
+        "app/greenlife"
+    ]
 }

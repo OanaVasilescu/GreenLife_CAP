@@ -196,20 +196,33 @@ sap.ui.define([
             return container;
         },
 
-        submitData: function () {
-            let data = this.getView().getModel("dataModel").getData();
-            let individuals = this.getView().getModel("individualsModel").getData().individuals;
-            data.individualsData = individuals;
+        submitData: async function () {
+            if (await this.validateInputOnSubmit([
+                "firstName",
+                "lastName",
+                "phoneInput",
+                "emailInput",
+                "placeDescriptionInput",
+                "addressInput",
+                "cityInput",
+                "countyInput"
+            ])) {
+                let data = this.getView().getModel("dataModel").getData();
+                let individuals = this.getView().getModel("individualsModel").getData().individuals;
+                data.individualsData = individuals;
 
-            let mail = this.formatMail(data);
+                let mail = this.formatMail(data);
 
-            this.get(URLs.sendMail(), {data: mail}).then((res) => {
-                this.clearFields();
-                this.handleOpenDialog();
-            }).catch((err) => {
-                console.log(err);
-                this.messageHandler("submitMailError")
-            });
+                this.get(URLs.sendMail(), {data: mail}).then((res) => {
+                    this.clearFields();
+                    this.handleOpenDialog();
+                }).catch((err) => {
+                    console.log(err);
+                    this.messageHandler("submitMailError")
+                });
+            } else {
+                this.messageHandler("invalidInput")
+            }
         },
 
         clearFields: function () {},

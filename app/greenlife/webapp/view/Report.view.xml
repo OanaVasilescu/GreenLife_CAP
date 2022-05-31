@@ -22,29 +22,29 @@
                     <VBox visible="{= !${dataModel>/isAnonymous}}">
                         <HBox>
                             <VBox class="sapUiTinyMarginEnd" width="100%">
-                                <Input id="ceva" value="{dataModel>/firstName}" placeholder="{i18n>firstName}"/>
+                                <Input id="firstName" value="{dataModel>/firstName}" placeholder="{i18n>firstName}" liveChange="onInputChange"/>
                             </VBox>
                             <VBox width="100%">
-                                <Input value="{dataModel>/lastname}" placeholder="{i18n>lastname}"/>
+                                <Input id="lastName" value="{dataModel>/lastname}" placeholder="{i18n>lastname}" liveChange="onInputChange"/>
                             </VBox>
                         </HBox>
 
-                        <Input value="{dataModel>/phoneNumber}" placeholder="{i18n>phoneNumber}"/>
-                        <Input value="{dataModel>/emailAdress}" placeholder="{i18n>emailAdress}"/>
+                        <Input id="phoneInput" value="{dataModel>/phoneNumber}" type="Number" placeholder="{i18n>phoneNumber}" liveChange="onInputChange"/>
+                        <Input id="emailInput" value="{dataModel>/emailAdress}" placeholder="{i18n>emailAdress}" liveChange="onInputChange"/>
                     </VBox>
 
                     <VBox class="sapUiMediumMarginTop">
                         <Label text="{i18n>describeActivity}" wrapping="true"/>
-                        <TextArea placeholder="Enter Text" value="{dataModel>/problemDescription}" growing="true" growingMaxLines="7" width="100%"/>
+                        <TextArea id="placeDescriptionInput" placeholder="{i18n>Enter Text}" value="{dataModel>/problemDescription}" growing="true" growingMaxLines="7" width="100%" liveChange="onInputChange"/>
                         <!-- add picture/video -->
                     </VBox>
 
 
                     <VBox class="sapUiMediumMarginTop">
                         <Label text="{i18n>location}"/>
-                        <Input value="{dataModel>/adress}" placeholder="{i18n>adress}"/>
-                        <Input value="{dataModel>/city}" placeholder="{i18n>city}"/>
-                        <Input value="{dataModel>/county}" placeholder="{i18n>county}"/>
+                        <Input id="addressInput" value="{dataModel>/adress}" placeholder="{i18n>adress}" liveChange="onInputChange"/>
+                        <Input id="cityInput" value="{dataModel>/city}" placeholder="{i18n>city}" liveChange="onInputChange"/>
+                        <Input id="countyInput" value="{dataModel>/county}" placeholder="{i18n>county}" liveChange="onInputChange"/>
                         <Button text="{i18n>mapPinSelect}"/>
                     </VBox>
 

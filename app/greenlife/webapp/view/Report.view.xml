@@ -14,37 +14,37 @@
                     </VBox>
                     <Label text="{i18n>doYouWishToSendAnonymously}" wrapping="true"/>
                     <Label text="{i18n>keepInMind}" wrapping="true" class="smallText"/>
-                    <Switch state="{visibilityModel>/isAnonymous}" customTextOn="Yes" customTextOff="No">
+                    <Switch state="{dataModel>/isAnonymous}" customTextOn="Yes" customTextOff="No">
                         <layoutData>
                             <FlexItemData growFactor="1" />
                         </layoutData>
                     </Switch>
-                    <VBox visible="{= !${visibilityModel>/isAnonymous}}">
+                    <VBox visible="{= !${dataModel>/isAnonymous}}">
                         <HBox>
                             <VBox class="sapUiTinyMarginEnd" width="100%">
-                                <Input placeholder="{i18n>firstName}"/>
+                                <Input id="ceva" value="{dataModel>/firstName}" placeholder="{i18n>firstName}"/>
                             </VBox>
                             <VBox width="100%">
-                                <Input placeholder="{i18n>lastname}"/>
+                                <Input value="{dataModel>/lastname}" placeholder="{i18n>lastname}"/>
                             </VBox>
                         </HBox>
 
-                        <Input placeholder="{i18n>phoneNumber}"/>
-                        <Input placeholder="{i18n>emailAdress}"/>
+                        <Input value="{dataModel>/phoneNumber}" placeholder="{i18n>phoneNumber}"/>
+                        <Input value="{dataModel>/emailAdress}" placeholder="{i18n>emailAdress}"/>
                     </VBox>
 
                     <VBox class="sapUiMediumMarginTop">
                         <Label text="{i18n>describeActivity}" wrapping="true"/>
-                        <TextArea placeholder="Enter Text" growing="true" growingMaxLines="7" width="100%"/>
+                        <TextArea placeholder="Enter Text" value="{dataModel>/problemDescription}" growing="true" growingMaxLines="7" width="100%"/>
                         <!-- add picture/video -->
                     </VBox>
 
 
                     <VBox class="sapUiMediumMarginTop">
                         <Label text="{i18n>location}"/>
-                        <Input placeholder="{i18n>adress}"/>
-                        <Input placeholder="{i18n>city}"/>
-                        <Input placeholder="{i18n>county}"/>
+                        <Input value="{dataModel>/adress}" placeholder="{i18n>adress}"/>
+                        <Input value="{dataModel>/city}" placeholder="{i18n>city}"/>
+                        <Input value="{dataModel>/county}" placeholder="{i18n>county}"/>
                         <Button text="{i18n>mapPinSelect}"/>
                     </VBox>
 
@@ -64,14 +64,14 @@
 
                     <VBox class="sapUiMediumMarginTop">
                         <Label text="{i18n>isThisReccuring}" wrapping="true"/>
-                        <Switch state="{visibilityModel>/isReccuring}" customTextOn="Yes" customTextOff="No">
+                        <Switch state="{dataModel>/isReccuring}" customTextOn="Yes" customTextOff="No">
                             <layoutData>
                                 <FlexItemData growFactor="1" />
                             </layoutData>
                         </Switch>
                     </VBox>
 
-                    <VBox visible="{visibilityModel>/isReccuring}" class="sapUiMediumMarginTop">
+                    <VBox visible="{dataModel>/isReccuring}" class="sapUiMediumMarginTop">
                         <Label text="{i18n>whenDoesThisUsuallyOccur}" wrapping="true"/>
                         <RadioButtonGroup id="timeRB" columns="5">
                             <RadioButton text="{i18n>morning}"/>
@@ -83,7 +83,7 @@
 
                     <VBox class="sapUiMediumMarginTop">
                         <Label text="{i18n>haveYouSeenAnIndividualDoingThisOr}" wrapping="true"/>
-                        <Switch state="{visibilityModel>/individuals}" customTextOn="Yes" customTextOff="No">
+                        <Switch state="{dataModel>/individuals}" customTextOn="Yes" customTextOff="No">
                             <layoutData>
                                 <FlexItemData growFactor="1" />
                             </layoutData>
@@ -91,13 +91,14 @@
                     </VBox>
 
 
-                    <VBox visible="{visibilityModel>/individuals}" class="sapUiMediumMarginTop">
+                    <VBox visible="{dataModel>/individuals}" class="sapUiMediumMarginTop">
                         <Title text ="{i18n>individualsInvolved}" wrapping="true"/>
                         <VBox id="individualsFragmentVBox">
-                            <c:Fragment fragmentName="greenlife.view.fragments.IndividualsForm" type="XML" />
+                            <!-- <c:Fragment fragmentName="greenlife.view.fragments.IndividualsForm" type="XML" /> -->
                         </VBox>
                         <Button text="{i18n>addIndividual}" class="sapUiMediumMarginTop" press="addIndividual"/>
                     </VBox>
+                    <Button text="{i18n>submit}" class="sapUiLargeMarginTop" press="submitData"/>
                 </VBox>
             </VBox>
         </content>

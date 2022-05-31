@@ -11,7 +11,7 @@
             <Button icon="sap-icon://sys-cancel-2" type="Transparent"/>
         </HBox>
         <VBox class="sapUiMediumMarginTop">
-            <Input placeholder="{i18n>name}"/>
+            <Input placeholder="{i18n>firstname}"/>
             <Input placeholder="{i18n>lastname}"/>
             <Input placeholder="{i18n>phoneNumber}"/>
         </VBox>

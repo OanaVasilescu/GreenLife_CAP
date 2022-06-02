@@ -11,9 +11,9 @@
             <Button icon="sap-icon://sys-cancel-2" type="Transparent" press=".removeIndividualFragment"/>
         </HBox>
         <VBox class="sapUiMediumMarginTop">
-            <Input placeholder="{i18n>firstName}" value="{individualsModel>firstName}"/>
-            <Input placeholder="{i18n>lastname}" value="{individualsModel>lastName}"/>
-            <Input placeholder="{i18n>phoneNumber}" value="{individualsModel>phone}"/>
+            <Input placeholder="{i18n>firstName}" value="{individualsModel>firstName}" valueStateText="{i18n>nameShould}"/>
+            <Input placeholder="{i18n>lastname}" value="{individualsModel>lastName}" valueStateText="{i18n>lastnameShould}"/>
+            <Input type="Number" placeholder="{i18n>phoneNumber}" value="{individualsModel>phone}" valueStateText="{i18n>phoneShould}"/>
         </VBox>
         <VBox class="sapUiMediumMarginTop">
             <Label text="{i18n>describePerson}" wrapping="true" />

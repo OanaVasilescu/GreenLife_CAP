@@ -120,9 +120,13 @@ sap.ui.define([
         },
 
         _validateName: function (sValue) {
+            if (/[^a-z]/i.test(sValue)) {
+                return false;
+            }
             if (sValue.length < 3) {
                 return false;
             }
+
             return true;
         },
 
@@ -134,7 +138,11 @@ sap.ui.define([
         },
 
         _validateEmail: function (sValue) {
-            return String(sValue).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+            const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (! sValue.match(regexEmail)) {
+                return false;
+            }
+            return true;
         },
 
         _validateNotEmpty: function (sValue) {
@@ -160,12 +168,9 @@ sap.ui.define([
                     bIsValid = await this._validateInput("Not relevant", sId); // select does not have getValue
                 };
                 bNoValidationError = bIsValid && bNoValidationError;
-                let errorOrWarning;
-
-                errorOrWarning = "Error"
 
                 if (! bIsValid) 
-                    oView.byId(sId).setValueState(errorOrWarning);
+                    oView.byId(sId).setValueState("Error");
                  else {
                     oView.byId(sId).setValueState("None");
                 }

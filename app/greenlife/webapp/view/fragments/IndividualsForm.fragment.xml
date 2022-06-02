@@ -8,21 +8,18 @@
                 <Title text="{i18n>individual}"/>
                 <Text text="{i18n>ifAnyInfo}"/>
             </VBox>
-            <Button icon="sap-icon://sys-cancel-2" type="Transparent"/>
+            <Button icon="sap-icon://sys-cancel-2" type="Transparent" press=".removeIndividualFragment"/>
         </HBox>
         <VBox class="sapUiMediumMarginTop">
-            <Input placeholder="{i18n>firstname}"/>
-            <Input placeholder="{i18n>lastname}"/>
-            <Input placeholder="{i18n>phoneNumber}"/>
+            <Input placeholder="{i18n>firstName}" value="{individualsModel>firstName}"/>
+            <Input placeholder="{i18n>lastname}" value="{individualsModel>lastName}"/>
+            <Input placeholder="{i18n>phoneNumber}" value="{individualsModel>phone}"/>
         </VBox>
         <VBox class="sapUiMediumMarginTop">
-            <Input placeholder="{i18n>adress}"/>
-            <Input placeholder="{i18n>city}"/>
-            <Input placeholder="{i18n>county}"/>
-        </VBox>
-        <VBox class="sapUiMediumMarginTop">
-            <Input placeholder="{i18n>age}"/>
-            <Input placeholder="{i18n>race}"/>
+            <Label text="{i18n>describePerson}" wrapping="true" />
+            <Label text="{i18n>offerInfo}" wrapping="true" class="smallText"/>
+
+            <TextArea placeholder="{i18n>persondescription}" growing="true" growingMaxLines="7" width="100%" value="{individualsModel>vehicledescription}"/>
             <Select width="100%">
                 <items>
                     <core:Item text="{i18n>genderUnknown}"/>
@@ -32,38 +29,43 @@
             </Select>
         </VBox>
         <VBox class="sapUiMediumMarginTop">
+            <Input placeholder="{i18n>adress}" value="{individualsModel>address}"/>
+            <Input placeholder="{i18n>city}" value="{individualsModel>city}"/>
+            <Input placeholder="{i18n>county}" value="{individualsModel>county}"/>
+        </VBox>
+        <VBox class="sapUiMediumMarginTop">
             <Label text="{i18n>infoAboutVehicle}" wrapping="true"/>
-            <Switch state="{visibilityModel>/infoAboutVehicle}" customTextOn="Yes" customTextOff="No">
+            <Switch state="{individualsModel>infoAboutVehicle}" customTextOn="Yes" customTextOff="No">
                 <layoutData>
                     <FlexItemData growFactor="1" />
                 </layoutData>
             </Switch>
         </VBox>
-        <VBox visible="{visibilityModel>/infoAboutVehicle}" class="sapUiMediumMarginTop">
+        <VBox visible="{individualsModel>infoAboutVehicle}" class="sapUiMediumMarginTop">
             <Title text="{i18n>vehicleInfo}"/>
             <VBox class="sapUiMediumMarginTop">
                 <Text text="{i18n>vehicledescription}" wrapping="true"/>
-                <TextArea placeholder="Enter Text" growing="true" growingMaxLines="7" width="100%"/>
+                <TextArea placeholder="Enter Text" growing="true" growingMaxLines="7" width="100%" value="{individualsModel>vehicledescription}"/>
             </VBox>
             <VBox width="100%">
                 <HBox width="100%" alignContent="SpaceBetween">
                     <VBox class="sapUiTinyMarginEnd" width="100%">
-                        <Input placeholder="{i18n>brand}"/>
+                        <Input placeholder="{i18n>brand}" value="{individualsModel>brand}" />
                     </VBox>
                     <VBox class="sapUiTinyMarginEnd" width="100%">
-                        <Input placeholder="{i18n>year}" />
+                        <Input placeholder="{i18n>year}" value="{individualsModel>year}" />
                     </VBox>
                     <VBox width="100%">
-                        <Input placeholder="{i18n>model}" />
+                        <Input placeholder="{i18n>model}" value="{individualsModel>model}"/>
 
                     </VBox>
                 </HBox>
                 <HBox>
                     <VBox class="sapUiTinyMarginEnd" width="100%">
-                        <Input placeholder="{i18n>color}" />
+                        <Input placeholder="{i18n>color}" value="{individualsModel>color}"/>
                     </VBox>
                     <VBox width="100%">
-                        <Input placeholder="{i18n>licencePlate}"/>
+                        <Input placeholder="{i18n>licencePlate}" value="{individualsModel>licencePlate}"/>
                     </VBox>
                 </HBox>
             </VBox>

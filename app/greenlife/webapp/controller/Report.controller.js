@@ -5,6 +5,8 @@ sap.ui.define([
 
     return BaseController.extend("greenlife.controller.Report", {
         onInit: function () {
+            this.getRouter().getRoute("Report").attachMatched(this.clearFields, this);
+
             this.getView().setModel(new JSONModel({logo: "pictures/dark-logo.png"}), "photoModel")
             this.getView().setModel(new JSONModel({
                 isAnonymous: false,
@@ -44,10 +46,6 @@ sap.ui.define([
                 ]
             }), "individualsModel");
 
-            let IndividualsForm = this.createIndividualFragment("/individuals/0");
-            this.getView().byId("individualsFragmentVBox").addItem(IndividualsForm)
-
-
             let runningOnPhone = sap.ui.Device.system.phone;
             if (! runningOnPhone) {
                 this.getView().byId("formVBox").setWidth("50%");
@@ -59,9 +57,8 @@ sap.ui.define([
             }
         },
 
-        addIndividual: function () { // this.loadFragment({name: "greenlife.view.fragments.IndividualsForm"}).then((IndividualsForm) => {
+        addIndividual: function () {
             let individuals = this.getView().getModel("individualsModel").getData().individuals;
-            let pathToIndividual = "/individuals/" + individuals.length;
 
             individuals.push({
                 firstName: "",
@@ -81,119 +78,23 @@ sap.ui.define([
                 color: "",
                 licencePlate: ""
             })
-            let IndividualsForm = this.createIndividualFragment(pathToIndividual);
-            this.getView().byId("individualsFragmentVBox").addItem(IndividualsForm)
-            // })
+            this.getView().getModel("individualsModel").refresh();
         },
 
-        createIndividualFragment: function (pathToIndividual) {
-            let container = new sap.m.VBox();
+        removeIndividualFragment: function (oEvent) {
+            let path = oEvent.getSource().getBindingContext("individualsModel").getPath();
+            let arrayIndex = path.substr(path.length - 1);
+            let model = this.getView().getModel("individualsModel");
 
-            container.setBackgroundDesign("Solid");
-            container.addStyleClass("sapUiMediumMarginTop");
-            container.addStyleClass("sapUiContentPadding");
+            if (model.getProperty("/individuals").length == 1) {
+                this.getView().getModel("dataModel").setProperty("/individuals", false);
+                this.clearIndividuals();
+                return
+            }
 
-            let box = new sap.m.HBox({justifyContent: "SpaceBetween", width: "100%"});
-            let box2 = new sap.m.VBox().addItem(new sap.m.Title({text: "{i18n>individual}"})).addItem(new sap.m.Text({text: "{i18n>ifAnyInfo}"}))
-
-            box.addItem(box2).addItem(new sap.m.Button({icon: "sap-icon://sys-cancel-2", type: "Transparent"}))
-
-            container.addItem(box);
-
-
-            box = new sap.m.VBox().addItem(new sap.m.Input({value: `{individualsModel>${pathToIndividual}/firstName}`, placeholder: "{i18n>firstName}"})).addItem(new sap.m.Input({value: `{individualsModel>${pathToIndividual}/lastName}`, placeholder: "{i18n>lastname}"})).addItem(new sap.m.Input({value: `{individualsModel>${pathToIndividual}/phone}`, placeholder: "{i18n>phoneNumber}"})).addStyleClass("sapUiMediumMarginTop")
-            container.addItem(box);
-
-
-            box = new sap.m.VBox().addItem(new sap.m.Input({value: `{individualsModel>${pathToIndividual}/age}`, placeholder: "{i18n>age}"})).addItem(new sap.m.Select({
-                width: "100%",
-                items: [
-                    new sap.ui.core.Item(
-                        {text: "{i18n>genderUnknown}"}
-                    ),
-                    new sap.ui.core.Item(
-                        {text: "{i18n>male}"}
-                    ),
-                    new sap.ui.core.Item(
-                        {text: "{i18n>female}"}
-                    )
-                ]
-            })).addItem(new sap.m.Label({text: "{i18n>describePerson}"}).addStyleClass("sapUiMediumMarginTop")).addItem(new sap.m.TextArea({placeholder: "{i18n>enterText}", growing: true, growingMaxLines: 7, width: "100%"})).addStyleClass("sapUiMediumMarginTop")
-            container.addItem(box);
-
-            box = new sap.m.VBox().addItem(new sap.m.Label({text: "{i18n>infoAboutVehicle}", wrapping: true})).addItem(new sap.m.Switch({state: `{individualsModel>${pathToIndividual}/infoAboutVehicle}`, customTextOn: "Yes", customTextOff: "No"})).addStyleClass("sapUiMediumMarginTop")
-            container.addItem(box);
-
-
-            box = new sap.m.VBox({
-                visible: `{individualsModel>${pathToIndividual}/infoAboutVehicle}`,
-                items: [
-                    new sap.m.Title(
-                        {text: "{i18n>vehicleInfo}"}
-                    ),
-                    new sap.m.VBox(
-                        {
-                            items: [
-                                new sap.m.Text(
-                                    {
-                                        text: "{i18n>vehicledescription}",
-                                        wrapping: true
-                                    },
-                                ),
-                                new sap.m.TextArea(
-                                    {
-                                        placeholder: "{i18n>enterText}",
-                                        value: `{individualsModel>${pathToIndividual}/vehicledescription}`,
-                                        growing: true,
-                                        growingMaxLines: 7,
-                                        width: "100%"
-                                    }
-                                )
-                            ]
-                        }
-                    ).addStyleClass("sapUiMediumMarginTop"),
-                    new sap.m.VBox(
-                        {
-                            width: "100%",
-                            items: [
-                                new sap.m.HBox(
-                                    {
-                                        width: "100%",
-                                        alignContent: "SpaceBetween",
-                                        items: [
-                                            new sap.m.VBox(
-                                                {width: "100%"}
-                                            ).addItem(new sap.m.Input({value: `{individualsModel>${pathToIndividual}/brand}`, placeholder: "{i18n>brand}"})).addStyleClass("sapUiTinyMarginEnd"),
-                                            new sap.m.VBox(
-                                                {width: "100%"}
-                                            ).addItem(new sap.m.Input({value: `{individualsModel>${pathToIndividual}/year}`, placeholder: "{i18n>year}"})).addStyleClass("sapUiTinyMarginEnd"),
-                                            new sap.m.VBox(
-                                                {width: "100%"}
-                                            ).addItem(new sap.m.Input({value: `{individualsModel>${pathToIndividual}/model}`, placeholder: "{i18n>model}"}))
-                                        ]
-                                    }
-                                ),
-                                new sap.m.HBox(
-                                    {
-                                        items: [
-                                            new sap.m.VBox(
-                                                {width: "100%"}
-                                            ).addItem(new sap.m.Input({value: `{individualsModel>${pathToIndividual}/color}`, placeholder: "{i18n>color}"})).addStyleClass("sapUiTinyMarginEnd"),
-                                            new sap.m.VBox(
-                                                {width: "100%"}
-                                            ).addItem(new sap.m.Input({value: `{individualsModel>${pathToIndividual}/licencePlate}`, placeholder: "{i18n>licencePlate}"}))
-                                        ]
-                                    }
-                                )
-                            ]
-                        }
-                    )
-                ]
-            }).addStyleClass("sapUiMediumMarginTop")
-            container.addItem(box);
-
-
-            return container;
+            model.getProperty("/individuals").splice(arrayIndex, 1);
+            model.refresh();
+            return;
         },
 
         submitData: async function () {
@@ -217,7 +118,41 @@ sap.ui.define([
             }
         },
 
+        getIndividualProperties: function () {
+            return [
+                "firstName",
+                "lastName",
+                "phone",
+                "address",
+                "city",
+                "county",
+                "age",
+                "gender",
+                "personDescription",
+                "vehicledescription",
+                "brand",
+                "year",
+                "model",
+                "color",
+                "licencePlate"
+            ]
+        },
+
+        getDataModelProperties: function () {
+            return [
+                "firstName",
+                "lastname",
+                "phoneNumber",
+                "emailAdress",
+                "adress",
+                "city",
+                "county",
+                "problemDescription"
+            ]
+        },
+
         getInputIds: function () {
+
             if (this.getView().getModel("dataModel").getData().isAnonymous) {
                 this.getView().byId("firstName").setValueState("None");
                 this.getView().byId("lastName").setValueState("None");
@@ -239,7 +174,40 @@ sap.ui.define([
             ]
         },
 
-        clearFields: function () {},
+
+        clearFields: function () {
+            this.clearIndividuals();
+
+            let dataModel = this.getView().getModel("dataModel");
+
+            let dataModelProperties = this.getDataModelProperties();
+            for (let property of dataModelProperties) {
+                property = "/" + property;
+                dataModel.setProperty(property, "");
+            }
+            dataModel.setProperty("/isAnonymous", false);
+            dataModel.setProperty("/isReccuring", false);
+            dataModel.setProperty("/individuals", false);
+
+            return
+        },
+
+        clearIndividuals: function () {
+            let individualsModel = this.getView().getModel("individualsModel");
+
+            let individuals = individualsModel.getProperty("/individuals");
+            while (individuals.length !== 1) {
+                individuals.pop();
+            };
+
+            let properties = this.getIndividualProperties();
+            for (let property of properties) {
+                individuals[0][property] = ""
+            }
+            individuals[0].infoAboutVehicle = false;
+
+            individualsModel.refresh();
+        },
 
         handleOpenDialog: function () { // create value help dialog
             if (!this._oDialog) {

@@ -93,7 +93,10 @@
 
                     <VBox visible="{dataModel>/individuals}" class="sapUiMediumMarginTop">
                         <Title text ="{i18n>individualsInvolved}" wrapping="true"/>
-                        <VBox id="individualsFragmentVBox">
+                        <VBox id="individualsFragmentVBox" items="{path:'individualsModel>/individuals'}">
+                            <items>
+                                <c:Fragment fragmentName="greenlife.view.fragments.IndividualsForm" type="XML" />
+                            </items>
                             <!-- <c:Fragment fragmentName="greenlife.view.fragments.IndividualsForm" type="XML" /> -->
                         </VBox>
                         <Button text="{i18n>addIndividual}" class="sapUiMediumMarginTop" press="addIndividual"/>

@@ -19,7 +19,8 @@
                             <FlexItemData growFactor="1" />
                         </layoutData>
                     </Switch>
-                    <VBox visible="{= !${dataModel>/isAnonymous}}">
+                    <VBox visible="{= !${dataModel>/isAnonymous}}" class="sapUiMediumMarginTop">
+                        <Label text="{i18n>contactInfo}" wrapping="true"/>
                         <HBox>
                             <VBox class="sapUiTinyMarginEnd" width="100%">
                                 <Input id="firstName" value="{dataModel>/firstName}" placeholder="{i18n>firstName}" liveChange="onInputChange" required="true"/>
@@ -35,7 +36,7 @@
 
                     <VBox class="sapUiMediumMarginTop">
                         <Label text="{i18n>describeActivity}" wrapping="true"/>
-                        <TextArea id="placeDescriptionInput" placeholder="{i18n>Enter Text}" value="{dataModel>/problemDescription}" growing="true" growingMaxLines="7" width="100%" liveChange="onInputChange"/>
+                        <TextArea id="placeDescriptionInput" placeholder="{i18n>EnterText}" value="{dataModel>/problemDescription}" growing="true" growingMaxLines="7" width="100%" liveChange="onInputChange"/>
                         <!-- add picture/video -->
                     </VBox>
 
@@ -101,7 +102,9 @@
                         </VBox>
                         <Button text="{i18n>addIndividual}" class="sapUiMediumMarginTop" press="addIndividual"/>
                     </VBox>
-                    <Button text="{i18n>submit}" class="sapUiLargeMarginTop" press="submitData"/>
+                    <HBox justifyContent="Center">
+                        <Button text="{i18n>submit}" type="Emphasized" class="sapUiLargeMarginTop sapUiContentPadding" press="submitData" />
+                    </HBox>
                 </VBox>
             </VBox>
         </content>

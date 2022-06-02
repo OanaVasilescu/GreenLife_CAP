@@ -98,28 +98,12 @@
     margin-top: -6%;
 }
 
-.overlayChild {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -14%;
-    margin-top: -4%;
-}
 
-.overlayChildProduce{
+.overlayChild{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -17%;
-    margin-top: -4%;
-}
-
-.overlayChildBins{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -12%;
-    margin-top: -4%;
+    top: 50%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%); 
 }
 
 .overlayChildWizard{

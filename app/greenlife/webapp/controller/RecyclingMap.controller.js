@@ -1,10 +1,11 @@
 sap.ui.define([
-    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel',
-], function (BaseController, JSONModel) {
+    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "sap/ui/core/Fragment"
+], function (BaseController, JSONModel, Fragment) {
     "use strict";
 
     return BaseController.extend("greenlife.controller.RecyclingMap", {
         onInit: function () {
+            this.getRouter().getRoute("RecyclingMap").attachMatched(this.getLocation, this);
 
             let oMapConfig = {
                 "MapProvider": [
@@ -43,6 +44,8 @@ sap.ui.define([
             this.getView().setModel(new JSONModel({config: oMapConfig}), "mapConfigModel");
 
             this.getView().setModel(new JSONModel({}), "materialsModel");
+            this.getView().setModel(new JSONModel({}), "mapModel");
+
 
             this.getView().byId("multiCombo").setFilterFunction(function (sTerm, oItem) { // A case-insensitive 'string contains' filter
                 var sItemText = oItem.getText().toLowerCase(),
@@ -223,7 +226,49 @@ sap.ui.define([
                 ]
             })
 
-            debugger;
+        },
+
+        getLocation: function () {
+            let position;
+            if (navigator.geolocation) {
+                const success = (pos => { // Location found, show map with these coordinates
+                    position = `${
+                        pos.coords.longitude
+                    };${
+                        pos.coords.latitude
+                    }`;
+                    this.getView().getModel("mapModel").setProperty("/center", position)
+                    this.getView().getModel("mapModel").setProperty("/initialZoom", 17)
+
+                    this.loadMap();
+                })
+                const fail = (error => {
+                    position = "21.24281;45.75142" // Failed to find location, show default map
+                    this.getView().getModel("mapModel").setProperty("/center", position)
+                    this.getView().getModel("mapModel").setProperty("/initialZoom", 13)
+
+                    this.loadMap();
+                })
+                // Find the users current position.  Cache the location for 5 minutes, timeout after 6 seconds
+                navigator.geolocation.getCurrentPosition(success, fail, {
+                    maximumAge: 500000,
+                    enableHighAccuracy: true,
+                    timeout: 6000
+                })
+            } else {
+                position = "21.24281;45.75142";
+                this.getView().getModel("mapModel").setProperty("/center", position);
+                this.getView().getModel("mapModel").setProperty("/initialZoom", 13)
+
+                this.loadMap();
+            }
+        },
+
+        loadMap: function () {
+            Fragment.load({name: "greenlife.view.fragments.Map", controller: this}).then((map) => {
+                debugger;
+                this.getView().byId("mapContainer").setFlexContent(map)
+            });
         }
     });
 });

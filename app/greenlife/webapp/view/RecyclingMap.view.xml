@@ -9,7 +9,7 @@
     xmlns:vk="sap.ui.vk">
     <Page id="mapPage" showHeader="false" backgroundDesign="Transparent">
         <content>
-            <l:FixFlex class="fixFlexVertical">
+            <l:FixFlex class="fixFlexVertical" id="mapContainer">
                 <l:fixContent>
                     <fb:FilterBar showFilterConfiguration="false">
                         <fb:filterItems>
@@ -49,17 +49,18 @@
                         </fb:filterItems>
                     </fb:FilterBar>
                 </l:fixContent>
-                <l:flexContent>
-                    <vk:MapContainer>
+
+
+                <!-- <vk:MapContainer>
                         <vk:content>
                             <vk:ContainerContent title="{i18n>recyclingMap}" icon="sap-icon://geographic-bubble-chart">
                                 <vk:content>
-                                    <vbm:GeoMap id="map" centerPosition="21.24281;45.75142" initialZoom="13" width="100%" height="100%" mapConfiguration="{mapConfigModel>/config}"/>
+                                    <vbm:GeoMap id="map" centerPosition="{mapModel>/center}" initialZoom="13" width="100%" height="100%" mapConfiguration="{mapConfigModel>/config}"/>
                                 </vk:content>
                             </vk:ContainerContent>
                         </vk:content>
-                    </vk:MapContainer>
-                </l:flexContent>
+                    </vk:MapContainer> -->
+
             </l:FixFlex>
         </content>
         <footer>

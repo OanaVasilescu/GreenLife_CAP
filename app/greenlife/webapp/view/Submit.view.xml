@@ -1,0 +1,5 @@
+<mvc:View controllerName="greenlife.controller.Submit"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.f"
+    xmlns:m="sap.m">
+</mvc:View>

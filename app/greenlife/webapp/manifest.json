@@ -130,6 +130,13 @@
                     "target": [
                         "Report"
                     ]
+                },
+                {
+                    "name": "Submit",
+                    "pattern": "submit",
+                    "target": [
+                        "Submit"
+                    ]
                 }
             ],
             "targets": {
@@ -167,6 +174,13 @@
                     "clearControlAggregation": false,
                     "viewId": "Report",
                     "viewName": "Report"
+                },
+                "Submit": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Submit",
+                    "viewName": "Submit"
                 }
             }
         },

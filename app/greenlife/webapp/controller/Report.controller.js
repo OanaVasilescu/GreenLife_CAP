@@ -197,16 +197,8 @@ sap.ui.define([
         },
 
         submitData: async function () {
-            if (await this.validateInputOnSubmit([
-                "firstName",
-                "lastName",
-                "phoneInput",
-                "emailInput",
-                "placeDescriptionInput",
-                "addressInput",
-                "cityInput",
-                "countyInput"
-            ])) {
+            let input = this.getInputIds();
+            if (await this.validateInputOnSubmit(input)) {
                 let data = this.getView().getModel("dataModel").getData();
                 let individuals = this.getView().getModel("individualsModel").getData().individuals;
                 data.individualsData = individuals;
@@ -223,6 +215,28 @@ sap.ui.define([
             } else {
                 this.messageHandler("invalidInput")
             }
+        },
+
+        getInputIds: function () {
+            if (this.getView().getModel("dataModel").getData().isAnonymous) {
+                this.getView().byId("firstName").setValueState("None");
+                this.getView().byId("lastName").setValueState("None");
+                this.getView().byId("phoneInput").setValueState("None");
+                this.getView().byId("emailInput").setValueState("None");
+
+
+                return ["placeDescriptionInput", "addressInput", "cityInput", "countyInput"]
+            }
+            return [
+                "firstName",
+                "lastName",
+                "phoneInput",
+                "emailInput",
+                "placeDescriptionInput",
+                "addressInput",
+                "cityInput",
+                "countyInput"
+            ]
         },
 
         clearFields: function () {},

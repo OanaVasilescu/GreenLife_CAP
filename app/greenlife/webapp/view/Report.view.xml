@@ -22,7 +22,7 @@
                     <VBox visible="{= !${dataModel>/isAnonymous}}">
                         <HBox>
                             <VBox class="sapUiTinyMarginEnd" width="100%">
-                                <Input id="firstName" value="{dataModel>/firstName}" placeholder="{i18n>firstName}" liveChange="onInputChange"/>
+                                <Input id="firstName" value="{dataModel>/firstName}" placeholder="{i18n>firstName}" liveChange="onInputChange" required="true"/>
                             </VBox>
                             <VBox width="100%">
                                 <Input id="lastName" value="{dataModel>/lastname}" placeholder="{i18n>lastname}" liveChange="onInputChange"/>

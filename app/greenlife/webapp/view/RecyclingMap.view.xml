@@ -49,7 +49,8 @@
                         </fb:filterItems>
                     </fb:FilterBar>
                     <VBox alignItems="Center" width="100%" BackgroundDesign="solid" class="waterTexture">
-                        <Button text="{i18n>submitMissingMapData}" class="sapUiTinyMargin"/>
+                        <Button text="{i18n>submitMissingMapData}" class="sapUiTinyMargin" press="pressSubmitMissing"/>
+                        <!-- <Text text='{=${mapPointsModel>/value/longitude};${mapPointsModel>/value/latitude}}' /> -->
                     </VBox>
                 </l:fixContent>
 

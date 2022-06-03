@@ -24,9 +24,14 @@ entity Products : cuid {
 }
 
 entity MapPoints : cuid {
-    coordinates  : String;
-    productTypes : Association to many GeneralProducts_MapPoints
-                       on productTypes.mapPoint = $self;
+    longitude       : String;
+    latitude        : String;
+    locationAddress : String;
+    city            : String;
+    reward          : Boolean;
+    rewardType      : String;
+    productTypes    : Association to many GeneralProducts_MapPoints
+                          on productTypes.mapPoint = $self;
 }
 
 entity GeneralProducts_MapPoints : cuid {

@@ -1,11 +1,11 @@
 sap.ui.define([
-    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "sap/ui/core/Fragment"
-], function (BaseController, JSONModel, Fragment) {
+    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "sap/ui/core/Fragment", "greenlife/utils/URLs"
+], function (BaseController, JSONModel, Fragment, URLs) {
     "use strict";
 
     return BaseController.extend("greenlife.controller.RecyclingMap", {
         onInit: function () {
-            this.getRouter().getRoute("RecyclingMap").attachMatched(this.getLocation, this);
+            this.getRouter().getRoute("RecyclingMap").attachMatched(this.initPage, this);
 
             let oMapConfig = {
                 "MapProvider": [
@@ -48,6 +48,7 @@ sap.ui.define([
 
             this.getView().setModel(new JSONModel({}), "materialsModel");
             this.getView().setModel(new JSONModel({}), "mapModel");
+            this.getView().setModel(new JSONModel(), "mapPointsModel");
 
 
             this.getView().byId("multiCombo").setFilterFunction(function (sTerm, oItem) { // A case-insensitive 'string contains' filter
@@ -231,6 +232,11 @@ sap.ui.define([
 
         },
 
+        initPage: async function () {
+            await this.getMapPoints();
+            this.getLocation();
+        },
+
         getLocation: function () {
             let position;
             if (navigator.geolocation) {
@@ -271,6 +277,18 @@ sap.ui.define([
             Fragment.load({name: "greenlife.view.fragments.Map", controller: this}).then((map) => {
                 this.getView().byId("mapContainer").setFlexContent(map)
             });
+        },
+
+        getMapPoints: async function () {
+            return await this.get(URLs.getMapPoints()).then(async mapPoints => {
+                this.getView().getModel("mapPointsModel").setData(mapPoints);
+                return mapPoints;
+            }).catch(err => {
+                this.messageHandler("getMapPointsError")
+            })
+        },
+        pressSubmitMissing: function () {
+            debugger;
         }
     });
 });

@@ -8,7 +8,9 @@ sap.ui.define([], function () {
     const getInstructionsBySubcategory = "/getInstructionsBySubcategory";
     const expandAllProduct = "?&$expand=components($expand=component($expand=productMaterialCode($expand=bin),productType))";
     const getUser = "/getUserData()";
-    const sendMail = "/sendMail()"
+    const sendMail = "/sendMail()";
+    const mapPoints = "/MapPoints";
+
     return {
         getUser: function () {
             return userService + getUser;
@@ -18,6 +20,9 @@ sap.ui.define([], function () {
         },
         sendMail: function () {
             return userService + sendMail;
+        },
+        getMapPoints: function () {
+            return userService + mapPoints;
         }
     }
 });

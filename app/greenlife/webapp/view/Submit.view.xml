@@ -1,5 +1,31 @@
 <mvc:View controllerName="greenlife.controller.Submit"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.f"
-    xmlns:m="sap.m">
+    xmlns="sap.m"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <SplitApp id="SplitAppDemo" initialDetail="historyPage" initialMaster="master">
+        <detailPages>
+            <Page id="historyPage" title="{i18n>SubmitHistory}" backgroundDesign= "Solid">
+            </Page>
+
+            <Page id="ProductsBarcodesPage" title="{i18n>ProductsBarcodes}" backgroundDesign= "Solid">
+            </Page>
+
+            <Page id="MapBinsPage" title="{i18n>MapLocation}" backgroundDesign= "Solid">
+            </Page>
+
+            <!-- <Page id="emptyPage" title="{i18n>SubmitData}" backgroundDesign= "Solid" showNavButton="true" navButtonPress=".onPressDetailBack">
+            </Page> -->
+        </detailPages>
+        <masterPages>
+            <Page id="master" title="{i18n>SubmitData}" backgroundDesign= "List">
+                <List itemPress=".onListItemPress">
+                    <items>
+                        <StandardListItem title="{i18n>ToProductsBarcodesPage}" type="Active" custom:to="ProductsBarcodesPage" />
+                        <StandardListItem title="{i18n>ToMapBinsPage}" type="Active" custom:to="MapBinsPage" />
+                        <StandardListItem title="{i18n>ToHistoryPage}" type="Active" custom:to="historyPage" />
+                    </items>
+                </List>
+            </Page>
+        </masterPages>
+    </SplitApp>
 </mvc:View>

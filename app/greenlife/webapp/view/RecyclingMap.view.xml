@@ -11,7 +11,7 @@
         <content>
             <l:FixFlex class="fixFlexVertical" id="mapContainer">
                 <l:fixContent>
-                    <fb:FilterBar showFilterConfiguration="false">
+                    <fb:FilterBar showFilterConfiguration="false" width="100%">
                         <fb:filterItems>
                             <fb:FilterItem name="material" label="{i18n>material}">
                                 <fb:control>
@@ -48,6 +48,9 @@
                             </fb:FilterItem>
                         </fb:filterItems>
                     </fb:FilterBar>
+                    <VBox alignItems="Center" width="100%" BackgroundDesign="solid" class="waterTexture">
+                        <Button text="{i18n>submitMissingMapData}" class="sapUiTinyMargin"/>
+                    </VBox>
                 </l:fixContent>
 
 

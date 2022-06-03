@@ -4,9 +4,8 @@ const nodemailer = require("nodemailer")
 
 
 module.exports = cds.service.impl(srv => {
-    srv.on(["GET"], 'MapPoints', async (req, next) => {
-        await next();
-        await addProductsToMapPoint(req);
+    srv.after(["READ"], 'MapPoints', async (each) => { // await next();
+        await addProductsToMapPoint(each);
     })
     srv.on("getUserData", _getUserData);
     srv.on("getInstructionsBySubcategory", _getInstructionsBySubcategory);
@@ -35,25 +34,20 @@ async function _getInstructionsBySubcategory(req) {
     return product;
 }
 
-async function addProductsToMapPoint(req) {
-    const tx = cds.transaction(req);
-    const MapPoints = req.results;
-    console.log(">>>>>>>>>>>>>>>>>", req.results);
-
-    for (let point of MapPoints) {
-        const mapPoints_Products = await tx.read('GeneralProducts_MapPoints', el => {
+async function addProductsToMapPoint(each) {
+    for (let point of each) {
+        const mapPoints_Products = await SELECT.from('GeneralProducts_MapPoints', el => {
             el('*'),
             el.generalProduct(pr => {
                 pr.ID,
                 pr.name
             })
         }).where({mapPoint_ID: point.ID})
-        console.log(">>>>>>>>>>>>>>>>>", mapPoints_Products);
-
+        point.productTypes = mapPoints_Products;
     }
+    console.log(each)
 
-
-    return req;
+    return each;
 }
 
 async function _sendMail(req) { // let data = req.data;

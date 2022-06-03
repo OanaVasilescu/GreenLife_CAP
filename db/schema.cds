@@ -30,6 +30,7 @@ entity MapPoints : cuid {
     city            : String;
     reward          : Boolean;
     rewardType      : String;
+    administeredBy  : String;
     productTypes    : Association to many GeneralProducts_MapPoints
                           on productTypes.mapPoint = $self;
 }

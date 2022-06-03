@@ -35,7 +35,7 @@
                         <vbm:vos>
                             <vbm:Spots items="{mapPointsModel>/value}">
                                 <vbm:items>
-                                    <vbm:Spot position="{=${mapPointsModel>longitude}+';'+${mapPointsModel>latitude}}" type='Success'>
+                                    <vbm:Spot position="{=${mapPointsModel>longitude}+';'+${mapPointsModel>latitude}}" type='Success' click="pressPin">
                                         <vbm:customData>
                                             <core:CustomData key='status' />
                                         </vbm:customData>

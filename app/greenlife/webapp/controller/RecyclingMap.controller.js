@@ -287,6 +287,29 @@ sap.ui.define([
                 this.messageHandler("getMapPointsError")
             })
         },
+
+        pressPin: function (oEvent) {
+            const path = oEvent.getSource().getBindingContext("mapPointsModel").getPath();
+            let mapPointsModel = this.getView().getModel("mapPointsModel");
+            const pointData = mapPointsModel.getProperty(path);
+
+            if (!this.mapPointDialog) {
+                Fragment.load({name: "greenlife.view.fragments.MapPointDialog", controller: this}).then(function (oDialog) {
+                    this.mapPointDialog = oDialog;
+
+                    this.getView().addDependent(this.mapPointDialog);
+
+                    this.mapPointDialog.open();
+                }.bind(this));
+            } else {
+                this.mapPointDialog.open();
+            }
+        },
+
+        onDialogClose: function () {
+            this.mapPointDialog.close();
+        },
+
         pressSubmitMissing: function () {
             debugger;
         }

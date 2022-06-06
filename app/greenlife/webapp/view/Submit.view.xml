@@ -1,16 +1,21 @@
 <mvc:View controllerName="greenlife.controller.Submit"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
+    xmlns:c="sap.ui.core"
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <SplitApp id="SplitAppDemo" initialDetail="historyPage" initialMaster="master">
         <detailPages>
             <Page id="historyPage" title="{i18n>SubmitHistory}" backgroundDesign= "Solid">
+                <c:Fragment fragmentName="greenlife.view.fragments.HistoryPage" type="XML" />
             </Page>
 
             <Page id="ProductsBarcodesPage" title="{i18n>ProductsBarcodes}" backgroundDesign= "Solid">
+                <c:Fragment fragmentName="greenlife.view.fragments.ProductsBarcodesPage" type="XML" />
             </Page>
 
             <Page id="MapBinsPage" title="{i18n>MapLocation}" backgroundDesign= "Solid">
+                <c:Fragment fragmentName="greenlife.view.fragments.MapBinsPage" type="XML" />
+
             </Page>
 
             <!-- <Page id="emptyPage" title="{i18n>SubmitData}" backgroundDesign= "Solid" showNavButton="true" navButtonPress=".onPressDetailBack">

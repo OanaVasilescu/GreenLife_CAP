@@ -7,6 +7,10 @@ module.exports = cds.service.impl(srv => {
     srv.after(["READ"], 'MapPoints', async (each) => { // await next();
         await addProductsToMapPoint(each);
     })
+    srv.on(["CREATE"], 'Products', async (req, next) => {
+        await next();
+        await changeToId(req);
+    })
     srv.on("getUserData", _getUserData);
     srv.on("getInstructionsBySubcategory", _getInstructionsBySubcategory);
     srv.on("sendMail", _sendMail);
@@ -48,6 +52,13 @@ async function addProductsToMapPoint(each) {
     console.log(each)
 
     return each;
+}
+
+async function changeToId(req) {
+    const generalProduct = await SELECT.from('GeneralProducts').where({subcategory: req.data.parentkey})
+    req.data.parent = generalProduct[0].ID;
+
+    return req;
 }
 
 async function _sendMail(req) { // let data = req.data;

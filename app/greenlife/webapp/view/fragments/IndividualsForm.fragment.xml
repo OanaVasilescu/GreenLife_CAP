@@ -19,7 +19,7 @@
             <Label text="{i18n>describePerson}" wrapping="true" />
             <Label text="{i18n>offerInfo}" wrapping="true" class="smallText"/>
 
-            <TextArea placeholder="{i18n>persondescription}" growing="true" growingMaxLines="7" width="100%" value="{individualsModel>vehicledescription}"/>
+            <TextArea placeholder="{i18n>persondescription}" growing="true" growingMaxLines="7" width="100%" value="{individualsModel>personDescription}"/>
             <Select width="100%">
                 <items>
                     <core:Item text="{i18n>genderUnknown}"/>

@@ -17,10 +17,11 @@ entity GeneralProducts : cuid {
                                 on mapLocation.generalProduct = $self;
 }
 
-entity Products : cuid {
-    parent  : Association to one GeneralProducts;
-    barcode : String; //not sure
-    name    : String;
+entity Products : cuid, managed, submitted {
+    parent    : Association to one GeneralProducts;
+    parentkey : String;
+    barcode   : String; //not sure
+    name      : String;
 }
 
 entity MapPoints : cuid {
@@ -35,7 +36,17 @@ entity MapPoints : cuid {
                           on productTypes.mapPoint = $self;
 }
 
-entity GeneralProducts_MapPoints : cuid {
+entity GeneralProducts_MapPoints : cuid, managed, submitted {
     mapPoint       : Association to MapPoints;
     generalProduct : Association to GeneralProducts;
+}
+
+aspect submitted {
+    approved : Approval;
+}
+
+type Approval : String enum {
+    approved;
+    rejected;
+    pending
 }

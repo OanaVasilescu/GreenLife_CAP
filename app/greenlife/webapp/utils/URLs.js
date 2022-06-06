@@ -23,6 +23,9 @@ sap.ui.define([], function () {
         },
         getMapPoints: function () {
             return userService + mapPoints;
+        },
+        getProducts: function () {
+            return userService + products;
         }
     }
 });

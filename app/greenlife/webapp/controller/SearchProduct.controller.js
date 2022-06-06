@@ -158,8 +158,15 @@ sap.ui.define([
                     this.byId("introStep").setNextStep(this.getView().byId("scanStep"));
                     sap.ui.require(["sap/ndc/BarcodeScanner"], function (BarcodeScanner) {
                         BarcodeScanner.scan(function (oResult) { /* handle scan result */
-                            this.goToScanResult(oResult);
-                        }, function (oError) { /* handle scan error */
+                            if (oEvent.getParameter("cancelled")) {
+                                this.messageHandler("scanCancelled")
+                            } else {
+                                if (oEvent.getParameter("text")) {
+                                    this.goToScanResult(oResult);
+                                }
+                            }
+                        }, function (oError) {
+                            this.messageHandler("scanFailed")
                         }, function (oResult) { /* handle input dialog change */
                         });
                     });

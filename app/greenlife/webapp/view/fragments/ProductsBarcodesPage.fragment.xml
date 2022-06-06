@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:card="sap.f.cards"
+    xmlns:ndc="sap.ndc"
+    xmlns:f="sap.f">
+    <f:Card class="sapUiMediumMargin" width="80%">
+        <f:header>
+            <card:Header title="{i18n>submitProductCardTitle}" subtitle="{i18n>submitProductCardSubtitle}" iconSrc="sap-icon://add-activity-2" />
+        </f:header>
+        <f:content>
+            <VBox width="100%">
+                <VBox class=" sapUiSmallMarginBegin" width="100%" alignContent="SpaceBetween">
+                    <Label text="{i18n>productBarcodeScan}" class="sapUiMediumMarginTop "/>
+                    <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveupdate" dialogTitle="{i18n>BarcodeScannerButtonSample}" class="sapUiMediumMarginTop sapUiSmallMargin" />
+                </VBox>
+                <HBox visible="{= (${scanModel>/scanText}!=='')}" alignContent="Center" alignItems="Center" class=" sapUiSmallMargin">
+                    <Label text="{i18n>Scan Result:}"/>
+                    <Label id="sampleBarcodeScannerResult" text="{scanModel>/scanText}" class="sapUiTinyMarginBegin"/>
+                </HBox>
+
+                <VBox class="sapUiMediumMarginTop sapUiSmallMargin">
+                    <Label text="{i18n>addDetails}"/>
+                </VBox>
+
+                <HBox width="100%" alignItems="Center">
+                    <VBox width="100%">
+                        <Input id="materialInput" placeholder="{i18n>ex:Kaufland100%OrangeJuice}" width="95%" class="sapUiSmallMarginBeginEnd"/>
+                        <ComboBox id="materialComboBox" width="95%" class="sapUiSmallMarginBeginEnd" change="handleChange" items="{
+                                            path:'materialsModel>/material',
+                                            sorter:{path: 'name'}
+                                        }">
+                            <core:Item key="{materialsModel>key}" text="{materialsModel>name}"/>
+                        </ComboBox>
+                    </VBox>
+
+                </HBox>
+                <VBox id="productPartsVBox" items="{path:'productModel>/parts'}">
+                    <items>
+                        <core:Fragment fragmentName="greenlife.view.fragments.ProductParts" type="XML" />
+                    </items>
+                </VBox>
+
+                <Button text="{i18n>submitProduct}" class="sapUiMediumMargin" press="submitProduct"/>
+            </VBox>
+
+        </f:content>
+    </f:Card>
+</core:FragmentDefinition>

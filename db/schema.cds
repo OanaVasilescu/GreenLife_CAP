@@ -24,7 +24,7 @@ entity Products : cuid, managed, submitted {
     name      : String;
 }
 
-entity MapPoints : cuid {
+entity MapPoints : cuid, managed, submitted {
     longitude       : String;
     latitude        : String;
     locationAddress : String;
@@ -36,7 +36,7 @@ entity MapPoints : cuid {
                           on productTypes.mapPoint = $self;
 }
 
-entity GeneralProducts_MapPoints : cuid, managed, submitted {
+entity GeneralProducts_MapPoints : cuid {
     mapPoint       : Association to MapPoints;
     generalProduct : Association to GeneralProducts;
 }
@@ -46,7 +46,7 @@ aspect submitted {
 }
 
 type Approval : String enum {
-    approved;
-    rejected;
-    pending
+    Approved;
+    Rejected;
+    Pending
 }

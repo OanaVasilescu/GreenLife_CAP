@@ -10,22 +10,24 @@
         <f:content>
             <VBox width="100%">
                 <VBox class=" sapUiSmallMarginBegin" width="100%" alignContent="SpaceBetween">
-                    <Label text="{i18n>productBarcodeScan}" class="sapUiMediumMarginTop "/>
-                    <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveupdate" dialogTitle="{i18n>BarcodeScannerButtonSample}" class="sapUiMediumMarginTop sapUiSmallMargin" />
+                    <Label text="{i18n>productBarcodeScan}" class="sapUiMediumMarginTop " wrapping="true" width="90%"/>
+                    <HBox justifyContent="Center">
+                        <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveupdate" dialogTitle="{i18n>BarcodeScannerButtonSample}" class="sapUiMediumMarginTop sapUiSmallMargin" />
+                    </HBox>
                 </VBox>
-                <HBox visible="{= (${scanModel>/scanText}!=='')}" alignContent="Center" alignItems="Center" class=" sapUiSmallMargin">
-                    <Label text="{i18n>Scan Result:}"/>
-                    <Label id="sampleBarcodeScannerResult" text="{scanModel>/scanText}" class="sapUiTinyMarginBegin"/>
+                <HBox visible="{= (${scanModel>/scanText}!=='')}" alignContent="Center" alignItems="Center" class=" sapUiSmallMargin" width="100%">
+                    <Label text="{i18n>ScanResult}" wrapping="true" />
+                    <Label id="sampleBarcodeScannerResult" text="{scanModel>/scanText}" class="sapUiTinyMarginBegin" wrapping="true"/>
                 </HBox>
 
                 <VBox class="sapUiMediumMarginTop sapUiSmallMargin">
-                    <Label text="{i18n>addDetails}"/>
+                    <Label text="{i18n>addDetails}" wrapping="true"/>
                 </VBox>
 
                 <HBox width="100%" alignItems="Center">
                     <VBox width="100%">
-                        <Input id="materialInput" placeholder="{i18n>ex:Kaufland100%OrangeJuice}" width="95%" class="sapUiSmallMarginBeginEnd"/>
-                        <ComboBox id="materialComboBox" width="95%" class="sapUiSmallMarginBeginEnd" change="handleChange" items="{
+                        <Input id="materialInput" placeholder="{i18n>exKaufland100OrangeJuice}" width="90%" class="sapUiSmallMarginBeginEnd" />
+                        <ComboBox placeholder="{i18n>extetraPak}" id="materialComboBox" width="90%" class="sapUiSmallMarginBeginEnd" change="handleChange" items="{
                                             path:'materialsModel>/material',
                                             sorter:{path: 'name'}
                                         }">

@@ -1,6 +1,6 @@
-ID;longitude;latitude;locationAddress;city;reward;rewardType;
-45922f51-fe52-4e90-a45b-1e693fd2e01f;25.2069351;45.8078995;petofi sandor 15; dumbravita;false;;
-d922684a-a12e-4f7e-8f29-0ff10f1ac137;24.2069351;45.8078995;petofi sandor 14; dumbravita;false;;
-629b24dd-c2a3-4495-8bd9-aa7308dd18bf;23.2069351;45.8078995;petofi sandor 13; dumbravita;false;;
-2013ea4d-5c4c-4da5-98d5-4d70fe134f8b;22.2069351;45.8078995;petofi sandor 12; dumbravita;true;money;
-e5f268d7-59fd-48ad-9c35-42ebd8942e5a;21.2069351;45.8078995;petofi sandor 11; dumbravita;true;vouchers;
+ID;longitude;latitude;locationAddress;city;reward;rewardType;createdBy;
+45922f51-fe52-4e90-a45b-1e693fd2e01f;25.2069351;45.8078995;petofi sandor 15; dumbravita;false;;admin;
+d922684a-a12e-4f7e-8f29-0ff10f1ac137;24.2069351;45.8078995;petofi sandor 14; dumbravita;false;;admin;
+629b24dd-c2a3-4495-8bd9-aa7308dd18bf;23.2069351;45.8078995;petofi sandor 13; dumbravita;false;;;
+2013ea4d-5c4c-4da5-98d5-4d70fe134f8b;22.2069351;45.8078995;petofi sandor 12; dumbravita;true;money;;
+e5f268d7-59fd-48ad-9c35-42ebd8942e5a;21.2069351;45.8078995;petofi sandor 11; dumbravita;true;vouchers;admin;

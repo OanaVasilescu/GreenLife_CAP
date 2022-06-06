@@ -9,6 +9,9 @@ sap.ui.define([
 
     return BaseController.extend("greenlife.controller.Submit", {
         onInit: function () {
+            this.getRouter().getRoute("Submit").attachMatched(this.initPage, this);
+
+
             this.getSplitAppObj().setHomeIcon({'phone': 'phone-icon.png', 'tablet': 'tablet-icon.png', 'icon': 'desktop.ico'});
 
             Device.orientation.attachHandler(this.onOrientationChange, this);
@@ -19,6 +22,10 @@ sap.ui.define([
             this.getView().setModel(new JSONModel({barcode: null, parts: []}), "productModel");
             this.getView().setModel(new JSONModel(), "materialsModel");
             this.getView().setModel(new JSONModel({scanText: ""}), "scanModel");
+
+            this.getView().setModel(new JSONModel({visibility: true, items: []}), "historyModel")
+
+
         },
 
         onBeforeRendering: function () {
@@ -193,6 +200,14 @@ sap.ui.define([
             })
         },
 
+        initPage: function () {
+            this.getView().getModel("historyModel").setProperty("/visibility", true)
+
+            this.getHistory();
+            this.clearPages();
+            this.getView().getModel("historyModel").refresh();
+        },
+
         handleChange: function (oEvent) {
             let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
 
@@ -301,7 +316,8 @@ sap.ui.define([
                         name: inputField.getValue(),
                         parentkey: comboBox.getSelectedKey()
                     }
-                    this.submitProductCall(product);
+                    await this.submitProductCall(product);
+                    this.getHistory();
 
                 }
             }
@@ -317,10 +333,28 @@ sap.ui.define([
                 this.getView().getModel("scanModel").setProperty("/scanText", "");
 
                 this.messageHandler("submitProductOk")
+                return;
             }).catch((err) => {
                 console.log(err);
                 this.messageHandler("submitProductError")
+                return;
             });
-        }
+        },
+
+        getHistory: async function () {
+            this.get(URLs.getHistory()).then((res) => {
+                if (res.value.length != 0) {
+                    this.getView().getModel("historyModel").setProperty("/items", res.value)
+                    this.getView().getModel("historyModel").setProperty("/visibility", false)
+                    this.getView().getModel("historyModel").refresh();
+                }
+            }).catch((err) => {
+                console.log(err);
+                this.messageHandler("getHistoryError")
+            });
+        },
+
+        clearPages: function () {}
+
     });
 });

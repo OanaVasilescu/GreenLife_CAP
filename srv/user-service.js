@@ -14,6 +14,7 @@ module.exports = cds.service.impl(srv => {
     srv.on("getUserData", _getUserData);
     srv.on("getInstructionsBySubcategory", _getInstructionsBySubcategory);
     srv.on("sendMail", _sendMail);
+    srv.on("getHistory", _getHistory);
 })
 
 async function _getUserData(req) {
@@ -58,6 +59,7 @@ async function changeToId(req) {
     const generalProduct = await SELECT.from('GeneralProducts').where({subcategory: req.data.parentkey})
     req.data.parent = generalProduct[0].ID;
 
+    req.data.approved = "pending"
     return req;
 }
 
@@ -79,4 +81,25 @@ async function _sendMail(req) { // let data = req.data;
     //     text: "This is an automated email. Do not reply.",
     //     html: req._queryOptions.data
     // }).then(info => console.log(info)).catch(err => console.log(err))
+}
+
+async function _getHistory(req) {
+    const user = req.user.id;
+
+    let history = [];
+    let products = await SELECT.from('Products').where({createdBy: user});
+    let mapPoints = await SELECT.from('MapPoints', el => {
+        el('*'),
+        el.productTypes(pr => {
+            pr('*'),
+            pr.generalProduct(gp => {
+                gp('*'),
+                gp.name
+            })
+        })
+    }).where({createdBy: user});
+    history.push(... products);
+    history.push(... mapPoints)
+
+    return history;
 }

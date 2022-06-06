@@ -10,6 +10,7 @@ sap.ui.define([], function () {
     const getUser = "/getUserData()";
     const sendMail = "/sendMail()";
     const mapPoints = "/MapPoints";
+    const getHistory = "/getHistory()"
 
     return {
         getUser: function () {
@@ -26,6 +27,10 @@ sap.ui.define([], function () {
         },
         getProducts: function () {
             return userService + products;
+        },
+
+        getHistory: function () {
+            return userService + getHistory;
         }
     }
 });

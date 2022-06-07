@@ -1,3 +1,51 @@
 <core:FragmentDefinition xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core"
+    xmlns:card="sap.f.cards"
+    xmlns:f="sap.f"
+    xmlns:ndc="sap.ndc">
+    <f:Card class="sapUiMediumMargin" width="80%">
+        <f:header>
+            <card:Header title="{i18n>submitMapCardTitle}" subtitle="{i18n>submitMapCardSubtitle}" iconSrc="sap-icon://functional-location" />
+        </f:header>
+        <f:content>
+            <VBox width="100%" alignItems="Center">
+                <VBox width="100%">
+                    <VBox width="100%" class="sapUiSmallMargin">
+                        <Label text="{i18n>address}" width="100%"/>
+                        <Input value="" placeholder="" width="95%" />
+                    </VBox>
+                    <VBox width="100%" class="sapUiSmallMarginBeginEnd ">
+                        <Label text="{i18n>citydouapuncte}" width="100%"/>
+                        <Input value="" placeholder="" width="95%" />
+                    </VBox>
+                    <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                        <Label text="{i18n>administeredBy}" width="100%"/>
+                        <Input value="" placeholder="" width="95%" />
+                    </VBox>
+                    <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                        <Label text="{i18n>productsRecycledHere}" width="100%"/>
+                        <MultiComboBox id="multiCombo" type="Text" change="onChange" width="95%" items="{
+                                            path:'materialsModel>/material',
+                                            sorter:{path: 'name'}
+                                        }">
+                            <core:Item key="{materialsModel>key}" text="{materialsModel>name}"/>
+                        </MultiComboBox>
+                    </VBox>
+                    <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                        <Label text="{i18n>rewarddouapuncte}" width="100%"/>
+                        <Select width="95%">
+                            <items>
+                                <core:Item key="none" text="{i18n>none}"/>
+                                <core:Item key="vouchers" text="{i18n>vouchers}"/>
+                                <core:Item key="money" text="{i18n>money}"/>
+                            </items>
+                        </Select>
+                    </VBox>
+                </VBox>
+                <Button text="{i18n>chooseLocationOnMap}" class="sapUiMediumMargin" press="openMapDialog"/>
+
+                <Button text="{i18n>submitProduct}" class="sapUiMediumMargin" press="submitProduct" type="Emphasized"/>
+            </VBox>
+        </f:content>
+    </f:Card>
 </core:FragmentDefinition>

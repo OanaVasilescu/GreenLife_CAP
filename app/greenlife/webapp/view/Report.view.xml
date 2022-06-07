@@ -46,7 +46,7 @@
                         <Input id="addressInput" value="{dataModel>/adress}" placeholder="{i18n>adress}" liveChange="onInputChange" valueStateText="{i18n>Should}" required="true"/>
                         <Input id="cityInput" value="{dataModel>/city}" placeholder="{i18n>city}" liveChange="onInputChange" valueStateText="{i18n>Should}"/>
                         <Input id="countyInput" value="{dataModel>/county}" placeholder="{i18n>county}" liveChange="onInputChange" valueStateText="{i18n>Should}"/>
-                        <Button text="{i18n>mapPinSelect}"/>
+                        <Button text="{i18n>mapPinSelect}" press="openMapDialog"/>
                     </VBox>
 
                     <VBox class="sapUiMediumMarginTop">

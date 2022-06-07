@@ -2,7 +2,7 @@
     xmlns:f="sap.f"
     xmlns:core="sap.ui.core">
     <f:IllustratedMessage visible="{historyModel>/visibility}" illustrationType="sapIllus-NoData" description="{i18n>nohistory}" title="{i18n>nohistorySubtitle}"/>
-    <List visible="{= !${historyModel>/visibility}}" items="{ path: 'historyModel>/items'}">
+    <List visible="{= !${historyModel>/visibility}}" items="{ path: 'historyModel>/items'}" growing="true" growingThreshold="6" growingScrollToLoad="false">
         <items>
             <CustomListItem>
                 <!-- <NotificationListItem title="{= (${historyModel>name}?${i18n>productNotification}:${i18n>pointNotification})}" description="{= (${historyModel>name}?(${historyModel>name}+', '+ ${historyModel>barcode}):'unknown')}" priority="{
@@ -22,10 +22,6 @@
                                 <Text text="{i18n>barcodeDouaPuncte}"/>
                                 <Text text="{historyModel>barcode}" class="sapUiTinyMarginBegin"/>
                             </HBox>
-                            <HBox class="sapUiSmallMarginTop" visible="{historyModel>reward}">
-                                <Text text="{i18n>rewardDouaPuncte}"/>
-                                <Text text="{historyModel>rewardType}" class="sapUiTinyMarginBegin"/>
-                            </HBox>
                         </VBox>
                         <HBox class="sapUiLargeMarginEnd">
                             <VBox alignItems="Center">
@@ -35,10 +31,10 @@
 
                                     <Text text="{
                                 path: 'historyModel>createdAt', 
-                                type: 'sap.ui.model.type.Date',	
+                                type: 'sap.ui.model.type.Date',
                                 formatOptions: {
                                 source: {
-                                    pattern: 'yyyy-MM-ddTHH:mm:sssZ'
+                                    pattern: 'yyyy-MM-ddThh:mm:ss.SSSZ'
                                 },
                                 pattern: 'dd MMM yyyy'
                                 }
@@ -91,7 +87,7 @@
                                 type: 'sap.ui.model.type.Date',	
                                 formatOptions: {
                                 source: {
-                                    pattern: 'yyyy-MM-ddTHH:mm:sssZ'
+                                    pattern: 'yyyy-MM-ddThh:mm:ss.SSSZ'
                                 },
                                 pattern: 'dd MMM yyyy'
                                 }

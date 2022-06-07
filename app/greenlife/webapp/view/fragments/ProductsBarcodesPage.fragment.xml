@@ -8,14 +8,14 @@
             <card:Header title="{i18n>submitProductCardTitle}" subtitle="{i18n>submitProductCardSubtitle}" iconSrc="sap-icon://add-activity-2" />
         </f:header>
         <f:content>
-            <VBox width="100%">
-                <VBox class=" sapUiSmallMarginBegin" width="100%" alignContent="SpaceBetween">
-                    <Label text="{i18n>productBarcodeScan}" class="sapUiMediumMarginTop " wrapping="true" width="90%"/>
+            <VBox width="100%" alignItems="Center">
+                <VBox class=" sapUiSmallMarginBegin" width="100%" alignContent="SpaceBetween" alignItems="Center">
+                    <Label text="{i18n>productBarcodeScan}" class="sapUiMediumMarginTop sapUiSmallMarginBeginEnd" wrapping="true" width="100%"/>
                     <HBox justifyContent="Center">
                         <ndc:BarcodeScannerButton id="sampleBarcodeScannerButton" scanSuccess="onScanSuccess" scanFail="onScanError" inputLiveUpdate="onScanLiveupdate" dialogTitle="{i18n>BarcodeScannerButtonSample}" class="sapUiMediumMarginTop sapUiSmallMargin" />
                     </HBox>
                 </VBox>
-                <HBox visible="{= (${scanModel>/scanText}!=='')}" alignContent="Center" alignItems="Center" class=" sapUiSmallMargin" width="100%">
+                <HBox visible="{= (${scanModel>/scanText}!=='')}" alignContent="Center" alignItems="Center" class="sapUiSmallMargin" width="100%" justifyContent="Center">
                     <Label text="{i18n>ScanResult}" wrapping="true" />
                     <Label id="sampleBarcodeScannerResult" text="{scanModel>/scanText}" class="sapUiTinyMarginBegin" wrapping="true"/>
                 </HBox>
@@ -42,7 +42,7 @@
                     </items>
                 </VBox>
 
-                <Button text="{i18n>submitProduct}" class="sapUiMediumMargin" press="submitProduct"/>
+                <Button text="{i18n>submitProduct}" class="sapUiMediumMargin" press="submitProduct" type="Emphasized"/>
             </VBox>
 
         </f:content>

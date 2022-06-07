@@ -344,6 +344,10 @@ sap.ui.define([
         getHistory: async function () {
             this.get(URLs.getHistory()).then((res) => {
                 if (res.value.length != 0) {
+                    res.value = res.value.sort((a, b) => {
+                        debugger;
+                        return new Date(b.createdAt) - new Date(a.createdAt)
+                    });
                     this.getView().getModel("historyModel").setProperty("/items", res.value)
                     this.getView().getModel("historyModel").setProperty("/visibility", false)
                     this.getView().getModel("historyModel").refresh();

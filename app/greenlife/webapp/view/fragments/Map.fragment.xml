@@ -31,7 +31,7 @@
         <vk:content>
             <vk:ContainerContent title="{i18n>recyclingMap}" icon="sap-icon://geographic-bubble-chart">
                 <vk:content>
-                    <vbm:GeoMap id="map" centerPosition="{mapModel>/center}" initialZoom="{mapModel>/initialZoom}" width="100%" height="100%" mapConfiguration="{mapConfigModel>/config}">
+                    <vbm:GeoMap centerPosition="{mapModel>/center}" initialZoom="{mapModel>/initialZoom}" width="100%" height="100%" mapConfiguration="{mapConfigModel>/config}">
                         <vbm:vos>
                             <vbm:Spots items="{mapPointsModel>/value}">
                                 <vbm:items>

@@ -11,7 +11,6 @@ sap.ui.define([
     return BaseController.extend("greenlife.controller.Submit", {
         onInit: function () {
             this.getRouter().getRoute("Submit").attachMatched(this.initPage, this);
-
             let oMapConfig = {
                 "MapProvider": [
                     {
@@ -25,7 +24,7 @@ sap.ui.define([
                         "Source": [
                             {
                                 "id": "a",
-                                "url": "https://mt1.googleapis.com/vt?x={X}&y={Y}&z={LOD}&key=AIzaSyBhyd-qk3-ALZmprJSSc2WXt2XUOoqeXjs",
+                                "url": "https://mt1.googleapis.com/vt?x={X}&y={Y}&z={LOD}&key=AIzaSyBJuQmFUNshQD7svm_tjfObJRS-pXwXmLA",
                                 // "url": "https://mt1.googleapis.com/vt?x={X}&y={Y}&z={LOD}&key=AIzaSyBhyd-qk3-ALZmprJSSc2WXt2XUOoqeXjs&center=48.21416667591101,-120.77405956241938&zoom=8&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xebe3cd&style=element:labels.text.fill%7Ccolor:0x523735&style=element:labels.text.stroke%7Ccolor:0xf5f1e6&style=feature:administrative%7Celement:geometry.stroke%7Ccolor:0xc9b2a6&style=feature:administrative.land_parcel%7Celement:geometry.stroke%7Ccolor:0xdcd2be&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xae9e90&style=feature:landscape.natural%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:poi%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x93817c&style=feature:poi.park%7Celement:geometry.fill%7Ccolor:0xa5b076&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x447530&style=feature:road%7Celement:geometry%7Ccolor:0xf5f1e6&style=feature:road.arterial%7Celement:geometry%7Ccolor:0xfdfcf8&style=feature:road.highway%7Celement:geometry%7Ccolor:0xf8c967&style=feature:road.highway%7Celement:geometry.stroke%7Ccolor:0xe9bc62&style=feature:road.highway.controlled_access%7Celement:geometry%7Ccolor:0xe98d58&style=feature:road.highway.controlled_access%7Celement:geometry.stroke%7Ccolor:0xdb8555&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x806b63&style=feature:transit.line%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:transit.line%7Celement:labels.text.fill%7Ccolor:0x8f7d77&style=feature:transit.line%7Celement:labels.text.stroke%7Ccolor:0xebe3cd&style=feature:transit.station%7Celement:geometry%7Ccolor:0xdfd2ae&style=feature:water%7Celement:geometry.fill%7Ccolor:0xb9d3c2&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x92998d&size=480x360"
                             }
                         ]
@@ -63,6 +62,11 @@ sap.ui.define([
             this.getView().setModel(new JSONModel({}), "mapModel");
             this.getView().setModel(new JSONModel([]), "mapPointModel");
 
+            let pic = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/location-icon-png-4224.png")
+            this.getView().setModel(new JSONModel({redPin: pic}), "pinModel");
+
+
+            this.getView().setModel(new JSONModel({address: "", city: "", administeredBy: ""}), "inputModel");
 
             this.getView().setModel(new JSONModel({visibility: true, items: []}), "historyModel")
         },
@@ -461,6 +465,37 @@ sap.ui.define([
                     location: oEvent.getParameter('pos')
                 }])
             pointModel.refresh();
+        },
+
+        chooseLocationButtonPress: function () {
+            let model = this.getView().getModel("mapPointModel");
+            let inputModel = this.getView().getModel("inputModel");
+            let location = model.getData()[0].location;
+            const [long, ...rest] = location.split(';');
+
+            let lat = rest[0];
+            this.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=AIzaSyBJuQmFUNshQD7svm_tjfObJRS-pXwXmLA`).then((res) => {
+                let location = res.results[0].formatted_address;
+                const [street, ...rest] = location.split(',');
+                const [city, ...cityrest] = rest[0].split(" ");
+
+                let county = res.results[0].address_components.find(el => el.long_name.includes('Jud'))
+                if (county !== undefined) {
+                    const [jud, ...countyname] = county.long_name.split(" ");
+                    inputModel.setProperty("/county", countyname)
+                } else {
+                    inputModel.setProperty("/county", "-");
+                };
+                inputModel.setProperty("/address", street);
+                inputModel.setProperty("/city", cityrest[0]);
+                inputModel.refresh();
+
+
+                this.onDialogClose();
+            }).catch((err) => {
+                console.log(err);
+                this.messageHandler("locationError");
+            });
         },
 
         clearPages: function () {}

@@ -8,17 +8,17 @@
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:vk="sap.ui.vk">
     <Page id="mapPage" showHeader="false" backgroundDesign="Transparent">
-        <l:VerticalLayout width="100%">
-            <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
-        </l:VerticalLayout>
         <content>
             <l:FixFlex class="fixFlexVertical" id="mapContainer">
                 <l:fixContent>
-                    <fb:FilterBar showFilterConfiguration="false" width="100%">
+                    <l:VerticalLayout width="100%">
+                        <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
+                    </l:VerticalLayout>
+                    <fb:FilterBar showFilterConfiguration="false" width="100%" reset="onReset" search="onSearch">
                         <fb:filterItems>
                             <fb:FilterItem name="material" label="{i18n>material}">
                                 <fb:control>
-                                    <MultiComboBox id="multiCombo" type="Text" change="onChange" items="{
+                                    <MultiComboBox id="multiCombo" items="{
                                             path:'materialsModel>/material',
                                             sorter:{path: 'name'}
                                         }">
@@ -29,24 +29,25 @@
 
                             <fb:FilterItem name="localitate" label="{i18n>city}">
                                 <fb:control>
-                                    <ComboBox type="Text" change="onChange">
+                                    <Select id="citySelect" change="onChange">
                                         <items>
-                                            <c:Item key="timi" text="{i18n>Timisoara}"/>
-                                            <c:Item key="buc" text="{i18n>Bucuresti}"/>
+                                            <c:Item key="all" text="{i18n>all}"/>
+                                            <c:Item key="timisoara" text="{i18n>Timisoara}"/>
+                                            <c:Item key="bucuresti" text="{i18n>Bucuresti}"/>
                                         </items>
-                                    </ComboBox>
+                                    </Select>
                                 </fb:control>
                             </fb:FilterItem>
 
                             <fb:FilterItem name="recompensa" label="{i18n>reward}">
                                 <fb:control>
-                                    <ComboBox type="dropDownList" change="onChange">
+                                    <Select id="rewardSelect" change="onChange">
                                         <items>
-                                            <c:Item key="timi" text="{i18n>yes}"/>
-                                            <c:Item key="buc" text="{i18n>no}"/>
-                                            <c:Item key="buc" text="{i18n>irrelevant}"/>
+                                            <c:Item key="irrelevant" text="{i18n>irrelevant}"/>
+                                            <c:Item key="yes" text="{i18n>yes}"/>
+                                            <c:Item key="no" text="{i18n>no}"/>
                                         </items>
-                                    </ComboBox>
+                                    </Select>
                                 </fb:control>
                             </fb:FilterItem>
                         </fb:filterItems>

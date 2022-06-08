@@ -56,7 +56,7 @@
                             </vbm:ClusterTree>
                         </vbm:clusters>
                         <vbm:vos>
-                            <vbm:Spots items="{mapPointsModel>/value}">
+                            <vbm:Spots items="{mapPointsModel>/visible}">
                                 <vbm:items>
                                     <vbm:Spot position="{=${mapPointsModel>longitude}+';'+${mapPointsModel>latitude}}" image="dark_green" click="pressPin">
                                         <vbm:customData>

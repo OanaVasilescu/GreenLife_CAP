@@ -93,6 +93,7 @@ sap.ui.define([
         onBeforeRendering: function () {
             let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
 
+            this.getView().getModel("mapPointsModel").setSizeLimit(1000)
             this.getView().getModel("materialsModel").setData({
                 material: [
                     {
@@ -320,6 +321,7 @@ sap.ui.define([
         getMapPoints: async function () {
             return await this.get(URLs.getMapPoints()).then(async mapPoints => {
                 this.getView().getModel("mapPointsModel").setData(mapPoints);
+                this.getView().getModel("mapPointsModel").setProperty("/visible", mapPoints.value)
                 return mapPoints;
             }).catch(err => {
                 this.messageHandler("getMapPointsError")
@@ -350,6 +352,69 @@ sap.ui.define([
 
         pressSubmitMissing: function () {
             debugger;
-        }
-    });
-});
+        },
+
+        onSearch: function (oEvent) {
+            let materials = this.getView().byId("multiCombo").getSelectedKeys();
+            let city = this.getView().byId("citySelect").getSelectedKey()
+            let reward = this.getView().byId("rewardSelect").getSelectedKey()
+            let pointsModel = this.getView().getModel("mapPointsModel");
+            debugger;
+
+
+            let all = pointsModel.getProperty("/value");
+            let sAll = JSON.stringify(all);
+            let decoupledAll = JSON.parse(sAll);
+
+            pointsModel.setProperty('/visible', decoupledAll);
+
+
+            let visible = pointsModel.getProperty('/visible');
+
+            visible = visible.filter(el => {
+                if (materials.length == 0 && city == "all" && reward == "irrelevant") {
+                    return true;
+                }
+
+                let foundMaterial;
+                try {
+                    foundMaterial = el.productTypes.some(type => materials.includes(type.generalProduct.subcategory))
+                } catch {
+                    foundMaterial = true;
+                }
+                if (materials.length == 0) {
+                    foundMaterial = true;
+                }
+            
+
+
+            let foundCity = el.city.toLocaleLowerCase() == city;
+            if (city == "all") {
+                foundCity = true;
+            }
+
+
+            let bool = reward == 'yes';
+            let foundReward = el.reward == bool;
+
+            if (reward == "irrelevant") {
+                foundReward = true;
+            }
+
+
+            if (foundMaterial && foundCity && foundReward) {
+                return true;
+            } else {
+                return false;
+            }
+        })
+
+        pointsModel.setProperty('/visible', visible);
+        pointsModel.refresh();
+    },
+
+    onReset: function () {
+        debugger;
+    }
+
+});});

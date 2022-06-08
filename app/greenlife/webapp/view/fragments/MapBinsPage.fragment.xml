@@ -32,7 +32,7 @@
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
                         <Label text="{i18n>productsRecycledHere}" width="100%"/>
-                        <MultiComboBox id="multiCombo" type="Text" change="onChange" width="95%" items="{
+                        <MultiComboBox id="multiCombo" change="onChange" width="95%" items="{
                                             path:'materialsModel>/material',
                                             sorter:{path: 'name'}
                                         }">
@@ -41,7 +41,7 @@
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
                         <Label text="{i18n>rewarddouapuncte}" width="100%"/>
-                        <Select width="95%">
+                        <Select id="rewardSelect" width="95%">
                             <items>
                                 <core:Item key="none" text="{i18n>none}"/>
                                 <core:Item key="vouchers" text="{i18n>vouchers}"/>
@@ -52,7 +52,7 @@
                 </VBox>
                 <Button text="{i18n>chooseLocationOnMap}" class="sapUiMediumMargin" press="openMapDialog"/>
 
-                <Button text="{i18n>submitProduct}" class="sapUiMediumMargin" press="submitProduct" type="Emphasized"/>
+                <Button text="{i18n>submitPoint}" class="sapUiMediumMargin" press="submitPoint" type="Emphasized"/>
             </VBox>
         </f:content>
     </f:Card>

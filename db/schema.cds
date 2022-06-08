@@ -34,6 +34,7 @@ entity MapPoints : cuid, managed, submitted {
     administeredBy  : String;
     productTypes    : Association to many GeneralProducts_MapPoints
                           on productTypes.mapPoint = $self;
+    productNames    : array of String;
 }
 
 entity GeneralProducts_MapPoints : cuid {

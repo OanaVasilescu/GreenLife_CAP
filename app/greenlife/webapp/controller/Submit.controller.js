@@ -97,7 +97,7 @@ sap.ui.define([
             }), "pinModel");
 
 
-            this.getView().setModel(new JSONModel({address: "", city: "", administeredBy: ""}), "inputModel");
+            this.getView().setModel(new JSONModel({address: "", city: "", administeredBy: "", county: ""}), "inputModel");
 
             this.getView().setModel(new JSONModel({visibility: true, items: []}), "historyModel")
         },
@@ -277,14 +277,15 @@ sap.ui.define([
 
         initPage: function () {
             this.getView().getModel("historyModel").setProperty("/visibility", true)
-            if (this.getRouter().getHashChanger() !== "submit") {
+            if (this.getRouter().getHashChanger().hash !== "submit") {
                 const sHashParams = this.getRouter().getHashChanger().hash.replace("submit/", "");
                 if (sHashParams == "points") {
                     this.getSplitAppObj().toDetail(this.createId("MapBinsPage"));
                 } else {
                     this.getSplitAppObj().toDetail(this.createId("ProductsBarcodesPage"));
-
                 }
+            } else {
+                this.getSplitAppObj().toDetail(this.createId("historyPage"));
             }
 
             this.getHistory();
@@ -486,6 +487,16 @@ sap.ui.define([
                 this.messageHandler("submitProductError")
                 return;
             });
+        },
+
+        submitPoint: async function () {
+            let pointData = this.getView().getModel("inputModel").getData();
+
+            pointData.productNames = this.getView().byId("multiCombo").getSelectedItems();
+            pointData.rewardType = this.getView().byId("rewardSelect").getSelectedItem();
+
+            debugger;
+
         },
 
         getHistory: async function () {

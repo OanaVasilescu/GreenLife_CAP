@@ -387,21 +387,15 @@ sap.ui.define([
 
                 let foundMaterial;
                 try {
-                    debugger;
-
                     foundMaterial = el.productTypes.some(type => materials.includes(type.generalProduct.subcategory))
                 } catch {
-                    debugger;
-
                     foundMaterial = true;
                 }
-                debugger;
+
+                if (materials.length == 0) {
+                    foundMaterial = true;
+                }
             
-
-
-            if (materials.length == 0) {
-                foundMaterial = true;
-            }
 
 
             let foundCity = el.city.toLocaleLowerCase() == city;
@@ -427,10 +421,5 @@ sap.ui.define([
 
         pointsModel.setProperty('/visible', visible);
         pointsModel.refresh();
-    },
-
-    onReset: function () {
-        debugger;
     }
-
 });});

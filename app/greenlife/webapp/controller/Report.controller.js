@@ -449,6 +449,9 @@ sap.ui.define([
             } else {
                 this.mapDialog.open();
             }
+
+            let busyDialog = this.byId("BusyDialog"); // set page busy while everything loads
+            busyDialog.close();
         },
 
         onDialogClose: function () {
@@ -456,6 +459,8 @@ sap.ui.define([
         },
 
         openMapDialog: function () {
+            let busyDialog = this.byId("BusyDialog"); // set page busy while everything loads
+            busyDialog.open();
             let position;
             if (navigator.geolocation) {
                 const success = (pos => { // Location found, show map with these coordinates
@@ -492,6 +497,7 @@ sap.ui.define([
         },
 
         chooseLocationButtonPress: function (oEvent) {
+
             let model = this.getView().getModel("mapPointModel");
             let inputModel = this.getView().getModel("dataModel");
             let location = model.getData()[0].location;

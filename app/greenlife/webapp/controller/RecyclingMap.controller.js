@@ -266,10 +266,10 @@ sap.ui.define([
         initPage: async function () { // this.addClustering();
             let busyDialog = this.byId("BusyDialog"); // set page busy while everything loads
             busyDialog.open();
+
+
             await this.getMapPoints();
             this.getLocation();
-
-
         },
 
         getLocation: function () {

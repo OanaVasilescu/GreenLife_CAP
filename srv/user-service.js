@@ -50,7 +50,6 @@ async function addProductsToMapPoint(each) {
         }).where({mapPoint_ID: point.ID})
         point.productTypes = mapPoints_Products;
     }
-    console.log(each)
 
     return each;
 }

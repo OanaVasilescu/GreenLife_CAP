@@ -279,6 +279,7 @@ sap.ui.define([
 
         getMapPoints: async function () {
             return await this.get(URLs.getMapPoints()).then(async mapPoints => {
+                debugger;
                 this.getView().getModel("mapPointsModel").setData(mapPoints);
                 return mapPoints;
             }).catch(err => {

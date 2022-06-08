@@ -63,7 +63,38 @@ sap.ui.define([
             this.getView().setModel(new JSONModel([]), "mapPointModel");
 
             let pic = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/location-icon-png-4224.png")
-            this.getView().setModel(new JSONModel({redPin: pic}), "pinModel");
+            let black = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/black.png")
+            let blue = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/blue.png")
+            let brown = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/brown.png")
+            let dark_blue = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/dark_blue.png")
+            let gray = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/gray.png")
+            let dark_green = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/dark_green.png")
+            let green64 = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/green64.png")
+            let orange = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/orange.png")
+            let pink = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/pink.png")
+            let purple = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/purple.png")
+            let red = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/red.png")
+            let turqoise = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/turqoise.png")
+            let white = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/white.png")
+            let yellow = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/yellow.png")
+
+            this.getView().setModel(new JSONModel({
+                redPin: pic,
+                black: black,
+                blue: blue,
+                brown: brown,
+                dark_blue: dark_blue,
+                gray: gray,
+                dark_green: dark_green,
+                green: green64,
+                orange: orange,
+                pink: pink,
+                purple: purple,
+                red: red,
+                turqoise: turqoise,
+                white: white,
+                yellow: yellow
+            }), "pinModel");
 
 
             this.getView().setModel(new JSONModel({address: "", city: "", administeredBy: ""}), "inputModel");

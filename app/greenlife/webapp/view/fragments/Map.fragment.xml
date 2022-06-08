@@ -32,10 +32,33 @@
             <vk:ContainerContent title="{i18n>recyclingMap}" icon="sap-icon://geographic-bubble-chart">
                 <vk:content>
                     <vbm:GeoMap centerPosition="{mapModel>/center}" initialZoom="{mapModel>/initialZoom}" width="100%" height="100%" mapConfiguration="{mapConfigModel>/config}">
+                        <vbm:resources>
+                            <vbm:Resource name="black" src="{pinModel>/black}"/>
+                            <vbm:Resource name="blue" src="{pinModel>/blue}"/>
+                            <vbm:Resource name="brown" src="{pinModel>/brown}"/>
+                            <vbm:Resource name="dark_blue" src="{pinModel>/dark_blue}"/>
+                            <vbm:Resource name="gray" src="{pinModel>/gray}"/>
+                            <vbm:Resource name="dark_green" src="{pinModel>/dark_green}"/>
+                            <vbm:Resource name="green" src="{pinModel>/green}"/>
+                            <vbm:Resource name="orange" src="{pinModel>/orange}"/>
+                            <vbm:Resource name="pink" src="{pinModel>/pink}"/>
+                            <vbm:Resource name="purple" src="{pinModel>/purple}"/>
+                            <vbm:Resource name="red" src="{pinModel>/red}"/>
+                            <vbm:Resource name="turqoise" src="{pinModel>/turqoise}"/>
+                            <vbm:Resource name="white" src="{pinModel>/white}"/>
+                            <vbm:Resource name="yellow" src="{pinModel>/yellow}"/>
+                        </vbm:resources>
+                        <!-- <vbm:clusters>
+                            <vbm:ClusterTree id="clusterTree" textProperty="text" areaAlwaysVisible="false" areaColor="rgba(255,255,255,0)" areaColorBorder="rgba(255,255,255,0)">
+                                <vbm:vizTemplate>
+                                    <vbm:Cluster id="vizTemplate" type="Warning" icon="sap-icon://wrench" />
+                                </vbm:vizTemplate>
+                            </vbm:ClusterTree>
+                        </vbm:clusters> -->
                         <vbm:vos>
                             <vbm:Spots items="{mapPointsModel>/value}">
                                 <vbm:items>
-                                    <vbm:Spot position="{=${mapPointsModel>longitude}+';'+${mapPointsModel>latitude}}" type='Success' click="pressPin">
+                                    <vbm:Spot position="{=${mapPointsModel>longitude}+';'+${mapPointsModel>latitude}}" image="dark_green" click="pressPin">
                                         <vbm:customData>
                                             <core:CustomData key='status' />
                                         </vbm:customData>

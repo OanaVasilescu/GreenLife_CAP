@@ -8,6 +8,9 @@
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:vk="sap.ui.vk">
     <Page id="mapPage" showHeader="false" backgroundDesign="Transparent">
+        <l:VerticalLayout width="100%">
+            <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
+        </l:VerticalLayout>
         <content>
             <l:FixFlex class="fixFlexVertical" id="mapContainer">
                 <l:fixContent>
@@ -48,17 +51,15 @@
                             </fb:FilterItem>
                         </fb:filterItems>
                     </fb:FilterBar>
-                    <VBox alignItems="Center" width="100%" BackgroundDesign="solid" class="waterTexture">
-                        <Button text="{i18n>submitMissingMapData}" class="sapUiTinyMargin" press="pressSubmitMissing"/>
-                        <!-- <Text text='{=${mapPointsModel>/value/longitude};${mapPointsModel>/value/latitude}}' /> -->
-                    </VBox>
                 </l:fixContent>
             </l:FixFlex>
         </content>
         <footer>
             <OverflowToolbar>
                 <ToolbarSpacer/>
-                <Button text="Cancel" press="handleCancel"/>
+                <Button text="{i18n>submitMissingMapData}" class="sapUiTinyMargin" press="pressSubmitMissing"/>
+
+                <Button text="Back" press="handleCancel"/>
             </OverflowToolbar>
         </footer>
     </Page>

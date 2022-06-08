@@ -264,8 +264,12 @@ sap.ui.define([
         },
 
         initPage: async function () { // this.addClustering();
+            let busyDialog = this.byId("BusyDialog"); // set page busy while everything loads
+            busyDialog.open();
             await this.getMapPoints();
             this.getLocation();
+
+
         },
 
         getLocation: function () {
@@ -308,12 +312,14 @@ sap.ui.define([
             Fragment.load({name: "greenlife.view.fragments.Map", controller: this}).then((map) => {
                 this.getView().byId("mapContainer").setFlexContent(map)
             });
+
+            let busyDialog = this.byId("BusyDialog"); // set page busy while everything loads
+            busyDialog.close();
         },
 
         getMapPoints: async function () {
             return await this.get(URLs.getMapPoints()).then(async mapPoints => {
                 this.getView().getModel("mapPointsModel").setData(mapPoints);
-                debugger;
                 return mapPoints;
             }).catch(err => {
                 this.messageHandler("getMapPointsError")

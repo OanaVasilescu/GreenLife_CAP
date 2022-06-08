@@ -114,6 +114,14 @@ sap.ui.define([
                     return this._validateNotEmpty(sValue.trim());
                 case "countyInput":
                     return this._validateNotEmpty(sValue.trim());
+                case "addressPointInput":
+                    return this._validateNotEmpty(sValue.trim());
+                case "cityPointInput":
+                    return this._validateNotEmpty(sValue.trim());
+                case "countyPointInput":
+                    return this._validateNotEmpty(sValue.trim());
+                case "administeredPointInput":
+                    return this._validateNotEmpty(sValue.trim());
                 default:
                     return false;
             }

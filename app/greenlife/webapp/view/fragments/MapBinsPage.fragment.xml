@@ -16,19 +16,19 @@
                 <VBox width="100%">
                     <VBox width="100%" class="sapUiSmallMargin">
                         <Label text="{i18n>address}" width="100%"/>
-                        <Input value="{inputModel>/address}" placeholder="{i18n>addressPlaceholder}" width="95%" />
+                        <Input id="addressPointInput" value="{inputModel>/address}" placeholder="{i18n>addressPlaceholder}" width="95%" liveChange="onInputChange"/>
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginBeginEnd ">
                         <Label text="{i18n>citydouapuncte}" width="100%"/>
-                        <Input value="{inputModel>/city}" placeholder="{i18n>cityPlaceholder}" width="95%" />
+                        <Input id="cityPointInput" value="{inputModel>/city}" placeholder="{i18n>cityPlaceholder}" width="95%" liveChange="onInputChange"/>
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
                         <Label text="{i18n>countyDouaPuncte}" width="100%"/>
-                        <Input value="{inputModel>/county}" placeholder="{i18n>countyPlaceholder}" width="95%" />
+                        <Input id="countyPointInput" value="{inputModel>/county}" placeholder="{i18n>countyPlaceholder}" width="95%" liveChange="onInputChange"/>
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
                         <Label text="{i18n>administeredBy}" width="100%"/>
-                        <Input value="{inputModel>/administeredBy}" placeholder="{i18n>administeredByPlaceholder}" width="95%" />
+                        <Input id="administeredPointInput" value="{inputModel>/administeredBy}" placeholder="{i18n>administeredByPlaceholder}" width="95%" liveChange="onInputChange"/>
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
                         <Label text="{i18n>productsRecycledHere}" width="100%"/>

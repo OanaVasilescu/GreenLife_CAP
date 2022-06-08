@@ -472,14 +472,8 @@ sap.ui.define([
         },
 
         submitProductCall: async function (product) {
-            let inputField = this.getView().byId("materialInput");
-            let comboBox = this.getView().byId("materialComboBox");
-
             this.post(URLs.getProducts(), product).then((res) => {
-                inputField.setValue("");
-                comboBox.setSelectedItem(null);
-                this.getView().getModel("scanModel").setProperty("/scanText", "");
-
+                this.clearPages();
                 this.messageHandler("submitProductOk")
                 return;
             }).catch((err) => {
@@ -490,13 +484,36 @@ sap.ui.define([
         },
 
         submitPoint: async function () {
-            let pointData = this.getView().getModel("inputModel").getData();
+            if (await this.validateInputOnSubmit(["addressPointInput", "cityPointInput", "countyPointInput", "administeredPointInput"])) {
+                if (this.getView().byId("multiCombo").getSelectedKeys().length == 0) {
+                    this.getView().byId("multiCombo").setValueState("Error");
+                    this.messageHandler("pleaseCompleteFields");
+                    return;
+                }
 
-            pointData.productNames = this.getView().byId("multiCombo").getSelectedItems();
-            pointData.rewardType = this.getView().byId("rewardSelect").getSelectedItem();
+                let pointData = this.getView().getModel("inputModel").getData();
 
-            debugger;
+                pointData.productNames = this.getView().byId("multiCombo").getSelectedKeys();
+                pointData.rewardType = this.getView().byId("rewardSelect").getSelectedKey();
+                debugger;
 
+                this.submitPointCall(pointData);
+            } else {
+                this.getView().getModel("inputModel").refresh();
+                this.messageHandler("pleaseCompleteFields");
+            }
+        },
+
+        submitPointCall(point) {
+            this.post(URLs.getMapPoints(), point).then((res) => {
+                this.clearPages();
+                this.messageHandler("submitPointOk")
+                return;
+            }).catch((err) => {
+                console.log(err);
+                this.messageHandler("submitPointError")
+                return;
+            });
         },
 
         getHistory: async function () {
@@ -548,7 +565,7 @@ sap.ui.define([
                 inputModel.setProperty("/city", cityrest[0]);
                 inputModel.refresh();
 
-
+                this.validateInputOnSubmit(['cityPointInput', "addressPointInput", "countyPointInput"]);
                 this.onDialogClose();
             }).catch((err) => {
                 console.log(err);
@@ -556,7 +573,28 @@ sap.ui.define([
             });
         },
 
-        clearPages: function () {}
+        clearPages: function () {
 
+            let inputModel = this.getView().getModel("inputModel");
+
+            inputModel.setProperty("/address", "");
+            inputModel.setProperty("/city", "");
+            inputModel.setProperty("/county", "");
+            inputModel.setProperty("/administeredBy", "");
+            inputModel.refresh()
+
+            let inputField = this.getView().byId("materialInput");
+            let comboBox = this.getView().byId("materialComboBox");
+            inputField.setValue("");
+            comboBox.setSelectedItem(null);
+            this.getView().getModel("scanModel").setProperty("/scanText", "");
+            this.getView().getModel("scanModel").refresh();
+
+            let multiCombo = this.getView().byId("multiCombo");
+            let rewardSelect = this.getView().byId("rewardSelect");
+
+            multiCombo.setSelectedItems([]);
+            rewardSelect.setSelectedKey('none')
+        }
     });
 });

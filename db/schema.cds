@@ -29,6 +29,7 @@ entity MapPoints : cuid, managed, submitted {
     latitude        : String;
     locationAddress : String;
     city            : String;
+    county          : String;
     reward          : Boolean;
     rewardType      : String;
     administeredBy  : String;

@@ -45,7 +45,8 @@ async function addProductsToMapPoint(each) {
             el('*'),
             el.generalProduct(pr => {
                 pr.ID,
-                pr.name
+                pr.name,
+                pr.subcategory
             })
         }).where({mapPoint_ID: point.ID})
         point.productTypes = mapPoints_Products;
@@ -93,7 +94,8 @@ async function _getHistory(req) {
             pr('*'),
             pr.generalProduct(gp => {
                 gp('*'),
-                gp.name
+                gp.name,
+                gp.subcategory
             })
         })
     }).where({createdBy: user});

@@ -47,6 +47,8 @@ sap.ui.define([
             this.getView().setModel(new JSONModel({}), "materialsModel");
             this.getView().setModel(new JSONModel({}), "mapModel");
             this.getView().setModel(new JSONModel(), "mapPointsModel");
+            this.getView().setModel(new JSONModel(), "mapPointDialogModel");
+
 
             let pic = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/location-icon-png-4224.png")
             let black = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/black.png")
@@ -333,6 +335,14 @@ sap.ui.define([
             let mapPointsModel = this.getView().getModel("mapPointsModel");
             const pointData = mapPointsModel.getProperty(path);
 
+            let mapPointDialogModel = this.getView().getModel("mapPointDialogModel");
+
+            let sPointData = JSON.stringify(pointData);
+            let point = JSON.parse(sPointData);
+            mapPointDialogModel.setProperty("/data", point);
+            mapPointDialogModel.refresh();
+
+
             if (!this.mapPointDialog) {
                 Fragment.load({name: "greenlife.view.fragments.MapPointDialog", controller: this}).then(function (oDialog) {
                     this.mapPointDialog = oDialog;
@@ -359,7 +369,6 @@ sap.ui.define([
             let city = this.getView().byId("citySelect").getSelectedKey()
             let reward = this.getView().byId("rewardSelect").getSelectedKey()
             let pointsModel = this.getView().getModel("mapPointsModel");
-            debugger;
 
 
             let all = pointsModel.getProperty("/value");
@@ -378,14 +387,21 @@ sap.ui.define([
 
                 let foundMaterial;
                 try {
+                    debugger;
+
                     foundMaterial = el.productTypes.some(type => materials.includes(type.generalProduct.subcategory))
                 } catch {
+                    debugger;
+
                     foundMaterial = true;
                 }
-                if (materials.length == 0) {
-                    foundMaterial = true;
-                }
+                debugger;
             
+
+
+            if (materials.length == 0) {
+                foundMaterial = true;
+            }
 
 
             let foundCity = el.city.toLocaleLowerCase() == city;

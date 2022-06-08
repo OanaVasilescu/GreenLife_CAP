@@ -3,7 +3,7 @@
     xmlns:vbm="sap.ui.vbm"
     xmlns:core="sap.ui.core">
     <vk:MapContainer>
-        <vk:listPanelStack>
+        <!-- <vk:listPanelStack>
             <vk:ListPanelStack width="230px">
                 <vk:content>
                     <vk:ListPanel headerText="Legend" selectionMode="SingleSelectMaster" headerIcon="sap-icon://legend" expanded="true">
@@ -17,16 +17,9 @@
                             <vk:LegendItem title="on time" color="rgb(97,166,86)" />
                         </vk:items>
                     </vk:ListPanel>
-                    <vk:ListPanel id="location" headerText="Location" headerIcon="sap-icon://factory" expanded="true" selectionMode="MultiSelect" selectionChange="onSelectionChange">
-                        <vk:items>
-                            <vk:LegendItem title="Frankfurt" />
-                            <vk:LegendItem title="Hamburg" />
-                            <vk:LegendItem title="Munich" />
-                        </vk:items>
-                    </vk:ListPanel>
                 </vk:content>
             </vk:ListPanelStack>
-        </vk:listPanelStack>
+        </vk:listPanelStack> -->
 
         <vk:content>
             <vk:ContainerContent title="{i18n>recyclingMap}" icon="sap-icon://geographic-bubble-chart">

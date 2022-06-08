@@ -32,7 +32,7 @@
                     </VBox>
                     <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
                         <Label text="{i18n>productsRecycledHere}" width="100%"/>
-                        <MultiComboBox id="multiCombo" change="onChange" width="95%" items="{
+                        <MultiComboBox placeholder="{i18n>pet}" id="multiCombo" change="onChange" width="95%" items="{
                                             path:'materialsModel>/material',
                                             sorter:{path: 'name'}
                                         }">

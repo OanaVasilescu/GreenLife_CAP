@@ -133,7 +133,7 @@
                 },
                 {
                     "name": "Submit",
-                    "pattern": "submit",
+                    "pattern": "submit/:page:",
                     "target": [
                         "Submit"
                     ]

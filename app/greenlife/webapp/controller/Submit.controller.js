@@ -277,6 +277,15 @@ sap.ui.define([
 
         initPage: function () {
             this.getView().getModel("historyModel").setProperty("/visibility", true)
+            if (this.getRouter().getHashChanger() !== "submit") {
+                const sHashParams = this.getRouter().getHashChanger().hash.replace("submit/", "");
+                if (sHashParams == "points") {
+                    this.getSplitAppObj().toDetail(this.createId("MapBinsPage"));
+                } else {
+                    this.getSplitAppObj().toDetail(this.createId("ProductsBarcodesPage"));
+
+                }
+            }
 
             this.getHistory();
             this.clearPages();

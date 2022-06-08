@@ -361,7 +361,7 @@ sap.ui.define([
         },
 
         pressSubmitMissing: function () {
-            debugger;
+            this.getRouter().navTo("Submit", {page: 'points'});
         },
 
         onSearch: function (oEvent) {

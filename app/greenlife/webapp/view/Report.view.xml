@@ -4,10 +4,8 @@
     xmlns:l="sap.ui.layout"
     xmlns:c="sap.ui.core">
     <Page id="reportPage" showHeader="false" backgroundDesign="Transparent">
-        <l:VerticalLayout width="100%">
-            <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
-        </l:VerticalLayout>
         <content>
+            <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
             <VBox class="sapUiLargeMargin" alignItems="Center">
                 <VBox id="formVBox">
                     <VBox width="100%" alignItems="Center">

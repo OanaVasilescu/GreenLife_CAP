@@ -11,9 +11,7 @@
         <content>
             <l:FixFlex class="fixFlexVertical" id="mapContainer">
                 <l:fixContent>
-                    <l:VerticalLayout width="100%">
-                        <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
-                    </l:VerticalLayout>
+                    <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
                     <fb:FilterBar showFilterConfiguration="false" width="100%" reset="onReset" search="onSearch">
                         <fb:filterItems>
                             <fb:FilterItem name="material" label="{i18n>material}">

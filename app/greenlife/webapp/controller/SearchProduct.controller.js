@@ -6,43 +6,53 @@ sap.ui.define([
 
     return BaseController.extend("greenlife.controller.SearchProduct", {
 
-        onInit: function () {
+        onInit: async function () {
 
             this.getView().setModel(new JSONModel({backgroundPicture: "https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"}), "pictureModel")
             this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null, choice: null, currentlyPressed: null}), "chosenModel");
 
             this.getRouter().getRoute("SearchProduct").attachMatched(this.restartChoiceSteps, this);
-            this.loadAllFragments();
-
+            await this.loadAllFragments();
             this.addSpecificStyleClasses();
+
+            let runningOnPhone = sap.ui.Device.system.phone;
+            this.getView().setModel(new JSONModel({isPhone: runningOnPhone}), "phoneModel");
         },
 
 
-        loadAllFragments: function () {
+        loadAllFragments: async function () {
             let categoriesStep = this.getView().byId("categoriesWizardStep");
             let runningOnPhone = sap.ui.Device.system.phone;
 
 
-            this.loadFragment({name: "greenlife.view.fragments.CategoryLargeTiles"}).then((fragmentLarge) => {
-                this.loadFragment({name: "greenlife.view.fragments.CategorySmallTiles"}).then(function (fragmentSmall) {
+            await this.loadFragment({name: "greenlife.view.fragments.CategoryLargeTiles"}).then(async (fragmentLarge) => {
+                await this.loadFragment({name: "greenlife.view.fragments.CategorySmallTiles"}).then(async function (fragmentSmall) {
                     if (runningOnPhone) {
-                        categoriesStep.addContent(new sap.m.HBox({wrap: "Wrap"}).addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4]).addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5]));
+                        await categoriesStep.addContent(new sap.m.HBox({wrap: "Wrap"}).addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4]).addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5]));
                     } else {
-                        categoriesStep.addContent(new sap.m.VBox().addItem(new sap.m.HBox("largeTiles").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.HBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
+                        await categoriesStep.addContent(new sap.m.VBox().addItem(new sap.m.HBox("largeTiles").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.HBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
                     }
                 });
             });
 
             let metalStep = this.getView().byId("metalAndAluStep");
-            this.loadFragment({name: "greenlife.view.fragments.MetalLargeTiles"}).then((fragmentLarge) => {
-                this.loadFragment({name: "greenlife.view.fragments.MetalSmallTiles"}).then(function (fragmentSmall) {
+            await this.loadFragment({name: "greenlife.view.fragments.MetalLargeTiles"}).then(async (fragmentLarge) => {
+                await this.loadFragment({name: "greenlife.view.fragments.MetalSmallTiles"}).then(async function (fragmentSmall) {
                     if (runningOnPhone) {
-                        metalStep.addContent(new sap.m.HBox().addItem(new sap.m.VBox("largeTilesMetal").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.VBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
+                        await metalStep.addContent(new sap.m.HBox().addItem(new sap.m.VBox("largeTilesMetal").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.VBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
                     } else {
-                        metalStep.addContent(new sap.m.VBox().addItem(new sap.m.HBox("largeTilesMetal").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.HBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
+                        await metalStep.addContent(new sap.m.VBox().addItem(new sap.m.HBox("largeTilesMetal").addItem(fragmentLarge[0]).addItem(fragmentLarge[1]).addItem(fragmentLarge[2]).addItem(fragmentLarge[3]).addItem(fragmentLarge[4])).addItem(new sap.m.HBox().addItem(fragmentSmall[0]).addItem(fragmentSmall[0]).addItem(fragmentSmall[1]).addItem(fragmentSmall[2]).addItem(fragmentSmall[3]).addItem(fragmentSmall[4]).addItem(fragmentSmall[5])));
                     }
                 });
             });
+
+            await this.loadFragment({name: "greenlife.view.fragments.VBoxForInstructions"}).then(async (fragmentInstructions) => {
+                if (runningOnPhone) {
+                    await this.getView().byId("PhoneVBox").addItem(fragmentInstructions);
+                } else {
+                    await this.getView().byId("desktopVBox").addItem(fragmentInstructions);
+                }
+            })
         },
 
         addSpecificStyleClasses: function () {
@@ -131,8 +141,12 @@ sap.ui.define([
 
             let fullId = oEvent.getSource().getId();
             let id = fullId.slice(fullId.lastIndexOf("-") + 1);
-            let instructionsData = await this.getInstructions(id);
 
+
+            let busyDialog = this.byId("BusyDialog"); // set page busy while everything loads
+            busyDialog.open();
+            let instructionsData = await this.getInstructions(id);
+            this.getView().byId("fixflexLayout").setVertical(false);
 
             let instr = instructionsData.value[0];
             if (instr != undefined) {
@@ -144,6 +158,7 @@ sap.ui.define([
 
             this.setPicture(id);
 
+            busyDialog.close();
             this.goToNextStep(id);
         },
 
@@ -211,6 +226,7 @@ sap.ui.define([
 
         setPicture: function (id) {
             let picture = this.getView().byId("pictureBox");
+
 
             picture.addStyleClass(id);
             picture.addStyleClass("coverTile");
@@ -324,6 +340,7 @@ sap.ui.define([
                 }
             }
 
+            this.getView().byId("fixflexLayout").setVertical(true);
             this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
         }
     });

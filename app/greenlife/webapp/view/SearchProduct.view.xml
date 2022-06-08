@@ -8,9 +8,10 @@
 
     <NavContainer id="wizardNavContainer">
         <pages>
-            <Page id="wizardContentPage" showHeader="false" backgroundDesign="Transparent" enableScrolling="true">
+            <Page id="wizardContentPage" showHeader="false" backgroundDesign="Transparent" enableScrolling="false">
                 <content>
-                    <l:FixFlex>
+                    <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
+                    <l:FixFlex id="fixflexLayout">
                         <l:flexContent>
                             <Wizard id="recycleProductsWizard" complete="completedHandler" enableBranching="true" showNextButton="false">
                                 <WizardStep id="introStep" nextStep="categoriesWizardStep" icon="sap-icon://solid-icons/recycle" class="sapUiLargeMarginTop ">
@@ -319,36 +320,15 @@
                                             </VBox>
                                         </HBox>
                                     </VBox>
+                                    <VBox visible="{phoneModel>/isPhone}" id="PhoneVBox">
+                                    </VBox>
                                 </WizardStep>
 
                             </Wizard>
 
                         </l:flexContent>
                         <l:fixContent>
-                            <VBox id="detailsBox" backgroundDesign="Solid" visible="{= (${chosenModel>/latestSubcategory} === null)}">
-                                <Title id="detailsBoxTitle" text="{detailsModel>/title}" wrapping="true" class=" pathwayGothic"/>
-                                <FormattedText id="detailsBoxText" htmlText="{detailsModel>/text}" class=""/>
-                            </VBox>
-
-                            <VBox id="pictureBox" height="100%" width="100%" visible="{= (${chosenModel>/latestSubcategory} !== null)}" alignItems="Center" justifyContent="Center">
-                                <f:Card class="sapUiLargeMargin" width="380px">
-                                    <f:content >
-                                        <VBox alignItems="Center" justifyContent="Center">
-                                            <Title text="{i18n>restartTitle}" titleStyle="H3" class="sapUiLargeMarginTop  pathwayGothic"/>
-                                            <Text text="{i18n>restartSubTitle}" class="sapUiSmallMarginBeginEnd "/>
-                                            <Button text="{i18n>restartButton}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/arrow-rotate-right" type="Transparent" press="restartChoiceSteps"/>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
-                                <f:Card class="sapUiLargeMargin" width="380px">
-                                    <f:content>
-                                        <VBox alignItems="Center" justifyContent="Center">
-                                            <Title text="{i18n>seeWhereToRecycleTitle}" titleStyle="H3" class="sapUiMediumMarginTop sapUiSmallMarginBegin pathwayGothic"/>
-                                            <Text text="{i18n>seeWhereToRecycleSubTitle} {instructionsModel>/product}" class="sapUiSmallMarginBeginEnd"/>
-                                            <Button text="{i18n>searchRecyclingPoint}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/trash" type="Transparent"/>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
+                            <VBox visible="{= !${phoneModel>/isPhone}}" id="desktopVBox" height="100%">
                             </VBox>
                         </l:fixContent>
                     </l:FixFlex>

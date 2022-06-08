@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+    <VBox height="100%">
+        <VBox id="detailsBox" backgroundDesign="Solid" visible="{= (${chosenModel>/latestSubcategory} === null)}">
+            <Title id="detailsBoxTitle" text="{detailsModel>/title}" wrapping="true" class=" pathwayGothic"/>
+            <FormattedText id="detailsBoxText" htmlText="{detailsModel>/text}" class=""/>
+        </VBox>
+
+        <VBox id="pictureBox" height="100%" width="100%" visible="{= (${chosenModel>/latestSubcategory} !== null)}" alignItems="Center" justifyContent="Center">
+            <f:Card class="sapUiLargeMargin" width="380px">
+                <f:content >
+                    <VBox alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>restartTitle}" titleStyle="H3" class="sapUiLargeMarginTop  pathwayGothic"/>
+                        <Text text="{i18n>restartSubTitle}" class="sapUiSmallMarginBeginEnd "/>
+                        <Button text="{i18n>restartButton}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/arrow-rotate-right" type="Transparent" press="restartChoiceSteps"/>
+                    </VBox>
+                </f:content>
+            </f:Card>
+            <f:Card class="sapUiLargeMargin" width="380px">
+                <f:content>
+                    <VBox alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>seeWhereToRecycleTitle}" titleStyle="H3" class="sapUiMediumMarginTop sapUiSmallMarginBegin pathwayGothic"/>
+                        <Text text="{i18n>seeWhereToRecycleSubTitle} {instructionsModel>/product}" class="sapUiSmallMarginBeginEnd"/>
+                        <Button text="{i18n>searchRecyclingPoint}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/trash" type="Transparent"/>
+                    </VBox>
+                </f:content>
+            </f:Card>
+        </VBox>
+    </VBox>
+</core:FragmentDefinition>

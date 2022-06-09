@@ -97,7 +97,7 @@ sap.ui.define([
             }), "pinModel");
 
 
-            this.getView().setModel(new JSONModel({address: "", city: "", administeredBy: "", county: ""}), "inputModel");
+            this.getView().setModel(new JSONModel({locationAddress: "", city: "", administeredBy: "", county: ""}), "inputModel");
 
             this.getView().setModel(new JSONModel({visibility: true, items: []}), "historyModel")
         },
@@ -495,9 +495,39 @@ sap.ui.define([
 
                 pointData.productNames = this.getView().byId("multiCombo").getSelectedKeys();
                 pointData.rewardType = this.getView().byId("rewardSelect").getSelectedKey();
-                debugger;
 
-                this.submitPointCall(pointData);
+                let coordinatesModel = this.getView().getModel("mapPointModel");
+                let response;
+
+                if (coordinatesModel.getData().length == 0) {
+                    response = await this.getLocationCoordinatesFromAddress(pointData);
+                }
+
+
+                if (response == 0) {
+                    this.getView().byId("addressPointInput").setValueState("Error");
+
+                    this.messageHandler("pleaseEnterValidAddress");
+                    return;
+                }
+
+                if (response != undefined) {
+                    pointData.longitude = response.results[0].geometry.location.lng
+                    pointData.latitude = response.results[0].geometry.location.lat
+
+                } else {
+                    const [long, ...rest] = coordinatesModel.getData()[0].location.split(';')
+
+                    pointData.longitude = long;
+                    pointData.latitude = rest[0];
+                };
+
+                pointData.longitude = pointData.longitude.toString();
+                pointData.latitude = pointData.latitude.toString();
+
+                await this.submitPointCall(pointData);
+
+                this.getHistory();
             } else {
                 this.getView().getModel("inputModel").refresh();
                 this.messageHandler("pleaseCompleteFields");
@@ -561,7 +591,7 @@ sap.ui.define([
                 } else {
                     inputModel.setProperty("/county", "-");
                 };
-                inputModel.setProperty("/address", street);
+                inputModel.setProperty("/locationAddress", street);
                 inputModel.setProperty("/city", cityrest[0]);
                 inputModel.refresh();
 
@@ -573,11 +603,30 @@ sap.ui.define([
             });
         },
 
+
+        getLocationCoordinatesFromAddress: async function (pointData) {
+            let address = pointData.locationAddress.split(' ').join('+');
+            let response;
+            await this.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address},+${
+                pointData.city
+            },+${
+                pointData.county
+            },+romania&key=AIzaSyBJuQmFUNshQD7svm_tjfObJRS-pXwXmLA`).then(async (res) => {
+
+                response = res;
+            }).catch(async (err) => {
+                this.messageHandler("thisIsNotALocation");
+                response = 0;
+            })
+
+            return response;
+        },
+
         clearPages: function () {
 
             let inputModel = this.getView().getModel("inputModel");
 
-            inputModel.setProperty("/address", "");
+            inputModel.setProperty("/locationAddress", "");
             inputModel.setProperty("/city", "");
             inputModel.setProperty("/county", "");
             inputModel.setProperty("/administeredBy", "");

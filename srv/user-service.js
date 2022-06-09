@@ -1,6 +1,7 @@
 const cds = require("@sap/cds");
 const userRoles = ["Admin", "User"];
 const nodemailer = require("nodemailer")
+const {v4: uuidv4} = require('uuid');
 
 
 module.exports = cds.service.impl(srv => {
@@ -10,6 +11,13 @@ module.exports = cds.service.impl(srv => {
     srv.on(["CREATE"], 'Products', async (req, next) => {
         await next();
         await changeToId(req);
+    })
+    srv.on(["CREATE"], 'MapPoints', async (req, next) => {
+        await next();
+        await completeRequest(req);
+    })
+    srv.after(["CREATE"], 'MapPoints', async (req) => {
+        await changeProductNamesToId(req);
     })
     srv.on("getUserData", _getUserData);
     srv.on("getInstructionsBySubcategory", _getInstructionsBySubcategory);
@@ -59,7 +67,44 @@ async function changeToId(req) {
     const generalProduct = await SELECT.from('GeneralProducts').where({subcategory: req.data.parentkey})
     req.data.parent = generalProduct[0].ID;
 
+    if (req.data.rewardType !== 'none') {
+        req.data.reward = true;
+    } else {
+        req.data.reward = false;
+    };
     req.data.approved = "pending"
+    return req;
+}
+
+async function completeRequest(req) {
+    req.data.approved = "pending"
+    return req;
+}
+
+async function changeProductNamesToId(req) {
+
+    for (let name of req.productNames) {
+        try {
+            const generalProduct = await SELECT.from('GeneralProducts').where({subcategory: name})
+            let smt = {
+                INSERT: {
+                    into: {
+                        ref: ['GeneralProducts_MapPoints']
+                    },
+                    columns: [
+                        'mapPoint_ID', 'generalProduct_ID'
+                    ],
+                    values: [
+                        req.ID, generalProduct[0].ID
+                    ]
+                }
+            }
+
+            // let smt = await tx.create('GeneralProducts_MapPoints').entries({mapPoint_ID: req.ID, generalProduct_ID: generalProduct[0].ID})
+        } catch (err) {
+            console.log("Adding map point - general product failedfailed. Error: ", err)
+        }
+    }
     return req;
 }
 

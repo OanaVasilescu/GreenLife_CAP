@@ -465,8 +465,7 @@ sap.ui.define([
                         parentkey: comboBox.getSelectedKey()
                     }
                     await this.submitProductCall(product);
-                    this.getHistory();
-
+                    setTimeout(getHistory, 1000);
                 }
             }
         },
@@ -504,7 +503,7 @@ sap.ui.define([
                 }
 
 
-                if (response == 0) {
+                if (response == 0 || response.results[0].formatted_address == "Romania") {
                     this.getView().byId("addressPointInput").setValueState("Error");
 
                     this.messageHandler("pleaseEnterValidAddress");
@@ -512,9 +511,13 @@ sap.ui.define([
                 }
 
                 if (response != undefined) {
+
                     pointData.longitude = response.results[0].geometry.location.lng
                     pointData.latitude = response.results[0].geometry.location.lat
 
+                    const [locationAddress, ...rest] = response.results[0].formatted_address.split(',')
+                    pointData.locationAddress = locationAddress;
+                    pointData.city = rest[0];
                 } else {
                     const [long, ...rest] = coordinatesModel.getData()[0].location.split(';')
 
@@ -548,6 +551,7 @@ sap.ui.define([
 
         getHistory: async function () {
             this.get(URLs.getHistory()).then((res) => {
+
                 if (res.value.length != 0) {
                     res.value = res.value.sort((a, b) => {
                         return new Date(b.createdAt) - new Date(a.createdAt)

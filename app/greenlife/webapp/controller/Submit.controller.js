@@ -503,7 +503,7 @@ sap.ui.define([
                 }
 
 
-                if (response == 0 || response.results[0].formatted_address == "Romania") {
+                if (response == undefined) {} else if (response == 0 || response.results[0].formatted_address == "Romania") {
                     this.getView().byId("addressPointInput").setValueState("Error");
 
                     this.messageHandler("pleaseEnterValidAddress");
@@ -527,6 +527,7 @@ sap.ui.define([
 
                 pointData.longitude = pointData.longitude.toString();
                 pointData.latitude = pointData.latitude.toString();
+                debugger;
 
                 await this.submitPointCall(pointData);
 
@@ -591,7 +592,7 @@ sap.ui.define([
                 let county = res.results[0].address_components.find(el => el.long_name.includes('Jud'))
                 if (county !== undefined) {
                     const [jud, ...countyname] = county.long_name.split(" ");
-                    inputModel.setProperty("/county", countyname)
+                    inputModel.setProperty("/county", countyname[0])
                 } else {
                     inputModel.setProperty("/county", "-");
                 };

@@ -86,7 +86,7 @@ async function changeProductNamesToId(req) {
     for (let name of req.productNames) {
         try {
             const generalProduct = await SELECT.from('GeneralProducts').where({subcategory: name})
-            let smt = {
+            let query = {
                 INSERT: {
                     into: {
                         ref: ['GeneralProducts_MapPoints']
@@ -100,6 +100,7 @@ async function changeProductNamesToId(req) {
                 }
             }
 
+            cds.run(query)
             // let smt = await tx.create('GeneralProducts_MapPoints').entries({mapPoint_ID: req.ID, generalProduct_ID: generalProduct[0].ID})
         } catch (err) {
             console.log("Adding map point - general product failedfailed. Error: ", err)

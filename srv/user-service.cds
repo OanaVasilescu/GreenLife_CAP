@@ -2,10 +2,10 @@ using {greenlife.recycling.app as my} from '../db/schema';
 
 @requires : 'authenticated-user'
 service UserService @(path : '/greenLife') {
-    entity GeneralProducts @(restrict : []) as projection on my.GeneralProducts;
-    entity MapPoints                        as projection on my.MapPoints;
-    entity GeneralProducts_MapPoints        as projection on my.GeneralProducts_MapPoints;
-    entity Products                         as projection on my.Products;
+    entity GeneralProducts           as projection on my.GeneralProducts;
+    entity MapPoints                 as projection on my.MapPoints;
+    entity GeneralProducts_MapPoints as projection on my.GeneralProducts_MapPoints;
+    entity Products                  as projection on my.Products;
 
     function getUserData()                                      returns {
         user : String;

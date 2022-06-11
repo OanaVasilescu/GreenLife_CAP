@@ -15,4 +15,5 @@ service UserService @(path : '/greenLife') {
     function getInstructionsBySubcategory(subcategory : String) returns array of String;
     function sendMail()                                         returns String;
     function getHistory()                                       returns array of String;
+    function getSubmissions()                                   returns array of String;
 }

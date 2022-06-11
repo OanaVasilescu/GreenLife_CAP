@@ -50,5 +50,5 @@ aspect submitted {
 type Approval : String enum {
     Approved;
     Rejected;
-    Pending
+    Pending;
 }

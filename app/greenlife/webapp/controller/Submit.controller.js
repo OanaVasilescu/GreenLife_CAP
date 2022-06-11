@@ -465,7 +465,7 @@ sap.ui.define([
                         parentkey: comboBox.getSelectedKey()
                     }
                     await this.submitProductCall(product);
-                    setTimeout(getHistory, 1000);
+                    this.getHistory()
                 }
             }
         },
@@ -607,7 +607,6 @@ sap.ui.define([
                 this.messageHandler("locationError");
             });
         },
-
 
         getLocationCoordinatesFromAddress: async function (pointData) {
             let address = pointData.locationAddress.split(' ').join('+');

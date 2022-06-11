@@ -1,3 +1,103 @@
 <core:FragmentDefinition xmlns="sap.m"
+    xmlns:f="sap.f"
     xmlns:core="sap.ui.core">
+
+    <f:IllustratedMessage visible="{submissionsModel>/visibility}" illustrationType="sapIllus-NoData" description="{i18n>nosubmissions}" title="{i18n>nosubmissionsSubtitle}"/>
+    <List visible="{= !${submissionsModel>/visibility}}" items="{ path: 'submissionsModel>/items'}" growing="true" growingThreshold="6" growingScrollToLoad="false">
+        <items>
+            <CustomListItem>
+                <HBox class="sapUiSmallMargin" width="100%">
+                    <core:Icon size="2rem" src="{= ${submissionsModel>name}?'sap-icon://bar-code' : 'sap-icon://map'}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+                    <HBox visible="{=${submissionsModel>name}?true:false}" alignItems="Center" justifyContent="SpaceBetween" width="100%">
+                        <VBox class="sapUiSmallMarginBegin sapUiTinyMargin">
+                            <HBox>
+                                <Text text="{i18n>nameDouaPuncte}"/>
+                                <Text text="{submissionsModel>name}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop">
+                                <Text text="{i18n>barcodeDouaPuncte}"/>
+                                <Text text="{submissionsModel>barcode}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                        </VBox>
+                        <HBox class="sapUiLargeMarginEnd">
+                            <VBox alignItems="Center">
+                                <core:Icon size="2rem" src="{= ${submissionsModel>approved}==='Approved'?'sap-icon://accept' : (${submissionsModel>approved}==='Rejected'?'sap-icon://decline':'sap-icon://pending')}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" color="{= ${submissionsModel>approved}==='Approved'?'Positive' : (${submissionsModel>approved}==='Rejected'?'Negative':'Critical')}" />
+                                <HBox>
+                                    <Text text="{i18n>submittedAt}"/>
+
+                                    <Text text="{
+                                path: 'submissionsModel>createdAt', 
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                source: {
+                                    pattern: 'yyyy-MM-ddThh:mm:ss.SSSZ'
+                                },
+                                pattern: 'dd MMM yyyy'
+                                }
+                                }" class="sapUiTinyMarginBegin" />
+                                </HBox>
+                                <HBox>
+                                    <Text text="{i18n>status}"/>
+                                    <Text text="{=${submissionsModel>approved}?${submissionsModel>approved}:'Pending'}" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                    </HBox>
+
+                    <HBox visible="{=${submissionsModel>name}?false:true}" alignItems="Center" justifyContent="SpaceBetween" width="100%">
+                        <VBox class="sapUiSmallMarginBegin sapUiTinyMargin">
+                            <HBox>
+                                <Text text="{i18n>address}"/>
+                                <Text text="{= ${submissionsModel>locationAddress}+', ' + ${submissionsModel>city}}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop" visible="{= ${submissionsModel>administeredBy}?true:false}">
+                                <Text text="{i18n>administeredBy}"/>
+                                <Text text="{submissionsModel>administeredBy}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop" visible="{submissionsModel>reward}">
+                                <Text text="{i18n>rewardDouaPuncte}"/>
+                                <Text text="{submissionsModel>rewardType}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop">
+                                <Text text="{i18n>products}"/>
+
+                                <HBox>
+                                    <Text text="{submissionsModel>productTypes/0/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{submissionsModel>productTypes/1/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{submissionsModel>productTypes/2/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{submissionsModel>productTypes/3/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{submissionsModel>productTypes/4/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{submissionsModel>productTypes/5/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+
+                                </HBox>
+                            </HBox>
+                        </VBox>
+                        <HBox class="sapUiLargeMarginEnd">
+                            <VBox alignItems="Center">
+                                <core:Icon size="2rem" src="{= ${submissionsModel>approved}==='Approved'?'sap-icon://accept' : (${submissionsModel>approved}==='Rejected'?'sap-icon://decline':'sap-icon://pending')}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" color="{= ${submissionsModel>approved}==='Approved'?'Positive' : (${submissionsModel>approved}==='Rejected'?'Negative':'Critical')}" />
+                                <HBox>
+                                    <Text text="{i18n>submittedAt}"/>
+
+                                    <Text text="{
+                                path: 'submissionsModel>createdAt', 
+                                type: 'sap.ui.model.type.Date',	
+                                formatOptions: {
+                                source: {
+                                    pattern: 'yyyy-MM-ddThh:mm:ss.SSSZ'
+                                },
+                                pattern: 'dd MMM yyyy'
+                                }
+                                }" class="sapUiTinyMarginBegin" />
+                                </HBox>
+                                <HBox>
+                                    <Text text="{i18n>status}"/>
+                                    <Text text="{=${submissionsModel>approved}?${submissionsModel>approved}:'Pending'}" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                    </HBox>
+                </HBox>
+            </CustomListItem>
+        </items>
+    </List>
 </core:FragmentDefinition>

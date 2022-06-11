@@ -23,6 +23,7 @@ module.exports = cds.service.impl(srv => {
     srv.on("getInstructionsBySubcategory", _getInstructionsBySubcategory);
     srv.on("sendMail", _sendMail);
     srv.on("getHistory", _getHistory);
+    srv.on("getSubmissions", _getSubmissions);
 })
 
 async function _getUserData(req) {
@@ -72,12 +73,12 @@ async function changeToId(req) {
     } else {
         req.data.reward = false;
     };
-    req.data.approved = "pending"
+    req.data.approved = "Pending"
     return req;
 }
 
 async function completeRequest(req) {
-    req.data.approved = "pending"
+    req.data.approved = "Pending"
     return req;
 }
 
@@ -149,4 +150,44 @@ async function _getHistory(req) {
     history.push(... mapPoints)
 
     return history;
+}
+
+async function _getSubmissions(req) {
+    let submissions = []
+
+    let products = await SELECT.from('Products').where({approved: "Pending"});
+    let productsNull = await SELECT.from('Products').where({approved: null});
+
+    let mapPoints = await SELECT.from('MapPoints', el => {
+        el('*'),
+        el.productTypes(pr => {
+            pr('*'),
+            pr.generalProduct(gp => {
+                gp('*'),
+                gp.name,
+                gp.subcategory
+            })
+        })
+    }).where({approved: "Pending"});
+
+    let mapPointsNull = await SELECT.from('MapPoints', el => {
+        el('*'),
+        el.productTypes(pr => {
+            pr('*'),
+            pr.generalProduct(gp => {
+                gp('*'),
+                gp.name,
+                gp.subcategory
+            })
+        })
+    }).where({approved: null});
+
+
+    submissions.push(... products);
+    submissions.push(... productsNull);
+
+    submissions.push(... mapPoints);
+    submissions.push(... mapPointsNull);
+
+    return submissions;
 }

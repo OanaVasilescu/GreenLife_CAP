@@ -7,16 +7,16 @@ sap.ui.define([
         onInit: function () {
             this.getRouter().getRoute("RouteOverview").attachMatched(this.initPage, this);
 
-            this.getView().setModel(new JSONModel(), "historyModel")
+            this.getView().setModel(new JSONModel(), "submissionsModel")
 
         },
 
         initPage: function () {
-            this.getView().getModel("historyModel").setProperty("/visibility", true)
+            this.getView().getModel("submissionsModel").setProperty("/visibility", true)
 
-            this.getHistory();
+            this.getSubmissions();
             this.clearPages();
-            this.getView().getModel("historyModel").refresh();
+            this.getView().getModel("submissionsModel").refresh();
         },
 
 
@@ -57,7 +57,7 @@ sap.ui.define([
             var sSplitAppMode = oEvent.getSource().getSelectedButton().getCustomData()[0].getValue();
 
             this.getSplitAppObj().setMode(sSplitAppMode);
-            MessageToast.show("Split Container mode is changed to: " + sSplitAppMode, {duration: 5000});
+            this.messageHandler("SplitContainermode");
         },
 
         getSplitAppObj: function () {
@@ -68,20 +68,20 @@ sap.ui.define([
             return result;
         },
 
-        getHistory: async function () {
-            this.get(URLs.getHistory()).then((res) => {
-
+        getSubmissions: async function () {
+            this.get(URLs.getSubmissions()).then((res) => {
+                debugger;
                 if (res.value.length != 0) {
                     res.value = res.value.sort((a, b) => {
                         return new Date(b.createdAt) - new Date(a.createdAt)
                     });
-                    this.getView().getModel("historyModel").setProperty("/items", res.value)
-                    this.getView().getModel("historyModel").setProperty("/visibility", false)
-                    this.getView().getModel("historyModel").refresh();
+                    this.getView().getModel("submissionsModel").setProperty("/items", res.value)
+                    this.getView().getModel("submissionsModel").setProperty("/visibility", false)
+                    this.getView().getModel("submissionsModel").refresh();
                 }
             }).catch((err) => {
                 console.log(err);
-                this.messageHandler("getHistoryError")
+                this.messageHandler("getSubmissionsError")
             });
         },
 

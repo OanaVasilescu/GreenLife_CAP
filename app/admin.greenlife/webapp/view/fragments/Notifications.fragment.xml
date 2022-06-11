@@ -21,24 +21,9 @@
                         </VBox>
                         <HBox class="sapUiLargeMarginEnd">
                             <VBox alignItems="Center">
-                                <core:Icon size="2rem" src="{= ${submissionsModel>approved}==='Approved'?'sap-icon://accept' : (${submissionsModel>approved}==='Rejected'?'sap-icon://decline':'sap-icon://pending')}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" color="{= ${submissionsModel>approved}==='Approved'?'Positive' : (${submissionsModel>approved}==='Rejected'?'Negative':'Critical')}" />
                                 <HBox>
-                                    <Text text="{i18n>submittedAt}"/>
-
-                                    <Text text="{
-                                path: 'submissionsModel>createdAt', 
-                                type: 'sap.ui.model.type.Date',
-                                formatOptions: {
-                                source: {
-                                    pattern: 'yyyy-MM-ddThh:mm:ss.SSSZ'
-                                },
-                                pattern: 'dd MMM yyyy'
-                                }
-                                }" class="sapUiTinyMarginBegin" />
-                                </HBox>
-                                <HBox>
-                                    <Text text="{i18n>status}"/>
-                                    <Text text="{=${submissionsModel>approved}?${submissionsModel>approved}:'Pending'}" class="sapUiTinyMarginBegin"/>
+                                    <Button size="2rem" icon="sap-icon://accept" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" type="Accept" press="acceptSubmission" />
+                                    <Button size="2rem" icon="sap-icon://decline" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" type="Reject" press="rejectSubmission" />
                                 </HBox>
                             </VBox>
                         </HBox>
@@ -74,24 +59,9 @@
                         </VBox>
                         <HBox class="sapUiLargeMarginEnd">
                             <VBox alignItems="Center">
-                                <core:Icon size="2rem" src="{= ${submissionsModel>approved}==='Approved'?'sap-icon://accept' : (${submissionsModel>approved}==='Rejected'?'sap-icon://decline':'sap-icon://pending')}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" color="{= ${submissionsModel>approved}==='Approved'?'Positive' : (${submissionsModel>approved}==='Rejected'?'Negative':'Critical')}" />
                                 <HBox>
-                                    <Text text="{i18n>submittedAt}"/>
-
-                                    <Text text="{
-                                path: 'submissionsModel>createdAt', 
-                                type: 'sap.ui.model.type.Date',	
-                                formatOptions: {
-                                source: {
-                                    pattern: 'yyyy-MM-ddThh:mm:ss.SSSZ'
-                                },
-                                pattern: 'dd MMM yyyy'
-                                }
-                                }" class="sapUiTinyMarginBegin" />
-                                </HBox>
-                                <HBox>
-                                    <Text text="{i18n>status}"/>
-                                    <Text text="{=${submissionsModel>approved}?${submissionsModel>approved}:'Pending'}" class="sapUiTinyMarginBegin"/>
+                                    <Button size="2rem" icon="sap-icon://accept" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" type="Accept" press="acceptSubmission" />
+                                    <Button size="2rem" icon="sap-icon://decline" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" type="Reject" press="rejectSubmission" />
                                 </HBox>
                             </VBox>
                         </HBox>

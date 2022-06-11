@@ -85,6 +85,61 @@ sap.ui.define([
             });
         },
 
+        acceptSubmission: function (oEvent) {
+            let path = oEvent.getSource().getBindingContext("submissionsModel").getPath();
+            let data = this.getView().getModel("submissionsModel").getProperty(path);
+
+            data.approved = "Approved";
+            this.prepForUpdate(data);
+            if (data.hasOwnProperty("city")) {
+                this.updatePoint(data);
+            } else {
+                this.updateProduct(data);
+            }
+        },
+
+        rejectSubmission: function (oEvent) {
+            let path = oEvent.getSource().getBindingContext("submissionsModel").getPath();
+            let data = this.getView().getModel("submissionsModel").getProperty(path);
+
+            data.approved = "Rejected";
+            this.prepForUpdate(data);
+            if (data.hasOwnProperty(city)) {
+                this.updatePoint(data);
+            } else {
+                this.updateProduct(data);
+            }
+        },
+
+        updatePoint: function (point) {
+            this.put(URLs.getMapPoints() + "/" + point.ID, point).then((res) => {
+                this.getSubmissions();
+                return;
+            }).catch((err) => {
+                console.log(err);
+                this.messageHandler("editPointError")
+                return;
+            });
+        },
+
+        updateProduct: function (product) {
+            this.put(URLs.getProducts() + "/" + product.ID, product).then((res) => {
+                this.getSubmissions();
+                return;
+            }).catch((err) => {
+                console.log(err);
+                this.messageHandler("editProductError")
+                return;
+            });
+        },
+
+        prepForUpdate: function (data) { // we remove expanded associations
+            debugger;
+
+            delete data.productTypes;
+
+
+        },
 
         clearPages: function () {
             debugger;

@@ -2,5 +2,6 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.f"
     xmlns:m="sap.m">
-    <m:App id="app"/>
+    <m:App id="app">
+    </m:App>
 </mvc:View>

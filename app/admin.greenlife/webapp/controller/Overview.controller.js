@@ -134,11 +134,7 @@ sap.ui.define([
         },
 
         prepForUpdate: function (data) { // we remove expanded associations
-            debugger;
-
             delete data.productTypes;
-
-
         },
 
         clearPages: function () {

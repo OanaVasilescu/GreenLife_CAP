@@ -1,5 +1,5 @@
 ---
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: recycling_app
 version: 1.0.0
 description: "A simple CAP project."
@@ -9,9 +9,9 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-      - npm install --production
-      - npx -p @sap/cds-dk cds build --production
-      - npx rimraf gen/db/src/gen/data
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
+        - npx rimraf gen/db/src/gen/data
 
 modules:
   - name: recycling_app-srv
@@ -37,9 +37,9 @@ modules:
     requires:
       - name: recycling_app-hdi-container
 
-# ------------------------------------------------------------
+  # ------------------------------------------------------------
   - name: recycling_app-content
-# ------------------------------------------------------------
+    # ------------------------------------------------------------
     type: com.sap.application.content
     path: .
     requires:
@@ -54,9 +54,9 @@ modules:
           name: greenlife
           target-path: resources/
 
-# ------------------------------------------------------------
+  # ------------------------------------------------------------
   - name: recycling_app-destination-content
-# ------------------------------------------------------------
+    # ------------------------------------------------------------
     type: com.sap.application.content
     requires:
       - name: recycling_app-uaa
@@ -87,7 +87,6 @@ modules:
     build-parameters:
       no-source: true
 
-
   # # --------------------  APPROUTER -----------------------------
   # - name: recycling_app-approuter
   # # ------------------------------------------------------------
@@ -110,8 +109,8 @@ modules:
   #           - ./*
   #         target-path: resources
   # --------------------  UI -----------------------------------
-  - name: greenlife 
-  # ------------------------------------------------------------
+  - name: greenlife
+    # ------------------------------------------------------------
     type: html5
     path: app/greenlife
     build-parameters:
@@ -137,15 +136,15 @@ resources:
       service: xsuaa
       service-name: recycling_app-xsuaa-service
       service-plan: application
-      path: ./xs-security.json    
+      path: ./xs-security.json
 
-   # UI Theme Designer 
+    # UI Theme Designer
   - name: theme-generator
     parameters:
       service: theming
       service-plan: standard
     type: org.cloudfoundry.managed-service
-  
+
   #launchpad
   - name: recycling_app-destination-service
     type: org.cloudfoundry.managed-service
@@ -153,7 +152,7 @@ resources:
       service: destination
       service-plan: lite
       config:
-        HTML5Runtime_enabled: true 
+        HTML5Runtime_enabled: true
 
   - name: recycling_app-repo-host
     type: org.cloudfoundry.managed-service

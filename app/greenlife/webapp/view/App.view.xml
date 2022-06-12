@@ -1,7 +1,9 @@
 <mvc:View controllerName="greenlife.controller.App"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.f"
-    xmlns:m="sap.m">
+    xmlns:m="sap.m" height="100%">
+    <ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" enableScrolling="false" homeIconPressed="homeIconPress">
+    </ShellBar>
     <m:App id="app">
     </m:App>
 </mvc:View>

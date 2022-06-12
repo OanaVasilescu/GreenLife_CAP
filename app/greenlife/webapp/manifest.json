@@ -1,5 +1,5 @@
 {
-    "_version": "1.32.0",
+    "_version": "1.39.0",
     "sap.app": {
         "id": "greenlife",
         "type": "application",
@@ -57,7 +57,7 @@
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
-            "minUI5Version": "1.96.0",
+            "minUI5Version": "1.98.0",
             "libs": {
                 "sap.ui.core": {}
             }
@@ -123,6 +123,20 @@
                     "target": [
                         "RecyclingMap"
                     ]
+                },
+                {
+                    "name": "Report",
+                    "pattern": "report",
+                    "target": [
+                        "Report"
+                    ]
+                },
+                {
+                    "name": "Submit",
+                    "pattern": "submit/:page:",
+                    "target": [
+                        "Submit"
+                    ]
                 }
             ],
             "targets": {
@@ -153,6 +167,20 @@
                     "clearControlAggregation": false,
                     "viewId": "SearchProduct",
                     "viewName": "SearchProduct"
+                },
+                "Report": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Report",
+                    "viewName": "Report"
+                },
+                "Submit": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Submit",
+                    "viewName": "Submit"
                 }
             }
         },

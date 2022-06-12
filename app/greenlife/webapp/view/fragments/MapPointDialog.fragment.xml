@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    <Dialog id="mapPointDialog" class="sapUiSmallMarginBeginEnd" resizable="true">
+        <VBox>
+            <Text text="{mapPointDialogModel>/data/longitude}"/>
+            <Text text="{mapPointDialogModel>/data/latitude}"/>
+            <Text text="{= ${mapPointDialogModel>/data/locationAddress}+', '+ ${mapPointDialogModel>/data/city}}"/>
+            <!-- <Text text="{mapPointDialogModel>/data/city}"/> -->
+            <Text text="{mapPointDialogModel>/data/administeredBy}"/>
+            <Text text="{mapPointDialogModel>/data/rewardType}" visible="{mapPointDialogModel>/data/reward}"/>
+
+            <VBox items="{mapPointDialogModel>/data/productTypes}">
+                <Text text="{mapPointDialogModel>generalProduct/name}"/>
+            </VBox>
+        </VBox>
+        <buttons>
+            <Button text="{i18n>OK}" press=".onDialogClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

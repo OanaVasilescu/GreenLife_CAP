@@ -1,0 +1,108 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+    <f:IllustratedMessage visible="{historyModel>/visibility}" illustrationType="sapIllus-NoData" description="{i18n>nohistory}" title="{i18n>nohistorySubtitle}"/>
+    <List visible="{= !${historyModel>/visibility}}" items="{ path: 'historyModel>/items'}" growing="true" growingThreshold="6" growingScrollToLoad="false">
+        <items>
+            <CustomListItem>
+                <!-- <NotificationListItem title="{= (${historyModel>name}?${i18n>productNotification}:${i18n>pointNotification})}" description="{= (${historyModel>name}?(${historyModel>name}+', '+ ${historyModel>barcode}):'unknown')}" priority="{
+						path: 'priority',
+						formatter: '.priorityFormatter'
+					}"> -->
+
+                <HBox class="sapUiSmallMargin" width="100%">
+                    <core:Icon size="2rem" src="{= ${historyModel>name}?'sap-icon://bar-code' : 'sap-icon://map'}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+                    <HBox visible="{=${historyModel>name}?true:false}" alignItems="Center" justifyContent="SpaceBetween" width="100%">
+                        <VBox class="sapUiSmallMarginBegin sapUiTinyMargin">
+                            <HBox>
+                                <Text text="{i18n>nameDouaPuncte}"/>
+                                <Text text="{historyModel>name}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop">
+                                <Text text="{i18n>barcodeDouaPuncte}"/>
+                                <Text text="{historyModel>barcode}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                        </VBox>
+                        <HBox class="sapUiLargeMarginEnd">
+                            <VBox alignItems="Center">
+                                <core:Icon size="2rem" src="{= ${historyModel>approved}==='Approved'?'sap-icon://accept' : (${historyModel>approved}==='Rejected'?'sap-icon://decline':'sap-icon://pending')}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" color="{= ${historyModel>approved}==='Approved'?'Positive' : (${historyModel>approved}==='Rejected'?'Negative':'Critical')}" />
+                                <HBox>
+                                    <Text text="{i18n>submittedAt}"/>
+
+                                    <Text text="{
+                                path: 'historyModel>createdAt', 
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                source: {
+                                    pattern: 'yyyy-MM-ddThh:mm:ss.SSSZ'
+                                },
+                                pattern: 'dd MMM yyyy'
+                                }
+                                }" class="sapUiTinyMarginBegin" />
+                                </HBox>
+                                <HBox>
+                                    <Text text="{i18n>status}"/>
+                                    <Text text="{=${historyModel>approved}?${historyModel>approved}:'Pending'}" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                    </HBox>
+
+                    <HBox visible="{=${historyModel>name}?false:true}" alignItems="Center" justifyContent="SpaceBetween" width="100%">
+                        <VBox class="sapUiSmallMarginBegin sapUiTinyMargin">
+                            <HBox>
+                                <Text text="{i18n>address}"/>
+                                <Text text="{= ${historyModel>locationAddress}+', ' + ${historyModel>city}}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop" visible="{= ${historyModel>administeredBy}?true:false}">
+                                <Text text="{i18n>administeredBy}"/>
+                                <Text text="{historyModel>administeredBy}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop" visible="{historyModel>reward}">
+                                <Text text="{i18n>rewardDouaPuncte}"/>
+                                <Text text="{historyModel>rewardType}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop">
+                                <Text text="{i18n>products}"/>
+
+                                <HBox>
+                                    <Text text="{historyModel>productTypes/0/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{historyModel>productTypes/1/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{historyModel>productTypes/2/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{historyModel>productTypes/3/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{historyModel>productTypes/4/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+                                    <Text text="{historyModel>productTypes/5/generalProduct/name}" class="sapUiTinyMarginBegin"/>
+
+                                </HBox>
+                            </HBox>
+                        </VBox>
+                        <HBox class="sapUiLargeMarginEnd">
+                            <VBox alignItems="Center">
+                                <core:Icon size="2rem" src="{= ${historyModel>approved}==='Approved'?'sap-icon://accept' : (${historyModel>approved}==='Rejected'?'sap-icon://decline':'sap-icon://pending')}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" color="{= ${historyModel>approved}==='Approved'?'Positive' : (${historyModel>approved}==='Rejected'?'Negative':'Critical')}" />
+                                <HBox>
+                                    <Text text="{i18n>submittedAt}"/>
+
+                                    <Text text="{
+                                path: 'historyModel>createdAt', 
+                                type: 'sap.ui.model.type.Date',	
+                                formatOptions: {
+                                source: {
+                                    pattern: 'yyyy-MM-ddThh:mm:ss.SSSZ'
+                                },
+                                pattern: 'dd MMM yyyy'
+                                }
+                                }" class="sapUiTinyMarginBegin" />
+                                </HBox>
+                                <HBox>
+                                    <Text text="{i18n>status}"/>
+                                    <Text text="{=${historyModel>approved}?${historyModel>approved}:'Pending'}" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                    </HBox>
+                </HBox>
+            </CustomListItem>
+        </items>
+    </List>
+
+</core:FragmentDefinition>

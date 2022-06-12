@@ -11,24 +11,44 @@ entity GeneralProducts : cuid {
     recyclingRestrictions : localized String;
     recyclingInstructions : localized String;
     subcategory           : String;
-    products              : Association to many Products;
+    products              : Association to many Products
+                                on products.parent = $self;
     mapLocation           : Association to many GeneralProducts_MapPoints
                                 on mapLocation.generalProduct = $self;
 }
 
-entity Products : cuid {
-    parent  : Association to one GeneralProducts;
-    barcode : String; //not sure
-    name    : String;
+entity Products : cuid, managed, submitted {
+    parent    : Association to one GeneralProducts;
+    parentkey : String;
+    barcode   : String; //not sure
+    name      : String;
 }
 
-entity MapPoints : cuid {
-    coordinates  : String;
-    productTypes : Association to many GeneralProducts_MapPoints
-                       on productTypes.mapPoint = $self;
+entity MapPoints : cuid, managed, submitted {
+    longitude       : String;
+    latitude        : String;
+    locationAddress : String;
+    city            : String;
+    county          : String;
+    reward          : Boolean;
+    rewardType      : String;
+    administeredBy  : String;
+    productTypes    : Association to many GeneralProducts_MapPoints
+                          on productTypes.mapPoint = $self;
+    productNames    : array of String;
 }
 
 entity GeneralProducts_MapPoints : cuid {
     mapPoint       : Association to MapPoints;
     generalProduct : Association to GeneralProducts;
+}
+
+aspect submitted {
+    approved : Approval;
+}
+
+type Approval : String enum {
+    Approved;
+    Rejected;
+    Pending;
 }

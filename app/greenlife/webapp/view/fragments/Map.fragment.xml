@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:vk="sap.ui.vk"
+    xmlns:vbm="sap.ui.vbm"
+    xmlns:core="sap.ui.core">
+    <vk:MapContainer>
+        <!-- <vk:listPanelStack>
+            <vk:ListPanelStack width="230px">
+                <vk:content>
+                    <vk:ListPanel headerText="Legend" selectionMode="SingleSelectMaster" headerIcon="sap-icon://legend" expanded="true">
+                        <vk:items>
+                            <GroupHeaderListItem title="Transport" upperCase="false" />
+                            <vk:LegendItem title="Truck" icon="sap-icon://shipping-status" />
+                            <vk:LegendItem title="Train" icon="sap-icon://cargo-train" />
+                            <GroupHeaderListItem title="Status" upperCase="false" />
+                            <vk:LegendItem title="&gt; 1h delay" color="rgb(211,32,48)" />
+                            <vk:LegendItem title="&lt; 1h delay" color="rgb(225,123,36)" />
+                            <vk:LegendItem title="on time" color="rgb(97,166,86)" />
+                        </vk:items>
+                    </vk:ListPanel>
+                </vk:content>
+            </vk:ListPanelStack>
+        </vk:listPanelStack> -->
+
+        <vk:content>
+            <vk:ContainerContent title="{i18n>recyclingMap}" icon="sap-icon://geographic-bubble-chart">
+                <vk:content>
+                    <vbm:GeoMap centerPosition="{mapModel>/center}" initialZoom="{mapModel>/initialZoom}" width="100%" height="100%" mapConfiguration="{mapConfigModel>/config}">
+                        <vbm:resources>
+                            <vbm:Resource name="black" src="{pinModel>/black}"/>
+                            <vbm:Resource name="blue" src="{pinModel>/blue}"/>
+                            <vbm:Resource name="brown" src="{pinModel>/brown}"/>
+                            <vbm:Resource name="dark_blue" src="{pinModel>/dark_blue}"/>
+                            <vbm:Resource name="gray" src="{pinModel>/gray}"/>
+                            <vbm:Resource name="dark_green" src="{pinModel>/dark_green}"/>
+                            <vbm:Resource name="green" src="{pinModel>/green}"/>
+                            <vbm:Resource name="orange" src="{pinModel>/orange}"/>
+                            <vbm:Resource name="pink" src="{pinModel>/pink}"/>
+                            <vbm:Resource name="purple" src="{pinModel>/purple}"/>
+                            <vbm:Resource name="red" src="{pinModel>/red}"/>
+                            <vbm:Resource name="turqoise" src="{pinModel>/turqoise}"/>
+                            <vbm:Resource name="white" src="{pinModel>/white}"/>
+                            <vbm:Resource name="yellow" src="{pinModel>/yellow}"/>
+                        </vbm:resources>
+                        <vbm:clusters>
+                            <vbm:ClusterTree id="clusterTree" textProperty="text" areaAlwaysVisible="false" areaColor="rgba(255,255,255,0)" areaColorBorder="rgba(255,255,255,0)">
+                                <vbm:vizTemplate>
+                                    <vbm:Cluster id="vizTemplate" type="Success" icon="sap-icon://delete" />
+                                </vbm:vizTemplate>
+                            </vbm:ClusterTree>
+                        </vbm:clusters>
+                        <vbm:vos>
+                            <vbm:Spots items="{mapPointsModel>/visible}">
+                                <vbm:items>
+                                    <vbm:Spot position="{=${mapPointsModel>longitude}+';'+${mapPointsModel>latitude}}" image="dark_green" click="pressPin">
+                                        <vbm:customData>
+                                            <core:CustomData key='status' />
+                                        </vbm:customData>
+                                    </vbm:Spot>
+                                </vbm:items>
+                            </vbm:Spots>
+                        </vbm:vos>
+                    </vbm:GeoMap>
+                </vk:content>
+            </vk:ContainerContent>
+        </vk:content>
+    </vk:MapContainer>
+</core:FragmentDefinition>

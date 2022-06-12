@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <VBox class="sapUiMediumMargin">
+        <Text text="{= ${productModel>index}+'. ' + ${productModel>part} +', ' + ${productModel>product}}"/>
+    </VBox>
+</core:FragmentDefinition>

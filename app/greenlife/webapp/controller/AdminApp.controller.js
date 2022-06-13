@@ -133,7 +133,7 @@ sap.ui.define([
 
         getProducts: async function () {
             return await this.get(URLs.getGeneralProduct()).then(async mapPoints => {
-                this.getView().getModel("productsModel").setData(final);
+                this.getView().getModel("productsModel").setData(mapPoints.value);
                 return mapPoints;
             }).catch(err => {
                 this.messageHandler("getproductsError")

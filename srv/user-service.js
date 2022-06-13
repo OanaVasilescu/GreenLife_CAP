@@ -12,6 +12,11 @@ module.exports = cds.service.impl(srv => {
         await next();
         await changeToId(req);
     })
+    srv.on(["READ"], 'GeneralProducts', async (req, next) => {
+        await next();
+
+        await doNothing(req);
+    })
     srv.on(["CREATE"], 'MapPoints', async (req, next) => {
         await next();
         await completeRequest(req);
@@ -37,7 +42,6 @@ async function _getUserData(req) {
             roles.push(role)
         }
     })
-
     return({user: userEmail, roles: roles})
 }
 
@@ -191,4 +195,11 @@ async function _getSubmissions(req) {
     submissions.push(... mapPointsNull);
 
     return submissions;
+}
+
+
+function doNothing(req) {
+    // console.log(req.user.locale)
+    // console.log(req)
+    return req
 }

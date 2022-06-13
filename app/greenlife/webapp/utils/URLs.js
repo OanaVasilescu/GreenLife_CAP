@@ -15,6 +15,7 @@ sap.ui.define([], function () {
     const getHistory = "/getHistory()"
     const getSubmissions = "/getSubmissions()"
 
+    const romanianExtension = '?&sap-language=ro';
 
     return {
         getUser: function () {

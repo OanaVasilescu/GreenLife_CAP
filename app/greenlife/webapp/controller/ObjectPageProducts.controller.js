@@ -19,7 +19,7 @@ sap.ui.define([
         },
 
         getProduct: async function (sHashParams) {
-            return await this.get(URLs.getGeneralProduct() + "/" + sHashParams).then(async pr => {
+            return await this.get(URLs.getGeneralProduct() + "/" + sHashParams + "?&$expand=texts").then(async pr => {
                 debugger;
                 this.getView().getModel("productModel").setData(pr);
             }).catch(err => {

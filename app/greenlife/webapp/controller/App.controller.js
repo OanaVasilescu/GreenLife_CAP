@@ -8,43 +8,47 @@ sap.ui.define([
     "use strict";
 
     return BaseController.extend("greenlife.controller.App", {
+
         onInit: async function () {
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+
+
             this.getView().setModel(new JSONModel(), "userDetailsModel");
             let isAdmin = await this.getUserData();
             let oModel = new JSONModel({
                     "items": [
                         {
                             "src": "sap-icon://home",
-                            "title": "{i18n>Home}",
-                            "subTitle": "{i18n>CentralHome}",
+                            "title": oResourceBundle.getText("Home"),
+                            "subTitle": oResourceBundle.getText("CentralHome"),
                             "visible": true
                         },
                         {
                             "src": "sap-icon://search",
-                            "title": "{i18n>searchProductTileTitle}",
-                            "subTitle": "{i18n>searchProductTileSubTitle}",
+                            "title": oResourceBundle.getText("searchProductTileTitle"),
+                            "subTitle": oResourceBundle.getText("searchProductTileSubTitle"),
                             "visible": true
                         },
                         {
                             "src": "sap-icon://map-2",
-                            "title": "{i18n>mapTileTitle}",
-                            "subTitle": "{i18n>mapTileSubTitle}",
+                            "title": oResourceBundle.getText("mapTileTitle"),
+                            "subTitle": oResourceBundle.getText("mapTileSubTitle"),
                             "visible": true
                         },
                         {
                             "src": "sap-icon://home-share",
-                            "title": "{i18n>reportTileTitle}",
-                            "subTitle": "{i18n>reportTileSubTitle}",
+                            "title": oResourceBundle.getText("reportTileTitle"),
+                            "subTitle": oResourceBundle.getText("reportTileSubTitle"),
                             "visible": true
                         }, {
                             "src": "sap-icon://add-document",
-                            "title": "{i18n>submitTileTitle}",
-                            "subTitle": "{i18n>submitTileSubTitle}",
+                            "title": oResourceBundle.getText("submitTileTitle"),
+                            "subTitle": oResourceBundle.getText("submitTileSubTitle"),
                             "visible": true
                         }, {
                             "src": "sap-icon://key-user-settings",
-                            "title": "{i18n>adminAppTileTitle}",
-                            "subTitle": "{i18n>adminAppTileSubTitle}",
+                            "title": oResourceBundle.getText("adminAppTileTitle"),
+                            "subTitle": oResourceBundle.getText("adminAppTileSubTitle"),
                             "visible": isAdmin
                         }
                     ]

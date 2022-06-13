@@ -3,7 +3,7 @@
     <Table id="idProductsTable" inset="false" items="{
 			path: 'mapPointsModel>/',
 			sorter: {
-				path: 'name'
+				path: 'locationAddress'
 			}
 		}">
         <infoToolbar>
@@ -12,22 +12,30 @@
             </OverflowToolbar>
         </infoToolbar>
         <columns>
-            <Column width="12em">
-                <Text text="Product" />
+            <Column>
+                <Text text="{i18n>adress}" />
             </Column>
-            <Column minScreenWidth="Tablet" demandPopin="true">
-                <Text text="Supplier" />
+            <Column>
+                <Text text="{i18n>city}" />
             </Column>
-            <Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                <Text text="Dimensions" />
+            <Column>
+                <Text text="{i18n>administeredBy}" />
+            </Column>
+            <Column demandPopin="true">
+                <Text text="{i18n>rewardType}" />
+            </Column>
+            <Column demandPopin="true">
+                <Text text="{i18n>productTypes}" />
             </Column>
         </columns>
         <items>
             <ColumnListItem vAlign="Middle">
                 <cells>
-                    <ObjectIdentifier title="{Name}" text="{ProductId}"/>
-                    <Text text="{SupplierName}" />
-                    <Text text="{Width} x {Depth} x {Height} {DimUnit}" />
+                    <Text text="{mapPointsModel>locationAddress}" />
+                    <Text text="{mapPointsModel>city}" />
+                    <Text text="{mapPointsModel>administeredBy}" />
+                    <Text text="{mapPointsModel>rewardType}" />
+                    <Text text="{mapPointsModel>productTypes}" />
                 </cells>
             </ColumnListItem>
         </items>

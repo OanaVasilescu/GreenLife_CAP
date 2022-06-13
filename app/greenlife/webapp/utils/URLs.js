@@ -4,6 +4,7 @@ sap.ui.define([], function () {
     const origin = "http://localhost:4004"
     const userService = "/greenlife";
     const products = "/Products";
+    const expandProduct = "?&$expand=parent"
     const generalProducts = "/GeneralProducts";
     const slash = "/";
     const getInstructionsBySubcategory = "/getInstructionsBySubcategory";
@@ -30,6 +31,10 @@ sap.ui.define([], function () {
         },
         getProducts: function () {
             return origin + userService + products;
+        },
+
+        getExpandedProduct: function () {
+            return origin + userService + products + expandProduct;
         },
 
         getHistory: function () {

@@ -8,26 +8,26 @@
 		}">
         <infoToolbar>
             <OverflowToolbar>
-                <Label text="Wide range of available products"/>
+                <Label text="{i18n>Widerangeofavailableproducts}"/>
             </OverflowToolbar>
         </infoToolbar>
         <columns>
             <Column width="12em">
-                <Text text="Product" />
+                <Text text="{i18n>name}" />
             </Column>
-            <Column minScreenWidth="Tablet" demandPopin="true">
-                <Text text="Supplier" />
+            <Column >
+                <Text text="{i18n>materialtype}" />
             </Column>
-            <Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                <Text text="Dimensions" />
+            <Column hAlign="End">
+                <Text text="{i18n>barcode}" />
             </Column>
         </columns>
         <items>
             <ColumnListItem vAlign="Middle">
                 <cells>
-                    <ObjectIdentifier title="{Name}" text="{ProductId}"/>
-                    <Text text="{SupplierName}" />
-                    <Text text="{Width} x {Depth} x {Height} {DimUnit}" />
+                    <ObjectIdentifier title="{productsBarcodesModel>name}" />
+                    <Text text="{productsBarcodesModel>parent/name}" />
+                    <Text text="{productsBarcodesModel>barcode}" />
                 </cells>
             </ColumnListItem>
         </items>

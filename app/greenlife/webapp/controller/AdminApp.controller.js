@@ -139,7 +139,7 @@ sap.ui.define([
         },
 
         getProductBarcodes: async function () {
-            return await this.get(URLs.getProducts()).then(async mapPoints => {
+            return await this.get(URLs.getExpandedProduct()).then(async mapPoints => {
                 this.getView().getModel("productsBarcodesModel").setData(mapPoints.value);
                 return mapPoints;
             }).catch(err => {

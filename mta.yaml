@@ -12,10 +12,9 @@ build-parameters:
       commands:
         - npm install --production
         - npx -p @sap/cds-dk cds build --production
-        - npx rimraf gen/db/src/gen/data
 
 modules:
-  - name: recycling_app-srv
+  - name: recycling_app-srv-good
     type: nodejs
     path: gen/srv
     parameters:
@@ -27,16 +26,16 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: recycling_app-hdi-container
+      - name: recycling_app-hdi-container-good
       - name: recycling_app-uaa
 
-  - name: recycling_app-db-deployer
+  - name: recycling_app-db-deployer-good
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: recycling_app-hdi-container
+      - name: recycling_app-hdi-container-good
 
   # ------------------------------------------------------------
   - name: recycling_app-content
@@ -123,7 +122,7 @@ modules:
       supported-platforms: []
 
 resources:
-  - name: recycling_app-hdi-container
+  - name: recycling_app-hdi-container-good
     type: com.sap.xs.hdi-container
     parameters:
       service: hana # or 'hanatrial' on trial landscapes
@@ -155,18 +154,7 @@ resources:
       service: destination
       service-plan: lite
       config:
-        init_data:
-          subaccount:
-            existing_destinations_policy: update
-            destinations:
-              - Name: recycling_app
-                Description: CAP sample service
-                Authentication: NoAuthentication
-                ProxyType: Internet
-                Type: HTTP
-                URL: ~{srv-api/srv-url}
-                HTML5.DynamicDestination: true
-                ForwardAuthToken: true
+        HTML5Runtime_enabled: true
 
   - name: recycling_app-repo-host
     type: org.cloudfoundry.managed-service

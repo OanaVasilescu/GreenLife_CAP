@@ -45,13 +45,14 @@ sap.ui.define([
             let isAdmin = false;
             await new Promise((resolve, reject) => {
                 this.get(URLs.getUser()).then((res) => {
+                    debugger
                     resolve(res.user);
                 }).catch((err) => {
                     MessageToast.show(err);
                     reject(err);
                 });
             }).then(async (res) => {
-                if (res == 'admin') {
+                if (res == 'oana.vasilescu@sap.com' || res == 'greenlife.recycling.app@gmail.com') {
                     isAdmin = true;
                 }
                 // this.getOwnerComponent().getModel("userDetailsModel").setProperty("isAdmin", isAdmin);

@@ -37,7 +37,6 @@ sap.ui.define([
         },
 
         createUrl: function (url) {
-            debugger;
             return this.getOwnerComponent().getManifestObject().resolveUri(url);
             // return url;
         },

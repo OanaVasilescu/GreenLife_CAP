@@ -1,0 +1,37 @@
+<mvc:View controllerName="greenlife.controller.AdminApp"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="page" title="{i18n>title}">
+        <SplitApp id="adminApp" initialDetail="" initialMaster="master">
+            <detailPages>
+                <Page id="notifications" title="{i18n>notifications}" backgroundDesign= "Solid">
+                    <c:Fragment fragmentName="greenlife.view.fragments.admin.Notifications" type="XML" />
+                </Page>
+
+                <Page id="Products" title="{i18n>Products}" backgroundDesign= "Solid">
+                    <c:Fragment fragmentName="greenlife.view.fragments.admin.ProductsPage" type="XML" />
+                </Page>
+
+                <Page id="MapPoints" title="{i18n>MapPoints}" backgroundDesign= "Solid">
+                    <c:Fragment fragmentName="greenlife.view.fragments.admin.MapPointsPage" type="XML" />
+                </Page>
+
+                <!-- <Page id="emptyPage" title="{i18n>SubmitData}" backgroundDesign= "Solid" showNavButton="true" navButtonPress=".onPressDetailBack">
+            </Page> -->
+            </detailPages>
+            <masterPages>
+                <Page id="master" title="{i18n>adminApp}" backgroundDesign= "List">
+                    <List itemPress=".onListItemPress">
+                        <items>
+                            <StandardListItem title="{i18n>ToProductsPage}" type="Active" custom:to="Products" />
+                            <StandardListItem title="{i18n>ToMapPointsPage}" type="Active" custom:to="MapPoints" />
+                            <StandardListItem title="{i18n>ToNotificationsPage}" type="Active" custom:to="notifications" />
+                        </items>
+                    </List>
+                </Page>
+            </masterPages>
+        </SplitApp>
+    </Page>
+</mvc:View>

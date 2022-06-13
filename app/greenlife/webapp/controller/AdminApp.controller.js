@@ -1,11 +1,12 @@
 sap.ui.define([
-    "admin/greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "admin/greenlife/utils/URLs"
-], function (BaseController, JSONModel, URLs) {
+    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "sap/ui/core/Fragment", "sap/ui/Device",
+], function (BaseController, JSONModel, Fragment, Device) {
     "use strict";
 
-    return BaseController.extend("admin.greenlife.controller.Overview", {
+    return BaseController.extend("greenlife.controller.AdminApp", {
+
         onInit: function () {
-            this.getRouter().getRoute("RouteOverview").attachMatched(this.initPage, this);
+            this.getRouter().getRoute("AdminApp").attachMatched(this.initPage, this);
 
             this.getView().setModel(new JSONModel(), "submissionsModel")
 
@@ -139,5 +140,5 @@ sap.ui.define([
         clearPages: function () {
             debugger;
         }
-    });
-});
+    })
+})

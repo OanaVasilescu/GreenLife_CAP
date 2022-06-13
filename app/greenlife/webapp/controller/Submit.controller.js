@@ -527,7 +527,7 @@ sap.ui.define([
 
                 pointData.longitude = pointData.longitude.toString();
                 pointData.latitude = pointData.latitude.toString();
-                debugger;
+
 
                 await this.submitPointCall(pointData);
 

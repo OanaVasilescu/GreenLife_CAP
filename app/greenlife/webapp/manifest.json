@@ -137,6 +137,13 @@
                     "target": [
                         "Submit"
                     ]
+                },
+                {
+                    "name": "AdminApp",
+                    "pattern": "admin/:page:",
+                    "target": [
+                        "AdminApp"
+                    ]
                 }
             ],
             "targets": {
@@ -181,6 +188,13 @@
                     "clearControlAggregation": false,
                     "viewId": "Submit",
                     "viewName": "Submit"
+                },
+                "AdminApp": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "AdminApp",
+                    "viewName": "AdminApp"
                 }
             }
         },

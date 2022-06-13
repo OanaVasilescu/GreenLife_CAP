@@ -48,8 +48,6 @@ sap.ui.define([
         },
 
         fnChange: function (oEvent) {
-            debugger;
-
             let src = oEvent.getParameter("itemPressed").getId();
 
             switch (src) {

@@ -1,6 +1,6 @@
 sap.ui.define([], function () {
     "use strict";
-    const origin = "http://localhost:4004";
+    const origin = "https://d14c7732trial-dev-recycling-app-srv.cfapps.us10.hana.ondemand.com";
     const userService = "/greenlife";
     const products = "/Products";
     const generalProducts = "/GeneralProducts";

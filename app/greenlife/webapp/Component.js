@@ -33,7 +33,7 @@ sap.ui.define([
             //     console.log("create button:", err);
             // }
 
-            let oRenderer = sap.ushell.Container.getRenderer("fiori2");
+            // let oRenderer = sap.ushell.Container.getRenderer("fiori2");
 
             // if (oRenderer) {
             //     oRenderer.addHeaderEndItem("sap.ushell.ui.shell.ShellHeadItem", {

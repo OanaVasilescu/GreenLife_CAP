@@ -1,7 +1,7 @@
 using {greenlife.recycling.app as my} from '../db/schema';
 
 @requires : 'authenticated-user'
-service UserService @(path : '/greenLife') {
+service UserService @(path : '/greenlife') {
     entity GeneralProducts           as projection on my.GeneralProducts;
     entity MapPoints                 as projection on my.MapPoints;
     entity GeneralProducts_MapPoints as projection on my.GeneralProducts_MapPoints;

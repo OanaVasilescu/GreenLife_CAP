@@ -5,6 +5,7 @@ version: 1.0.0
 description: "A simple CAP project."
 parameters:
   enable-parallel-deployments: true
+  deploy_mode: html5-repo
 build-parameters:
   before-all:
     - builder: custom
@@ -148,11 +149,24 @@ resources:
   #launchpad
   - name: recycling_app-destination-service
     type: org.cloudfoundry.managed-service
+    requires:
+      - name: srv-api
     parameters:
       service: destination
       service-plan: lite
       config:
-        HTML5Runtime_enabled: true
+        init_data:
+          subaccount:
+            existing_destinations_policy: update
+            destinations:
+              - Name: recycling_app
+                Description: CAP sample service
+                Authentication: NoAuthentication
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+                HTML5.DynamicDestination: true
+                ForwardAuthToken: true
 
   - name: recycling_app-repo-host
     type: org.cloudfoundry.managed-service

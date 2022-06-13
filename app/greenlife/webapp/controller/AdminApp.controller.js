@@ -133,8 +133,6 @@ sap.ui.define([
 
         getProducts: async function () {
             return await this.get(URLs.getGeneralProduct()).then(async mapPoints => {
-                let final = mapPoints.value.filter(el => el.approved == 'Approved');
-
                 this.getView().getModel("productsModel").setData(final);
                 return mapPoints;
             }).catch(err => {

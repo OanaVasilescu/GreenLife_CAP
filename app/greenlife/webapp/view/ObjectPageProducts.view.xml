@@ -45,11 +45,11 @@
                     <ObjectPageSubSection title="{i18n>howToCollect}" titleUppercase="false">
                         <blocks>
                             <m:HBox width="100%" justifyContent="SpaceBetween">
-                                <m:VBox>
-                                    <m:Text text="{productModel>/howToCollect}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true" />
+                                <m:VBox class="sapUiLargeMarginEnd">
+                                    <m:FormattedText htmlText="{productModel>/howToCollect}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true" />
                                 </m:VBox>
                                 <m:VBox>
-                                    <m:Text text="{productModel>/texts/0/howToCollect}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true"/>
+                                    <m:FormattedText htmlText="{productModel>/texts/0/howToCollect}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true"/>
                                 </m:VBox>
                             </m:HBox>
                         </blocks>
@@ -62,11 +62,11 @@
                     <ObjectPageSubSection title="{i18n>recyclingInstructions}" titleUppercase="false">
                         <blocks>
                             <m:HBox width="100%" justifyContent="SpaceBetween">
-                                <m:VBox>
-                                    <m:Text text="{productModel>/recyclingInstructions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true" />
+                                <m:VBox class="sapUiLargeMarginEnd">
+                                    <m:FormattedText htmlText="{productModel>/recyclingInstructions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true" />
                                 </m:VBox>
                                 <m:VBox>
-                                    <m:Text text="{productModel>/texts/0/recyclingInstructions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true"/>
+                                    <m:FormattedText htmlText="{productModel>/texts/0/recyclingInstructions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true"/>
                                 </m:VBox>
                             </m:HBox>
                         </blocks>
@@ -79,11 +79,11 @@
                     <ObjectPageSubSection titleUppercase="false" title="{i18n>recyclingRestrictions}">
                         <blocks>
                             <m:HBox width="100%" justifyContent="SpaceBetween">
-                                <m:VBox>
-                                    <m:Text text="{productModel>/recyclingRestrictions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true" />
+                                <m:VBox class="sapUiLargeMarginEnd">
+                                    <m:FormattedText htmlText="{productModel>/recyclingRestrictions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true" />
                                 </m:VBox>
                                 <m:VBox>
-                                    <m:Text text="{productModel>/texts/0/recyclingRestrictions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true"/>
+                                    <m:FormattedText htmlText="{productModel>/texts/0/recyclingRestrictions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" wrapping="true"/>
                                 </m:VBox>
                             </m:HBox>
                         </blocks>

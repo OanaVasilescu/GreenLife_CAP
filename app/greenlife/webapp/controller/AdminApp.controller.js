@@ -122,7 +122,8 @@ sap.ui.define([
 
         getMapPoints: async function () {
             return await this.get(URLs.getMapPoints()).then(async mapPoints => {
-                this.getView().getModel("mapPointsModel").setData(mapPoints.value);
+                let final = mapPoints.value.filter(el => el.approved == 'Approved');
+                this.getView().getModel("mapPointsModel").setData(final);
                 return mapPoints;
             }).catch(err => {
                 this.messageHandler("getMapPointsError")
@@ -131,7 +132,9 @@ sap.ui.define([
 
         getProducts: async function () {
             return await this.get(URLs.getGeneralProduct()).then(async mapPoints => {
-                this.getView().getModel("productsModel").setData(mapPoints.value);
+                let final = mapPoints.value.filter(el => el.approved == 'Approved');
+
+                this.getView().getModel("productsModel").setData(final);
                 return mapPoints;
             }).catch(err => {
                 this.messageHandler("getproductsError")
@@ -140,7 +143,9 @@ sap.ui.define([
 
         getProductBarcodes: async function () {
             return await this.get(URLs.getExpandedProduct()).then(async mapPoints => {
-                this.getView().getModel("productsBarcodesModel").setData(mapPoints.value);
+                let final = mapPoints.value.filter(el => el.approved == 'Approved');
+
+                this.getView().getModel("productsBarcodesModel").setData(final);
                 return mapPoints;
             }).catch(err => {
                 this.messageHandler("getproductsError")

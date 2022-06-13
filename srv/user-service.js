@@ -19,6 +19,7 @@ module.exports = cds.service.impl(srv => {
     srv.after(["CREATE"], 'MapPoints', async (req) => {
         await changeProductNamesToId(req);
     })
+
     srv.on("getUserData", _getUserData);
     srv.on("getInstructionsBySubcategory", _getInstructionsBySubcategory);
     srv.on("sendMail", _sendMail);

@@ -1,3 +1,33 @@
 <core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core">
+    <Table id="idPointsTable" inset="false" items="{
+			path: 'products>/',
+			sorter: {
+				path: 'name'
+			}
+		}">
+        <infoToolbar>
+            <OverflowToolbar>
+                <Label text="{i18n>pointsTableLabel}"/>
+            </OverflowToolbar>
+        </infoToolbar>
+        <columns>
+            <Column width="12em">
+                <Text text="{i18n>Product}" />
+            </Column>
+            <Column demandPopin="true">
+                <Text text="{i18n>noOfProductsAssociated}" />
+            </Column>
+            <Column demandPopin="true" hAlign="End">
+                <Text text="{i18n>noOfProductsAssociated}" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem vAlign="Middle">
+                <cells>
+                    <ObjectIdentifier title="{products>name}"/>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
 </core:FragmentDefinition>

@@ -13,6 +13,10 @@
                 <c:Fragment fragmentName="greenlife.view.fragments.admin.ProductsPage" type="XML" />
             </Page>
 
+            <Page id="ProductsBarcodes" title="{i18n>Productsbarcodes}" backgroundDesign= "Solid">
+                <c:Fragment fragmentName="greenlife.view.fragments.admin.BarcodesTable" type="XML" />
+            </Page>
+
             <Page id="MapPoints" title="{i18n>MapPoints}" backgroundDesign= "Solid">
                 <c:Fragment fragmentName="greenlife.view.fragments.admin.MapPointsPage" type="XML" />
             </Page>
@@ -25,6 +29,7 @@
                 <List itemPress=".onListItemPress">
                     <items>
                         <StandardListItem title="{i18n>ToProductsPage}" type="Active" custom:to="Products" />
+                        <StandardListItem title="{i18n>ToProductsBarcodesPage}" type="Active" custom:to="ProductsBarcodes" />
                         <StandardListItem title="{i18n>ToMapPointsPage}" type="Active" custom:to="MapPoints" />
                         <StandardListItem title="{i18n>ToNotificationsPage}" type="Active" custom:to="notifications" />
                     </items>

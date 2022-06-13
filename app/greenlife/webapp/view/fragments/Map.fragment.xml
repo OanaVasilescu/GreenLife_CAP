@@ -44,7 +44,7 @@
                         <vbm:clusters>
                             <vbm:ClusterTree id="clusterTree" textProperty="text" areaAlwaysVisible="false" areaColor="rgba(255,255,255,0)" areaColorBorder="rgba(255,255,255,0)">
                                 <vbm:vizTemplate>
-                                    <vbm:Cluster id="vizTemplate" type="Success" icon="sap-icon://delete" />
+                                    <vbm:Cluster type="Success" icon="sap-icon://delete" />
                                 </vbm:vizTemplate>
                             </vbm:ClusterTree>
                         </vbm:clusters>

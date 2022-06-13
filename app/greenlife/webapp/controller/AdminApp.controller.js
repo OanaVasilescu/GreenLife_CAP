@@ -1,6 +1,10 @@
 sap.ui.define([
-    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "sap/ui/core/Fragment", "sap/ui/Device",
-], function (BaseController, JSONModel, Fragment, Device) {
+    "greenlife/controller/BaseController",
+    'sap/ui/model/json/JSONModel',
+    "sap/ui/core/Fragment",
+    "sap/ui/Device",
+    "greenlife/utils/URLs"
+], function (BaseController, JSONModel, Fragment, Device, URLs) {
     "use strict";
 
     return BaseController.extend("greenlife.controller.AdminApp", {

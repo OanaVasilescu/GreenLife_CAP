@@ -1,35 +1,51 @@
 sap.ui.define([
-    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "sap/ui/core/Fragment", "sap/ui/Device",
-], function (BaseController, JSONModel, Fragment, Device) {
+    "greenlife/controller/BaseController",
+    'sap/ui/model/json/JSONModel',
+    "sap/ui/core/Fragment",
+    "sap/ui/Device",
+    "greenlife/utils/URLs"
+], function (BaseController, JSONModel, Fragment, Device, URLs) {
     "use strict";
 
     return BaseController.extend("greenlife.controller.App", {
-        onInit: function () {
+        onInit: async function () {
+            this.getView().setModel(new JSONModel(), "userDetailsModel");
+            let isAdmin = await this.getUserData();
             let oModel = new JSONModel({
                     "items": [
                         {
                             "src": "sap-icon://home",
                             "title": "{i18n>Home}",
-                            "subTitle": "{i18n>CentralHome}"
+                            "subTitle": "{i18n>CentralHome}",
+                            "visible": true
                         },
                         {
                             "src": "sap-icon://search",
                             "title": "{i18n>searchProductTileTitle}",
-                            "subTitle": "{i18n>searchProductTileSubTitle}"
+                            "subTitle": "{i18n>searchProductTileSubTitle}",
+                            "visible": true
                         },
                         {
                             "src": "sap-icon://map-2",
                             "title": "{i18n>mapTileTitle}",
-                            "subTitle": "{i18n>mapTileSubTitle}"
+                            "subTitle": "{i18n>mapTileSubTitle}",
+                            "visible": true
                         },
                         {
                             "src": "sap-icon://home-share",
                             "title": "{i18n>reportTileTitle}",
-                            "subTitle": "{i18n>reportTileSubTitle}"
+                            "subTitle": "{i18n>reportTileSubTitle}",
+                            "visible": true
                         }, {
                             "src": "sap-icon://add-document",
                             "title": "{i18n>submitTileTitle}",
-                            "subTitle": "{i18n>submitTileSubTitle}"
+                            "subTitle": "{i18n>submitTileSubTitle}",
+                            "visible": true
+                        }, {
+                            "src": "sap-icon://key-user-settings",
+                            "title": "{i18n>adminAppTileTitle}",
+                            "subTitle": "{i18n>adminAppTileSubTitle}",
+                            "visible": isAdmin
                         }
                     ]
                 }),
@@ -45,6 +61,8 @@ sap.ui.define([
                     return oPopover;
                 }.bind(this));
             }
+
+
         },
 
         fnChange: function (oEvent) {
@@ -70,7 +88,9 @@ sap.ui.define([
                 case '__item0-__switch0-4':
                     this.getRouter().navTo("Submit");
                     break;
-
+                case '__item0-__switch0-5':
+                    this.getRouter().navTo("AdminApp");
+                    break;
                 default:
                     this.getRouter().navTo("RouteOverview");
                     break;

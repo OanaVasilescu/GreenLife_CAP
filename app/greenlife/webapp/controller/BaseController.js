@@ -42,6 +42,7 @@ sap.ui.define([
         },
 
         getUserData: async function () {
+            let isAdmin = false;
             await new Promise((resolve, reject) => {
                 this.get(URLs.getUser()).then((res) => {
                     resolve(res.user);
@@ -49,14 +50,16 @@ sap.ui.define([
                     MessageToast.show(err);
                     reject(err);
                 });
-            }).then((res) => {
-                let isAdmin = false;
+            }).then(async (res) => {
                 if (res == 'admin') {
                     isAdmin = true;
                 }
-                this.getOwnerComponent().getModel("userDetailsModel").setProperty("isAdmin", isAdmin);
-                this.getView().getModel("userDetailsModel").setProperty("isAdmin", isAdmin);
+                // this.getOwnerComponent().getModel("userDetailsModel").setProperty("isAdmin", isAdmin);
+                // return isAdmin;
+                // await this.getView().getModel("userDetailsModel").setProperty("isAdmin", isAdmin);
             });
+
+            return isAdmin;
         },
 
         handleCancel: async function () {

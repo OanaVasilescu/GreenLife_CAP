@@ -179,6 +179,14 @@ sap.ui.define([
 
         prepForUpdate: function (data) { // we remove expanded associations
             delete data.productTypes;
+        },
+
+        pressItem: function (oEvent) {
+            let productsModel = this.getView().getModel("productsModel");
+            let path = oEvent.getSource().getBindingContext("productsModel").getPath()
+
+            let ID = productsModel.getProperty(path).ID;
+            this.getRouter().navTo("ObjectPageProducts", {id: ID});
         }
     })
 })

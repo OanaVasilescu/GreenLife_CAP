@@ -144,6 +144,13 @@
                     "target": [
                         "AdminApp"
                     ]
+                },
+                {
+                    "name": "ObjectPageProducts",
+                    "pattern": "admin/material/:id:",
+                    "target": [
+                        "ObjectPageProducts"
+                    ]
                 }
             ],
             "targets": {
@@ -195,6 +202,13 @@
                     "clearControlAggregation": false,
                     "viewId": "AdminApp",
                     "viewName": "AdminApp"
+                },
+                "ObjectPageProducts": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "ObjectPageProducts",
+                    "viewName": "ObjectPageProducts"
                 }
             }
         },

@@ -45,7 +45,6 @@ sap.ui.define([
             let isAdmin = false;
             await new Promise((resolve, reject) => {
                 this.get(URLs.getUser()).then((res) => {
-                    debugger
                     resolve(res.user);
                 }).catch((err) => {
                     MessageToast.show(err);

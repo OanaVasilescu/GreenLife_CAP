@@ -1,0 +1,101 @@
+<mvc:View controllerName="greenlife.controller.ObjectPageProducts"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:blockcolor="sap.uxap.sample.SharedBlocks" height="100%">
+    <ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+        <headerTitle>
+            <ObjectPageHeader objectTitle="Section sample">
+                <m:Button text="{i18n>edit}" visible="{= !${editModel>/isEditing}}" type="Emphasized" press="pressEdit"/>
+
+                <m:Button text="{i18n>cancel}" visible="{editModel>/isEditing}" press="pressCancel"/>
+                <m:Button text="{i18n>save}" visible="{editModel>/isEditing}" type="Emphasized"/>
+
+            </ObjectPageHeader>
+        </headerTitle>
+
+        <headerContent>
+            <m:ObjectAttribute title="" text="This example explains the rules for the rendering of sections"/>
+        </headerContent>
+
+        <sections>
+            <ObjectPageSection titleUppercase="false" title="{i18n>name}">
+                <subSections>
+                    <ObjectPageSubSection title="{i18n>name}" titleUppercase="false">
+                        <blocks>
+                            <m:HBox>
+                                <m:VBox>
+                                    <m:Text text="{i18n>englishText}"/>
+                                    <m:Title text="{productModel>/name}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop"/>
+                                </m:VBox>
+
+                            </m:HBox>
+                            <m:HBox>
+                                <m:VBox>
+                                    <m:Text text="{i18n>romanianText}"/>
+                                    <m:Title text="{productModel>/name}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop"/>
+
+                                </m:VBox>
+
+                            </m:HBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection titleUppercase="false" title="{i18n>howToCollect}" class="sapUiLargeMarginTop">
+                <subSections>
+                    <ObjectPageSubSection title="{i18n>howToCollect}" titleUppercase="false">
+                        <blocks>
+                            <m:HBox>
+                                <m:VBox>
+                                </m:VBox>
+
+                            </m:HBox>
+                            <m:HBox>
+                                <m:VBox>
+                                </m:VBox>
+
+                            </m:HBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection titleUppercase="false" title="{i18n>recyclingInstructions}" class="sapUiLargeMarginTop">
+                <subSections>
+                    <ObjectPageSubSection title="{i18n>recyclingInstructions}" titleUppercase="false">
+                        <blocks>
+                            <m:HBox>
+                                <m:VBox>
+                                </m:VBox>
+                            </m:HBox>
+                            <m:HBox>
+                                <m:VBox>
+                                </m:VBox>
+                            </m:HBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection titleUppercase="false" title="{i18n>recyclingRestrictions}" class="sapUiLargeMarginTop">
+                <subSections>
+                    <ObjectPageSubSection titleUppercase="false" title="{i18n>recyclingRestrictions}">
+                        <blocks>
+                            <m:HBox>
+                                <m:VBox>
+                                </m:VBox>
+                            </m:HBox>
+                            <m:HBox>
+                                <m:VBox>
+                                </m:VBox>
+                            </m:HBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+    </ObjectPageLayout>
+</mvc:View>
+

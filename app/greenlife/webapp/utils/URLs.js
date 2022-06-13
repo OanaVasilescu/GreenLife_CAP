@@ -1,6 +1,6 @@
 sap.ui.define([], function () {
     "use strict";
-    const origin = "https://d14c7732trial-dev-recycling-app-srv.cfapps.us10.hana.ondemand.com";
+    const origin = "https://d14c7732trial.launchpad.cfapps.us10.hana.ondemand.com/5f6fcd7a-e8d2-412c-8fb0-3df8906d3120.glcloud.greenlife/~130622104223+0000~";
     const userService = "/greenlife";
     const products = "/Products";
     const generalProducts = "/GeneralProducts";
@@ -14,23 +14,23 @@ sap.ui.define([], function () {
 
     return {
         getUser: function () {
-            return userService + getUser;
+            return origin + userService + getUser;
         },
         getInstructionsBySubcategory: function (subcategory) {
-            return userService + getInstructionsBySubcategory + `(subcategory='${subcategory}')`;
+            return origin + userService + getInstructionsBySubcategory + `(subcategory='${subcategory}')`;
         },
         sendMail: function () {
-            return userService + sendMail;
+            return origin + userService + sendMail;
         },
         getMapPoints: function () {
-            return userService + mapPoints;
+            return origin + userService + mapPoints;
         },
         getProducts: function () {
-            return userService + products;
+            return origin + userService + products;
         },
 
         getHistory: function () {
-            return userService + getHistory;
+            return origin + userService + getHistory;
         }
     }
 });

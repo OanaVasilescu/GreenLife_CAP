@@ -22,7 +22,7 @@
                     <VBox alignItems="Center" justifyContent="Center">
                         <Title text="{i18n>seeWhereToRecycleTitle}" titleStyle="H3" class="sapUiMediumMarginTop sapUiSmallMarginBegin pathwayGothic"/>
                         <Text text="{i18n>seeWhereToRecycleSubTitle} {instructionsModel>/product}" class="sapUiSmallMarginBeginEnd"/>
-                        <Button text="{i18n>searchRecyclingPoint}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/trash" type="Transparent"/>
+                        <Button text="{i18n>searchRecyclingPoint}" class="sapUiSmallMargin " width="350px" icon="sap-icon://solid-icons/trash" type="Transparent" press="goToMapPoints"/>
                     </VBox>
                 </f:content>
             </f:Card>

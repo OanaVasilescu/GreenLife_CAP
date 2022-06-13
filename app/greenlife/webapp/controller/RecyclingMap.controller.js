@@ -270,8 +270,15 @@ sap.ui.define([
             let busyDialog = this.byId("BusyDialog"); // set page busy while everything loads
             busyDialog.open();
 
-
             await this.getMapPoints();
+
+
+            if (this.getRouter().getHashChanger().hash !== "map") {
+                const sHashParams = this.getRouter().getHashChanger().hash.replace("map/", "");
+
+                this.getView().byId("multiCombo").setSelectedKeys([sHashParams]);
+                this.onSearch();
+            }
             this.getLocation();
         },
 

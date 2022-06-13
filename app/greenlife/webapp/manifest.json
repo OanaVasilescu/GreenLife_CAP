@@ -119,7 +119,7 @@
                 },
                 {
                     "name": "RecyclingMap",
-                    "pattern": "map",
+                    "pattern": "map/:material:",
                     "target": [
                         "RecyclingMap"
                     ]

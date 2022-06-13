@@ -342,6 +342,14 @@ sap.ui.define([
 
             this.getView().byId("fixflexLayout").setVertical(true);
             this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
+        },
+
+        goToMapPoints: function (oEvent) {
+            let chosenModel = this.getView().getModel("chosenModel");
+            let id = chosenModel.getData().latestSubcategory.sId;
+            let subcategory = id.slice(id.lastIndexOf("-") + 1);
+
+            this.getRouter().navTo("RecyclingMap", {material: subcategory});
         }
     });
 });

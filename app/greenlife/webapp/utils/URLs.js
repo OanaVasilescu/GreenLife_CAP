@@ -37,7 +37,11 @@ sap.ui.define([], function () {
         },
 
         getSubmissions: function () {
-            return userService + getSubmissions;
+            return origin + userService + getSubmissions;
+        },
+
+        getGeneralProduct: function () {
+            return origin + userService + generalProducts;
         }
     }
 });

@@ -13,17 +13,22 @@ sap.ui.define([
             this.getRouter().getRoute("AdminApp").attachMatched(this.initPage, this);
 
             this.getView().setModel(new JSONModel(), "submissionsModel")
-
+            this.getView().setModel(new JSONModel(), "mapPointsModel")
+            this.getView().setModel(new JSONModel(), "productsModel")
+            this.getView().setModel(new JSONModel(), "productsBarcodesModel")
         },
 
         initPage: function () {
             this.getView().getModel("submissionsModel").setProperty("/visibility", true)
 
             this.getSubmissions();
-            this.clearPages();
-            this.getView().getModel("submissionsModel").refresh();
-        },
 
+            this.getView().getModel("submissionsModel").refresh();
+
+            this.getMapPoints();
+            this.getProducts();
+            this.getProductBarcodes();
+        },
 
         onExit: function () {
             Device.orientation.detachHandler(this.onOrientationChange, this);
@@ -115,6 +120,33 @@ sap.ui.define([
             }
         },
 
+        getMapPoints: async function () {
+            return await this.get(URLs.getMapPoints()).then(async mapPoints => {
+                this.getView().getModel("mapPointsModel").setData(mapPoints.value);
+                return mapPoints;
+            }).catch(err => {
+                this.messageHandler("getMapPointsError")
+            })
+        },
+
+        getProducts: async function () {
+            return await this.get(URLs.getGeneralProduct()).then(async mapPoints => {
+                this.getView().getModel("productsModel").setData(mapPoints.value);
+                return mapPoints;
+            }).catch(err => {
+                this.messageHandler("getproductsError")
+            })
+        },
+
+        getProductBarcodes: async function () {
+            return await this.get(URLs.getProducts()).then(async mapPoints => {
+                this.getView().getModel("productsBarcodesModel").setData(mapPoints.value);
+                return mapPoints;
+            }).catch(err => {
+                this.messageHandler("getproductsError")
+            })
+        },
+
         updatePoint: function (point) {
             this.put(URLs.getMapPoints() + "/" + point.ID, point).then((res) => {
                 this.getSubmissions();
@@ -139,10 +171,6 @@ sap.ui.define([
 
         prepForUpdate: function (data) { // we remove expanded associations
             delete data.productTypes;
-        },
-
-        clearPages: function () {
-            debugger;
         }
     })
 })

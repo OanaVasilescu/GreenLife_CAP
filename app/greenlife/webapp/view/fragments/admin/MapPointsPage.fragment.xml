@@ -1,9 +1,9 @@
 <core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core">
     <Table id="idProductsTable" inset="false" items="{
-			path: '/ProductCollection',
+			path: 'mapPointsModel>/',
 			sorter: {
-				path: 'Name'
+				path: 'name'
 			}
 		}">
         <infoToolbar>
@@ -21,12 +21,6 @@
             <Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
                 <Text text="Dimensions" />
             </Column>
-            <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
-                <Text text="Weight" />
-            </Column>
-            <Column hAlign="End">
-                <Text text="Price" />
-            </Column>
         </columns>
         <items>
             <ColumnListItem vAlign="Middle">
@@ -34,18 +28,6 @@
                     <ObjectIdentifier title="{Name}" text="{ProductId}"/>
                     <Text text="{SupplierName}" />
                     <Text text="{Width} x {Depth} x {Height} {DimUnit}" />
-                    <ObjectNumber number="{WeightMeasure}" unit="{WeightUnit}" state="{
-							parts: [
-								{path: 'WeightMeasure'},
-								{path: 'WeightUnit'}
-							],
-							formatter: 'sap.m.sample.Table.Formatter.weightState'
-						}" />
-                    <ObjectNumber number="{
-								parts:[{path:'Price'},{path:'CurrencyCode'}],
-								type: 'sap.ui.model.type.Currency',
-								formatOptions: {showMeasure: false}
-							}" unit="{CurrencyCode}" />
                 </cells>
             </ColumnListItem>
         </items>

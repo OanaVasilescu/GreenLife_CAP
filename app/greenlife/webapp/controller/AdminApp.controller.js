@@ -105,6 +105,7 @@ sap.ui.define([
             } else {
                 this.updateProduct(data);
             }
+
         },
 
         rejectSubmission: function (oEvent) {
@@ -155,6 +156,8 @@ sap.ui.define([
         updatePoint: function (point) {
             this.put(URLs.getMapPoints() + "/" + point.ID, point).then((res) => {
                 this.getSubmissions();
+                this.getMapPoints();
+
                 return;
             }).catch((err) => {
                 console.log(err);
@@ -166,6 +169,8 @@ sap.ui.define([
         updateProduct: function (product) {
             this.put(URLs.getProducts() + "/" + product.ID, product).then((res) => {
                 this.getSubmissions();
+                this.getProductBarcodes();
+
                 return;
             }).catch((err) => {
                 console.log(err);

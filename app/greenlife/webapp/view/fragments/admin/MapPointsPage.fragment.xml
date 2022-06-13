@@ -24,9 +24,6 @@
             <Column demandPopin="true">
                 <Text text="{i18n>rewardType}" />
             </Column>
-            <Column demandPopin="true">
-                <Text text="{i18n>productTypes}" />
-            </Column>
         </columns>
         <items>
             <ColumnListItem vAlign="Middle">
@@ -35,7 +32,6 @@
                     <Text text="{mapPointsModel>city}" />
                     <Text text="{mapPointsModel>administeredBy}" />
                     <Text text="{mapPointsModel>rewardType}" />
-                    <Text text="{mapPointsModel>productTypes}" />
                 </cells>
             </ColumnListItem>
         </items>

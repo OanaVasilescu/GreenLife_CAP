@@ -11,6 +11,8 @@ sap.ui.define([
     return BaseController.extend("greenlife.controller.Submit", {
         onInit: function () {
             this.getRouter().getRoute("Submit").attachMatched(this.initPage, this);
+            this.initShellBar();
+
             let oMapConfig = {
                 "MapProvider": [
                     {

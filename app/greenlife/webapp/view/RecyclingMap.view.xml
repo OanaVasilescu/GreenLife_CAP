@@ -7,6 +7,8 @@
     xmlns:l="sap.ui.layout"
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:vk="sap.ui.vk">
+    <f:ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
+    </f:ShellBar>
     <Page id="mapPage" showHeader="false" backgroundDesign="Transparent">
         <content>
             <l:FixFlex class="fixFlexVertical" id="mapContainer">

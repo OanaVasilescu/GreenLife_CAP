@@ -1,8 +1,11 @@
 <mvc:View controllerName="greenlife.controller.Submit"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
+    xmlns:f="sap.f"
     xmlns:c="sap.ui.core"
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <f:ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
+    </f:ShellBar>
     <SplitApp id="SplitAppDemo" initialDetail="historyPage" initialMaster="master">
         <detailPages>
             <Page id="historyPage" title="{i18n>SubmitHistory}" backgroundDesign= "Solid">

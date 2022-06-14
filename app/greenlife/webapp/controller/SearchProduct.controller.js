@@ -7,6 +7,7 @@ sap.ui.define([
     return BaseController.extend("greenlife.controller.SearchProduct", {
 
         onInit: async function () {
+            this.initShellBar();
 
             this.getView().setModel(new JSONModel({backgroundPicture: "https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"}), "pictureModel")
             this.getView().setModel(new JSONModel({latestSubcategory: null, latestCategory: null, choice: null, currentlyPressed: null}), "chosenModel");

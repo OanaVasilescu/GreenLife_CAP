@@ -4,6 +4,8 @@
     xmlns:f="sap.f"
     xmlns:cards="sap.f.cards"
     xmlns:l="sap.ui.layout">
+    <f:ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
+    </f:ShellBar>
     <Page id="page" showHeader="false" class="wrapper">
         <VBox id="webPage">
             <l:BlockLayout id="BlockLayout" background="Default">

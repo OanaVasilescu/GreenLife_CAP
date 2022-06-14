@@ -12,7 +12,8 @@ sap.ui.define([
         onInit: function () {
             this.getRouter().getRoute("AdminApp").attachMatched(this.initPage, this);
             let sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();
-            debugger;
+
+            this.initShellBar();
 
             this.getView().setModel(new JSONModel(), "submissionsModel")
             this.getView().setModel(new JSONModel(), "mapPointsModel")

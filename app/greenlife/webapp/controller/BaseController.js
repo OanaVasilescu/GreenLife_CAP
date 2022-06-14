@@ -1,10 +1,16 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller", "greenlife/utils/AjaxClient", "sap/m/MessageToast", "greenlife/utils/URLs",
+    "sap/ui/core/mvc/Controller",
+    "greenlife/utils/AjaxClient",
+    "sap/m/MessageToast",
+    "greenlife/utils/URLs",
+    'sap/ui/model/json/JSONModel',
+    "sap/ui/core/Fragment",
+    "sap/ui/Device",
 ],
 /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, AjaxClient, MessageToast, URLs) {
+    function (Controller, AjaxClient, MessageToast, URLs, JSONModel, Fragment, Device) {
     "use strict";
 
     return Controller.extend("greenlife.controller.BaseController", {
@@ -191,6 +197,110 @@ sap.ui.define([
             } else {
                 return false;
             }
+        },
+
+        initShellBar: async function () {
+            let oResourceBundle = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this.getView())).getModel('i18n').getResourceBundle();
+
+
+            this.getView().setModel(new JSONModel(), "userDetailsModel");
+            let isAdmin = await this.getUserData();
+            let oModel = new JSONModel({
+                    "items": [
+                        {
+                            "src": "sap-icon://home",
+                            "title": oResourceBundle.getText("Home"),
+                            "subTitle": oResourceBundle.getText("CentralHome"),
+                            "visible": true
+                        },
+                        {
+                            "src": "sap-icon://search",
+                            "title": oResourceBundle.getText("searchProductTileTitle"),
+                            "subTitle": oResourceBundle.getText("searchProductTileSubTitle"),
+                            "visible": true
+                        },
+                        {
+                            "src": "sap-icon://map-2",
+                            "title": oResourceBundle.getText("mapTileTitle"),
+                            "subTitle": oResourceBundle.getText("mapTileSubTitle"),
+                            "visible": true
+                        },
+                        {
+                            "src": "sap-icon://home-share",
+                            "title": oResourceBundle.getText("reportTileTitle"),
+                            "subTitle": oResourceBundle.getText("reportTileSubTitle"),
+                            "visible": true
+                        }, {
+                            "src": "sap-icon://add-document",
+                            "title": oResourceBundle.getText("submitTileTitle"),
+                            "subTitle": oResourceBundle.getText("submitTileSubTitle"),
+                            "visible": true
+                        }, {
+                            "src": "sap-icon://key-user-settings",
+                            "title": oResourceBundle.getText("adminAppTileTitle"),
+                            "subTitle": oResourceBundle.getText("adminAppTileSubTitle"),
+                            "visible": isAdmin
+                        }
+                    ]
+                }),
+                oView = this.getView();
+            this.getView().setModel(oModel);
+
+            if (!this._pPopover) {
+                this._pPopover = Fragment.load({id: oView.getId(), name: "greenlife.view.fragments.Nav", controller: this}).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    if (Device.system.phone) {
+                        oPopover.setEndButton(new Button({text: "Close", type: "Emphasized", press: this.fnClose.bind(this)}));
+                    }
+                    return oPopover;
+                }.bind(this));
+            }
+        },
+
+        fnChange: function (oEvent) {
+            let src = oEvent.getParameter("itemPressed").getId();
+            src = src.substr(src.length - 1);
+
+            switch (src) {
+                case '0':
+                    this.getRouter().navTo("RouteOverview");
+                    break;
+
+                case '1':
+                    this.getRouter().navTo("SearchProduct");
+                    break;
+
+                case '2':
+                    this.getRouter().navTo("RecyclingMap");
+                    break;
+
+                case '3':
+                    this.getRouter().navTo("Report");
+                    break;
+
+                case '4':
+                    this.getRouter().navTo("Submit");
+                    break;
+                case '5':
+                    this.getRouter().navTo("AdminApp");
+                    break;
+                default:
+                    this.getRouter().navTo("RouteOverview");
+                    break;
+            }
+        },
+
+        fnOpen: function (oEvent) {
+            var oButton = oEvent.getParameter("button");
+            this._pPopover.then(function (oPopover) {
+                oPopover.openBy(oButton);
+            });
+        },
+
+        fnClose: function () {
+            this._pPopover.then(function (oPopover) {
+                oPopover.close();
+            });
         }
     });
 });

@@ -1,8 +1,11 @@
 <mvc:View controllerName="greenlife.controller.Report"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
+    xmlns:f="sap.f"
     xmlns:l="sap.ui.layout"
     xmlns:c="sap.ui.core">
+    <f:ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
+    </f:ShellBar>
     <Page id="reportPage" showHeader="false" backgroundDesign="Transparent">
         <content>
             <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />

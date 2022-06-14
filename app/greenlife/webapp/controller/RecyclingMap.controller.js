@@ -6,6 +6,7 @@ sap.ui.define([
     return BaseController.extend("greenlife.controller.RecyclingMap", {
         onInit: function () {
             this.getRouter().getRoute("RecyclingMap").attachMatched(this.initPage, this);
+            this.initShellBar();
 
             let oMapConfig = {
                 "MapProvider": [

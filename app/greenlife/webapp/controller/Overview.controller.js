@@ -39,6 +39,9 @@ sap.ui.define([
                 this.getView().byId("mobilePage").setVisible(false);
                 this.getView().byId("webPage").setVisible(true);
             }
+
+            this.initShellBar();
+
         },
 
         pressSearchProduct: function (oEvent) {

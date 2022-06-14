@@ -5,7 +5,8 @@
     xmlns:c="sap.ui.core"
     xmlns:l="sap.ui.layout"
     xmlns:ndc="sap.ndc">
-
+    <f:ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
+    </f:ShellBar>
     <NavContainer id="wizardNavContainer">
         <pages>
             <Page id="wizardContentPage" showHeader="false" backgroundDesign="Transparent" enableScrolling="false">

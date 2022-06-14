@@ -6,6 +6,7 @@ sap.ui.define([
     return BaseController.extend("greenlife.controller.ObjectPageProducts", {
         onInit: function () {
             this.getRouter().getRoute("ObjectPageProducts").attachMatched(this.initPage, this);
+            this.initShellBar();
 
             this.getView().setModel(new JSONModel(), "productModel");
             this.getView().setModel(new JSONModel({isEditing: false, data: null}), "editModel");

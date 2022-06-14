@@ -2,7 +2,10 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.uxap"
     xmlns:m="sap.m"
+    xmlns:f="sap.f"
     xmlns:blockcolor="sap.uxap.sample.SharedBlocks" height="100%">
+    <f:ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
+    </f:ShellBar>
     <ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
         <headerTitle>
             <ObjectPageHeader objectTitle="{i18n>GeneralProductManagementTitle}">

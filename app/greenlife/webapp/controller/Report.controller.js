@@ -5,6 +5,8 @@ sap.ui.define([
 
     return BaseController.extend("greenlife.controller.Report", {
         onInit: function () {
+            this.initShellBar();
+
             this.getRouter().getRoute("Report").attachMatched(this.clearFields, this);
 
             this.getView().setModel(new JSONModel({logo: "pictures/dark-logo.png"}), "photoModel")

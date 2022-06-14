@@ -2,8 +2,6 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.f"
     xmlns:m="sap.m" height="100%">
-    <ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
-    </ShellBar>
     <m:App id="app">
     </m:App>
 </mvc:View>

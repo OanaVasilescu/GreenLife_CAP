@@ -8,9 +8,7 @@ sap.ui.define([
             this.getRouter().getRoute("ObjectPageProducts").attachMatched(this.initPage, this);
 
             this.getView().setModel(new JSONModel(), "productModel");
-            this.getView().setModel(new JSONModel({isEditing: false}), "editModel");
-
-
+            this.getView().setModel(new JSONModel({isEditing: false, data: null}), "editModel");
         },
 
         initPage: function () {
@@ -20,19 +18,46 @@ sap.ui.define([
 
         getProduct: async function (sHashParams) {
             return await this.get(URLs.getGeneralProduct() + "/" + sHashParams + "?&$expand=texts").then(async pr => {
-                debugger;
                 this.getView().getModel("productModel").setData(pr);
+
+                let sAll = JSON.stringify(pr);
+                let decoupledAll = JSON.parse(sAll);
+                this.getView().getModel("editModel").setProperty("/data", decoupledAll);
+
             }).catch(err => {
                 this.messageHandler("getProductError")
             })
         },
 
         pressEdit: function () {
-            this.getView().getModel().setProperty("/isEditing", true);
+            this.getView().getModel("editModel").setProperty("/isEditing", true);
         },
 
         pressCancel: function () {
-            this.getView().getModel().setProperty("/isEditing", false);
+            this.getView().getModel("editModel").setProperty("/isEditing", false);
+
+            let data = this.getView().getModel("productModel").getData();
+            let sAll = JSON.stringify(data);
+            let decoupledAll = JSON.parse(sAll);
+            this.getView().getModel("editModel").setProperty("/data", decoupledAll);
+        },
+
+        pressSave: function () {
+            let data = this.getView().getModel("editModel").getProperty("/data");
+
+            this.editProduct(data);
+            this.getView().getModel("editModel").setProperty("/isEditing", false);
+        },
+
+        editProduct: async function (genProduct) {
+            this.put(URLs.getGeneralProduct() + "/" + genProduct.ID, genProduct).then((res) => {
+                this.getProduct(res.ID);
+                return;
+            }).catch((err) => {
+                console.log(err);
+                this.messageHandler("editGeneralProductError")
+                return;
+            });
         }
     })
 })

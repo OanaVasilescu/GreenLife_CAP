@@ -51,7 +51,7 @@ sap.ui.define([
                     reject(err);
                 });
             }).then(async (res) => {
-                if (res == 'oana.vasilescu@sap.com' || res == 'greenlife.recycling.app@gmail.com') {
+                if (res == 'oana.vasilescu@sap.com' || res == 'greenlife.recycling.app@gmail.com' || res == 'admin') {
                     isAdmin = true;
                 }
                 // this.getOwnerComponent().getModel("userDetailsModel").setProperty("isAdmin", isAdmin);

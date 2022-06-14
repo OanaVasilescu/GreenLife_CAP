@@ -49,7 +49,29 @@ async function _getInstructionsBySubcategory(req) {
     const tx = cds.transaction(req);
 
     let subcat = req.data.subcategory;
-    const product = await tx.read('GeneralProducts').where({subcategory: subcat})
+    let locale = req.data.locale;
+
+    let product;
+    if (locale == 'ro' || locale == 'ro-RO') {
+        product = await SELECT.from('GeneralProducts', el => {
+            el('*'),
+            el.ID,
+            el.texts(t => {
+                t.recyclingRestrictions,
+                t.recyclingInstructions,
+                t.name,
+                t.howToCollect
+            }),
+            el.subcategory
+        }).where({subcategory: subcat});
+        // product = await tx.read('GeneralProducts',).where({subcategory: subcat})
+        product[0].name = product[0].texts[0].name;
+        product[0].recyclingRestrictions = product[0].texts[0].recyclingRestrictions;
+        product[0].recyclingInstructions = product[0].texts[0].recyclingInstructions;
+        product[0].howToCollect = product[0].texts[0].howToCollect;
+    } else {
+        product = await tx.read('GeneralProducts').where({subcategory: subcat})
+    }
     return product;
 }
 

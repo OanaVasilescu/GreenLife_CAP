@@ -271,7 +271,9 @@ sap.ui.define([
 
 
         getInstructions: async function (subcategory) {
-            return await this.get(URLs.getInstructionsBySubcategory(subcategory)).then(async instructionsData => {
+            let sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();
+
+            return await this.get(URLs.getInstructionsBySubcategory(subcategory, sCurrentLocale)).then(async instructionsData => {
                 return instructionsData;
             }).catch(err => {
                 this.messageHandler("getInstructionsBySubcategoryError")

@@ -22,8 +22,8 @@ sap.ui.define([], function () {
         getUser: function () {
             return origin + userService + getUser;
         },
-        getInstructionsBySubcategory: function (subcategory) {
-            return origin + userService + getInstructionsBySubcategory + `(subcategory='${subcategory}')`;
+        getInstructionsBySubcategory: function (subcategory, locale) {
+            return origin + userService + getInstructionsBySubcategory + `(subcategory='${subcategory}',locale='${locale}')`;
         },
         sendMail: function () {
             return origin + userService + sendMail;

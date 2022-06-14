@@ -2,6 +2,10 @@ specVersion: "2.4"
 metadata:
   name: "greenlife"
 type: application
+builder:
+  customTasks:
+    - name: ui5-tooling-modules-task
+      afterTask: replaceVersion
 server:
   customMiddleware:
     - name: fiori-tools-proxy
@@ -23,3 +27,5 @@ server:
         port: 35729
         path: webapp
         delay: 300
+    - name: ui5-tooling-modules-middleware
+      afterMiddleware: compression

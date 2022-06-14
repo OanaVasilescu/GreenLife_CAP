@@ -1,5 +1,5 @@
 sap.ui.define([
-    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "greenlife/utils/URLs"
+    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "greenlife/utils/URLs",
 ], function (BaseController, JSONModel, URLs) {
     "use strict";
 
@@ -58,6 +58,123 @@ sap.ui.define([
                 this.messageHandler("editGeneralProductError")
                 return;
             });
+        },
+
+        translateTitleToRomanian: async function () {
+            let data = this.getView().getModel("editModel").getProperty("/data");
+            let title = data.name;
+
+            let translate = await this.translateTextButtonPress(title, "en", "ro");
+
+            if (translate != undefined) {
+                this.getView().getModel("editModel").setProperty("/data/texts/0/name", translate[0].translatedText)
+            } else {
+                this.messageHandler('textCouldNotBeTranslated');
+            }
+        },
+
+        translateTitleToEnglish: async function () {
+            let data = this.getView().getModel("editModel").getProperty("/data/texts/0");
+            let title = data.name;
+
+            let translate = await this.translateTextButtonPress(title, "ro", "en");
+
+            if (translate != undefined) {
+                this.getView().getModel("editModel").setProperty("/data/name", translate[0].translatedText)
+            } else {
+                this.messageHandler('textCouldNotBeTranslated');
+            }
+        },
+
+        translateCollectToRomanian: async function () {
+            let data = this.getView().getModel("editModel").getProperty("/data");
+            let howToCollect = data.howToCollect;
+
+            let translate = await this.translateTextButtonPress(howToCollect, "en", "ro");
+
+            if (translate != undefined) {
+                this.getView().getModel("editModel").setProperty("/data/texts/0/howToCollect", translate[0].translatedText)
+            } else {
+                this.messageHandler('textCouldNotBeTranslated');
+            }
+        },
+
+        translateCollectToEnglish: async function () {
+            let data = this.getView().getModel("editModel").getProperty("/data/texts/0");
+            let title = data.howToCollect;
+
+            let translate = await this.translateTextButtonPress(title, "ro", "en");
+
+            if (translate != undefined) {
+                this.getView().getModel("editModel").setProperty("/data/howToCollect", translate[0].translatedText)
+            } else {
+                this.messageHandler('textCouldNotBeTranslated');
+            }
+        },
+
+        translateInstructionToRomanian: async function () {
+            let data = this.getView().getModel("editModel").getProperty("/data");
+            let recyclingInstructions = data.recyclingInstructions;
+
+            let translate = await this.translateTextButtonPress(recyclingInstructions, "en", "ro");
+            if (translate != undefined) {
+
+                this.getView().getModel("editModel").setProperty("/data/texts/0/recyclingInstructions", translate[0].translatedText)
+            } else {
+                this.messageHandler('textCouldNotBeTranslated');
+            }
+        },
+
+        translateInstructionToEnglish: async function () {
+            let data = this.getView().getModel("editModel").getProperty("/data/texts/0");
+            let title = data.recyclingInstructions;
+
+            let translate = await this.translateTextButtonPress(title, "ro", "en");
+            if (translate != undefined) {
+
+                this.getView().getModel("editModel").setProperty("/data/recyclingInstructions", translate[0].translatedText)
+            } else {
+                this.messageHandler('textCouldNotBeTranslated');
+            }
+        },
+
+        translateRestrictionsToRomanian: async function () {
+            let data = this.getView().getModel("editModel").getProperty("/data");
+            let recyclingRestrictions = data.recyclingRestrictions;
+
+            let translate = await this.translateTextButtonPress(recyclingRestrictions, "en", "ro");
+
+            if (translate != undefined) {
+                this.getView().getModel("editModel").setProperty("/data/texts/0/recyclingRestrictions", translate[0].translatedText)
+            } else {
+                this.messageHandler('textCouldNotBeTranslated');
+            }
+        },
+
+        translateRestrictionsToEnglish: async function () {
+            let data = this.getView().getModel("editModel").getProperty("/data/texts/0");
+            let recyclingRestrictions = data.recyclingRestrictions;
+
+            let translate = await this.translateTextButtonPress(recyclingRestrictions, "ro", "en");
+            if (translate != undefined) {
+                this.getView().getModel("editModel").setProperty("/data/recyclingRestrictions", translate[0].translatedText)
+            } else {
+                this.messageHandler('textCouldNotBeTranslated');
+            }
+        },
+
+
+        translateTextButtonPress: async function (text, srcLanguage, targetLanguage) {
+            let response;
+            // this.translateText(text);
+            await this.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyBJuQmFUNshQD7svm_tjfObJRS-pXwXmLA&q=' + text + '&target=' + targetLanguage + '&source=' + srcLanguage).then(res => {
+                response = res.data.translations;
+            }).catch(err => {
+                response = null;
+                this.messageHandler("translateError");
+            })
+
+            return response;
         }
     })
 })

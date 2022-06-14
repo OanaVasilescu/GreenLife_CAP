@@ -5,7 +5,7 @@
     xmlns:blockcolor="sap.uxap.sample.SharedBlocks" height="100%">
     <ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
         <headerTitle>
-            <ObjectPageHeader objectTitle="Section sample">
+            <ObjectPageHeader objectTitle="{i18n>GeneralProductManagementTitle}">
                 <m:Button text="{i18n>edit}" visible="{= !${editModel>/isEditing}}" type="Emphasized" press=".pressEdit"/>
 
                 <m:Button text="{i18n>cancel}" visible="{editModel>/isEditing}" press=".pressCancel"/>
@@ -15,7 +15,7 @@
         </headerTitle>
 
         <headerContent>
-            <m:ObjectAttribute title="" text="This example explains the rules for the rendering of sections"/>
+            <m:ObjectAttribute title="{i18n>GeneralProductManagementAnotherTitle}" text="{i18n>GeneralProductManagementSubTitle}"/>
         </headerContent>
 
         <sections>
@@ -25,16 +25,17 @@
                         <blocks>
 
                             <m:HBox width="100%" justifyContent="SpaceBetween">
-                                <m:VBox>
+                                <m:VBox class="sapUiLargeMarginEnd" width="100%">
                                     <m:Text text="{i18n>englishText}"/>
                                     <m:Title text="{productModel>/name}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" />
                                     <m:Input value="{editModel>/data/name}" visible="{editModel>/isEditing}"/>
+                                    <m:Button text="{i18n>translateToRomanian}" visible="{editModel>/isEditing}" press="translateTitleToRomanian"/>
                                 </m:VBox>
-                                <m:VBox>
+                                <m:VBox width="100%">
                                     <m:Text text="{i18n>romanianText}"/>
                                     <m:Title text="{productModel>/texts/0/name}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" />
                                     <m:Input value="{editModel>/data/texts/0/name}" visible="{editModel>/isEditing}" />
-
+                                    <m:Button text="{i18n>translateToEnglish}" visible="{editModel>/isEditing}" press="translateTitleToEnglish"/>
                                 </m:VBox>
 
                             </m:HBox>
@@ -50,11 +51,15 @@
                             <m:HBox width="100%" justifyContent="SpaceBetween">
                                 <m:VBox width="100%" class="sapUiLargeMarginEnd">
                                     <m:FormattedText htmlText="{productModel>/howToCollect}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" />
-                                    <m:TextArea value="{editModel>/data/howToCollect}" visible="{editModel>/isEditing}" width="100%" growing="true" growingMaxLines="7"/>
+                                    <m:TextArea value="{editModel>/data/howToCollect}" visible="{editModel>/isEditing}" width="100%" rows="7"/>
+                                    <m:Button text="{i18n>translateToRomanian}" visible="{editModel>/isEditing}" press="translateCollectToRomanian"/>
+
                                 </m:VBox>
                                 <m:VBox width="100%">
                                     <m:FormattedText htmlText="{productModel>/texts/0/howToCollect}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" />
-                                    <m:TextArea value="{editModel>/data/texts/0/howToCollect}" visible="{editModel>/isEditing}" width="100%" growing="true" growingMaxLines="7"/>
+                                    <m:TextArea value="{editModel>/data/texts/0/howToCollect}" visible="{editModel>/isEditing}" width="100%" rows="7"/>
+                                    <m:Button text="{i18n>translateToEnglish}" visible="{editModel>/isEditing}" press="translateCollectToEnglish"/>
+
                                 </m:VBox>
                             </m:HBox>
                         </blocks>
@@ -69,11 +74,15 @@
                             <m:HBox width="100%" justifyContent="SpaceBetween">
                                 <m:VBox class="sapUiLargeMarginEnd" width="100%">
                                     <m:FormattedText htmlText="{productModel>/recyclingInstructions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" />
-                                    <m:TextArea value="{editModel>/data/recyclingInstructions}" visible="{editModel>/isEditing}" width="100%" growing="true" growingMaxLines="7"/>
+                                    <m:TextArea value="{editModel>/data/recyclingInstructions}" visible="{editModel>/isEditing}" width="100%" rows="7"/>
+                                    <m:Button text="{i18n>translateToRomanian}" visible="{editModel>/isEditing}" press="translateInstructionToRomanian"/>
+
                                 </m:VBox>
                                 <m:VBox width="100%">
                                     <m:FormattedText htmlText="{productModel>/texts/0/recyclingInstructions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" />
-                                    <m:TextArea value="{editModel>/data/texts/0/recyclingInstructions}" visible="{editModel>/isEditing}" width="100%" growing="true" growingMaxLines="7"/>
+                                    <m:TextArea value="{editModel>/data/texts/0/recyclingInstructions}" visible="{editModel>/isEditing}" width="100%" rows="7"/>
+                                    <m:Button text="{i18n>translateToEnglish}" visible="{editModel>/isEditing}" press="translateInstructionToEnglish"/>
+
                                 </m:VBox>
                             </m:HBox>
                         </blocks>
@@ -88,11 +97,15 @@
                             <m:HBox width="100%" justifyContent="SpaceBetween">
                                 <m:VBox class="sapUiLargeMarginEnd" width="100%">
                                     <m:FormattedText htmlText="{productModel>/recyclingRestrictions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" />
-                                    <m:TextArea value="{editModel>/data/recyclingRestrictions}" visible="{editModel>/isEditing}" width="100%" growing="true" growingMaxLines="7"/>
+                                    <m:TextArea value="{editModel>/data/recyclingRestrictions}" visible="{editModel>/isEditing}" width="100%" rows="7"/>
+                                    <m:Button text="{i18n>translateToRomanian}" visible="{editModel>/isEditing}" press="translateRestrictionsToRomanian"/>
+
                                 </m:VBox>
                                 <m:VBox width="100%">
                                     <m:FormattedText htmlText="{productModel>/texts/0/recyclingRestrictions}" visible="{= !${editModel>/isEditing}}" class="sapUiSmallMarginTop" />
-                                    <m:TextArea value="{editModel>/data/texts/0/recyclingRestrictions}" visible="{editModel>/isEditing}" width="100%" growing="true" growingMaxLines="7"/>
+                                    <m:TextArea value="{editModel>/data/texts/0/recyclingRestrictions}" visible="{editModel>/isEditing}" width="100%" rows="7"/>
+                                    <m:Button text="{i18n>translateToEnglish}" visible="{editModel>/isEditing}" press="translateRestrictionsToEnglish"/>
+
                                 </m:VBox>
                             </m:HBox>
                         </blocks>

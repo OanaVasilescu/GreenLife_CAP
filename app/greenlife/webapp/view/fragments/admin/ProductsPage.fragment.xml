@@ -16,20 +16,11 @@
             <Column>
                 <Text text="{i18n>Product}" />
             </Column>
-            <Column demandPopin="true">
-                <Text text="{i18n>noOfProductsAssociated}" />
-            </Column>
-            <Column demandPopin="true">
-                <Text text="{i18n>noOfProductsAssociated}" />
-            </Column>
-
         </columns>
         <items>
             <ColumnListItem vAlign="Middle" type="Navigation" press="pressItem">
                 <cells>
-                    <ObjectIdentifier title="{productsModel>name}"/>
-                    <Text text="{productsModel>}"/>
-                    <Text text="{productsModel>}"/>
+                    <ObjectIdentifier title="{= ${languageModel>/locale}==='ro-RO'?${productsModel>texts/0/name}:${productsModel>name}}"/>
                 </cells>
             </ColumnListItem>
         </items>

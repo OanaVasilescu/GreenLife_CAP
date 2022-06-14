@@ -11,11 +11,14 @@ sap.ui.define([
 
         onInit: function () {
             this.getRouter().getRoute("AdminApp").attachMatched(this.initPage, this);
+            let sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();
+            debugger;
 
             this.getView().setModel(new JSONModel(), "submissionsModel")
             this.getView().setModel(new JSONModel(), "mapPointsModel")
             this.getView().setModel(new JSONModel(), "productsModel")
             this.getView().setModel(new JSONModel(), "productsBarcodesModel")
+            this.getView().setModel(new JSONModel({locale: sCurrentLocale}), "languageModel");
         },
 
         initPage: function () {
@@ -122,6 +125,7 @@ sap.ui.define([
         },
 
         getMapPoints: async function () {
+
             return await this.get(URLs.getMapPoints()).then(async mapPoints => {
                 let final = mapPoints.value.filter(el => el.approved == 'Approved');
                 this.getView().getModel("mapPointsModel").setData(final);
@@ -132,7 +136,7 @@ sap.ui.define([
         },
 
         getProducts: async function () {
-            return await this.get(URLs.getGeneralProduct()).then(async mapPoints => {
+            return await this.get(URLs.getGeneralProductWithTranslation()).then(async mapPoints => {
                 this.getView().getModel("productsModel").setData(mapPoints.value);
                 return mapPoints;
             }).catch(err => {

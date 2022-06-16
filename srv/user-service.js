@@ -151,7 +151,7 @@ async function _sendMail(req) { // let data = req.data;
     // transporter.sendMail({
     //     from: '"GreenLife" <greenlife.recycling.app@gmail.com>',
     //     to: "vasilescu.oana28@gmail.com",
-    //     subject: "incident report",
+    //     subject: "Incident report",
     //     text: "This is an automated email. Do not reply.",
     //     html: req._queryOptions.data
     // }).then(info => console.log(info)).catch(err => console.log(err))

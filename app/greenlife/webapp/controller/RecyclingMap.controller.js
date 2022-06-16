@@ -429,5 +429,11 @@ sap.ui.define([
 
         pointsModel.setProperty('/visible', visible);
         pointsModel.refresh();
+    },
+
+    openUrl: function (url, newTab) { // Require the URLHelper and open the URL in a new window or tab (same as _blank):
+
+        sap.ui.require(["sap/m/library"], ({URLHelper}) => URLHelper.redirect(url, newTab));
+
     }
 });});

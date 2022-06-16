@@ -155,6 +155,10 @@
     text-transform: lowercase;
 }
 
+.boldText{
+    font-weight: bold;
+}
+
 
 
 

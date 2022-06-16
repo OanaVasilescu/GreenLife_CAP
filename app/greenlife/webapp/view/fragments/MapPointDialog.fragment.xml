@@ -1,20 +1,34 @@
 <core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout">
-    <Dialog id="mapPointDialog" class="sapUiSmallMarginBeginEnd" resizable="true">
-        <VBox>
-            <Text text="{mapPointDialogModel>/data/longitude}"/>
-            <Text text="{mapPointDialogModel>/data/latitude}"/>
-            <Text text="{= ${mapPointDialogModel>/data/locationAddress}+', '+ ${mapPointDialogModel>/data/city}}"/>
-            <!-- <Text text="{mapPointDialogModel>/data/city}"/> -->
-            <Text text="{mapPointDialogModel>/data/administeredBy}"/>
-            <Text text="{mapPointDialogModel>/data/rewardType}" visible="{mapPointDialogModel>/data/reward}"/>
+    <Dialog id="mapPointDialog" class="sapUiSmallMarginBeginEnd" resizable="true" title="{i18n>recyclingPoint}">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <HBox>
+                    <Text text='{i18n>address}' class="sapUiTinyMarginEnd"/>
+                    <Text text="{= ${mapPointDialogModel>/data/locationAddress}+', '+ ${mapPointDialogModel>/data/city}}" class="boldText"/>
+                </HBox>
+                <!-- <Text text="{mapPointDialogModel>/data/longitude}"/>
+                <Text text="{mapPointDialogModel>/data/latitude}"/> -->
+                <HBox class="sapUiTinyMarginTop">
+                    <Text text="{i18n>administeredBy}" class="sapUiTinyMarginEnd"/>
+                    <Text text="{mapPointDialogModel>/data/administeredBy}" class="boldText"/>
+                </HBox>
+                <HBox class="sapUiTinyMarginTop">
+                    <Text text="{i18n>rewardDouaPuncte}" class="sapUiTinyMarginEnd"/>
+                    <Text text="{mapPointDialogModel>/data/rewardType}" visible="{mapPointDialogModel>/data/reward}" class="boldText"/>
+                </HBox>
 
-            <VBox items="{mapPointDialogModel>/data/productTypes}">
-                <Text text="{mapPointDialogModel>generalProduct/name}"/>
+                <VBox class="sapUiTinyMarginTop">
+                    <Text text="{i18n>productsRecycledHere}"/>
+                    <VBox items="{mapPointDialogModel>/data/productTypes}" class="sapUiSmallMarginBegin sapUiTinyMarginTop">
+                        <Text text="- {mapPointDialogModel>generalProduct/name}" class="boldText"/>
+                    </VBox>
+                </VBox>
             </VBox>
-        </VBox>
+        </content>
         <buttons>
+            <Button text="{i18n>goToGoogleMaps}" press=".openUrl(('https://www.google.com/maps/search/'+${mapPointDialogModel>/data/latitude}+','+${mapPointDialogModel>/data/longitude}), true)" />
             <Button text="{i18n>OK}" press=".onDialogClose" />
         </buttons>
     </Dialog>

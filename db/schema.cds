@@ -33,7 +33,6 @@ entity MapPoints : cuid, managed, submitted {
     reward          : Boolean;
     rewardType      : String;
     administeredBy  : String;
-    deleted         : Boolean default false;
     productTypes    : Composition of many GeneralProducts_MapPoints
                           on productTypes.mapPoint = $self;
     productNames    : array of String;

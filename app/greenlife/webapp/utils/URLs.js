@@ -53,6 +53,10 @@ sap.ui.define([], function () {
 
         getGeneralProductWithTranslation: function () {
             return origin + userService + generalProducts + expandTexts;
+        },
+
+        getIDfromCat: function (subcategory) {
+            return origin + userService + `/getIDfromCat(subcategory='${subcategory}')`;
         }
     }
 });

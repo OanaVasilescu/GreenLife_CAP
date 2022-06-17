@@ -85,6 +85,7 @@ sap.ui.define([
         getSubmissions: async function () {
             this.get(URLs.getSubmissions()).then((res) => {
                 if (res.value.length != 0) {
+                    debugger;
                     res.value = res.value.sort((a, b) => {
                         return new Date(b.createdAt) - new Date(a.createdAt)
                     });
@@ -118,7 +119,7 @@ sap.ui.define([
 
             data.approved = "Rejected";
             this.prepForUpdate(data);
-            if (data.hasOwnProperty(city)) {
+            if (data.hasOwnProperty("city")) {
                 this.updatePoint(data);
             } else {
                 this.updateProduct(data);

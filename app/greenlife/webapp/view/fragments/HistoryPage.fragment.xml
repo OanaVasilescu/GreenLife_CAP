@@ -22,6 +22,10 @@
                                 <Text text="{i18n>barcodeDouaPuncte}"/>
                                 <Text text="{historyModel>barcode}" class="sapUiTinyMarginBegin"/>
                             </HBox>
+                            <HBox class="sapUiSmallMarginTop">
+                                <Text text="{i18n>materialDouaPuncte}"/>
+                                <Text text="{historyModel>parent/name}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
                         </VBox>
                         <HBox class="sapUiLargeMarginEnd">
                             <VBox alignItems="Center">

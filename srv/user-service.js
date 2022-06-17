@@ -15,7 +15,7 @@ module.exports = cds.service.impl(srv => {
     })
     srv.on(["CREATE"], 'Products', async (req, next) => {
         await next();
-        await changeToId(req);
+        await putOnPending(req);
     })
     srv.on(["READ"], 'GeneralProducts', async (req, next) => {
         await next();
@@ -35,6 +35,7 @@ module.exports = cds.service.impl(srv => {
     srv.on("sendMail", _sendMail);
     srv.on("getHistory", _getHistory);
     srv.on("getSubmissions", _getSubmissions);
+    srv.on("getIDfromCat", getIDfromCat);
 })
 
 async function _getUserData(req) {
@@ -49,6 +50,12 @@ async function _getUserData(req) {
     })
     return({user: userEmail, roles: roles})
 }
+
+async function getIDfromCat(req) {
+    const generalProduct = await SELECT.from('GeneralProducts').where({subcategory: req.data.subcategory})
+    return generalProduct[0].ID
+}
+
 
 async function _getInstructionsBySubcategory(req) {
     const tx = cds.transaction(req);
@@ -96,9 +103,8 @@ async function addProductsToMapPoint(each) {
     return each;
 }
 
-async function changeToId(req) {
-    const generalProduct = await SELECT.from('GeneralProducts').where({subcategory: req.data.parentkey})
-    req.data.parent = generalProduct[0].ID;
+async function putOnPending(req) {
+    console.log(req.data)
 
     if (req.data.rewardType !== 'none') {
         req.data.reward = true;
@@ -177,7 +183,7 @@ async function _sendMail(req) {
     transporter.sendMail({
         from: '"GreenLife" <greenlife.recycling.app@gmail.com>',
         to: "greenlife.recycling.app@gmail.com",
-        subject: "incident report",
+        subject: "Raportare incident",
         text: "This is an automated email. Do not reply.",
         html: req.data.text
     }).then(info => console.log(info)).catch(err => console.log(err))
@@ -187,7 +193,13 @@ async function _getHistory(req) {
     const user = req.user.id;
 
     let history = [];
-    let products = await SELECT.from('Products').where({createdBy: user});
+    let products = await SELECT.from('Products', el => {
+        el('*'),
+        el.parent(gp => {
+            gp.name
+            gp.ID
+        })
+    }).where({createdBy: user});
     let mapPoints = await SELECT.from('MapPoints', el => {
         el('*'),
         el.productTypes(pr => {
@@ -208,8 +220,20 @@ async function _getHistory(req) {
 async function _getSubmissions(req) {
     let submissions = []
 
-    let products = await SELECT.from('Products').where({approved: "Pending"});
-    let productsNull = await SELECT.from('Products').where({approved: null});
+    let products = await SELECT.from('Products', el => {
+        el('*'),
+        el.parent(gp => {
+            gp.name
+            gp.ID
+        })
+    }).where({approved: "Pending"});
+    let productsNull = await SELECT.from('Products', el => {
+        el('*'),
+        el.parent(gp => {
+            gp.name
+            gp.ID
+        })
+    }).where({approved: null});
 
     let mapPoints = await SELECT.from('MapPoints', el => {
         el('*'),

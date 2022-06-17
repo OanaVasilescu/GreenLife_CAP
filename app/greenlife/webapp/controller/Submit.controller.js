@@ -272,7 +272,11 @@ sap.ui.define([
                     }, {
                         key: "shoesTile",
                         name: oResourceBundle.getText("shoes")
-                    }
+                    },
+                    // {
+                    //     key: "otherPlastic",
+                    //     name:oResourceBundle.getText("otherPlastic")
+                    // }
                 ]
             })
         },
@@ -463,14 +467,30 @@ sap.ui.define([
                     comboBox.setValueState("None");
                     let product = {
                         barcode: this.getView().getModel("scanModel").getProperty("/scanText"),
-                        name: inputField.getValue(),
-                        parentkey: comboBox.getSelectedKey()
+                        name: inputField.getValue()
                     }
+                    let id = await this.getIDfromCat(comboBox.getSelectedKey());
+
+                    product.parent_ID = id;
+                    debugger;
+
                     await this.submitProductCall(product);
                     this.getHistory()
                 }
             }
         },
+
+        getIDfromCat: async function (subcategory) {
+            let ID;
+            await this.get(URLs.getIDfromCat(subcategory)).then(async res => {
+                ID = res.value[0];
+            }).catch(async err => {
+                ID = null;
+            })
+
+            return ID
+        },
+
 
         submitProductCall: async function (product) {
             this.post(URLs.getProducts(), product).then((res) => {

@@ -58,11 +58,31 @@
                         <Label text="{i18n>WhatTypeOfLocation}" wrapping="true"/>
                         <HBox >
                             <RadioButtonGroup id="locationRB" columns="5">
-                                <RadioButton text="{i18n>privateResidence}"/>
-                                <RadioButton text="{i18n>business}"/>
-                                <RadioButton text="{i18n>park/woodedArea/field}"/>
-                                <RadioButton text="{i18n>sidewalk/street}"/>
-                                <RadioButton text="{i18n>privateTerrain}"/>
+                                <RadioButton text="{i18n>privateResidence}">
+                                    <customData>
+                                        <c:CustomData key="text" value="o resedinta privata" />
+                                    </customData>
+                                </RadioButton>
+                                <RadioButton text="{i18n>business}">
+                                    <customData>
+                                        <c:CustomData key="text" value="o locatie detinuta de catre o afacere" />
+                                    </customData>
+                                </RadioButton>
+                                <RadioButton text="{i18n>park/woodedArea/field}">
+                                    <customData>
+                                        <c:CustomData key="text" value="o zona de parc, padure sau camp" />
+                                    </customData>
+                                </RadioButton>
+                                <RadioButton text="{i18n>sidewalk/street}">
+                                    <customData>
+                                        <c:CustomData key="text" value="o strada" />
+                                    </customData>
+                                </RadioButton>
+                                <RadioButton text="{i18n>privateTerrain}">
+                                    <customData>
+                                        <c:CustomData key="text" value="un teren privat" />
+                                    </customData>
+                                </RadioButton>
                             </RadioButtonGroup>
                         </HBox>
                     </VBox>
@@ -80,10 +100,26 @@
                     <VBox visible="{dataModel>/isReccuring}" class="sapUiMediumMarginTop">
                         <Label text="{i18n>whenDoesThisUsuallyOccur}" wrapping="true"/>
                         <RadioButtonGroup id="timeRB" columns="5">
-                            <RadioButton text="{i18n>morning}"/>
-                            <RadioButton text="{i18n>afternoon}"/>
-                            <RadioButton text="{i18n>evening}"/>
-                            <RadioButton text="{i18n>overnight}"/>
+                            <RadioButton text="{i18n>morning}">
+                                <customData>
+                                    <c:CustomData key="text" value="dimineata" />
+                                </customData>
+                            </RadioButton>
+                            <RadioButton text="{i18n>afternoon}">
+                                <customData>
+                                    <c:CustomData key="text" value="dupa-amiaza" />
+                                </customData>
+                            </RadioButton>
+                            <RadioButton text="{i18n>evening}">
+                                <customData>
+                                    <c:CustomData key="text" value="seara"/>
+                                </customData>
+                            </RadioButton>
+                            <RadioButton text="{i18n>overnight}">
+                                <customData>
+                                    <c:CustomData key="text" value="noapte" />
+                                </customData>
+                            </RadioButton>
                         </RadioButtonGroup>
                     </VBox>
 

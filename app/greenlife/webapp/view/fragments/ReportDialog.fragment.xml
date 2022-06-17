@@ -3,7 +3,7 @@
     xmlns:core="sap.ui.core">
     <Dialog title="{i18n>confirmation}" contentWidth="20rem" verticalScrolling="false" state="Success">
         <buttons>
-            <Button text="Close" press="onDialogClose"/>
+            <Button text="Close" press=".onDialogIllClose"/>
         </buttons>
         <f:IllustratedMessage illustrationType="sapIllus-NoMail" description="{i18n>formMessageSub}" title="{i18n>formSub}"/>
     </Dialog>

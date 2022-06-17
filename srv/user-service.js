@@ -2,7 +2,12 @@ const cds = require("@sap/cds");
 const userRoles = ["Admin", "User"];
 const nodemailer = require("nodemailer")
 const {v4: uuidv4} = require('uuid');
+const {google} = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 
+const clientId = "410556020534-kkp6shmqb7vjbi7678oo9r03vt6v6re3.apps.googleusercontent.com"
+const clientSecret = "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"
+const refresh_token = "1//04kduw6I9Kq3FCgYIARAAGAQSNwF-L9IrszcsCRYBrvX52ZjnJJWMlo8BkINaKy_hTf0EQ1uuC3d4aGBbiygIglNaPIvUgODg6_w"
 
 module.exports = cds.service.impl(srv => {
     srv.after(["READ"], 'MapPoints', async (each) => { // await next();
@@ -137,24 +142,45 @@ async function changeProductNamesToId(req) {
     return req;
 }
 
-async function _sendMail(req) { // let data = req.data;
-    console.log(req._queryOptions.data);
-    // const transporter = nodemailer.createTransport({
-    //     host: 'smtp.gmail.com',
-    //     port: 587,
-    //     auth: {
-    //         user: "greenlife.recycling.app@gmail.com",
-    //         pass: "qexwad-vihtir-1Zikwo"
-    //     }
-    // })
+async function _sendMail(req) {
+    let data = req.data;
+    // console.log(req.data)
+    const oauth2Client = new OAuth2(clientId, clientSecret, "https://developers.google.com/oauthplayground");
+    oauth2Client.setCredentials({refresh_token: refresh_token});
 
-    // transporter.sendMail({
-    //     from: '"GreenLife" <greenlife.recycling.app@gmail.com>',
-    //     to: "vasilescu.oana28@gmail.com",
-    //     subject: "Incident report",
-    //     text: "This is an automated email. Do not reply.",
-    //     html: req._queryOptions.data
-    // }).then(info => console.log(info)).catch(err => console.log(err))
+
+    const accessToken = await new Promise((resolve, reject) => {
+        oauth2Client.getAccessToken((err, token) => {
+            if (err) {
+                reject("Failed to create access token :(");
+            }
+            resolve(token);
+        });
+    });
+
+
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            type: "OAuth2",
+            user: "greenlife.recycling.app@gmail.com",
+            accessToken,
+            clientId: clientId,
+            clientSecret: clientSecret,
+            refreshToken: refresh_token
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    })
+
+    transporter.sendMail({
+        from: '"GreenLife" <greenlife.recycling.app@gmail.com>',
+        to: "greenlife.recycling.app@gmail.com",
+        subject: "incident report",
+        text: "This is an automated email. Do not reply.",
+        html: req.data.text
+    }).then(info => console.log(info)).catch(err => console.log(err))
 }
 
 async function _getHistory(req) {

@@ -147,9 +147,15 @@ sap.ui.define([
                 let individuals = this.getView().getModel("individualsModel").getData().individuals;
                 data.individualsData = individuals;
 
+                if (data.isReccuring) {
+                    data.happensEvery = this.getView().byId("timeRB").getSelectedButton().getCustomData()[0].getValue()
+                }
+
+                data.locationType = this.getView().byId("locationRB").getSelectedButton().getCustomData()[0].getValue()
+
                 let mail = this.formatMail(data);
 
-                this.get(URLs.sendMail(), {data: mail}).then((res) => {
+                this.post(URLs.sendMail(), {text: mail}).then((res) => {
                     this.clearFields();
                     this.handleOpenDialog();
                 }).catch((err) => {
@@ -266,36 +272,36 @@ sap.ui.define([
             }
         },
 
-        onDialogClose: function () {
+        onDialogIllClose: function () {
             this._oDialog.close();
         },
 
         formatMail: function (data) {
             let htmlText = "";
             if (data.isAnonymous) {
-                htmlText = "<p>This data is sent anonymously through the <strong>GreenLife - Report Crime</strong> app</p> <p><br></p>"
+                htmlText = "<p>Aceste date sunt trimise in mod anomin prin intermediul aplicatiei <strong>GreenLife - Report Crime</strong></p> <p><br></p>"
             } else {
-                htmlText = `<p>This data is sent by ${
+                htmlText = `<p>Aceste date sunt trimise de catre ${
                     data.firstName
                 } ${
                     data.lastname
-                }  through the <strong>GreenLife - Report Crime</strong> app</p> <p><br></p>`;
+                }  prin intermediul aplicatiei <strong>GreenLife - Report Crime</strong></p> <p><br></p>`;
 
-                htmlText = htmlText + "<p> Contact information:</p>"
+                htmlText = htmlText + "<p> Informatii de contact:</p>"
                 htmlText = htmlText + `<p> Email: ${
                     data.emailAdress
                 } </p>`;
-                htmlText = htmlText + `<p> Phone: ${
+                htmlText = htmlText + `<p> Telefon: ${
                     data.phoneNumber
                 } </p>`;
                 htmlText = htmlText + "<p><br></p>  <p><br></p>";
             };
 
-            htmlText = htmlText + `<p>Description: ${
+            htmlText = htmlText + `<p>Descrierea locului sau a activitatii: ${
                 data.problemDescription
             }</p>`;
 
-            htmlText = htmlText + `<p>Location<strong>: ${
+            htmlText = htmlText + `<p>Locatia<strong>: ${
                 data.adress
             }, ${
                 data.city
@@ -303,14 +309,24 @@ sap.ui.define([
                 data.county
             }</strong></p>`
 
+            htmlText = htmlText + `<p>Locatia este  ${
+                data.locationType
+            }. </p>`;
+
+            if (data.isReccuring) {
+                htmlText = htmlText + `<p>Aceasta activitate este una recurenta, care se intampla de obicei  ${
+                    data.happensEvery
+                }</p> <p><br></p>`
+            }
+
             if (data.individuals) {
-                htmlText = htmlText + `<p>There are a number of <strong>${
+                htmlText = htmlText + `<p>Exista un numar de <strong>${
                     data.individualsData.length
-                } individuals</strong> reported to be seen. Here is all data available of them:</p>`;
+                } indivizi</strong> raportati a fi implicati. Acestea sunt toate datele disponibile despre ei:</p>`;
                 let index = 1;
                 for (let ind of data.individualsData) {
                     htmlText = htmlText + `<p>
-                        <strong>Individual ${index}</strong> - <em>${
+                        <strong>Individ ${index}</strong> - <em>${
                         ind.personDescription
                     }</em>
                     </p> `;
@@ -318,7 +334,7 @@ sap.ui.define([
                     htmlText = htmlText + "<ul>"
                     if (ind.firstName) {
                         htmlText = htmlText + `<li>
-                            <strong>First name: </strong>
+                            <strong>Prenume: </strong>
                             <em>${
                             ind.firstName
                         }</em>
@@ -326,7 +342,7 @@ sap.ui.define([
                     }
                     if (ind.lastName) {
                         htmlText = htmlText + `<li>
-                        <strong>Last name: </strong>
+                        <strong>Nume: </strong>
                         <em>${
                             ind.lastName
                         }</em>
@@ -334,7 +350,7 @@ sap.ui.define([
                     }
                     if (ind.address) {
                         htmlText = htmlText + `<li>
-                        <strong>Address: </strong>
+                        <strong>Adresa: </strong>
                         <em>${
                             ind.address
                         }</em>
@@ -342,7 +358,7 @@ sap.ui.define([
                     }
                     if (ind.city) {
                         htmlText = htmlText + `<li>
-                        <strong>City: </strong>
+                        <strong>Oras: </strong>
                         <em>${
                             ind.city
                         }</em>
@@ -351,7 +367,7 @@ sap.ui.define([
 
                     if (ind.county) {
                         htmlText = htmlText + `<li>
-                        <strong>County: </strong>
+                        <strong>Judet: </strong>
                         <em>${
                             ind.county
                         }</em>
@@ -359,7 +375,7 @@ sap.ui.define([
                     }
                     if (ind.age) {
                         htmlText = htmlText + `<li>
-                        <strong>Age: </strong>
+                        <strong>Varsta: </strong>
                         <em>${
                             ind.age
                         }</em>
@@ -368,7 +384,7 @@ sap.ui.define([
 
                     if (ind.gender) {
                         htmlText = htmlText + `<li>
-                        <strong>Gender: </strong>
+                        <strong>Sex: </strong>
                         <em>${
                             ind.gender
                         }</em>
@@ -376,7 +392,7 @@ sap.ui.define([
                     }
                     if (ind.infoAboutVehicle) {
                         htmlText = htmlText + `<p>
-                        <strong>Vehicle driven</strong> - <em>${
+                        <strong>Informatii despre vehicul</strong> - <em>${
                             ind.vehicledescription
                         }</em>
                     </p> `;
@@ -384,7 +400,7 @@ sap.ui.define([
                         htmlText = htmlText + "<ul>"
                         if (ind.brand) {
                             htmlText = htmlText + `<li>
-                            <strong>Car brand: </strong>
+                            <strong>Marca mașinii: </strong>
                             <em>${
                                 ind.brand
                             }</em>
@@ -392,7 +408,7 @@ sap.ui.define([
                         }
                         if (ind.year) {
                             htmlText = htmlText + `<li>
-                            <strong>Year: </strong>
+                            <strong>An fabricatie: </strong>
                             <em>${
                                 ind.year
                             }</em>
@@ -408,7 +424,7 @@ sap.ui.define([
                         }
                         if (ind.licencePlate) {
                             htmlText = htmlText + `<li>
-                            <strong>Licence plate: </strong>
+                            <strong>Numar de inmatriculare: </strong>
                             <em>${
                                 ind.licencePlate
                             }</em>

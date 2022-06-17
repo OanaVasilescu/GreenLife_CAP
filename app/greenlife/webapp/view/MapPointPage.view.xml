@@ -1,0 +1,112 @@
+<mvc:View controllerName="greenlife.controller.MapPointPage"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:f="sap.f"
+    xmlns:c="sap.ui.core"
+    xmlns:blockcolor="sap.uxap.sample.SharedBlocks" height="100%">
+    <f:ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
+    </f:ShellBar>
+    <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
+
+    <uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageHeader objectTitle="{i18n>PointManagementTitle}">
+                <m:Button text="{i18n>edit}" visible="{= !${editModel>/isEditing}}" type="Emphasized" press=".pressEdit"/>
+
+                <m:Button text="{i18n>cancel}" visible="{editModel>/isEditing}" press=".pressCancel"/>
+                <m:Button text="{i18n>save}" visible="{editModel>/isEditing}" type="Emphasized" press="pressSave"/>
+
+            </uxap:ObjectPageHeader>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+            <m:ObjectAttribute title="{i18n>PointManagementAnotherTitle}" text="{i18n>PointManagementSubTitle}"/>
+        </uxap:headerContent>
+
+        <uxap:sections>
+            <uxap:ObjectPageSection titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection titleUppercase="false">
+                        <uxap:blocks>
+                            <VBox>
+                                <VBox width="100%" alignItems="Center" visible="{editModel>/isEditing}">
+                                    <VBox width="100%">
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd ">
+                                            <Label text="{i18n>address}" width="100%"/>
+                                            <Input id="addressPointInput" value="{editModel>/data/locationAddress}" placeholder="{i18n>addressPlaceholder}" width="95%" liveChange="onInputChange"/>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd ">
+                                            <Label text="{i18n>citydouapuncte}" width="100%"/>
+                                            <Input id="cityPointInput" value="{editModel>/data/city}" placeholder="{i18n>cityPlaceholder}" width="95%" liveChange="onInputChange"/>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                                            <Label text="{i18n>countyDouaPuncte}" width="100%"/>
+                                            <Input id="countyPointInput" value="{editModel>/data/county}" placeholder="{i18n>countyPlaceholder}" width="95%" liveChange="onInputChange"/>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                                            <Label text="{i18n>administeredBy}" width="100%"/>
+                                            <Input id="administeredPointInput" value="{editModel>/data/administeredBy}" placeholder="{i18n>administeredByPlaceholder}" width="95%" liveChange="onInputChange"/>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                                            <Label text="{i18n>productsRecycledHere}" width="100%"/>
+                                            <MultiComboBox placeholder="{i18n>pet}" id="multiCombo" change="onChange" width="95%" items="{
+                                            path:'materialsModel>/material',
+                                            sorter:{path: 'name'}
+                                        }">
+                                                <c:Item key="{materialsModel>key}" text="{materialsModel>name}"/>
+                                            </MultiComboBox>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                                            <Label text="{i18n>rewarddouapuncte}" width="100%"/>
+                                            <Select id="rewardSelect" width="95%">
+                                                <items>
+                                                    <c:Item key="none" text="{i18n>none}"/>
+                                                    <c:Item key="vouchers" text="{i18n>vouchers}"/>
+                                                    <c:Item key="money" text="{i18n>money}"/>
+                                                </items>
+                                            </Select>
+                                        </VBox>
+                                    </VBox>
+                                    <Button text="{i18n>chooseLocationOnMap}" class="sapUiMediumMargin" press="openMapDialog" visible="{editModel>/isEditing}"/>
+                                </VBox>
+                                <VBox width="100%" alignItems="Center" visible="{= !${editModel>/isEditing}}">
+                                    <VBox width="100%">
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd  sapUiSmallMarginTop">
+                                            <Label text="{i18n>address}" width="100%"/>
+                                            <Text text="{editModel>/data/locationAddress}" placeholder="{i18n>addressPlaceholder}" width="95%" liveChange="onInputChange"/>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                                            <Label text="{i18n>citydouapuncte}" width="100%"/>
+                                            <Text text="{editModel>/data/city}" placeholder="{i18n>cityPlaceholder}" width="95%" liveChange="onInputChange"/>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                                            <Label text="{i18n>countyDouaPuncte}" width="100%"/>
+                                            <Text text="{= ${editModel>/data/county}?${editModel>/data/county}: '-'}" placeholder="{i18n>countyPlaceholder}" width="95%" liveChange="onInputChange"/>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                                            <Label text="{i18n>administeredBy}" width="100%"/>
+                                            <Text text="{editModel>/data/administeredBy}" placeholder="{i18n>administeredByPlaceholder}" width="95%" liveChange="onInputChange"/>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                                            <Label text="{i18n>productsRecycledHere}" width="100%"/>
+                                            <HBox items="{path:'editModel>/data/productTypes'}">
+                                                <Text text="{editModel>generalProduct/name}; " class="sapUiSmallMarginEnd"/>
+                                            </HBox>
+                                        </VBox>
+                                        <VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                                            <Label text="{i18n>rewarddouapuncte}" width="100%"/>
+                                            <Text text="{= ${editModel>/data/reward}?${editModel>/data/rewardType}:'None'}"/>
+                                        </VBox>
+                                    </VBox>
+                                    <Button text="{i18n>chooseLocationOnMap}" class="sapUiMediumMargin" press="openMapDialog" visible="{editModel>/isEditing}"/>
+                                </VBox>
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

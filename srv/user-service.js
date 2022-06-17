@@ -19,11 +19,7 @@ module.exports = cds.service.impl(srv => {
         await next();
         await putOnPending(req);
     })
-    srv.on(["READ"], 'GeneralProducts', async (req, next) => {
-        await next();
 
-        await doNothing(req);
-    })
     srv.on(["CREATE"], 'MapPoints', async (req, next) => {
         await next();
         await completeRequest(req);
@@ -90,7 +86,19 @@ async function _getInstructionsBySubcategory(req) {
 }
 
 async function addProductsToMapPoint(each) {
-    for (let point of each) {
+    if (Array.isArray(each)) {
+        for (let point of each) {
+            const mapPoints_Products = await SELECT.from('GeneralProducts_MapPoints', el => {
+                el('*'),
+                el.generalProduct(pr => {
+                    pr.ID,
+                    pr.name,
+                    pr.subcategory
+                })
+            }).where({mapPoint_ID: point.ID})
+            point.productTypes = mapPoints_Products;
+        }
+    } else {
         const mapPoints_Products = await SELECT.from('GeneralProducts_MapPoints', el => {
             el('*'),
             el.generalProduct(pr => {
@@ -98,16 +106,14 @@ async function addProductsToMapPoint(each) {
                 pr.name,
                 pr.subcategory
             })
-        }).where({mapPoint_ID: point.ID})
-        point.productTypes = mapPoints_Products;
+        }).where({mapPoint_ID: each.ID})
+        each.productTypes = mapPoints_Products;
     }
 
     return each;
 }
 
 async function putOnPending(req) {
-    console.log(req.data)
-
     if (req.data.rewardType !== 'none') {
         req.data.reward = true;
     } else {
@@ -152,7 +158,6 @@ async function changeProductNamesToId(req) {
 
 async function _sendMail(req) {
     let data = req.data;
-    // console.log(req.data)
     const oauth2Client = new OAuth2(clientId, clientSecret, "https://developers.google.com/oauthplayground");
     oauth2Client.setCredentials({refresh_token: refresh_token});
 
@@ -269,11 +274,4 @@ async function _getSubmissions(req) {
     submissions.push(... mapPointsNull);
 
     return submissions;
-}
-
-
-function doNothing(req) {
-    // console.log(req.user.locale)
-    // console.log(req)
-    return req
 }

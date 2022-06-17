@@ -208,7 +208,14 @@ sap.ui.define([
         },
 
 
-        editMapPoint: function (oEvent) {},
+        editMapPoint: function (oEvent) {
+            let mapPointsModel = this.getView().getModel("mapPointsModel");
+            let path = oEvent.getSource().getBindingContext("mapPointsModel").getPath()
+
+            let id = mapPointsModel.getProperty(path).ID;
+
+            this.getRouter().navTo("MapPointPage", {id: id});
+        },
 
         deleteMapPoint: function (oEvent) {
             let mapPointsModel = this.getView().getModel("mapPointsModel");

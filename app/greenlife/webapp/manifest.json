@@ -151,6 +151,13 @@
                     "target": [
                         "ObjectPageProducts"
                     ]
+                },
+                {
+                    "name": "MapPointPage",
+                    "pattern": "point/:id:",
+                    "target": [
+                        "MapPointPage"
+                    ]
                 }
             ],
             "targets": {
@@ -209,6 +216,13 @@
                     "clearControlAggregation": false,
                     "viewId": "ObjectPageProducts",
                     "viewName": "ObjectPageProducts"
+                },
+                "MapPointPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MapPointPage",
+                    "viewName": "MapPointPage"
                 }
             }
         },

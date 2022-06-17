@@ -205,6 +205,25 @@ sap.ui.define([
             }).catch(err => {
                 this.messageHandler("deletebarcodeerr")
             })
+        },
+
+
+        editMapPoint: function (oEvent) {},
+
+        deleteMapPoint: function (oEvent) {
+            let mapPointsModel = this.getView().getModel("mapPointsModel");
+            let path = oEvent.getSource().getBindingContext("mapPointsModel").getPath()
+
+            let id = mapPointsModel.getProperty(path).ID;
+            let point = mapPointsModel.getProperty(path);
+            point.deleted = true;
+            this.prepForUpdate(point);
+
+            this.delete(URLs.getMapPoints() + "/" + id).then(res => {
+                this.getMapPoints();
+            }).catch(err => {
+                this.messageHandler("deletebarcodeerr")
+            })
         }
     })
 })

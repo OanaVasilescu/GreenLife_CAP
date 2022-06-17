@@ -24,6 +24,9 @@
             <Column demandPopin="true">
                 <Text text="{i18n>rewardType}" />
             </Column>
+            <Column hAlign="End">
+                <Text text="" />
+            </Column>
         </columns>
         <items>
             <ColumnListItem vAlign="Middle">
@@ -32,6 +35,10 @@
                     <Text text="{mapPointsModel>city}" />
                     <Text text="{mapPointsModel>administeredBy}" />
                     <Text text="{mapPointsModel>rewardType}" />
+                    <HBox justifyContent="End">
+                        <Button class="sapUiTinyMarginEnd" icon="sap-icon://edit" press="editMapPoint"/>
+                        <Button class="sapUiTinyMarginEnd" icon="sap-icon://decline" press="deleteMapPoint"/>
+                    </HBox>
                 </cells>
             </ColumnListItem>
         </items>

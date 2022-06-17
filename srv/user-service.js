@@ -10,9 +10,11 @@ const clientSecret = "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"
 const refresh_token = "1//04kduw6I9Kq3FCgYIARAAGAQSNwF-L9IrszcsCRYBrvX52ZjnJJWMlo8BkINaKy_hTf0EQ1uuC3d4aGBbiygIglNaPIvUgODg6_w"
 
 module.exports = cds.service.impl(srv => {
+
     srv.after(["READ"], 'MapPoints', async (each) => { // await next();
         await addProductsToMapPoint(each);
     })
+
     srv.on(["CREATE"], 'Products', async (req, next) => {
         await next();
         await putOnPending(req);

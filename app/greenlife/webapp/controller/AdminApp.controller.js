@@ -85,7 +85,6 @@ sap.ui.define([
         getSubmissions: async function () {
             this.get(URLs.getSubmissions()).then((res) => {
                 if (res.value.length != 0) {
-                    debugger;
                     res.value = res.value.sort((a, b) => {
                         return new Date(b.createdAt) - new Date(a.createdAt)
                     });
@@ -193,6 +192,19 @@ sap.ui.define([
 
             let ID = productsModel.getProperty(path).ID;
             this.getRouter().navTo("ObjectPageProducts", {id: ID});
+        },
+
+
+        deleteBarcode: function (oEvent) {
+            let productsBarcodesModel = this.getView().getModel("productsBarcodesModel");
+            let path = oEvent.getSource().getBindingContext("productsBarcodesModel").getPath()
+
+            let id = productsBarcodesModel.getProperty(path).ID;
+            this.delete(URLs.getProducts() + "/" + id).then(res => {
+                this.getProductBarcodes();
+            }).catch(err => {
+                this.messageHandler("deletebarcodeerr")
+            })
         }
     })
 })

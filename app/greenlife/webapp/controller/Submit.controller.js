@@ -472,7 +472,6 @@ sap.ui.define([
                     let id = await this.getIDfromCat(comboBox.getSelectedKey());
 
                     product.parent_ID = id;
-                    debugger;
 
                     await this.submitProductCall(product);
                     this.getHistory()

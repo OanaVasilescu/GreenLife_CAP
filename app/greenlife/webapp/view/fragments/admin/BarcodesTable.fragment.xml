@@ -6,11 +6,7 @@
 				path: 'name'
 			}
 		}">
-        <infoToolbar>
-            <OverflowToolbar>
-                <Label text="{i18n>Widerangeofavailableproducts}"/>
-            </OverflowToolbar>
-        </infoToolbar>
+
         <columns>
             <Column width="12em">
                 <Text text="{i18n>name}" />
@@ -18,16 +14,31 @@
             <Column >
                 <Text text="{i18n>materialtype}" />
             </Column>
-            <Column hAlign="End">
+            <Column >
                 <Text text="{i18n>barcode}" />
+            </Column>
+            <Column hAlign="End">
+                <Text text="" />
             </Column>
         </columns>
         <items>
             <ColumnListItem vAlign="Middle">
                 <cells>
-                    <ObjectIdentifier title="{productsBarcodesModel>name}" />
-                    <Text text="{productsBarcodesModel>parent/name}" />
-                    <Text text="{productsBarcodesModel>barcode}" />
+                    <VBox>
+                        <ObjectIdentifier title="{productsBarcodesModel>name}" />
+                    </VBox>
+
+                    <VBox>
+                        <Text text="{productsBarcodesModel>parent/name}" />
+                    </VBox>
+
+                    <VBox>
+                        <Text text="{productsBarcodesModel>barcode}" />
+                    </VBox>
+
+                    <HBox justifyContent="End">
+                        <Button class="sapUiTinyMarginEnd" icon="sap-icon://decline" press="deleteBarcode"/>
+                    </HBox>
                 </cells>
             </ColumnListItem>
         </items>

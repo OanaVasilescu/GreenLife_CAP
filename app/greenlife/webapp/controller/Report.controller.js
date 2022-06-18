@@ -9,7 +9,7 @@ sap.ui.define([
 
             this.getRouter().getRoute("Report").attachMatched(this.clearFields, this);
 
-            this.getView().setModel(new JSONModel({logo: "pictures/dark-logo.png"}), "photoModel")
+            this.getView().setModel(new JSONModel({logo: this.getOwnerComponent().getManifestObject().resolveUri("pictures/dark-logo.png")}), "photoModel")
             this.getView().setModel(new JSONModel({
                 isAnonymous: false,
                 isReccuring: false,

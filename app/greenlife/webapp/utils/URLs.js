@@ -1,7 +1,7 @@
 sap.ui.define([], function () {
     "use strict";
-    const origin = "https://d14c7732trial.launchpad.cfapps.us10.hana.ondemand.com/566b1475-e1f8-4eff-b352-455dab32bb7e.glcloud.greenlife/~180622143646+0000~";
-    // const origin = "http://localhost:4004"
+    // const origin = "https://d14c7732trial.launchpad.cfapps.us10.hana.ondemand.com/566b1475-e1f8-4eff-b352-455dab32bb7e.glcloud.greenlife/~180622143646+0000~";
+    const origin = "http://localhost:4004"
     const userService = "/greenlife";
     const products = "/Products";
     const expandProduct = "?&$expand=parent"

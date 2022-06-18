@@ -6,6 +6,9 @@
     xmlns:l="sap.ui.layout"
     xmlns:ndc="sap.ndc">
     <f:ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
+        <f:additionalContent>
+            <OverflowToolbarButton activeIcon="sap-icon://create-form" icon="sap-icon://create-form" text="{i18n>submitMissingBarcodeData}" tooltip="{i18n>submitMissingBarcodeData}" class="sapUiTinyMargin" press="pressSubmitMissing"/>
+        </f:additionalContent>
     </f:ShellBar>
     <NavContainer id="wizardNavContainer">
         <pages>

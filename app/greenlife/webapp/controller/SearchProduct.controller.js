@@ -353,6 +353,10 @@ sap.ui.define([
             let subcategory = id.slice(id.lastIndexOf("-") + 1);
 
             this.getRouter().navTo("RecyclingMap", {material: subcategory});
+        },
+
+        pressSubmitMissing: function () {
+            this.getRouter().navTo("Submit", {page: 'barcode'});
         }
     });
 });

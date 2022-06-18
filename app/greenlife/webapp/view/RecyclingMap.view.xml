@@ -8,9 +8,12 @@
     xmlns:fb="sap.ui.comp.filterbar"
     xmlns:vk="sap.ui.vk">
     <f:ShellBar showCopilot="false" productSwitcherPressed="fnOpen" showProductSwitcher="true" homeIconPressed="homeIconPress">
+        <f:additionalContent>
+            <OverflowToolbarButton activeIcon="sap-icon://create-form" icon="sap-icon://create-form" text="{i18n>submitMissingMapData}" tooltip="{i18n>submitMissingMapData}" class="sapUiTinyMargin" press="pressSubmitMissing"/>
+        </f:additionalContent>
     </f:ShellBar>
     <Page id="mapPage" showHeader="false" backgroundDesign="Transparent">
-        <content>
+        <content height="50%">
             <l:FixFlex class="fixFlexVertical" id="mapContainer">
                 <l:fixContent>
                     <c:Fragment fragmentName="greenlife.view.fragments.BusyDialog" type="XML" />
@@ -58,7 +61,6 @@
         <footer>
             <OverflowToolbar>
                 <ToolbarSpacer/>
-                <Button text="{i18n>submitMissingMapData}" class="sapUiTinyMargin" press="pressSubmitMissing"/>
 
                 <Button text="Back" press="handleCancel"/>
             </OverflowToolbar>

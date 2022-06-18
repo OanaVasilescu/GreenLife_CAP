@@ -334,6 +334,8 @@ sap.ui.define([
 
         getMapPoints: async function () {
             return await this.get(URLs.getMapPoints()).then(async mapPoints => {
+                const points = mapPoints.value.filter(el => el.approved == "Approved")
+                mapPoints.value = points;
                 this.getView().getModel("mapPointsModel").setData(mapPoints);
                 this.getView().getModel("mapPointsModel").setProperty("/visible", mapPoints.value)
                 return mapPoints;
@@ -360,7 +362,6 @@ sap.ui.define([
                     this.mapPointDialog = oDialog;
 
                     this.getView().addDependent(this.mapPointDialog);
-                    debugger;
                     this.mapPointDialog.open();
                 }.bind(this));
             } else {

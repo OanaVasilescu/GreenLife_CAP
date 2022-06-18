@@ -244,7 +244,6 @@ sap.ui.define([
             var sQuery = oEvent.getSource().getValue();
             if (sQuery && sQuery.length > 0) {
                 if (this.getView().getModel("languageModel").getProperty("/locale") == "ro" || this.getView().getModel("languageModel").getProperty("/locale") == "ro-RO") {
-                    debugger;
                     var filter = new Filter("texts/0/name", FilterOperator.Contains, sQuery);
                 } else {
                     var filter = new Filter("name", FilterOperator.Contains, sQuery);

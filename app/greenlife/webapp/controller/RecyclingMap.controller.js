@@ -406,7 +406,7 @@ sap.ui.define([
             
 
 
-            let foundCity = el.city.toLocaleLowerCase() == city;
+            let foundCity = el.city.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') == city;
             if (city == "all") {
                 foundCity = true;
             }

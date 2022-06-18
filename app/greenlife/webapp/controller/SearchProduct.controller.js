@@ -188,7 +188,6 @@ sap.ui.define([
                             this.messageHandler("scanFailed")
                         }, function (oResult) {
                             /* handle input dialog change */
-                            // debugger;
                             // no need for anything here
                         });
                     });
@@ -245,7 +244,6 @@ sap.ui.define([
             let result = await this.getInstructionsByBarcode(oResult.text);
 
             let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
-            debugger;
             if (result == null) {
                 MessageBox.error(oResourceBundle.getText("ProductNotFound"), {
                     actions: [
@@ -274,7 +272,6 @@ sap.ui.define([
                 // this.getView().byId("recycleProductsFixFlex").setVertical(false);
 
                 this.setPicture(result.value[0].subcategory);
-                debugger;
 
                 busyDialog.close();
                 this.getView().getModel("chosenModel").setProperty("/latestSubcategory", true);
@@ -285,7 +282,6 @@ sap.ui.define([
                 const wizard = this.getView().byId("recycleProductsWizard");
                 wizard.nextStep();
                 // this.goToNextStep(result.value[0].subcategory);
-                debugger;
             }
 
         },

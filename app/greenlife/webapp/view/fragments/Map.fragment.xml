@@ -24,7 +24,7 @@
                             <vbm:Resource name="yellow" src="{pinModel>/yellow}"/>
                         </vbm:resources>
                         <vbm:clusters>
-                            <vbm:ClusterTree id="clusterTree" textProperty="text" areaAlwaysVisible="false" areaColor="rgba(255,255,255,0)" areaColorBorder="rgba(255,255,255,0)">
+                            <vbm:ClusterTree textProperty="text" areaAlwaysVisible="false" areaColor="rgba(255,255,255,0)" areaColorBorder="rgba(255,255,255,0)">
                                 <vbm:vizTemplate>
                                     <vbm:Cluster type="Success" icon="sap-icon://delete" />
                                 </vbm:vizTemplate>

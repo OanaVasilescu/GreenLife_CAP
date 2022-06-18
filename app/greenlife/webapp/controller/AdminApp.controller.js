@@ -3,8 +3,10 @@ sap.ui.define([
     'sap/ui/model/json/JSONModel',
     "sap/ui/core/Fragment",
     "sap/ui/Device",
-    "greenlife/utils/URLs"
-], function (BaseController, JSONModel, Fragment, Device, URLs) {
+    "greenlife/utils/URLs",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+], function (BaseController, JSONModel, Fragment, Device, URLs, Filter, FilterOperator) {
     "use strict";
 
     return BaseController.extend("greenlife.controller.AdminApp", {
@@ -151,7 +153,6 @@ sap.ui.define([
         getProductBarcodes: async function () {
             return await this.get(URLs.getExpandedProduct()).then(async mapPoints => {
                 let final = mapPoints.value.filter(el => el.approved == 'Approved');
-                debugger;
                 this.getView().getModel("productsBarcodesModel").setData(final);
                 return mapPoints;
             }).catch(err => {
@@ -235,6 +236,70 @@ sap.ui.define([
             }).catch(err => {
                 this.messageHandler("deletebarcodeerr")
             })
+        },
+
+
+        onSearchProducts: function (oEvent) { // add filter for search
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                if (this.getView().getModel("languageModel").getProperty("/locale") == "ro" || this.getView().getModel("languageModel").getProperty("/locale") == "ro-RO") {
+                    debugger;
+                    var filter = new Filter("texts/0/name", FilterOperator.Contains, sQuery);
+                } else {
+                    var filter = new Filter("name", FilterOperator.Contains, sQuery);
+
+                };
+                aFilters.push(filter);
+            }
+
+            // update list binding
+            var oList = this.byId("idPointsTable");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onSearchProductsBarcodes: function (oEvent) { // add filter for search
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("barcode", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+
+            // update list binding
+            var oList = this.byId("idProductsBarcodesTable");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+        },
+
+        onSearchProductsBarcodesByName: function (oEvent) { // add filter for search
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("name", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+
+            // update list binding
+            var oList = this.byId("idProductsBarcodesTable");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+        },
+
+        onSearchMapPoints: function (oEvent) { // add filter for search
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("locationAddress", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+
+            // update list binding
+            var oList = this.byId("idProductsTable");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
         }
     })
 })

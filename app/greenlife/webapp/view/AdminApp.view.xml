@@ -13,14 +13,24 @@
             </Page>
 
             <Page id="Products" title="{i18n>Products}" backgroundDesign= "Solid">
+                <OverflowToolbar>
+                    <SearchField liveChange=".onSearchProducts" width="100%" />
+                </OverflowToolbar>
                 <c:Fragment fragmentName="greenlife.view.fragments.admin.ProductsPage" type="XML" />
             </Page>
 
             <Page id="ProductsBarcodes" title="{i18n>Productsbarcodes}" backgroundDesign= "Solid">
+                <OverflowToolbar>
+                    <SearchField liveChange=".onSearchProductsBarcodes" width="45%" placeholder="{i18n>barcode}" />
+                    <SearchField liveChange=".onSearchProductsBarcodesByName" width="45%" placeholder="{i18n>productName}"/>
+                </OverflowToolbar>
                 <c:Fragment fragmentName="greenlife.view.fragments.admin.BarcodesTable" type="XML" />
             </Page>
 
             <Page id="MapPoints" title="{i18n>MapPoints}" backgroundDesign= "Solid">
+                <OverflowToolbar>
+                    <SearchField liveChange=".onSearchMapPoints" width="100%" />
+                </OverflowToolbar>
                 <c:Fragment fragmentName="greenlife.view.fragments.admin.MapPointsPage" type="XML" />
             </Page>
 

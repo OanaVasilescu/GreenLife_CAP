@@ -18,6 +18,10 @@
                                 <Text text="{i18n>barcodeDouaPuncte}"/>
                                 <Text text="{submissionsModel>barcode}" class="sapUiTinyMarginBegin"/>
                             </HBox>
+                            <HBox class="sapUiSmallMarginTop">
+                                <Text text="{i18n>materialDouaPuncte}"/>
+                                <Text text="{submissionsModel>parent/name}" class="sapUiTinyMarginBegin"/>
+                            </HBox>
                         </VBox>
                         <HBox class="sapUiLargeMarginEnd">
                             <VBox alignItems="Center">

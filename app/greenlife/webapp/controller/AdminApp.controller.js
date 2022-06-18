@@ -148,7 +148,7 @@ sap.ui.define([
         getProductBarcodes: async function () {
             return await this.get(URLs.getExpandedProduct()).then(async mapPoints => {
                 let final = mapPoints.value.filter(el => el.approved == 'Approved');
-
+                debugger;
                 this.getView().getModel("productsBarcodesModel").setData(final);
                 return mapPoints;
             }).catch(err => {
@@ -183,6 +183,7 @@ sap.ui.define([
         },
 
         prepForUpdate: function (data) { // we remove expanded associations
+            delete data.parent;
             delete data.productTypes;
         },
 

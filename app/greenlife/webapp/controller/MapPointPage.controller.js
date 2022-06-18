@@ -235,6 +235,9 @@ sap.ui.define([
         initPage: function () {
             const sHashParams = this.getRouter().getHashChanger().hash.replace("point/", "");
             this.getMapPoint(sHashParams);
+
+            this.getView().getModel("mapPointModel").setProperty("/", null)
+            pointModel.refresh();
         },
 
         getMapPoint: async function (sHashParams) {

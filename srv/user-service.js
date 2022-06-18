@@ -93,7 +93,10 @@ async function addProductsToMapPoint(each) {
                 el.generalProduct(pr => {
                     pr.ID,
                     pr.name,
-                    pr.subcategory
+                    pr.subcategory,
+                    pr.texts(t => {
+                        t.name
+                    })
                 })
             }).where({mapPoint_ID: point.ID})
             point.productTypes = mapPoints_Products;

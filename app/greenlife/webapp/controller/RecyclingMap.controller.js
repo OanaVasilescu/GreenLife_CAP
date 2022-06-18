@@ -360,7 +360,7 @@ sap.ui.define([
                     this.mapPointDialog = oDialog;
 
                     this.getView().addDependent(this.mapPointDialog);
-
+                    debugger;
                     this.mapPointDialog.open();
                 }.bind(this));
             } else {

@@ -22,7 +22,7 @@
                 <VBox class="sapUiTinyMarginTop">
                     <Text text="{i18n>productsRecycledHere}"/>
                     <VBox items="{mapPointDialogModel>/data/productTypes}" class="sapUiSmallMarginBegin sapUiTinyMarginTop">
-                        <Text text="- {mapPointDialogModel>generalProduct/name}" class="boldText"/>
+                        <Text text="- {= ${languageModel>/locale}==='ro-RO'?${mapPointDialogModel>generalProduct/texts/0/name}:${mapPointDialogModel>generalProduct/name}}" class="boldText"/>
                     </VBox>
                 </VBox>
             </VBox>

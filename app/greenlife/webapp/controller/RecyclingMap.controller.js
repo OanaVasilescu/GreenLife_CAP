@@ -51,6 +51,10 @@ sap.ui.define([
             this.getView().setModel(new JSONModel(), "mapPointDialogModel");
 
 
+            let sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();
+            this.getView().setModel(new JSONModel({locale: sCurrentLocale}), "languageModel");
+
+
             let pic = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/location-icon-png-4224.png")
             let black = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/black.png")
             let blue = this.getOwnerComponent().getManifestObject().resolveUri("./pictures/mapPins/blue.png")

@@ -18,7 +18,7 @@
                     <l:FixFlex id="fixflexLayout">
                         <l:flexContent>
                             <Wizard id="recycleProductsWizard" complete="completedHandler" enableBranching="true" showNextButton="false">
-                                <WizardStep id="introStep" nextStep="categoriesWizardStep" icon="sap-icon://solid-icons/recycle" class="sapUiLargeMarginTop ">
+                                <WizardStep id="introStep" subsequentSteps="categoriesWizardStep instructionStep" icon="sap-icon://solid-icons/recycle" class="sapUiLargeMarginTop ">
                                     <GenericTile id="searchTile" header="{i18n>searchCategories}" press="chooseScanOrSearch" class="glTile" backgroundImage="{pictureModel>/backgroundPicture}">
                                         <TileContent>
                                             <ImageContent src="sap-icon://solid-icons/magnifying-glass"/>

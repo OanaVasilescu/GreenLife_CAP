@@ -30,6 +30,7 @@ module.exports = cds.service.impl(srv => {
 
     srv.on("getUserData", _getUserData);
     srv.on("getInstructionsBySubcategory", _getInstructionsBySubcategory);
+    srv.on("getInstructionsByBarcode", _getInstructionsByBarcode);
     srv.on("sendMail", _sendMail);
     srv.on("getHistory", _getHistory);
     srv.on("getSubmissions", _getSubmissions);
@@ -40,7 +41,6 @@ async function _getUserData(req) {
     const userEmail = req.user.id;
 
     var roles = [];
-    console.log(req.user)
     userRoles.forEach(role => {
         if (req.user.is(role)) {
             roles.push(role)
@@ -81,6 +81,43 @@ async function _getInstructionsBySubcategory(req) {
         product[0].howToCollect = product[0].texts[0].howToCollect;
     } else {
         product = await tx.read('GeneralProducts').where({subcategory: subcat})
+    }
+    return product;
+}
+
+async function _getInstructionsByBarcode(req) {
+    const tx = cds.transaction(req);
+    let barcode = req.data.barcode;
+    let locale = req.data.locale;
+
+    let barcodepr = await SELECT.from('Products').where({barcode: barcode})
+
+    if (barcodepr.length == 0) {
+        req.reject(404);
+    }
+
+    let parent = barcodepr[0].parent_ID;
+
+    let product;
+    if (locale == 'ro' || locale == 'ro-RO') {
+        product = await SELECT.from('GeneralProducts', el => {
+            el('*'),
+            el.ID,
+            el.texts(t => {
+                t.recyclingRestrictions,
+                t.recyclingInstructions,
+                t.name,
+                t.howToCollect
+            }),
+            el.subcategory
+        }).where({ID: parent});
+        // product = await tx.read('GeneralProducts',).where({subcategory: subcat})
+        product[0].name = product[0].texts[0].name;
+        product[0].recyclingRestrictions = product[0].texts[0].recyclingRestrictions;
+        product[0].recyclingInstructions = product[0].texts[0].recyclingInstructions;
+        product[0].howToCollect = product[0].texts[0].howToCollect;
+    } else {
+        product = await tx.read('GeneralProducts').where({ID: parent})
     }
     return product;
 }

@@ -1,7 +1,8 @@
 sap.ui.define([
-    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "greenlife/utils/URLs"
+    "greenlife/controller/BaseController", 'sap/ui/model/json/JSONModel', "greenlife/utils/URLs", "sap/m/MessageBox",
 
-], function (BaseController, JSONModel, URLs) {
+
+], function (BaseController, JSONModel, URLs, MessageBox) {
     "use strict";
 
     return BaseController.extend("greenlife.controller.SearchProduct", {
@@ -160,7 +161,7 @@ sap.ui.define([
             this.setPicture(id);
 
             busyDialog.close();
-            this.goToNextStep(id);
+            this.goToNextStep(id)
         },
 
         goToNextStep: function (id) {
@@ -172,18 +173,23 @@ sap.ui.define([
                     break;
                 case "scanTile":
                     this.byId("introStep").setNextStep(this.getView().byId("scanStep"));
-                    sap.ui.require(["sap/ndc/BarcodeScanner"], function (BarcodeScanner) {
-                        BarcodeScanner.scan(function (oResult) { /* handle scan result */
-                            if (oEvent.getParameter("cancelled")) {
+                    sap.ui.require(["sap/ndc/BarcodeScanner"], (BarcodeScanner) => {
+                        BarcodeScanner.scan((oResult) => { /* handle scan result */
+                            if (oResult.cancelled) {
                                 this.messageHandler("scanCancelled")
                             } else {
-                                if (oEvent.getParameter("text")) {
+                                if (oResult.text) {
                                     this.goToScanResult(oResult);
+                                } else {
+                                    this.messageHandler("scanCancelled")
                                 }
                             }
                         }, function (oError) {
                             this.messageHandler("scanFailed")
-                        }, function (oResult) { /* handle input dialog change */
+                        }, function (oResult) {
+                            /* handle input dialog change */
+                            // debugger;
+                            // no need for anything here
                         });
                     });
                     return;
@@ -220,6 +226,7 @@ sap.ui.define([
                 case "others":
                     this.byId("categoriesWizardStep").setNextStep(this.getView().byId("othersStep"));
                     break;
+
             }
 
             wizard.nextStep();
@@ -233,9 +240,56 @@ sap.ui.define([
             picture.addStyleClass("coverTile");
         },
 
-        goToScanResult: function (oResult) {
+        goToScanResult: async function (oResult) {
+
+            let result = await this.getInstructionsByBarcode(oResult.text);
+
+            let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
             debugger;
+            if (result == null) {
+                MessageBox.error(oResourceBundle.getText("ProductNotFound"), {
+                    actions: [
+                        oResourceBundle.getText("SubmitBarcode"), MessageBox.Action.OK
+                    ],
+                    emphasizedAction: oResourceBundle.getText("SubmitBarcode"),
+                    onClose: (sAction) => {
+                        if (sAction == 'OK') {
+                            this.restartChoiceSteps();
+                        } else {
+                            this.pressSubmitMissing();
+                        }
+                    }
+                });
+            } else {
+                let busyDialog = this.byId("BusyDialog"); // set page busy while everything loads
+                busyDialog.open();
+                this.getView().byId("fixflexLayout").setVertical(false);
+
+                let instr = result.value[0];
+                if (instr != undefined) {
+                    this.setInstructions(instr);
+                }
+
+                // this.getView().byId("recycleProductsFixFlex").addStyleClass("fixFlexHorizontal");
+                // this.getView().byId("recycleProductsFixFlex").setVertical(false);
+
+                this.setPicture(result.value[0].subcategory);
+                debugger;
+
+                busyDialog.close();
+                this.getView().getModel("chosenModel").setProperty("/latestSubcategory", true);
+
+
+                this.byId("introStep").setNextStep(this.getView().byId("instructionStep"));
+
+                const wizard = this.getView().byId("recycleProductsWizard");
+                wizard.nextStep();
+                // this.goToNextStep(result.value[0].subcategory);
+                debugger;
+            }
+
         },
+
 
         setInstructions: function (instr) {
             let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
@@ -279,6 +333,19 @@ sap.ui.define([
             }).catch(err => {
                 this.messageHandler("getInstructionsBySubcategoryError")
             })
+        },
+
+
+        getInstructionsByBarcode: async function (barcode) {
+            let sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();
+            let resp;
+            await this.get(URLs.getInstructionsByBarcode(barcode, sCurrentLocale)).then(async instructionsData => {
+                resp = instructionsData;
+            }).catch(err => {
+                resp = null
+            })
+
+            return resp;
         },
 
         restartChoiceSteps: function () {
@@ -327,7 +394,7 @@ sap.ui.define([
             let picture = this.getView().byId("pictureBox");
 
             let isSubcatAlreadyChosen = false;
-            if (latestSubcategory) {
+            if (latestSubcategory && latestSubcategory !== true) {
                 latestSubcategory.removeStyleClass("pressedButton");
                 isSubcatAlreadyChosen = true;
                 let oldId = latestSubcategory.sId.slice(latestSubcategory.sId.lastIndexOf("-") + 1);

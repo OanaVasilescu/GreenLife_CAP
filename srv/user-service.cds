@@ -13,6 +13,7 @@ service UserService @(path : '/greenlife') {
     };
 
     function getInstructionsBySubcategory(subcategory : String, locale : String) returns array of String;
+    function getInstructionsByBarcode(barcode : String, locale : String)         returns array of String;
     action   sendMail(text : String)                                             returns String;
     function getHistory()                                                        returns array of String;
     function getSubmissions()                                                    returns array of String;

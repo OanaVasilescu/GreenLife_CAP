@@ -8,6 +8,7 @@ sap.ui.define([], function () {
     const generalProducts = "/GeneralProducts";
     const slash = "/";
     const getInstructionsBySubcategory = "/getInstructionsBySubcategory";
+    const getInstructionsByBarcode = "/getInstructionsByBarcode";
     const expandAllProduct = "?&$expand=components($expand=component($expand=productMaterialCode($expand=bin),productType))";
     const getUser = "/getUserData()";
     const sendMail = "/sendMail";
@@ -24,6 +25,9 @@ sap.ui.define([], function () {
         },
         getInstructionsBySubcategory: function (subcategory, locale) {
             return origin + userService + getInstructionsBySubcategory + `(subcategory='${subcategory}',locale='${locale}')`;
+        },
+        getInstructionsByBarcode: function (subcategory, locale) {
+            return origin + userService + getInstructionsByBarcode + `(barcode='${subcategory}',locale='${locale}')`;
         },
         sendMail: function () {
             return origin + userService + sendMail;

@@ -84,6 +84,7 @@ sap.ui.define([
 
         getSubmissions: async function () {
             this.get(URLs.getSubmissions()).then((res) => {
+
                 if (res.value.length != 0) {
                     res.value = res.value.sort((a, b) => {
                         return new Date(b.createdAt) - new Date(a.createdAt)
@@ -91,6 +92,8 @@ sap.ui.define([
                     this.getView().getModel("submissionsModel").setProperty("/items", res.value)
                     this.getView().getModel("submissionsModel").setProperty("/visibility", false)
                     this.getView().getModel("submissionsModel").refresh();
+                } else {
+                    this.getView().getModel("submissionsModel").setProperty("/visibility", true)
                 }
             }).catch((err) => {
                 console.log(err);

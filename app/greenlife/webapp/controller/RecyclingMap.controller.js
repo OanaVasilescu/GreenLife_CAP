@@ -112,13 +112,10 @@ sap.ui.define([
                         name: oResourceBundle.getText("tire")
                     },
                     {
-                        key: "carBatteriesTile",
-                        name: oResourceBundle.getText("batteries")
-                    },
-                    {
                         key: "brassTile",
                         name: oResourceBundle.getText("brass")
-                    }, {
+                    },
+                    {
                         key: "otherTextilesTile",
                         name: oResourceBundle.getText("otherTextiles")
                     }, {

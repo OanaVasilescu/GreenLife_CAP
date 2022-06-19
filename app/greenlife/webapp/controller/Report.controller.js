@@ -422,6 +422,14 @@ sap.ui.define([
                             }</em>
                         </li>`
                         }
+                        if (ind.color) {
+                            htmlText = htmlText + `<li>
+                            <strong>Culoare: </strong>
+                            <em>${
+                                ind.color
+                            }</em>
+                        </li>`
+                        }
                         if (ind.licencePlate) {
                             htmlText = htmlText + `<li>
                             <strong>Numar de inmatriculare: </strong>

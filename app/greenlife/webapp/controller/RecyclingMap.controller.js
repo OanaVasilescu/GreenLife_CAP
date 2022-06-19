@@ -271,6 +271,7 @@ sap.ui.define([
         initPage: async function () { // this.addClustering();
             let busyDialog = this.byId("BusyDialog"); // set page busy while everything loads
             busyDialog.open();
+            this.clearFilters();
 
             await this.getMapPoints();
 
@@ -437,5 +438,11 @@ sap.ui.define([
 
         sap.ui.require(["sap/m/library"], ({URLHelper}) => URLHelper.redirect(url, newTab));
 
+    },
+
+    clearFilters: function () {
+        this.getView().byId("multiCombo").setSelectedKeys();
+        this.getView().byId("citySelect").setSelectedKey()
+        this.getView().byId("rewardSelect").setSelectedKey()
     }
 });});

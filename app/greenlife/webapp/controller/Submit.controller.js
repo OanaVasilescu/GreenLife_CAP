@@ -282,6 +282,8 @@ sap.ui.define([
         },
 
         initPage: function () {
+            this.getHistory();
+            this.clearPages();
             this.getView().getModel("historyModel").setProperty("/visibility", true)
             if (this.getRouter().getHashChanger().hash !== "submit") {
                 const sHashParams = this.getRouter().getHashChanger().hash.replace("submit/", "");
@@ -289,13 +291,15 @@ sap.ui.define([
                     this.getSplitAppObj().toDetail(this.createId("MapBinsPage"));
                 } else {
                     this.getSplitAppObj().toDetail(this.createId("ProductsBarcodesPage"));
+                    if (sHashParams != "barcode") {
+                        this.getView().getModel("scanModel").setProperty("/scanText", sHashParams)
+                        this.getView().getModel("scanModel").refresh()
+                    }
                 }
             } else {
                 this.getSplitAppObj().toDetail(this.createId("historyPage"));
             }
 
-            this.getHistory();
-            this.clearPages();
             this.getView().getModel("historyModel").refresh();
         },
 

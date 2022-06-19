@@ -249,12 +249,12 @@ sap.ui.define([
                     actions: [
                         oResourceBundle.getText("SubmitBarcode"), MessageBox.Action.OK
                     ],
-                    emphasizedAction: oResourceBundle.getText("SubmitBarcode"),
+                    emphasizedAction: 'OK',
                     onClose: (sAction) => {
                         if (sAction == 'OK') {
                             this.restartChoiceSteps();
                         } else {
-                            this.pressSubmitMissing();
+                            this.pressSubmitMissing(oResult.text);
                         }
                     }
                 });
@@ -418,8 +418,11 @@ sap.ui.define([
             this.getRouter().navTo("RecyclingMap", {material: subcategory});
         },
 
-        pressSubmitMissing: function () {
-            this.getRouter().navTo("Submit", {page: 'barcode'});
+        pressSubmitMissing: function (barcode) {
+            if (barcode.sId == 'press') {
+                barcode = 'barcode'
+            }
+            this.getRouter().navTo("Submit", {page: barcode});
         }
     });
 });

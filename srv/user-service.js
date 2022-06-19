@@ -90,7 +90,7 @@ async function _getInstructionsByBarcode(req) {
     let barcode = req.data.barcode;
     let locale = req.data.locale;
 
-    let barcodepr = await SELECT.from('Products').where({barcode: barcode})
+    let barcodepr = await SELECT.from('Products').where({barcode: barcode, approved: 'Approved'})
 
     if (barcodepr.length == 0) {
         req.reject(404);

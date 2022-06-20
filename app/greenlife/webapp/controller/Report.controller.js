@@ -146,9 +146,6 @@ sap.ui.define([
                 let data = this.getView().getModel("dataModel").getData();
                 let individuals = this.getView().getModel("individualsModel").getData().individuals;
                 data.individualsData = individuals;
-                if (this.getView().byId("genderSelect").getSelectedItem()) {
-                    data.individualsData.gender = this.getView().byId("genderSelect").getSelectedItem()
-                }
                 if (data.isReccuring) {
                     data.happensEvery = this.getView().byId("timeRB").getSelectedButton().getCustomData()[0].getValue()
                 }
@@ -383,20 +380,12 @@ sap.ui.define([
                         }</em>
                     </li>`
                     }
-                    debugger;
                     if (ind.gender) {
                         debugger;
                         htmlText = htmlText + `<li>
                         <strong>Sex: </strong>
                         <em>${
                             ind.gender
-                        }</em>
-                    </li>`
-                    } else {
-                        htmlText = htmlText + `<li>
-                        <strong>Sex: </strong>
-                        <em>${
-                            'necunoscut'
                         }</em>
                     </li>`
                     }

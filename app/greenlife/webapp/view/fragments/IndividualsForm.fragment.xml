@@ -20,13 +20,6 @@
             <Label text="{i18n>offerInfo}" wrapping="true" class="smallText"/>
 
             <TextArea placeholder="{i18n>persondescription}" growing="true" growingMaxLines="7" width="100%" value="{individualsModel>personDescription}"/>
-            <Select width="100%">
-                <items>
-                    <core:Item text="{i18n>genderUnknown}"/>
-                    <core:Item text="{i18n>female}"/>
-                    <core:Item text="{i18n>male}"/>
-                </items>
-            </Select>
         </VBox>
         <VBox class="sapUiMediumMarginTop">
             <Input placeholder="{i18n>adress}" value="{individualsModel>address}"/>

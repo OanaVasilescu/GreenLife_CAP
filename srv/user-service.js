@@ -41,6 +41,7 @@ async function _getUserData(req) {
     const userEmail = req.user.id;
 
     var roles = [];
+    console.log(req.user)
     userRoles.forEach(role => {
         if (req.user.is(role)) {
             roles.push(role)

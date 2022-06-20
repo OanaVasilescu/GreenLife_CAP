@@ -408,6 +408,7 @@ sap.ui.define([
 
             this.getView().byId("fixflexLayout").setVertical(true);
             this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
+            debugger;
         },
 
         goToMapPoints: function (oEvent) {

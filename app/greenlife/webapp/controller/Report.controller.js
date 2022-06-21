@@ -381,7 +381,6 @@ sap.ui.define([
                     </li>`
                     }
                     if (ind.gender) {
-                        debugger;
                         htmlText = htmlText + `<li>
                         <strong>Sex: </strong>
                         <em>${

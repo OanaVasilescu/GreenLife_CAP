@@ -274,7 +274,10 @@ sap.ui.define([
                 this.setPicture(result.value[0].subcategory);
 
                 busyDialog.close();
-                this.getView().getModel("chosenModel").setProperty("/latestSubcategory", true);
+                this.getView().getModel("chosenModel").setProperty("/latestSubcategory", {
+                    isFromBarcode: true,
+                    subcat: result.value[0].subcategory
+                });
 
 
                 this.byId("introStep").setNextStep(this.getView().byId("instructionStep"));
@@ -391,10 +394,16 @@ sap.ui.define([
 
             let isSubcatAlreadyChosen = false;
             if (latestSubcategory && latestSubcategory !== true) {
-                latestSubcategory.removeStyleClass("pressedButton");
-                isSubcatAlreadyChosen = true;
-                let oldId = latestSubcategory.sId.slice(latestSubcategory.sId.lastIndexOf("-") + 1);
-                picture.removeStyleClass(oldId)
+                if (latestSubcategory.hasOwnProperty("isFromBarcode")) {
+                    this.getView().byId("scanTile").removeStyleClass("pressedButton");
+
+                } else {
+                    latestSubcategory.removeStyleClass("pressedButton");
+                    isSubcatAlreadyChosen = true;
+
+                    let oldId = latestSubcategory.sId.slice(latestSubcategory.sId.lastIndexOf("-") + 1);
+                    picture.removeStyleClass(oldId)
+                };
             }
 
 
@@ -408,14 +417,17 @@ sap.ui.define([
 
             this.getView().byId("fixflexLayout").setVertical(true);
             this.getView().getModel("chosenModel").setProperty("/latestSubcategory", null);
-            debugger;
         },
 
         goToMapPoints: function (oEvent) {
             let chosenModel = this.getView().getModel("chosenModel");
-            let id = chosenModel.getData().latestSubcategory.sId;
-            let subcategory = id.slice(id.lastIndexOf("-") + 1);
-
+            let subcategory
+            if (chosenModel.getData().latestSubcategory.isFromBarcode) {
+                subcategory = chosenModel.getData().latestSubcategory.subcat
+            } else {
+                let id = chosenModel.getData().latestSubcategory.sId;
+                subcategory = id.slice(id.lastIndexOf("-") + 1);
+            }
             this.getRouter().navTo("RecyclingMap", {material: subcategory});
         },
 
